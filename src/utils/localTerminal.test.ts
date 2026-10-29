@@ -13,7 +13,7 @@ describe('formatTerminalAgentError', () => {
   it('distinguishes an origin allowlist failure from an offline Agent', () => {
     const message = formatTerminalAgentError(new Error('backend origin is not allowed by NEXORA_AGENT_ALLOWED_ORIGINS'), true);
 
-    expect(message).toContain('未允许当前 Nexora 页面来源');
+    expect(message).toContain('未允许当前 NetAop 页面来源');
     expect(message).toContain('NEXORA_AGENT_ALLOWED_ORIGINS');
   });
 });

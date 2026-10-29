@@ -69,7 +69,7 @@ _PLATFORM_FAMILY_ALIASES = {
 
 
 def _canonical_detected_platform(vendor: str, platform: Any) -> str:
-    """Translate common LibreNMS OS-family values to Nexora platform keys."""
+    """Translate common LibreNMS OS-family values to NetAop platform keys."""
     vendor_name = canonical_vendor(vendor)
     raw = str(platform or "").strip().casefold().replace("-", "_").replace(" ", "_")
     aliases = _PLATFORM_FAMILY_ALIASES.get(vendor_name.casefold(), {})

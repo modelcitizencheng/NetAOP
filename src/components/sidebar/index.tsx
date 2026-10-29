@@ -442,7 +442,7 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
           </div>
           {!isMini && (
             <div className="sidebar-logo-text min-w-0 flex-1">
-              <h1 className="text-[14px] font-semibold text-white tracking-[-0.01em] truncate">{systemInfo?.system_name || 'Nexora'}</h1>
+              <h1 className="text-[14px] font-semibold text-white tracking-[-0.01em] truncate">{systemInfo?.system_name || 'NetAop'}</h1>
               <p className="text-[10px] text-[#4a5568] tracking-[0.06em] font-medium">
                 {language === 'zh' ? '智能网络中枢' : 'SMART NET HUB'}
               </p>

@@ -43,7 +43,7 @@ PYTHON_MIN="3.10"
 # One-click deployments use the sanitized public release repository by
 # default. Developers can still override this with GIT_REPO.
 GIT_REPO="${GIT_REPO:-https://github.com/libing28390-sketch/Release-netops.git}"
-PROJECT_NAME="nexora-automation"
+PROJECT_NAME="netaop-automation"
 SERVICE_NAME="netops"
 BACKEND_PORT=8003
 NGINX_PORT=80
@@ -246,7 +246,7 @@ info "目标目录: $PROJECT_DIR"
 # an actionable message instead of reporting a cryptic Docker COPY checksum
 # error when an old/incomplete checkout is used.
 if [ ! -f "$PROJECT_DIR/scripts/terminal_agent.py" ]; then
-    fail "当前代码不是完整的 Nexora 主仓库（缺少 scripts/terminal_agent.py）。请执行 git fetch origin main && git reset --hard origin/main，或重新从 $GIT_REPO 克隆。"
+    fail "当前代码不是完整的 NetAop 主仓库（缺少 scripts/terminal_agent.py）。请执行 git fetch origin main && git reset --hard origin/main，或重新从 $GIT_REPO 克隆。"
 fi
 
 # ============================================================

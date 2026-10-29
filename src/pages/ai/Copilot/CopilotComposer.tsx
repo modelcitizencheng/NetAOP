@@ -449,7 +449,7 @@ export const CopilotComposer: React.FC<CopilotComposerProps> = ({
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="询问 Nexora AI，或输入 / 使用快捷指令..."
+          placeholder="询问 NetAop AI，或输入 / 使用快捷指令..."
           className="order-1 min-h-10 min-w-0 basis-full resize-none border-none bg-transparent py-1.5 font-sans text-sm leading-relaxed text-gray-900 placeholder-gray-400 focus:outline-none dark:text-gray-100 sm:order-none sm:min-h-[28px] sm:basis-auto sm:flex-1"
         />
 

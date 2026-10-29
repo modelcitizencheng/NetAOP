@@ -256,7 +256,7 @@
       },
       "targets": [
         {
-          "expr": "sum(count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))",
+          "expr": "sum(count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))",
           "refId": "A",
           "instant": true
         }
@@ -334,7 +334,7 @@
       },
       "targets": [
         {
-          "expr": "sum((sum by (site_name,vendor,role,hostname) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_controller\",sensor_class=\"ap-count\"}) unless on(site_name,vendor,role,hostname) (((count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"})) == on(site_name,vendor,role,hostname) (count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))) and on(site_name,vendor,role,hostname) (max by (site_name,vendor,role,hostname) (nexora_hw_capability_status{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",coverage_complete=\"true\"})))) or on(site_name,vendor,role,hostname) (((count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online)$\"})) and on(site_name,vendor,role,hostname) (((count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"})) == on(site_name,vendor,role,hostname) (count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))) and on(site_name,vendor,role,hostname) (max by (site_name,vendor,role,hostname) (nexora_hw_capability_status{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",coverage_complete=\"true\"})))) or on(site_name,vendor,role,hostname) ((((count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"})) == on(site_name,vendor,role,hostname) (count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))) and on(site_name,vendor,role,hostname) (max by (site_name,vendor,role,hostname) (nexora_hw_capability_status{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",coverage_complete=\"true\"}))) * 0)))",
+          "expr": "sum((sum by (site_name,vendor,role,hostname) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_controller\",sensor_class=\"ap-count\"}) unless on(site_name,vendor,role,hostname) (((count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"})) == on(site_name,vendor,role,hostname) (count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))) and on(site_name,vendor,role,hostname) (max by (site_name,vendor,role,hostname) (netaop_hw_capability_status{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",coverage_complete=\"true\"})))) or on(site_name,vendor,role,hostname) (((count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online)$\"})) and on(site_name,vendor,role,hostname) (((count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"})) == on(site_name,vendor,role,hostname) (count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))) and on(site_name,vendor,role,hostname) (max by (site_name,vendor,role,hostname) (netaop_hw_capability_status{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",coverage_complete=\"true\"})))) or on(site_name,vendor,role,hostname) ((((count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"})) == on(site_name,vendor,role,hostname) (count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))) and on(site_name,vendor,role,hostname) (max by (site_name,vendor,role,hostname) (netaop_hw_capability_status{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",coverage_complete=\"true\"}))) * 0)))",
           "refId": "A",
           "instant": true
         }
@@ -416,7 +416,7 @@
       },
       "targets": [
         {
-          "expr": "sum((count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(deassociated|idle|down|disconnected|not_reported)$\"})) or on(site_name,vendor,role,hostname) ((((count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"})) == on(site_name,vendor,role,hostname) (count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))) and on(site_name,vendor,role,hostname) (max by (site_name,vendor,role,hostname) (nexora_hw_capability_status{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",coverage_complete=\"true\"}))) * 0))",
+          "expr": "sum((count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(deassociated|idle|down|disconnected|not_reported)$\"})) or on(site_name,vendor,role,hostname) ((((count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"})) == on(site_name,vendor,role,hostname) (count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))) and on(site_name,vendor,role,hostname) (max by (site_name,vendor,role,hostname) (netaop_hw_capability_status{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",coverage_complete=\"true\"}))) * 0))",
           "refId": "A",
           "instant": true
         }
@@ -494,7 +494,7 @@
       },
       "targets": [
         {
-          "expr": "sum((sum by (site_name,vendor,role,hostname) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_controller\",sensor_class=\"clients\"}) or on(site_name,vendor,role,hostname) (sum by (site_name,vendor,role,hostname) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_ssid\",sensor_class=\"clients\"}) or on(site_name,vendor,role,hostname) sum by (site_name,vendor,role,hostname) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_radio\",sensor_class=\"clients\"}))))",
+          "expr": "sum((sum by (site_name,vendor,role,hostname) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_controller\",sensor_class=\"clients\"}) or on(site_name,vendor,role,hostname) (sum by (site_name,vendor,role,hostname) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_ssid\",sensor_class=\"clients\"}) or on(site_name,vendor,role,hostname) sum by (site_name,vendor,role,hostname) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_radio\",sensor_class=\"clients\"}))))",
           "refId": "A",
           "instant": true
         }
@@ -579,7 +579,7 @@
       },
       "targets": [
         {
-          "expr": "count(max by (site_name,vendor,role,hostname,ap_id,ap_name,radio_id) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_radio\",sensor_class=\"utilization\"}) >= 75) or on() ((count(max by (site_name,vendor,role,hostname,ap_id,ap_name,radio_id) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_radio\",sensor_class=\"utilization\"})) > 0) * 0)",
+          "expr": "count(max by (site_name,vendor,role,hostname,ap_id,ap_name,radio_id) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_radio\",sensor_class=\"utilization\"}) >= 75) or on() ((count(max by (site_name,vendor,role,hostname,ap_id,ap_name,radio_id) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_radio\",sensor_class=\"utilization\"})) > 0) * 0)",
           "refId": "A",
           "instant": true
         }
@@ -669,7 +669,7 @@
       },
       "targets": [
         {
-          "expr": "avg(max by (site_name,vendor,role,hostname,ap_id,ap_name,radio_id) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_radio\",sensor_class=\"utilization\"}))",
+          "expr": "avg(max by (site_name,vendor,role,hostname,ap_id,ap_name,radio_id) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_radio\",sensor_class=\"utilization\"}))",
           "refId": "A",
           "instant": true
         }
@@ -765,12 +765,12 @@
       },
       "targets": [
         {
-          "expr": "sum((sum by (site_name,vendor,role,hostname) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_controller\",sensor_class=\"ap-count\"}) unless on(site_name,vendor,role,hostname) (((count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"})) == on(site_name,vendor,role,hostname) (count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))) and on(site_name,vendor,role,hostname) (max by (site_name,vendor,role,hostname) (nexora_hw_capability_status{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",coverage_complete=\"true\"})))) or on(site_name,vendor,role,hostname) (((count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online)$\"})) and on(site_name,vendor,role,hostname) (((count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"})) == on(site_name,vendor,role,hostname) (count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))) and on(site_name,vendor,role,hostname) (max by (site_name,vendor,role,hostname) (nexora_hw_capability_status{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",coverage_complete=\"true\"})))) or on(site_name,vendor,role,hostname) ((((count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"})) == on(site_name,vendor,role,hostname) (count by (site_name,vendor,role,hostname) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))) and on(site_name,vendor,role,hostname) (max by (site_name,vendor,role,hostname) (nexora_hw_capability_status{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",coverage_complete=\"true\"}))) * 0)))",
+          "expr": "sum((sum by (site_name,vendor,role,hostname) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_controller\",sensor_class=\"ap-count\"}) unless on(site_name,vendor,role,hostname) (((count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"})) == on(site_name,vendor,role,hostname) (count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))) and on(site_name,vendor,role,hostname) (max by (site_name,vendor,role,hostname) (netaop_hw_capability_status{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",coverage_complete=\"true\"})))) or on(site_name,vendor,role,hostname) (((count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online)$\"})) and on(site_name,vendor,role,hostname) (((count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"})) == on(site_name,vendor,role,hostname) (count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))) and on(site_name,vendor,role,hostname) (max by (site_name,vendor,role,hostname) (netaop_hw_capability_status{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",coverage_complete=\"true\"})))) or on(site_name,vendor,role,hostname) ((((count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"})) == on(site_name,vendor,role,hostname) (count by (site_name,vendor,role,hostname) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}))) and on(site_name,vendor,role,hostname) (max by (site_name,vendor,role,hostname) (netaop_hw_capability_status{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",coverage_complete=\"true\"}))) * 0)))",
           "legendFormat": "在线 AP",
           "refId": "A"
         },
         {
-          "expr": "sum((sum by (site_name,vendor,role,hostname) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_controller\",sensor_class=\"clients\"}) or on(site_name,vendor,role,hostname) (sum by (site_name,vendor,role,hostname) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_ssid\",sensor_class=\"clients\"}) or on(site_name,vendor,role,hostname) sum by (site_name,vendor,role,hostname) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_radio\",sensor_class=\"clients\"}))))",
+          "expr": "sum((sum by (site_name,vendor,role,hostname) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_controller\",sensor_class=\"clients\"}) or on(site_name,vendor,role,hostname) (sum by (site_name,vendor,role,hostname) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_ssid\",sensor_class=\"clients\"}) or on(site_name,vendor,role,hostname) sum by (site_name,vendor,role,hostname) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_radio\",sensor_class=\"clients\"}))))",
           "legendFormat": "关联终端",
           "refId": "B"
         }
@@ -875,7 +875,7 @@
       },
       "targets": [
         {
-          "expr": "sum by (ap_state) (label_replace((nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online)$\"}) * 0 + 1, \"ap_state\", \"在线\", \"state_description\", \".*\") or label_replace((nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(deassociated|idle|down|disconnected|not_reported)$\"}) * 0 + 1, \"ap_state\", \"离线\", \"state_description\", \".*\") or label_replace((nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"}) * 0 + 1, \"ap_state\", \"接入中\", \"state_description\", \".*\") or label_replace((nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(unknown|unclassified)$\"}) * 0 + 1, \"ap_state\", \"未知\", \"state_description\", \".*\"))",
+          "expr": "sum by (ap_state) (label_replace((netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online)$\"}) * 0 + 1, \"ap_state\", \"在线\", \"state_description\", \".*\") or label_replace((netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(deassociated|idle|down|disconnected|not_reported)$\"}) * 0 + 1, \"ap_state\", \"离线\", \"state_description\", \".*\") or label_replace((netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$\"}) * 0 + 1, \"ap_state\", \"接入中\", \"state_description\", \".*\") or label_replace((netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(unknown|unclassified)$\"}) * 0 + 1, \"ap_state\", \"未知\", \"state_description\", \".*\"))",
           "legendFormat": "{{ap_state}}",
           "instant": true,
           "refId": "A"
@@ -1066,7 +1066,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}",
+          "expr": "netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\"}",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -1081,21 +1081,21 @@
               "__name__": true,
               "ifIndex": true,
               "asset_id": true,
-              "nexora_asset_id": true,
-              "nexora_hostname": true,
-              "nexora_module": true,
-              "nexora_platform": true,
-              "nexora_role": true,
-              "nexora_site_id": true,
-              "nexora_site_name": true,
-              "nexora_tenant_id": true,
-              "nexora_vendor": true,
+              "netaop_asset_id": true,
+              "netaop_hostname": true,
+              "netaop_module": true,
+              "netaop_platform": true,
+              "netaop_role": true,
+              "netaop_site_id": true,
+              "netaop_site_name": true,
+              "netaop_tenant_id": true,
+              "netaop_vendor": true,
               "job": true,
               "tenant_id": true,
               "site_id": true,
               "platform": true,
               "sysName": true,
-              "nexora_interface_role": true,
+              "netaop_interface_role": true,
               "Value": true,
               "data_origin": true,
               "source_type": true,
@@ -1219,7 +1219,7 @@
       },
       "targets": [
         {
-          "expr": "topk(20, max by (site_name,vendor,role,hostname,device_id,ap_id,ap_mac,ap_name,ap_ip,ap_model) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",sensor_class=\"clients\"}))",
+          "expr": "topk(20, max by (site_name,vendor,role,hostname,device_id,ap_id,ap_mac,ap_name,ap_ip,ap_model) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",sensor_class=\"clients\"}))",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -1234,21 +1234,21 @@
               "__name__": true,
               "ifIndex": true,
               "asset_id": true,
-              "nexora_asset_id": true,
-              "nexora_hostname": true,
-              "nexora_module": true,
-              "nexora_platform": true,
-              "nexora_role": true,
-              "nexora_site_id": true,
-              "nexora_site_name": true,
-              "nexora_tenant_id": true,
-              "nexora_vendor": true,
+              "netaop_asset_id": true,
+              "netaop_hostname": true,
+              "netaop_module": true,
+              "netaop_platform": true,
+              "netaop_role": true,
+              "netaop_site_id": true,
+              "netaop_site_name": true,
+              "netaop_tenant_id": true,
+              "netaop_vendor": true,
               "job": true,
               "tenant_id": true,
               "site_id": true,
               "platform": true,
               "sysName": true,
-              "nexora_interface_role": true,
+              "netaop_interface_role": true,
               "source_type": true,
               "measurement_type": true,
               "component_class": true,
@@ -1368,7 +1368,7 @@
       },
       "targets": [
         {
-          "expr": "topk(20, (max by (site_name,vendor,role,hostname,device_id,ap_id,ap_mac,ap_name,ap_ip,ap_model) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",sensor_class=\"ap-online-duration\"}) / 86400) and on(device_id,ap_mac) (nexora_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|present)$\"}))",
+          "expr": "topk(20, (max by (site_name,vendor,role,hostname,device_id,ap_id,ap_mac,ap_name,ap_ip,ap_model) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",sensor_class=\"ap-online-duration\"}) / 86400) and on(device_id,ap_mac) (netaop_hw_component_state{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_access_point\",state_description=~\"^(associated|run|online|active|present)$\"}))",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -1383,21 +1383,21 @@
               "__name__": true,
               "ifIndex": true,
               "asset_id": true,
-              "nexora_asset_id": true,
-              "nexora_hostname": true,
-              "nexora_module": true,
-              "nexora_platform": true,
-              "nexora_role": true,
-              "nexora_site_id": true,
-              "nexora_site_name": true,
-              "nexora_tenant_id": true,
-              "nexora_vendor": true,
+              "netaop_asset_id": true,
+              "netaop_hostname": true,
+              "netaop_module": true,
+              "netaop_platform": true,
+              "netaop_role": true,
+              "netaop_site_id": true,
+              "netaop_site_name": true,
+              "netaop_tenant_id": true,
+              "netaop_vendor": true,
               "job": true,
               "tenant_id": true,
               "site_id": true,
               "platform": true,
               "sysName": true,
-              "nexora_interface_role": true,
+              "netaop_interface_role": true,
               "source_type": true,
               "measurement_type": true,
               "component_class": true,
@@ -1526,7 +1526,7 @@
       },
       "targets": [
         {
-          "expr": "topk(10, max by (site_name,vendor,role,hostname,ap_id,ap_name,radio_id) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_radio\",sensor_class=\"utilization\"}))",
+          "expr": "topk(10, max by (site_name,vendor,role,hostname,ap_id,ap_name,radio_id) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_radio\",sensor_class=\"utilization\"}))",
           "legendFormat": "{{hostname}} / {{ap_name}} / Radio {{radio_id}}",
           "instant": true,
           "refId": "A"
@@ -1609,7 +1609,7 @@
       },
       "targets": [
         {
-          "expr": "topk(20, nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_bss\",sensor_class=\"clients\"})",
+          "expr": "topk(20, netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_bss\",sensor_class=\"clients\"})",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -1624,21 +1624,21 @@
               "__name__": true,
               "ifIndex": true,
               "asset_id": true,
-              "nexora_asset_id": true,
-              "nexora_hostname": true,
-              "nexora_module": true,
-              "nexora_platform": true,
-              "nexora_role": true,
-              "nexora_site_id": true,
-              "nexora_site_name": true,
-              "nexora_tenant_id": true,
-              "nexora_vendor": true,
+              "netaop_asset_id": true,
+              "netaop_hostname": true,
+              "netaop_module": true,
+              "netaop_platform": true,
+              "netaop_role": true,
+              "netaop_site_id": true,
+              "netaop_site_name": true,
+              "netaop_tenant_id": true,
+              "netaop_vendor": true,
               "job": true,
               "tenant_id": true,
               "site_id": true,
               "platform": true,
               "sysName": true,
-              "nexora_interface_role": true,
+              "netaop_interface_role": true,
               "source_type": true,
               "measurement_type": true,
               "component_class": true,
@@ -1754,7 +1754,7 @@
       },
       "targets": [
         {
-          "expr": "topk(20, (sum by (site_name,vendor,role,hostname,ssid) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_ssid\",sensor_class=\"clients\",ssid!=\"\"}) or on(site_name,vendor,role,hostname,ssid) sum by (site_name,vendor,role,hostname,ssid) (nexora_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_bss\",sensor_class=\"clients\",ssid!=\"\"})))",
+          "expr": "topk(20, (sum by (site_name,vendor,role,hostname,ssid) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_ssid\",sensor_class=\"clients\",ssid!=\"\"}) or on(site_name,vendor,role,hostname,ssid) sum by (site_name,vendor,role,hostname,ssid) (netaop_wireless_sensor_value{job=\"platform_hardware_inventory\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\",hostname=~\"$device\",source_type=~\"librenms_rule|librenms_mib_rule\",component_class=\"wireless_bss\",sensor_class=\"clients\",ssid!=\"\"})))",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -1769,21 +1769,21 @@
               "__name__": true,
               "ifIndex": true,
               "asset_id": true,
-              "nexora_asset_id": true,
-              "nexora_hostname": true,
-              "nexora_module": true,
-              "nexora_platform": true,
-              "nexora_role": true,
-              "nexora_site_id": true,
-              "nexora_site_name": true,
-              "nexora_tenant_id": true,
-              "nexora_vendor": true,
+              "netaop_asset_id": true,
+              "netaop_hostname": true,
+              "netaop_module": true,
+              "netaop_platform": true,
+              "netaop_role": true,
+              "netaop_site_id": true,
+              "netaop_site_name": true,
+              "netaop_tenant_id": true,
+              "netaop_vendor": true,
               "job": true,
               "tenant_id": true,
               "site_id": true,
               "platform": true,
               "sysName": true,
-              "nexora_interface_role": true,
+              "netaop_interface_role": true,
               "instance": true,
               "rule_version": true
             },
@@ -2130,7 +2130,7 @@
   "refresh": "30s",
   "schemaVersion": 39,
   "tags": [
-    "nexora",
+    "netaop",
     "network",
     "wireless"
   ],
@@ -2147,14 +2147,14 @@
             "$__all"
           ]
         },
-        "definition": "query_result(count by (site_name) (up{job=\"network_snmp\",role=\"wireless_controller\"} or nexora_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\"}))",
+        "definition": "query_result(count by (site_name) (up{job=\"network_snmp\",role=\"wireless_controller\"} or netaop_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\"}))",
         "includeAll": true,
         "label": "站点",
         "multi": true,
         "name": "site",
         "options": [],
         "query": {
-          "query": "query_result(count by (site_name) (up{job=\"network_snmp\",role=\"wireless_controller\"} or nexora_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\"}))",
+          "query": "query_result(count by (site_name) (up{job=\"network_snmp\",role=\"wireless_controller\"} or netaop_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\"}))",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -2172,14 +2172,14 @@
             "$__all"
           ]
         },
-        "definition": "query_result(count by (vendor) (up{job=\"network_snmp\",role=\"wireless_controller\",site_name=~\"$site\"} or nexora_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\",site_name=~\"$site\"}))",
+        "definition": "query_result(count by (vendor) (up{job=\"network_snmp\",role=\"wireless_controller\",site_name=~\"$site\"} or netaop_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\",site_name=~\"$site\"}))",
         "includeAll": true,
         "label": "厂商",
         "multi": true,
         "name": "vendor",
         "options": [],
         "query": {
-          "query": "query_result(count by (vendor) (up{job=\"network_snmp\",role=\"wireless_controller\",site_name=~\"$site\"} or nexora_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\",site_name=~\"$site\"}))",
+          "query": "query_result(count by (vendor) (up{job=\"network_snmp\",role=\"wireless_controller\",site_name=~\"$site\"} or netaop_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\",site_name=~\"$site\"}))",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -2197,14 +2197,14 @@
             "$__all"
           ]
         },
-        "definition": "query_result(count by (role) (up{job=\"network_snmp\",role=\"wireless_controller\",site_name=~\"$site\",vendor=~\"$vendor\"} or nexora_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\",site_name=~\"$site\",vendor=~\"$vendor\"}))",
+        "definition": "query_result(count by (role) (up{job=\"network_snmp\",role=\"wireless_controller\",site_name=~\"$site\",vendor=~\"$vendor\"} or netaop_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\",site_name=~\"$site\",vendor=~\"$vendor\"}))",
         "includeAll": true,
         "label": "角色",
         "multi": true,
         "name": "role",
         "options": [],
         "query": {
-          "query": "query_result(count by (role) (up{job=\"network_snmp\",role=\"wireless_controller\",site_name=~\"$site\",vendor=~\"$vendor\"} or nexora_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\",site_name=~\"$site\",vendor=~\"$vendor\"}))",
+          "query": "query_result(count by (role) (up{job=\"network_snmp\",role=\"wireless_controller\",site_name=~\"$site\",vendor=~\"$vendor\"} or netaop_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\",site_name=~\"$site\",vendor=~\"$vendor\"}))",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -2222,14 +2222,14 @@
             "$__all"
           ]
         },
-        "definition": "query_result(count by (hostname) (up{job=\"network_snmp\",role=\"wireless_controller\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\"} or nexora_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\"}))",
+        "definition": "query_result(count by (hostname) (up{job=\"network_snmp\",role=\"wireless_controller\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\"} or netaop_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\"}))",
         "includeAll": true,
         "label": "AC 控制器",
         "multi": true,
         "name": "device",
         "options": [],
         "query": {
-          "query": "query_result(count by (hostname) (up{job=\"network_snmp\",role=\"wireless_controller\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\"} or nexora_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\"}))",
+          "query": "query_result(count by (hostname) (up{job=\"network_snmp\",role=\"wireless_controller\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\"} or netaop_hw_sensor_info{job=\"platform_hardware_inventory\",component_class=~\"wireless_.*\",site_name=~\"$site\",vendor=~\"$vendor\",role=~\"$role\"}))",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -2244,6 +2244,6 @@
   },
   "timezone": "browser",
   "title": "03 无线专网监控 (Wireless AP & Clients)",
-  "uid": "nexora-network-wireless",
+  "uid": "netaop-network-wireless",
   "version": 33
 }

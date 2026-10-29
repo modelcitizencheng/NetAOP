@@ -1,4 +1,4 @@
-# nexora-action-code: get_ntp_status
+# netaop-action-code: get_ntp_status
 Value Required SYNCHRONIZED (synchronized|unsynchronized|\S+)
 Value Filldown STRATUM (\d+)
 Value Filldown REFERENCE (\S+)

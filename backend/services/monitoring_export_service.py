@@ -119,7 +119,7 @@ def _query_vm_instant_safe(query: str) -> _InstantMetricMap:
             except (TypeError, ValueError, OverflowError, OSError):
                 pass
             h = metric.get("hostname") or metric.get("instance", "")
-            asset_id = str(metric.get("asset_id") or metric.get("nexora_asset_id") or "").strip()
+            asset_id = str(metric.get("asset_id") or metric.get("netaop_asset_id") or "").strip()
             if_index = str(metric.get("ifIndex") or "").strip()
             if_name = str(metric.get("ifName") or metric.get("ifname") or "").strip()
             keys: list[str] = []
@@ -866,7 +866,7 @@ def generate_interfaces_report(
         out = io.StringIO()
         out.write("\ufeff")
         writer = csv.writer(out)
-        writer.writerow(["# Nexora 网络接口综合监控报表"])
+        writer.writerow(["# NetAop 网络接口综合监控报表"])
         writer.writerow([])
         writer.writerow(["## 工作表 1: 流量与利用率统计"])
         writer.writerow(s2_headers)
@@ -879,7 +879,7 @@ def generate_interfaces_report(
         writer.writerow(["## 工作表 3: 高利用率预警接口"])
         writer.writerow(s3_headers)
         writer.writerows(s3_rows)
-        return out.getvalue().encode("utf-8-sig"), f"nexora_interfaces_{date_slug}.csv", "text/csv; charset=utf-8"
+        return out.getvalue().encode("utf-8-sig"), f"netaop_interfaces_{date_slug}.csv", "text/csv; charset=utf-8"
 
     wb = openpyxl.Workbook()
     ws1 = wb.active
@@ -898,7 +898,7 @@ def generate_interfaces_report(
     out_bio = io.BytesIO()
     wb.save(out_bio)
     out_bio.seek(0)
-    return out_bio.getvalue(), f"nexora_interfaces_{date_slug}.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    return out_bio.getvalue(), f"netaop_interfaces_{date_slug}.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
 
 def generate_devices_report(
@@ -944,12 +944,12 @@ def generate_devices_report(
         out = io.StringIO()
         out.write("\ufeff")
         writer = csv.writer(out)
-        writer.writerow(["# Nexora 网络设备运行与资源报表"])
+        writer.writerow(["# NetAop 网络设备运行与资源报表"])
         writer.writerow([])
         writer.writerow(["## 设备资源负荷清单"])
         writer.writerow(s1_headers)
         writer.writerows(s1_rows)
-        return out.getvalue().encode("utf-8-sig"), f"nexora_devices_{date_slug}.csv", "text/csv; charset=utf-8"
+        return out.getvalue().encode("utf-8-sig"), f"netaop_devices_{date_slug}.csv", "text/csv; charset=utf-8"
 
     wb = openpyxl.Workbook()
     ws1 = wb.active
@@ -962,7 +962,7 @@ def generate_devices_report(
     out_bio = io.BytesIO()
     wb.save(out_bio)
     out_bio.seek(0)
-    return out_bio.getvalue(), f"nexora_devices_{date_slug}.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    return out_bio.getvalue(), f"netaop_devices_{date_slug}.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
 
 def generate_outbound_report(
@@ -992,11 +992,11 @@ def generate_outbound_report(
         out = io.StringIO()
         out.write("\ufeff")
         writer = csv.writer(out)
-        writer.writerow(["# Nexora 互联网出口与 WAN 链路运行报表"])
+        writer.writerow(["# NetAop 互联网出口与 WAN 链路运行报表"])
         writer.writerow([])
         writer.writerow(s1_headers)
         writer.writerows(s1_rows)
-        return out.getvalue().encode("utf-8-sig"), f"nexora_outbound_{date_slug}.csv", "text/csv; charset=utf-8"
+        return out.getvalue().encode("utf-8-sig"), f"netaop_outbound_{date_slug}.csv", "text/csv; charset=utf-8"
 
     wb = openpyxl.Workbook()
     ws1 = wb.active
@@ -1006,4 +1006,4 @@ def generate_outbound_report(
     out_bio = io.BytesIO()
     wb.save(out_bio)
     out_bio.seek(0)
-    return out_bio.getvalue(), f"nexora_outbound_{date_slug}.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    return out_bio.getvalue(), f"netaop_outbound_{date_slug}.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"

@@ -15,7 +15,7 @@ DS_UID = "victoriametrics"
 DASHBOARD_VERSION = 33
 NO_VALUE_TEXT = "暂无采集数据"
 
-# Nexora NOC Dark V2 palette. These defaults also keep newly authored panels
+# NetAop NOC Dark V2 palette. These defaults also keep newly authored panels
 # aligned with the checked-in V2 presentation source below.
 INFO_COLOR = "#3B82F6"
 PRIMARY_BLUE_COLOR = INFO_COLOR
@@ -219,17 +219,17 @@ def wireless_clients_by_device(inventory_selector):
     """
     controller_clients = (
         f"sum by ({WIRELESS_DEVICE_LABELS}) ("
-        f"nexora_wireless_sensor_value{{{inventory_selector},"
+        f"netaop_wireless_sensor_value{{{inventory_selector},"
         'component_class="wireless_controller",sensor_class="clients"})'
     )
     ssid_clients = (
         f"sum by ({WIRELESS_DEVICE_LABELS}) ("
-        f"nexora_wireless_sensor_value{{{inventory_selector},"
+        f"netaop_wireless_sensor_value{{{inventory_selector},"
         'component_class="wireless_ssid",sensor_class="clients"})'
     )
     radio_clients = (
         f"sum by ({WIRELESS_DEVICE_LABELS}) ("
-        f"nexora_wireless_sensor_value{{{inventory_selector},"
+        f"netaop_wireless_sensor_value{{{inventory_selector},"
         'component_class="wireless_radio",sensor_class="clients"})'
     )
     inventory_clients = (
@@ -258,11 +258,11 @@ def wireless_ssid_clients_by_device(inventory_selector):
     """
     labels = f"{WIRELESS_DEVICE_LABELS},ssid"
     ssid_clients = (
-        f"sum by ({labels}) (nexora_wireless_sensor_value{{{inventory_selector},"
+        f"sum by ({labels}) (netaop_wireless_sensor_value{{{inventory_selector},"
         'component_class="wireless_ssid",sensor_class="clients",ssid!=""})'
     )
     bss_clients = (
-        f"sum by ({labels}) (nexora_wireless_sensor_value{{{inventory_selector},"
+        f"sum by ({labels}) (netaop_wireless_sensor_value{{{inventory_selector},"
         'component_class="wireless_bss",sensor_class="clients",ssid!=""})'
     )
     return f"({ssid_clients} or on({labels}) {bss_clients})"
@@ -550,21 +550,21 @@ def clean_organize_transformation(
         "__name__": True,
         "ifIndex": True,
         "asset_id": not keep_asset_id,
-        "nexora_asset_id": True,
-        "nexora_hostname": True,
-        "nexora_module": True,
-        "nexora_platform": True,
-        "nexora_role": True,
-        "nexora_site_id": True,
-        "nexora_site_name": True,
-        "nexora_tenant_id": True,
-        "nexora_vendor": True,
+        "netaop_asset_id": True,
+        "netaop_hostname": True,
+        "netaop_module": True,
+        "netaop_platform": True,
+        "netaop_role": True,
+        "netaop_site_id": True,
+        "netaop_site_name": True,
+        "netaop_tenant_id": True,
+        "netaop_vendor": True,
         "job": True,
         "tenant_id": True,
         "site_id": True,
         "platform": True,
         "sysName": True,
-        "nexora_interface_role": True,
+        "netaop_interface_role": True,
     }
     if extra_excludes:
         excludes.update(extra_excludes)
@@ -663,7 +663,7 @@ def table_panel(
                 "id": "links",
                 "value": [{
                     "title": "打开接口详情",
-                    "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                    "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                     "targetBlank": False,
                 }],
             }],
@@ -682,7 +682,7 @@ def table_panel(
                 "id": "links",
                 "value": [{
                     "title": "打开设备详情",
-                    "url": "/d/nexora-network-device/device-detail?var-asset_id=${__data.fields[\"资产 ID\"]}&from=${__from}&to=${__to}",
+                    "url": "/d/netaop-network-device/device-detail?var-asset_id=${__data.fields[\"资产 ID\"]}&from=${__from}&to=${__to}",
                     "targetBlank": False,
                 }],
             }],
@@ -923,7 +923,7 @@ def make_wireless_variables():
         suffix = f',{",".join(filters)}' if filters else ""
         return (
             f'(up{{{NETWORK_JOB},role="wireless_controller"{suffix}}} or '
-            f'nexora_hw_sensor_info{{{HARDWARE_INVENTORY_JOB},component_class=~"wireless_.*"{suffix}}})'
+            f'netaop_hw_sensor_info{{{HARDWARE_INVENTORY_JOB},component_class=~"wireless_.*"{suffix}}})'
         )
 
     return [
@@ -1017,7 +1017,7 @@ def build_overview_dashboard():
     def hardware_metric(metric):
         info = (
             f"max by ({hardware_info_labels}) "
-            f"(nexora_hw_sensor_info{{{hardware_sel}}})"
+            f"(netaop_hw_sensor_info{{{hardware_sel}}})"
         )
         return (
             f"({metric}{{{hardware_sel}}} "
@@ -1026,15 +1026,15 @@ def build_overview_dashboard():
             f"({info}))"
         )
 
-    cpu_metric = f'nexora_hw_cpu_usage_percent{{{hardware_sel}}}'
-    memory_metric = f'nexora_hw_memory_usage_percent{{{hardware_sel}}}'
-    temperature_metric = f'nexora_hw_temperature_celsius{{{hardware_sel}}}'
+    cpu_metric = f'netaop_hw_cpu_usage_percent{{{hardware_sel}}}'
+    memory_metric = f'netaop_hw_memory_usage_percent{{{hardware_sel}}}'
+    temperature_metric = f'netaop_hw_temperature_celsius{{{hardware_sel}}}'
     cpu_expr = (
         "max by (tenant_id, asset_id, hostname, site_name, vendor, role, window) "
         f"({cpu_metric})"
     )
-    mem_expr = hardware_metric("nexora_hw_memory_usage_percent")
-    temperature_expr = hardware_metric("nexora_hw_temperature_celsius")
+    mem_expr = hardware_metric("netaop_hw_memory_usage_percent")
+    temperature_expr = hardware_metric("netaop_hw_temperature_celsius")
     def online_metric_device_count(metric_expr):
         # Hardware inventory metrics come from LibreNMS' native projection.
         # Their coverage must not depend on the legacy network_snmp exporter
@@ -1042,7 +1042,7 @@ def build_overview_dashboard():
         return f'count(count by (asset_id) ({metric_expr}))'
 
     ap_online_expr = (
-        f'sum(nexora_wireless_sensor_value{{{wireless_inventory_sel},'
+        f'sum(netaop_wireless_sensor_value{{{wireless_inventory_sel},'
         'component_class="wireless_controller",sensor_class="ap-count"})'
     )
     client_online_by_device = wireless_clients_by_device(wireless_inventory_sel)
@@ -1197,15 +1197,15 @@ def build_overview_dashboard():
         "panels": panels,
         "refresh": "30s",
         "schemaVersion": 39,
-        "tags": ["nexora", "network", "overview"],
+        "tags": ["netaop", "network", "overview"],
         "templating": {
             "list": make_network_variables()
         },
         "time": {"from": "now-6h", "to": "now"},
         "timezone": "browser",
         "title": "01 网络总览（Network Overview）",
-        "description": "硬件概览使用 LibreNMS 规则采集后规范化的 nexora_hw_* 指标展示在线设备 CPU、内存池和温度传感器覆盖及热点排行。CPU Top10 按实际 window 分组，设备取窗口内最高处理器读数；内存池和温度按各自部件排序，不跨部件求平均。排行表点击设备名称可打开单设备详情。接口异常列表仅列出过去24小时状态有变化且当前仍为 Down 的管理启用接口；长期稳定 Down 的接口可在设备或接口详情查看。",
-        "uid": "nexora-network-overview",
+        "description": "硬件概览使用 LibreNMS 规则采集后规范化的 netaop_hw_* 指标展示在线设备 CPU、内存池和温度传感器覆盖及热点排行。CPU Top10 按实际 window 分组，设备取窗口内最高处理器读数；内存池和温度按各自部件排序，不跨部件求平均。排行表点击设备名称可打开单设备详情。接口异常列表仅列出过去24小时状态有变化且当前仍为 Down 的管理启用接口；长期稳定 Down 的接口可在设备或接口详情查看。",
+        "uid": "netaop-network-overview",
         "version": DASHBOARD_VERSION
     }
 
@@ -1237,7 +1237,7 @@ def build_device_dashboard():
     def sensor_info(extra_filters=""):
         return (
             f"max by ({info_labels}) "
-            f"(nexora_hw_sensor_info{{{info_filters}{extra_filters}}})"
+            f"(netaop_hw_sensor_info{{{info_filters}{extra_filters}}})"
         )
 
     def hardware_metric(metric, extra_info_filters="", raw_extra_filters=""):
@@ -1249,24 +1249,24 @@ def build_device_dashboard():
         )
 
     cpu = hardware_metric(
-        "nexora_hw_cpu_usage_percent", raw_extra_filters=',window="$cpu_window"'
+        "netaop_hw_cpu_usage_percent", raw_extra_filters=',window="$cpu_window"'
     )
-    memory = hardware_metric("nexora_hw_memory_usage_percent")
-    memory_used = hardware_metric("nexora_hw_memory_used_bytes")
-    memory_total = hardware_metric("nexora_hw_memory_total_bytes")
-    temperature = hardware_metric("nexora_hw_temperature_celsius")
-    fan_speed = hardware_metric("nexora_hw_fan_speed_rpm")
-    component_state = hardware_metric("nexora_hw_component_state")
-    component_present = hardware_metric("nexora_hw_component_present")
-    power = hardware_metric("nexora_hw_power_watts")
-    optical_power = hardware_metric("nexora_hw_optical_power_dbm")
+    memory = hardware_metric("netaop_hw_memory_usage_percent")
+    memory_used = hardware_metric("netaop_hw_memory_used_bytes")
+    memory_total = hardware_metric("netaop_hw_memory_total_bytes")
+    temperature = hardware_metric("netaop_hw_temperature_celsius")
+    fan_speed = hardware_metric("netaop_hw_fan_speed_rpm")
+    component_state = hardware_metric("netaop_hw_component_state")
+    component_present = hardware_metric("netaop_hw_component_present")
+    power = hardware_metric("netaop_hw_power_watts")
+    optical_power = hardware_metric("netaop_hw_optical_power_dbm")
 
     optical_filter = ',group=~"(?i).*(transceiver|optical).*"'
     non_optical_filter = ',group!~"(?i).*(transceiver|optical).*"'
     non_optical_temp = hardware_metric(
-        "nexora_hw_temperature_celsius", non_optical_filter
+        "netaop_hw_temperature_celsius", non_optical_filter
     )
-    optical_temp = hardware_metric("nexora_hw_temperature_celsius", optical_filter)
+    optical_temp = hardware_metric("netaop_hw_temperature_celsius", optical_filter)
     temperature_peak = (
         f"topk(1, {non_optical_temp}) or on() "
         f"(topk(1, {optical_temp}) unless on() count({non_optical_temp}))"
@@ -1796,28 +1796,28 @@ def build_device_dashboard():
         make_query_variable(
             "cpu_window",
             "CPU 采样窗口",
-            'label_values(nexora_hw_cpu_usage_percent{asset_id="$asset_id",asset_id!=""}, window)',
+            'label_values(netaop_hw_cpu_usage_percent{asset_id="$asset_id",asset_id!=""}, window)',
             multi=False,
             include_all=False,
         ),
         make_query_variable(
             "hardware_group",
             "部件分组",
-            'label_values(nexora_hw_sensor_info{asset_id="$asset_id",asset_id!=""}, group)',
+            'label_values(netaop_hw_sensor_info{asset_id="$asset_id",asset_id!=""}, group)',
             multi=False,
             include_all=True,
         ),
         make_query_variable(
             "sensor_name",
             "部件",
-            'label_values(nexora_hw_sensor_info{asset_id="$asset_id",asset_id!="",group=~"$hardware_group"}, sensor_name)',
+            'label_values(netaop_hw_sensor_info{asset_id="$asset_id",asset_id!="",group=~"$hardware_group"}, sensor_name)',
             multi=True,
             include_all=True,
         ),
         make_query_variable(
             "component_class",
             "部件类别",
-            'label_values(nexora_hw_sensor_info{asset_id="$asset_id",asset_id!="",group=~"$hardware_group",sensor_name=~"$sensor_name"}, component_class)',
+            'label_values(netaop_hw_sensor_info{asset_id="$asset_id",asset_id!="",group=~"$hardware_group",sensor_name=~"$sensor_name"}, component_class)',
             multi=False,
             include_all=True,
         ),
@@ -1833,14 +1833,14 @@ def build_device_dashboard():
         "panels": panels,
         "refresh": "30s",
         "schemaVersion": 39,
-        "tags": ["nexora", "network", "device"],
+        "tags": ["netaop", "network", "device"],
         "templating": {
             "list": variables
         },
         "time": {"from": "now-6h", "to": "now"},
         "timezone": "browser",
         "title": "02 网络设备详情 (Network Device Detail)",
-        "uid": "nexora-network-device",
+        "uid": "netaop-network-device",
         "version": DASHBOARD_VERSION
     }
 
@@ -1869,17 +1869,17 @@ def build_wireless_dashboard():
     # Prefer collected per-AP state rows for AP totals and status counts.
     # Controller counts are also read only from normalized inventory.
     ap_state_selector = f'{wireless_inventory_sel},component_class="wireless_access_point"'
-    ap_state_rows = f"nexora_hw_component_state{{{ap_state_selector}}}"
-    ap_state_online_rows = f'nexora_hw_component_state{{{ap_state_selector},state_description=~"^(associated|run|online)$"}}'
-    ap_state_offline_rows = f'nexora_hw_component_state{{{ap_state_selector},state_description=~"^(deassociated|idle|down|disconnected|not_reported)$"}}'
-    ap_state_transition_rows = f'nexora_hw_component_state{{{ap_state_selector},state_description=~"^(join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$"}}'
-    ap_state_unknown_rows = f'nexora_hw_component_state{{{ap_state_selector},state_description=~"^(unknown|unclassified)$"}}'
-    ap_state_known_rows = f'nexora_hw_component_state{{{ap_state_selector},state_description=~"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$"}}'
+    ap_state_rows = f"netaop_hw_component_state{{{ap_state_selector}}}"
+    ap_state_online_rows = f'netaop_hw_component_state{{{ap_state_selector},state_description=~"^(associated|run|online)$"}}'
+    ap_state_offline_rows = f'netaop_hw_component_state{{{ap_state_selector},state_description=~"^(deassociated|idle|down|disconnected|not_reported)$"}}'
+    ap_state_transition_rows = f'netaop_hw_component_state{{{ap_state_selector},state_description=~"^(join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$"}}'
+    ap_state_unknown_rows = f'netaop_hw_component_state{{{ap_state_selector},state_description=~"^(unknown|unclassified)$"}}'
+    ap_state_known_rows = f'netaop_hw_component_state{{{ap_state_selector},state_description=~"^(associated|run|online|active|deassociated|idle|down|disconnected|not_reported|join|joinConfirm|joining|joinack|download|config|data check|image load|downloading image)$"}}'
     ap_state_count = f"count by ({device_labels}) ({ap_state_rows})"
     ap_state_known_count = f"count by ({device_labels}) ({ap_state_known_rows})"
     ap_state_complete = (
         f'max by ({device_labels}) '
-        f'(nexora_hw_capability_status{{{wireless_inventory_sel},component_class="wireless_access_point",coverage_complete="true"}})'
+        f'(netaop_hw_capability_status{{{wireless_inventory_sel},component_class="wireless_access_point",coverage_complete="true"}})'
     )
     ap_state_detail_coverage = (
         f'(({ap_state_known_count}) == on({device_labels}) ({ap_state_count})) '
@@ -1887,7 +1887,7 @@ def build_wireless_dashboard():
     )
     ap_state_online_count = f"count by ({device_labels}) ({ap_state_online_rows})"
     ap_state_offline_count = f"count by ({device_labels}) ({ap_state_offline_rows})"
-    inventory_ap_online = f'sum by ({device_labels}) (nexora_wireless_sensor_value{{{wireless_inventory_sel},component_class="wireless_controller",sensor_class="ap-count"}})'
+    inventory_ap_online = f'sum by ({device_labels}) (netaop_wireless_sensor_value{{{wireless_inventory_sel},component_class="wireless_controller",sensor_class="ap-count"}})'
     reported_ap_online = inventory_ap_online
     ap_online_from_complete_details = (
         f"(({ap_state_online_count}) and on({device_labels}) ({ap_state_detail_coverage})) "
@@ -1915,10 +1915,10 @@ def build_wireless_dashboard():
     ap_online_description = "优先按 AP 状态统计；覆盖不完整时采用 LibreNMS 规则采集的控制器上报数。"
     ap_offline_description = "统计明确断连，以及完整采集后仍纳管但未上报状态的 AP；未上报状态会单独标记，不以总数减在线数推算。"
     ap_rank_labels = f"{device_labels},device_id,ap_id,ap_mac,ap_name,ap_ip,ap_model"
-    ap_client_samples = f'nexora_wireless_sensor_value{{{wireless_inventory_sel},component_class="wireless_access_point",sensor_class="clients"}}'
+    ap_client_samples = f'netaop_wireless_sensor_value{{{wireless_inventory_sel},component_class="wireless_access_point",sensor_class="clients"}}'
     ap_client_rows = f"topk(20, max by ({ap_rank_labels}) ({ap_client_samples}))"
-    ap_online_duration_samples = f'nexora_wireless_sensor_value{{{wireless_inventory_sel},component_class="wireless_access_point",sensor_class="ap-online-duration"}}'
-    ap_online_duration_online = f'nexora_hw_component_state{{{ap_state_selector},state_description=~"^(associated|run|online|active|present)$"}}'
+    ap_online_duration_samples = f'netaop_wireless_sensor_value{{{wireless_inventory_sel},component_class="wireless_access_point",sensor_class="ap-online-duration"}}'
+    ap_online_duration_online = f'netaop_hw_component_state{{{ap_state_selector},state_description=~"^(associated|run|online|active|present)$"}}'
     ap_online_duration_rows = (
         f"topk(20, (max by ({ap_rank_labels}) ({ap_online_duration_samples}) / 86400) "
         f"and on(device_id,ap_mac) ({ap_online_duration_online}))"
@@ -1934,13 +1934,13 @@ def build_wireless_dashboard():
     )
     ap_state_distribution = f"sum by (ap_state) ({ap_state_distribution_rows})"
     radio_utilization_labels = "site_name,vendor,role,hostname,ap_id,ap_name,radio_id"
-    radio_utilization_samples = f'nexora_wireless_sensor_value{{{wireless_inventory_sel},component_class="wireless_radio",sensor_class="utilization"}}'
+    radio_utilization_samples = f'netaop_wireless_sensor_value{{{wireless_inventory_sel},component_class="wireless_radio",sensor_class="utilization"}}'
     radio_utilization_rows = f"max by ({radio_utilization_labels}) ({radio_utilization_samples})"
     high_utilization_radio_count = (
         f'count({radio_utilization_rows} >= 75) or on() '
         f'((count({radio_utilization_rows}) > 0) * 0)'
     )
-    bss_client_rows = f'topk(20, nexora_wireless_sensor_value{{{wireless_inventory_sel},component_class="wireless_bss",sensor_class="clients"}})'
+    bss_client_rows = f'topk(20, netaop_wireless_sensor_value{{{wireless_inventory_sel},component_class="wireless_bss",sensor_class="clients"}})'
     ssid_client_rows = f"topk(20, {wireless_ssid_clients_by_device(wireless_inventory_sel)})"
 
     panels = [
@@ -2096,14 +2096,14 @@ def build_wireless_dashboard():
         "panels": panels,
         "refresh": "30s",
         "schemaVersion": 39,
-        "tags": ["nexora", "network", "wireless"],
+        "tags": ["netaop", "network", "wireless"],
         "templating": {
             "list": make_wireless_variables()
         },
         "time": {"from": "now-15m", "to": "now"},
         "timezone": "browser",
         "title": "03 无线专网监控 (Wireless AP & Clients)",
-        "uid": "nexora-network-wireless",
+        "uid": "netaop-network-wireless",
         "version": DASHBOARD_VERSION
     }
 
@@ -2361,7 +2361,7 @@ def build_interface_dashboard():
         "panels": panels,
         "refresh": "30s",
         "schemaVersion": 39,
-        "tags": ["nexora", "network", "interface"],
+        "tags": ["netaop", "network", "interface"],
         "templating": {
             "list": make_interface_variables(include_admin_down_selector=True)
         },
@@ -2369,7 +2369,7 @@ def build_interface_dashboard():
         "timezone": "browser",
         "title": "04 接口流量与健康（Interface Traffic & Health）",
         "description": "流量与利用率只统计管理状态启用且运行状态 UP 的接口。健康表默认隐藏管理停用接口，运行 DOWN 的接口作为异常候选；管理停用接口可通过“接口范围”切换显示。接口用途显示“用途待确认”表示 CMDB 尚未配置该端口的用途，不代表接口异常。",
-        "uid": "nexora-network-interface",
+        "uid": "netaop-network-interface",
         "version": DASHBOARD_VERSION
     }
 
@@ -2593,12 +2593,12 @@ def build_interface_detail_dashboard():
         "annotations": {"list": []}, "editable": false, "fiscalYearStartMonth": 0,
         "graphTooltip": 1, "id": None, "links": [], "panels": panels,
         "refresh": "30s", "schemaVersion": 39,
-        "tags": ["nexora", "network", "interface", "detail"],
+        "tags": ["netaop", "network", "interface", "detail"],
         "templating": {"list": make_interface_variables(multi_device=False, include_all_device=False, include_all_interface=False, multi_interface=False, include_threshold_values=True)},
         "time": {"from": "now-24h", "to": "now"}, "timezone": "browser",
         "title": "09 接口详情（Interface Detail）",
         "description": "从网络总览或接口排行进入，链接会携带站点、设备、接口筛选和时间范围。“用途待确认”表示 CMDB 尚未配置该端口的用途，不代表接口异常。",
-        "uid": "nexora-interface-detail", "version": DASHBOARD_VERSION,
+        "uid": "netaop-interface-detail", "version": DASHBOARD_VERSION,
     }
 
 # 5. Monitoring Engine Health Dashboard
@@ -2642,12 +2642,12 @@ def build_health_dashboard():
         "panels": panels,
         "refresh": "30s",
         "schemaVersion": 39,
-        "tags": ["nexora", "monitoring", "health"],
+        "tags": ["netaop", "monitoring", "health"],
         "templating": {"list": []},
         "time": {"from": "now-1h", "to": "now"},
         "timezone": "browser",
         "title": "05 SNMP 采集健康 (SNMP Scrape Health)",
-        "uid": "nexora-monitoring-health",
+        "uid": "netaop-monitoring-health",
         "version": DASHBOARD_VERSION
     }
 
@@ -2752,7 +2752,7 @@ def build_outbound_dashboard():
         "panels": panels,
         "refresh": "30s",
         "schemaVersion": 39,
-        "tags": ["nexora", "network", "outbound", "wan"],
+        "tags": ["netaop", "network", "outbound", "wan"],
         "templating": {
             "list": make_interface_variables(
                 include_all_device=False,
@@ -2765,7 +2765,7 @@ def build_outbound_dashboard():
         "timezone": "browser",
         "title": "06 互联网出口与 WAN（需选择出口接口） (Select WAN Interface)",
         "description": "此大盘必须先选择出口设备和一个或多个已确认的 WAN 接口；不会默认把全部设备或全部端口当作互联网出口。",
-        "uid": "nexora-network-outbound",
+        "uid": "netaop-network-outbound",
         "version": DASHBOARD_VERSION
     }
 
@@ -2864,7 +2864,7 @@ def build_linux_dashboard():
         "panels": panels,
         "refresh": "30s",
         "schemaVersion": 39,
-        "tags": ["nexora", "server", "linux", "metrics"],
+        "tags": ["netaop", "server", "linux", "metrics"],
         "templating": {
             "list": [
                 make_query_variable(
@@ -2882,7 +2882,7 @@ def build_linux_dashboard():
         "time": {"from": "now-6h", "to": "now"},
         "timezone": "browser",
         "title": "07 Linux 服务器监控 (Linux Server Metrics)",
-        "uid": "nexora-linux-metrics",
+        "uid": "netaop-linux-metrics",
         "version": DASHBOARD_VERSION
     }
 
@@ -2964,7 +2964,7 @@ def build_windows_dashboard():
         "panels": panels,
         "refresh": "30s",
         "schemaVersion": 39,
-        "tags": ["nexora", "server", "windows", "metrics"],
+        "tags": ["netaop", "server", "windows", "metrics"],
         "templating": {
             "list": [
                 make_query_variable(
@@ -2982,7 +2982,7 @@ def build_windows_dashboard():
         "time": {"from": "now-6h", "to": "now"},
         "timezone": "browser",
         "title": "08 Windows 服务器监控 (Windows Server Metrics)",
-        "uid": "nexora-windows-metrics",
+        "uid": "netaop-windows-metrics",
         "version": DASHBOARD_VERSION
     }
 
@@ -3066,7 +3066,7 @@ def build_platform_health_dashboard():
         stat_panel(
             5,
             "监控数据库连接",
-            "nexora_monitoring_database_available",
+            "netaop_monitoring_database_available",
             16,
             0,
             4,
@@ -3357,13 +3357,13 @@ def build_platform_health_dashboard():
         "panels": panels,
         "refresh": "30s",
         "schemaVersion": 39,
-        "tags": ["nexora", "monitoring", "platform", "health"],
+        "tags": ["netaop", "monitoring", "platform", "health"],
         "templating": {"list": []},
         "time": {"from": "now-1h", "to": "now"},
         "timezone": "browser",
         "title": "10 监控平台健康（Monitoring Platform Health）",
         "description": "覆盖平台服务可用性、remote-write 队列、VictoriaMetrics 存储和应用容器资源。数据库连接来自 API SELECT 1；Docker API 仅通过内网只读代理供 cAdvisor 获取容器元数据，cAdvisor 仅只读访问宿主 /sys cgroup，不挂载宿主根目录。",
-        "uid": "nexora-platform-health",
+        "uid": "netaop-platform-health",
         "version": DASHBOARD_VERSION,
     }
 
@@ -3622,7 +3622,7 @@ def build_postgres_performance_dashboard():
         "panels": panels,
         "refresh": "30s",
         "schemaVersion": 39,
-        "tags": ["nexora", "postgresql", "database", "performance"],
+        "tags": ["netaop", "postgresql", "database", "performance"],
         "templating": {
             "list": [
                 make_query_variable(
@@ -3644,21 +3644,21 @@ def build_postgres_performance_dashboard():
             "展示 postgres_exporter 的 pg_stat_statements counters 与数据库级 shared buffer 命中率。"
             "Top SQL 按 Query ID 识别，不使用或展示 SQL 文本。"
         ),
-        "uid": "nexora-postgres-performance",
+        "uid": "netaop-postgres-performance",
         "version": DASHBOARD_VERSION,
     }
 
 
 # 11. Internet Probe Quality Dashboard
 def build_outbound_probe_quality_dashboard():
-    samples_1h = 'nexora_outbound_probe_samples{window="1h"}'
-    availability_1h = 'nexora_outbound_probe_availability_ratio{window="1h"}'
-    latency_avg_1h = 'nexora_outbound_probe_latency_avg_ms_by_type{window="1h",probe_type="icmp_ping"}'
-    latency_max_1h = 'nexora_outbound_probe_latency_max_ms_by_type{window="1h",probe_type="icmp_ping"}'
-    samples_24h = 'nexora_outbound_probe_samples{window="24h"}'
-    availability_24h = 'nexora_outbound_probe_availability_ratio{window="24h"}'
-    latency_avg_24h = 'nexora_outbound_probe_latency_avg_ms_by_type{window="24h",probe_type="icmp_ping"}'
-    latency_max_24h = 'nexora_outbound_probe_latency_max_ms_by_type{window="24h",probe_type="icmp_ping"}'
+    samples_1h = 'netaop_outbound_probe_samples{window="1h"}'
+    availability_1h = 'netaop_outbound_probe_availability_ratio{window="1h"}'
+    latency_avg_1h = 'netaop_outbound_probe_latency_avg_ms_by_type{window="1h",probe_type="icmp_ping"}'
+    latency_max_1h = 'netaop_outbound_probe_latency_max_ms_by_type{window="1h",probe_type="icmp_ping"}'
+    samples_24h = 'netaop_outbound_probe_samples{window="24h"}'
+    availability_24h = 'netaop_outbound_probe_availability_ratio{window="24h"}'
+    latency_avg_24h = 'netaop_outbound_probe_latency_avg_ms_by_type{window="24h",probe_type="icmp_ping"}'
+    latency_max_24h = 'netaop_outbound_probe_latency_max_ms_by_type{window="24h",probe_type="icmp_ping"}'
     panels = [
         stat_panel(
             1,
@@ -3802,7 +3802,7 @@ def build_outbound_probe_quality_dashboard():
             11,
             "各协议拨测成功率（24h）",
             [{
-                "expr": 'nexora_outbound_probe_success_ratio_by_type{window="24h"}',
+                "expr": 'netaop_outbound_probe_success_ratio_by_type{window="24h"}',
                 "legendFormat": "{{probe_type}}",
                 "refId": "A",
             }],
@@ -3820,7 +3820,7 @@ def build_outbound_probe_quality_dashboard():
             12,
             "各协议平均响应时间（24h）",
             [{
-                "expr": 'nexora_outbound_probe_latency_avg_ms_by_type{window="24h"}',
+                "expr": 'netaop_outbound_probe_latency_avg_ms_by_type{window="24h"}',
                 "legendFormat": "{{probe_type}}",
                 "refId": "A",
             }],
@@ -3837,7 +3837,7 @@ def build_outbound_probe_quality_dashboard():
         stat_panel(
             13,
             "24h ICMP 多回显丢包率",
-            'nexora_outbound_probe_icmp_packet_loss_ratio{window="24h"}',
+            'netaop_outbound_probe_icmp_packet_loss_ratio{window="24h"}',
             0,
             24,
             6,
@@ -3848,7 +3848,7 @@ def build_outbound_probe_quality_dashboard():
         stat_panel(
             14,
             "24h ICMP 包间时延变化",
-            'nexora_outbound_probe_icmp_jitter_avg_ms{window="24h"}',
+            'netaop_outbound_probe_icmp_jitter_avg_ms{window="24h"}',
             6,
             24,
             6,
@@ -3859,7 +3859,7 @@ def build_outbound_probe_quality_dashboard():
         stat_panel(
             15,
             "1h WAN 接口采集成功率",
-            'nexora_wan_interface_collection_success_ratio{window="1h"}',
+            'netaop_wan_interface_collection_success_ratio{window="1h"}',
             12,
             24,
             6,
@@ -3870,7 +3870,7 @@ def build_outbound_probe_quality_dashboard():
         stat_panel(
             16,
             "24h WAN 接口 Oper UP 比例",
-            'nexora_wan_interface_oper_up_ratio{window="24h"}',
+            'netaop_wan_interface_oper_up_ratio{window="24h"}',
             18,
             24,
             6,
@@ -3888,7 +3888,7 @@ def build_outbound_probe_quality_dashboard():
             17,
             "当前 WAN 接口健康状态",
             [{
-                "expr": 'nexora_wan_links_by_health_status',
+                "expr": 'netaop_wan_links_by_health_status',
                 "legendFormat": "{{status}}",
                 "refId": "A",
             }],
@@ -3906,12 +3906,12 @@ def build_outbound_probe_quality_dashboard():
             "WAN 接口平均上下行流量（24h 滚动）",
             [
                 {
-                    "expr": 'nexora_wan_interface_avg_download_bps{window="24h"}',
+                    "expr": 'netaop_wan_interface_avg_download_bps{window="24h"}',
                     "legendFormat": "下行",
                     "refId": "A",
                 },
                 {
-                    "expr": 'nexora_wan_interface_avg_upload_bps{window="24h"}',
+                    "expr": 'netaop_wan_interface_avg_upload_bps{window="24h"}',
                     "legendFormat": "上行",
                     "refId": "B",
                 },
@@ -3935,12 +3935,12 @@ def build_outbound_probe_quality_dashboard():
             "WAN 接口错误与丢弃（24h 累计）",
             [
                 {
-                    "expr": 'nexora_wan_interface_errors_total{window="24h"}',
+                    "expr": 'netaop_wan_interface_errors_total{window="24h"}',
                     "legendFormat": "错误",
                     "refId": "A",
                 },
                 {
-                    "expr": 'nexora_wan_interface_discards_total{window="24h"}',
+                    "expr": 'netaop_wan_interface_discards_total{window="24h"}',
                     "legendFormat": "丢弃",
                     "refId": "B",
                 },
@@ -3961,7 +3961,7 @@ def build_outbound_probe_quality_dashboard():
         stat_panel(
             20,
             "当前连续 DOWN 的 WAN 接口",
-            "nexora_wan_interface_active_down_links",
+            "netaop_wan_interface_active_down_links",
             0,
             44,
             6,
@@ -3976,7 +3976,7 @@ def build_outbound_probe_quality_dashboard():
         stat_panel(
             21,
             "连续 DOWN 时长估算（最长）",
-            "nexora_wan_interface_continuous_down_estimate_max_seconds",
+            "netaop_wan_interface_continuous_down_estimate_max_seconds",
             6,
             44,
             6,
@@ -4010,13 +4010,13 @@ def build_outbound_probe_quality_dashboard():
         "panels": panels,
         "refresh": "30s",
         "schemaVersion": 39,
-        "tags": ["nexora", "monitoring", "outbound", "probe"],
+        "tags": ["netaop", "monitoring", "outbound", "probe"],
         "templating": {"list": []},
         "time": {"from": "now-24h", "to": "now"},
         "timezone": "browser",
         "title": "11 WAN 链路健康与拨测质量（WAN Health & Probe Quality）",
         "description": "分开展示 WAN 设备接口采样健康与全局出向 DNS/TCP/HTTP/ICMP 拨测质量。ICMP 使用多回显计算丢包和包间时延变化。探测执行仍未应用 wan_probe_bindings 的逐线路 source-IP 选路，因此接口侧可用率和全局探测结果不能合并解释为单线路端到端 SLA。指标只输出系统聚合值，不带租户、线路、目标或地址标识。",
-        "uid": "nexora-outbound-probe-quality",
+        "uid": "netaop-outbound-probe-quality",
         "version": DASHBOARD_VERSION,
     }
 
@@ -4028,10 +4028,10 @@ def build_alert_operations_dashboard():
         {"color": WARNING_COLOR, "value": 1},
         {"color": CRITICAL_COLOR, "value": 5},
     ]
-    completed_status_selector = 'nexora_alert_delivery_attempts_24h{status=~"succeeded|retrying|failed"}'
+    completed_status_selector = 'netaop_alert_delivery_attempts_24h{status=~"succeeded|retrying|failed"}'
     completed_attempts_expr = f"sum({completed_status_selector})"
     success_rate_expr = (
-        f'(((sum(nexora_alert_delivery_attempts_24h{{status="succeeded"}}) / {completed_attempts_expr}) '
+        f'(((sum(netaop_alert_delivery_attempts_24h{{status="succeeded"}}) / {completed_attempts_expr}) '
         f'and ({completed_attempts_expr} > 0)) or '
         f'(vector(-1) and on() (count({completed_status_selector}) > 0)))'
     )
@@ -4039,7 +4039,7 @@ def build_alert_operations_dashboard():
         stat_panel(
             1,
             "当前打开告警",
-            "sum(nexora_alert_open_events)",
+            "sum(netaop_alert_open_events)",
             0,
             0,
             4,
@@ -4050,7 +4050,7 @@ def build_alert_operations_dashboard():
         stat_panel(
             2,
             "严重 未关闭",
-            'nexora_alert_open_events{severity="critical"}',
+            'netaop_alert_open_events{severity="critical"}',
             4,
             0,
             4,
@@ -4061,7 +4061,7 @@ def build_alert_operations_dashboard():
         stat_panel(
             3,
             "主要 未关闭",
-            'nexora_alert_open_events{severity="major"}',
+            'netaop_alert_open_events{severity="major"}',
             8,
             0,
             4,
@@ -4072,7 +4072,7 @@ def build_alert_operations_dashboard():
         stat_panel(
             4,
             "警告 未关闭",
-            'nexora_alert_open_events{severity="warning"}',
+            'netaop_alert_open_events{severity="warning"}',
             12,
             0,
             4,
@@ -4083,7 +4083,7 @@ def build_alert_operations_dashboard():
         stat_panel(
             5,
             "次要 未关闭",
-            'nexora_alert_open_events{severity="minor"}',
+            'netaop_alert_open_events{severity="minor"}',
             16,
             0,
             4,
@@ -4108,17 +4108,17 @@ def build_alert_operations_dashboard():
             "近 24 小时告警生命周期",
             [
                 {
-                    "expr": "nexora_alert_events_created_24h",
+                    "expr": "netaop_alert_events_created_24h",
                     "legendFormat": "新增告警",
                     "refId": "A",
                 },
                 {
-                    "expr": "nexora_alert_events_acknowledged_24h",
+                    "expr": "netaop_alert_events_acknowledged_24h",
                     "legendFormat": "已确认告警",
                     "refId": "B",
                 },
                 {
-                    "expr": "nexora_alert_events_resolved_24h",
+                    "expr": "netaop_alert_events_resolved_24h",
                     "legendFormat": "已恢复告警",
                     "refId": "C",
                 },
@@ -4138,7 +4138,7 @@ def build_alert_operations_dashboard():
             "当前未恢复告警严重度分布",
             [
                 {
-                    "expr": f'sum(nexora_alert_open_events{{severity="{severity}"}})',
+                    "expr": f'sum(netaop_alert_open_events{{severity="{severity}"}})',
                     "legendFormat": label,
                     "refId": chr(ord("A") + index),
                 }
@@ -4173,7 +4173,7 @@ def build_alert_operations_dashboard():
             "近 24 小时通知投递结果",
             [
                 {
-                    "expr": "sum by (channel, status) (nexora_alert_delivery_attempts_24h)",
+                    "expr": "sum by (channel, status) (netaop_alert_delivery_attempts_24h)",
                     "legendFormat": "{{channel}} / {{status}}",
                     "refId": "A",
                 }
@@ -4193,7 +4193,7 @@ def build_alert_operations_dashboard():
             "通知 Outbox 当前状态",
             [
                 {
-                    "expr": "sum by (status) (nexora_alert_outbox_items)",
+                    "expr": "sum by (status) (netaop_alert_outbox_items)",
                     "legendFormat": "{{status}}",
                     "refId": "A",
                 }
@@ -4211,7 +4211,7 @@ def build_alert_operations_dashboard():
         stat_panel(
             11,
             "当前最久未恢复时长",
-            "nexora_alert_open_duration_oldest_seconds",
+            "netaop_alert_open_duration_oldest_seconds",
             0,
             20,
             4,
@@ -4227,7 +4227,7 @@ def build_alert_operations_dashboard():
         stat_panel(
             12,
             "未恢复告警时长 P95",
-            "nexora_alert_open_duration_p95_seconds",
+            "netaop_alert_open_duration_p95_seconds",
             4,
             20,
             4,
@@ -4238,7 +4238,7 @@ def build_alert_operations_dashboard():
         stat_panel(
             13,
             "24h MTTA",
-            "nexora_alert_mtta_seconds_24h",
+            "netaop_alert_mtta_seconds_24h",
             8,
             20,
             4,
@@ -4249,7 +4249,7 @@ def build_alert_operations_dashboard():
         stat_panel(
             14,
             "24h MTTR",
-            "nexora_alert_mttr_seconds_24h",
+            "netaop_alert_mttr_seconds_24h",
             12,
             20,
             4,
@@ -4260,7 +4260,7 @@ def build_alert_operations_dashboard():
         stat_panel(
             15,
             "重复未恢复告警",
-            "nexora_alert_duplicate_open_events",
+            "netaop_alert_duplicate_open_events",
             16,
             20,
             4,
@@ -4272,7 +4272,7 @@ def build_alert_operations_dashboard():
         stat_panel(
             16,
             "24h 重试通知数",
-            "nexora_alert_retried_deliveries_24h",
+            "netaop_alert_retried_deliveries_24h",
             20,
             20,
             4,
@@ -4283,10 +4283,10 @@ def build_alert_operations_dashboard():
             17,
             "告警处置时长趋势（24h 滚动均值 / P95）",
             [
-                {"expr": "nexora_alert_mtta_seconds_24h", "legendFormat": "MTTA 均值", "refId": "A"},
-                {"expr": "nexora_alert_mtta_p95_seconds_24h", "legendFormat": "MTTA P95", "refId": "B"},
-                {"expr": "nexora_alert_mttr_seconds_24h", "legendFormat": "MTTR 均值", "refId": "C"},
-                {"expr": "nexora_alert_mttr_p95_seconds_24h", "legendFormat": "MTTR P95", "refId": "D"},
+                {"expr": "netaop_alert_mtta_seconds_24h", "legendFormat": "MTTA 均值", "refId": "A"},
+                {"expr": "netaop_alert_mtta_p95_seconds_24h", "legendFormat": "MTTA P95", "refId": "B"},
+                {"expr": "netaop_alert_mttr_seconds_24h", "legendFormat": "MTTR 均值", "refId": "C"},
+                {"expr": "netaop_alert_mttr_p95_seconds_24h", "legendFormat": "MTTR P95", "refId": "D"},
             ],
             0,
             24,
@@ -4301,8 +4301,8 @@ def build_alert_operations_dashboard():
             18,
             "未恢复告警持续时长（最久 / P95）",
             [
-                {"expr": "nexora_alert_open_duration_oldest_seconds", "legendFormat": "最久未恢复", "refId": "A"},
-                {"expr": "nexora_alert_open_duration_p95_seconds", "legendFormat": "未恢复时长 P95", "refId": "B"},
+                {"expr": "netaop_alert_open_duration_oldest_seconds", "legendFormat": "最久未恢复", "refId": "A"},
+                {"expr": "netaop_alert_open_duration_p95_seconds", "legendFormat": "未恢复时长 P95", "refId": "B"},
             ],
             12,
             24,
@@ -4331,13 +4331,13 @@ def build_alert_operations_dashboard():
         "panels": panels,
         "refresh": "30s",
         "schemaVersion": 39,
-        "tags": ["nexora", "monitoring", "alerts", "notifications"],
+        "tags": ["netaop", "monitoring", "alerts", "notifications"],
         "templating": {"list": []},
         "time": {"from": "now-24h", "to": "now"},
         "timezone": "browser",
         "title": "12 告警处置与通知效果（Alert Operations & Notification Effectiveness）",
         "description": "展示系统级告警持续时长、MTTA、MTTR、相同 dedupe key 的并发重复事件，以及通知终态投递成功/失败和重试；不包含租户、设备、告警标题、目标地址或收件人信息。",
-        "uid": "nexora-alert-operations",
+        "uid": "netaop-alert-operations",
         "version": DASHBOARD_VERSION,
     }
 
@@ -4487,19 +4487,19 @@ def validate_dashboard(source_name, dashboard):
 
 def build_dashboard_catalog():
     dashboards = [
-        ("nexora-network-overview.json", build_overview_dashboard()),
-        ("nexora-network-device.json", build_device_dashboard()),
-        ("nexora-network-wireless.json", build_wireless_dashboard()),
-        ("nexora-network-interface.json", build_interface_dashboard()),
-        ("nexora-interface-detail.json", build_interface_detail_dashboard()),
-        ("nexora-monitoring-health.json", build_health_dashboard()),
-        ("nexora-network-outbound.json", build_outbound_dashboard()),
-        ("nexora-linux-metrics.json", build_linux_dashboard()),
-        ("nexora-windows-metrics.json", build_windows_dashboard()),
-        ("nexora-platform-health.json", build_platform_health_dashboard()),
-        ("nexora-outbound-probe-quality.json", build_outbound_probe_quality_dashboard()),
-        ("nexora-alert-operations.json", build_alert_operations_dashboard()),
-        ("nexora-postgres-performance.json", build_postgres_performance_dashboard()),
+        ("netaop-network-overview.json", build_overview_dashboard()),
+        ("netaop-network-device.json", build_device_dashboard()),
+        ("netaop-network-wireless.json", build_wireless_dashboard()),
+        ("netaop-network-interface.json", build_interface_dashboard()),
+        ("netaop-interface-detail.json", build_interface_detail_dashboard()),
+        ("netaop-monitoring-health.json", build_health_dashboard()),
+        ("netaop-network-outbound.json", build_outbound_dashboard()),
+        ("netaop-linux-metrics.json", build_linux_dashboard()),
+        ("netaop-windows-metrics.json", build_windows_dashboard()),
+        ("netaop-platform-health.json", build_platform_health_dashboard()),
+        ("netaop-outbound-probe-quality.json", build_outbound_probe_quality_dashboard()),
+        ("netaop-alert-operations.json", build_alert_operations_dashboard()),
+        ("netaop-postgres-performance.json", build_postgres_performance_dashboard()),
     ]
     assert len(dashboards) == 13, "dashboard catalog must contain exactly 13 dashboards"
     uids = [data.get("uid") for _, data in dashboards]
@@ -4509,7 +4509,7 @@ def build_dashboard_catalog():
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Generate Nexora Grafana dashboards")
+    parser = argparse.ArgumentParser(description="Generate NetAop Grafana dashboards")
     parser.add_argument(
         "--dashboard",
         help="Generate only the dashboard with this UID; validate the full catalog first",

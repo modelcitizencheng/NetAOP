@@ -115,7 +115,7 @@ export const useAuth = ({
               setLanguage(data.user.preferred_language);
             }
           }
-          // Existing Nexora sessions predate the Grafana bridge cookie. Refresh
+          // Existing NetAop sessions predate the Grafana bridge cookie. Refresh
           // it in the background so opening a Grafana tab works without another
           // login prompt.
           void fetchWithTimeout(

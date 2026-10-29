@@ -19,7 +19,7 @@ from typing import Any
 logger = logging.getLogger(__name__)
 
 _TEMPLATE_ACTION_METADATA_RE = re.compile(
-    r'^\s*#\s*nexora[-_]action[-_]code\s*:\s*([a-z][a-z0-9_]{2,63})\s*$',
+    r'^\s*#\s*netaop[-_]action[-_]code\s*:\s*([a-z][a-z0-9_]{2,63})\s*$',
     re.IGNORECASE,
 )
 
@@ -44,7 +44,7 @@ def _apply_template_action_metadata(content: str, action_code: str | None) -> st
     if normalized_action:
         if not re.fullmatch(r'[a-z][a-z0-9_]{2,63}', normalized_action):
             raise ValueError('action_code 格式不正确')
-        cleaned = f'# nexora-action-code: {normalized_action}\n{cleaned}'
+        cleaned = f'# netaop-action-code: {normalized_action}\n{cleaned}'
     return f'{cleaned}\n' if cleaned else ''
 
 # ── 路径常量 ──────────────────────────────────────────────────────────
@@ -56,7 +56,7 @@ _CUSTOM_TEMPLATES_DIR = _PROJECT_ROOT / "data" / "textfsm_templates"
 # templates edited or created by users in data/textfsm_templates.
 _PACKAGED_TEMPLATES_DIR = _PROJECT_ROOT / "release-textfsm-templates"
 
-# Nexora exposes one H3C/Comware parser family.  Concrete Comware generations
+# NetAop exposes one H3C/Comware parser family.  Concrete Comware generations
 # are selected by the Platform Profile and, where the grammar really differs,
 # by an explicit template variant such as ``h3c_comware_v3`` or
 # ``h3c_comware_v9``.  ``hp_comware`` is deliberately not a TextFSM alias: it
@@ -687,7 +687,7 @@ def smart_parse_cli(
                 trimmed = trimmed[prompt_prefix.end():].strip()
                 line = trimmed
         if trimmed.startswith('#'):
-            continue  # Nexora 内部指令标记
+            continue  # NetAop 内部指令标记
         # Automation exports may wrap each command with a section marker and
         # a bracketed command heading. These are capture metadata, not output.
         if re.match(r'^---\s+.+\s+---$', trimmed):
@@ -1588,7 +1588,7 @@ def _parse_template_filename(filename: str) -> dict[str, Any] | None:
     stem = filename[:-len('.textfsm')]
     # The external ntc-templates package still ships an HP-prefixed Comware
     # grammar.  It remains an adapter-only fallback for parse_output, but it
-    # must not leak into Nexora's template catalog as a second H3C platform.
+    # must not leak into NetAop's template catalog as a second H3C platform.
     if stem.lower().startswith(('hp_comware_', 'h3c_comware9_')):
         return None
 

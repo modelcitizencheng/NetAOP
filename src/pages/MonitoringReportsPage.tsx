@@ -246,7 +246,7 @@ export const MonitoringReportsPage: React.FC<MonitoringReportsPageProps> = ({ la
 
       const blob = await response.blob();
       const contentDisposition = response.headers.get('Content-Disposition') || '';
-      let filename = `nexora_${activeTab}_${new Date().toISOString().slice(0, 10)}.${format}`;
+      let filename = `netaop_${activeTab}_${new Date().toISOString().slice(0, 10)}.${format}`;
       const match = contentDisposition.match(/filename="?([^"]+)"?/);
       if (match && match[1]) {
         filename = match[1];

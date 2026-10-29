@@ -1,4 +1,4 @@
-# nexora-action-code: get_mac_table
+# netaop-action-code: get_mac_table
 Value Required MAC_ADDRESS ([0-9A-Fa-f]{4}(?:-[0-9A-Fa-f]{4}){2})
 Value Required VLAN (\d+|-)
 Value PEVLAN (\S+)

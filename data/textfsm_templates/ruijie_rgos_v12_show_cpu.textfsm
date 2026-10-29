@@ -1,4 +1,4 @@
-# nexora-action-code: get_cpu
+# netaop-action-code: get_cpu
 Value Filldown SLOT (\d+)
 Value Filldown MODEL (\S+)
 Value Filldown CPU_5SEC (\d+(?:\.\d+)?)

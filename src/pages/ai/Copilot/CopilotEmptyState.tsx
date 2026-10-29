@@ -41,7 +41,7 @@ export const CopilotEmptyState: React.FC<CopilotEmptyStateProps> = ({ onSelectPr
           <Sparkles className="w-6 h-6" />
         </div>
         <h1 className="nx-page-title text-gray-900 dark:text-white">
-          Nexora AI
+          NetAop AI
         </h1>
         <p className="nx-page-description max-w-md mx-auto text-gray-500 dark:text-gray-400">
           网络运维 Copilot，有问题直接问我。支持查资产、定位端口、生成厂商配置与排查故障。

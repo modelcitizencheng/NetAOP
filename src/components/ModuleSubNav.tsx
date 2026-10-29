@@ -76,7 +76,7 @@ interface ModuleSubNavProps {
 
 const ROLE_LEVEL: Record<string, number> = { Administrator: 3, Operator: 2, Viewer: 1 };
 
-const LS_KEY = 'nexora_module_nav';
+const LS_KEY = 'netaop_module_nav';
 
 /** Map icon string keys (from navConfig) → lucide component */
 const iconMap: Record<string, React.ComponentType<any>> = {

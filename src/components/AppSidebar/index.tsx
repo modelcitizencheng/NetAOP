@@ -1,5 +1,5 @@
 /**
- * AppSidebar — Main navigation sidebar for Nexora.
+ * AppSidebar — Main navigation sidebar for NetAop.
  *
  * Features:
  *   - Mini mode toggle (260px ↔ 64px) with localStorage persistence
@@ -7,7 +7,7 @@
  *   - Active route detection via useLocation()
  *   - Search shortcut bar ("/" global keyboard shortcut)
 /**
- * AppSidebar — Main navigation sidebar for Nexora.
+ * AppSidebar — Main navigation sidebar for NetAop.
  *
  * Features:
  *   - Mini mode toggle (260px ↔ 64px) with localStorage persistence
@@ -76,7 +76,7 @@ const iconMap: Record<string, React.ComponentType<any>> = {
 /** RBAC role hierarchy levels */
 const ROLE_LEVEL: Record<string, number> = { Administrator: 3, Operator: 2, Viewer: 1 };
 
-const LS_KEY = 'nexora_sidebar';
+const LS_KEY = 'netaop_sidebar';
 
 const AppSidebar: React.FC<AppSidebarProps> = ({
   alertCounts = {},
@@ -496,7 +496,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
                 <Activity size={16} className="text-[#0078d4]" />
               </div>
               <div className="min-w-0">
-                <h1 className="text-base font-bold text-[var(--heading-text)] tracking-tight leading-none">{systemInfo?.system_name || 'Nexora'}</h1>
+                <h1 className="text-base font-bold text-[var(--heading-text)] tracking-tight leading-none">{systemInfo?.system_name || 'NetAop'}</h1>
                 <p className="text-xs text-[var(--dim-text)] mt-0.5 leading-none">
                   {zh ? '智能网络中枢' : 'SMART NET HUB'}
                 </p>

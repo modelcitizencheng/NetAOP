@@ -93,7 +93,7 @@ export const CopilotSidebar: React.FC<CopilotSidebarProps> = ({
             <div className="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center text-white shadow-sm shrink-0">
               <Sparkles className="w-3.5 h-3.5" />
             </div>
-            {!collapsed && <span className="font-bold text-gray-900 dark:text-white text-sm tracking-tight truncate">Nexora Copilot</span>}
+            {!collapsed && <span className="font-bold text-gray-900 dark:text-white text-sm tracking-tight truncate">NetAop Copilot</span>}
           </div>
           {!collapsed && (
             <button

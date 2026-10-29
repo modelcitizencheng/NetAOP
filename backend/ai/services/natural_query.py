@@ -68,7 +68,7 @@ def render_asset_analysis(query: str, analysis: Dict[str, Any]) -> str:
     """Render a factual CMDB report without asking an LLM to invent fields."""
     total = int(analysis.get("total_devices", 0))
     lines = [
-        "## Nexora CMDB \u8d44\u4ea7\u6838\u5bf9\u7ed3\u679c",
+        "## NetAop CMDB \u8d44\u4ea7\u6838\u5bf9\u7ed3\u679c",
         "",
         f"> \u67e5\u8be2\uff1a{query}",
         f"> \u6570\u636e\u6765\u6e90\uff1aPostgreSQL `devices`/`sites` \u53ca `alert_events` \u53ea\u8bfb\u5feb\u7167\uff1b\u672c\u6b21\u5339\u914d **{total}** \u53f0\u8bbe\u5907\u3002",
@@ -133,7 +133,7 @@ def render_alert_analysis(query: str, analysis: Dict[str, Any]) -> str:
     active = int(alerts.get("active_count", 0) or 0)
     recent = int(alerts.get("recent_24h_count", 0) or 0)
     lines = [
-        "## Nexora 告警查询结果",
+        "## NetAop 告警查询结果",
         "",
         "> 数据来源：PostgreSQL `alert_events` 与设备只读快照；不调用外部模型。",
         "",
@@ -276,7 +276,7 @@ class NaturalQueryService:
                 "matched_count": 0,
                 "data": [],
                 "analysis": error_analysis,
-                "summary": "## Nexora CMDB \u67e5\u8be2\u5931\u8d25\n\n\u53ea\u8bfb\u6570\u636e\u8bfb\u53d6\u5931\u8d25\uff0c\u672c\u6b21\u672a\u751f\u6210\u8bbe\u5907\u7edf\u8ba1\u3002",
+                "summary": "## NetAop CMDB \u67e5\u8be2\u5931\u8d25\n\n\u53ea\u8bfb\u6570\u636e\u8bfb\u53d6\u5931\u8d25\uff0c\u672c\u6b21\u672a\u751f\u6210\u8bbe\u5907\u7edf\u8ba1\u3002",
                 "error": str(exc),
             }
 
@@ -372,8 +372,8 @@ class NaturalQueryService:
             "analysis": safe_analysis,
             "summary": render_asset_analysis(query, safe_analysis),
             "citations": [
-                {"document": "Nexora CMDB devices", "document_id": "devices", "section": "asset aggregation", "trust": "system"},
-                {"document": "Nexora alert events", "document_id": "alert_events", "section": "health and alerts", "trust": "system"},
+                {"document": "NetAop CMDB devices", "document_id": "devices", "section": "asset aggregation", "trust": "system"},
+                {"document": "NetAop alert events", "document_id": "alert_events", "section": "health and alerts", "trust": "system"},
             ],
         }
 
@@ -452,7 +452,7 @@ class NaturalQueryService:
                 "matched_count": 0,
                 "data": [],
                 "analysis": error_analysis,
-                "summary": "## Nexora 告警查询失败\n\n只读告警数据读取失败，本次未生成告警统计。",
+                "summary": "## NetAop 告警查询失败\n\n只读告警数据读取失败，本次未生成告警统计。",
                 "error": str(exc),
             }
 
@@ -490,7 +490,7 @@ class NaturalQueryService:
             "analysis": safe_analysis,
             "summary": render_alert_analysis(query, safe_analysis),
             "citations": [
-                {"document": "Nexora alert events", "document_id": "alert_events", "section": "alert aggregation", "trust": "system"},
+                {"document": "NetAop alert events", "document_id": "alert_events", "section": "alert aggregation", "trust": "system"},
             ],
         }
 
@@ -500,8 +500,8 @@ class NaturalQueryService:
         sanitized_facts = sanitize_data(device_facts)
 
         sys_prompt = (
-            "You are a network asset management assistant for Nexora. "
-            "Given the actual facts queried from the Nexora database, summarize the answer to the user in a clear, concise manner."
+            "You are a network asset management assistant for NetAop. "
+            "Given the actual facts queried from the NetAop database, summarize the answer to the user in a clear, concise manner."
         )
         user_prompt = f"User Question: {query}\nDatabase Facts:\n{json.dumps(sanitized_facts, ensure_ascii=False)}"
         messages = [

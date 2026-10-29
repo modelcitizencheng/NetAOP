@@ -1,6 +1,6 @@
 """Reviewed native equivalents for LibreNMS sensor user_func rules.
 
-LibreNMS YAML may name PHP functions or OS class methods. Nexora never loads or
+LibreNMS YAML may name PHP functions or OS class methods. NetAop never loads or
 executes those PHP symbols; this module maps reviewed functions to a Python
 allowlist and leaves unknown names explicitly unsupported.
 """

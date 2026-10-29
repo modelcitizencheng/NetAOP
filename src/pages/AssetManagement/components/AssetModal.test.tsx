@@ -254,7 +254,7 @@ describe('AssetModal lookup states', () => {
     render(<AssetModal {...makeProps({
       isEditMode: true,
       editingAsset: { ...EMPTY_FORM, id: 'asset-ubuntu', asset_origin: 'legacy', lifecycle_status: 'staging', onboarding_status: 'pending_credentials' },
-      form: { ...EMPTY_FORM, hostname: 'ubuntu-nexora', lifecycle_status: 'production', asset_origin: 'legacy' },
+      form: { ...EMPTY_FORM, hostname: 'ubuntu-netaop', lifecycle_status: 'production', asset_origin: 'legacy' },
       showProductionConfirm: true,
       language: 'zh',
     })} />);

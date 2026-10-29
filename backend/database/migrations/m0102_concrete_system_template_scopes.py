@@ -175,7 +175,7 @@ def _copy_versions(cursor, source_template_id: str, target_template_id: str, pro
         version_id = str(
             uuid.uuid5(
                 uuid.NAMESPACE_URL,
-                f"nexora:system-template-version:{target_template_id}:{profile_code}:{version_number}",
+                f"netaop:system-template-version:{target_template_id}:{profile_code}:{version_number}",
             )
         )
         cursor.execute(
@@ -246,7 +246,7 @@ def _import_family_file_templates(cursor, profile_defs: list[dict], now: str) ->
         if not command:
             continue
         content = path.read_text(encoding="utf-8")
-        template_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:system-template:{path.name}"))
+        template_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:system-template:{path.name}"))
         template_code = re.sub(r"[^A-Z0-9_]", "_", stem.upper())[:64]
         if not template_code or not re.match(r"^[A-Z]", template_code):
             continue
@@ -292,7 +292,7 @@ def _import_family_file_templates(cursor, profile_defs: list[dict], now: str) ->
                 now,
             ),
         )
-        version_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:system-template-version:{path.name}:1"))
+        version_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:system-template-version:{path.name}:1"))
         cursor.execute(
             """INSERT INTO parser_template_versions
                (id, template_id, version_number, status, content, checksum,
@@ -425,7 +425,7 @@ def _scope_templates(cursor, profile_defs: list[dict], profile_ids: dict[str, st
             target_template_id = str(
                 uuid.uuid5(
                     uuid.NAMESPACE_URL,
-                    f"nexora:system-template:{source_row[4]}:{source_row[3]}:{profile_code}",
+                    f"netaop:system-template:{source_row[4]}:{source_row[3]}:{profile_code}",
                 )
             )
             cursor.execute(

@@ -1,4 +1,4 @@
-"""Migration m0103: Create Nexora AI Platform core database tables."""
+"""Migration m0103: Create NetAop AI Platform core database tables."""
 
 from __future__ import annotations
 

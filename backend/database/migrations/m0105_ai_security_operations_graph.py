@@ -339,7 +339,7 @@ def _create_tables(cursor) -> None:
             tenant_id TEXT NOT NULL,
             session_id TEXT,
             command_event_id TEXT,
-            nexora_action TEXT NOT NULL,
+            netaop_action TEXT NOT NULL,
             external_action TEXT NOT NULL,
             matched INTEGER NOT NULL DEFAULT 0,
             details_json TEXT NOT NULL DEFAULT '{}',

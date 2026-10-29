@@ -266,7 +266,7 @@
       },
       "targets": [
         {
-          "expr": "topk(1, (nexora_hw_cpu_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\",window=\"$cpu_window\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
+          "expr": "topk(1, (netaop_hw_cpu_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\",window=\"$cpu_window\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
           "instant": true,
           "refId": "A",
           "legendFormat": "{{sensor_name}} · {{group}} · {{window}}"
@@ -329,7 +329,7 @@
       },
       "targets": [
         {
-          "expr": "topk(1, (nexora_hw_memory_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
+          "expr": "topk(1, (netaop_hw_memory_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
           "instant": true,
           "refId": "A",
           "legendFormat": "{{sensor_name}} · {{group}}"
@@ -407,7 +407,7 @@
       },
       "targets": [
         {
-          "expr": "topk(1, (nexora_hw_temperature_celsius{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\",group!~\"(?i).*(transceiver|optical).*\"})))) or on() (topk(1, (nexora_hw_temperature_celsius{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\",group=~\"(?i).*(transceiver|optical).*\"})))) unless on() count((nexora_hw_temperature_celsius{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\",group!~\"(?i).*(transceiver|optical).*\"})))))",
+          "expr": "topk(1, (netaop_hw_temperature_celsius{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\",group!~\"(?i).*(transceiver|optical).*\"})))) or on() (topk(1, (netaop_hw_temperature_celsius{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\",group=~\"(?i).*(transceiver|optical).*\"})))) unless on() count((netaop_hw_temperature_celsius{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\",group!~\"(?i).*(transceiver|optical).*\"})))))",
           "refId": "A",
           "instant": true,
           "legendFormat": "{{sensor_name}} · {{group}}"
@@ -489,7 +489,7 @@
       },
       "targets": [
         {
-          "expr": "count(((nexora_hw_component_state{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))) == 1) or ((nexora_hw_component_state{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))) == 2)) or on() ((count((nexora_hw_component_state{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))) > 0) * 0)",
+          "expr": "count(((netaop_hw_component_state{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))) == 1) or ((netaop_hw_component_state{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))) == 2)) or on() ((count((netaop_hw_component_state{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))) > 0) * 0)",
           "refId": "A",
           "instant": true
         }
@@ -571,7 +571,7 @@
       },
       "targets": [
         {
-          "expr": "count((nexora_hw_component_state{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))) == 3) or on() ((count((nexora_hw_component_state{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))) > 0) * 0)",
+          "expr": "count((netaop_hw_component_state{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))) == 3) or on() ((count((netaop_hw_component_state{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))) > 0) * 0)",
           "refId": "A",
           "instant": true
         }
@@ -637,7 +637,7 @@
       },
       "targets": [
         {
-          "expr": "topk(10, max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, window) ((nexora_hw_cpu_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\",window=\"$cpu_window\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))))",
+          "expr": "topk(10, max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, window) ((netaop_hw_cpu_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\",window=\"$cpu_window\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))))",
           "legendFormat": "{{sensor_name}} · {{group}} · {{window}}",
           "refId": "A"
         }
@@ -718,7 +718,7 @@
       },
       "targets": [
         {
-          "expr": "clamp_min((count(max by (tenant_id, asset_id, sensor_key, window) ((nexora_hw_cpu_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\",window=\"$cpu_window\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))))) - 10, 0)",
+          "expr": "clamp_min((count(max by (tenant_id, asset_id, sensor_key, window) ((netaop_hw_cpu_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\",window=\"$cpu_window\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))))) - 10, 0)",
           "refId": "A",
           "instant": true
         }
@@ -770,7 +770,7 @@
       },
       "targets": [
         {
-          "expr": "max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class) ((nexora_hw_memory_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
+          "expr": "max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class) ((netaop_hw_memory_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
           "legendFormat": "{{sensor_name}} · {{group}}",
           "refId": "A"
         }
@@ -822,7 +822,7 @@
       },
       "targets": [
         {
-          "expr": "max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class) ((nexora_hw_temperature_celsius{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
+          "expr": "max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class) ((netaop_hw_temperature_celsius{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
           "legendFormat": "{{sensor_name}} · {{group}}",
           "refId": "A"
         }
@@ -874,7 +874,7 @@
       },
       "targets": [
         {
-          "expr": "max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class) ((nexora_hw_fan_speed_rpm{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
+          "expr": "max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class) ((netaop_hw_fan_speed_rpm{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
           "legendFormat": "{{sensor_name}} · {{group}}",
           "refId": "A"
         }
@@ -926,7 +926,7 @@
       },
       "targets": [
         {
-          "expr": "max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class) ((nexora_hw_power_watts{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
+          "expr": "max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class) ((netaop_hw_power_watts{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
           "legendFormat": "{{sensor_name}} · {{group}}",
           "refId": "A"
         }
@@ -1009,7 +1009,7 @@
       },
       "targets": [
         {
-          "expr": "max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class) ((nexora_hw_optical_power_dbm{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
+          "expr": "max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class) ((netaop_hw_optical_power_dbm{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
           "legendFormat": "{{sensor_name}} · {{group}}",
           "refId": "A"
         }
@@ -1105,7 +1105,7 @@
       },
       "targets": [
         {
-          "expr": "(nexora_hw_cpu_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\",window=\"$cpu_window\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))",
+          "expr": "(netaop_hw_cpu_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\",window=\"$cpu_window\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -1263,19 +1263,19 @@
       },
       "targets": [
         {
-          "expr": "max by (tenant_id, asset_id, device_id, source_type, sensor_name, group, index, component_class) ((nexora_hw_memory_used_bytes{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
+          "expr": "max by (tenant_id, asset_id, device_id, source_type, sensor_name, group, index, component_class) ((netaop_hw_memory_used_bytes{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
           "format": "table",
           "instant": true,
           "refId": "A"
         },
         {
-          "expr": "max by (tenant_id, asset_id, device_id, source_type, sensor_name, group, index, component_class) ((nexora_hw_memory_total_bytes{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
+          "expr": "max by (tenant_id, asset_id, device_id, source_type, sensor_name, group, index, component_class) ((netaop_hw_memory_total_bytes{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
           "format": "table",
           "instant": true,
           "refId": "B"
         },
         {
-          "expr": "max by (tenant_id, asset_id, device_id, source_type, sensor_name, group, index, component_class) ((nexora_hw_memory_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
+          "expr": "max by (tenant_id, asset_id, device_id, source_type, sensor_name, group, index, component_class) ((netaop_hw_memory_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
           "format": "table",
           "instant": true,
           "refId": "C"
@@ -1393,7 +1393,7 @@
       },
       "targets": [
         {
-          "expr": "(nexora_hw_temperature_celsius{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))",
+          "expr": "(netaop_hw_temperature_celsius{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -1492,7 +1492,7 @@
       },
       "targets": [
         {
-          "expr": "(nexora_hw_fan_speed_rpm{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))",
+          "expr": "(netaop_hw_fan_speed_rpm{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -1655,13 +1655,13 @@
       },
       "targets": [
         {
-          "expr": "max by (tenant_id, asset_id, device_id, sensor_key, sensor_name, group, index, component_class, raw_state, state_description) ((nexora_hw_component_state{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
+          "expr": "max by (tenant_id, asset_id, device_id, sensor_key, sensor_name, group, index, component_class, raw_state, state_description) ((netaop_hw_component_state{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"}))))",
           "format": "table",
           "instant": true,
           "refId": "A"
         },
         {
-          "expr": "(max by (tenant_id, asset_id, device_id, sensor_key, sensor_name, group, index, component_class, raw_state, state_description) ((nexora_hw_component_present{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))) or on(tenant_id, asset_id, device_id, sensor_key, sensor_name, group, index, component_class) (max by (tenant_id, asset_id, device_id, sensor_key, sensor_name, group, index, component_class) ((nexora_hw_component_state{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))) * 0 - 1))",
+          "expr": "(max by (tenant_id, asset_id, device_id, sensor_key, sensor_name, group, index, component_class, raw_state, state_description) ((netaop_hw_component_present{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))) or on(tenant_id, asset_id, device_id, sensor_key, sensor_name, group, index, component_class) (max by (tenant_id, asset_id, device_id, sensor_key, sensor_name, group, index, component_class) ((netaop_hw_component_state{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))) * 0 - 1))",
           "format": "table",
           "instant": true,
           "refId": "B"
@@ -1781,7 +1781,7 @@
       },
       "targets": [
         {
-          "expr": "(nexora_hw_power_watts{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))",
+          "expr": "(netaop_hw_power_watts{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -1953,7 +1953,7 @@
                 "value": [
                   {
                     "title": "打开接口详情",
-                    "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                    "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                     "targetBlank": false
                   }
                 ]
@@ -1987,21 +1987,21 @@
               "__name__": true,
               "ifIndex": true,
               "asset_id": true,
-              "nexora_asset_id": true,
-              "nexora_hostname": true,
-              "nexora_module": true,
-              "nexora_platform": true,
-              "nexora_role": true,
-              "nexora_site_id": true,
-              "nexora_site_name": true,
-              "nexora_tenant_id": true,
-              "nexora_vendor": true,
+              "netaop_asset_id": true,
+              "netaop_hostname": true,
+              "netaop_module": true,
+              "netaop_platform": true,
+              "netaop_role": true,
+              "netaop_site_id": true,
+              "netaop_site_name": true,
+              "netaop_tenant_id": true,
+              "netaop_vendor": true,
               "job": true,
               "tenant_id": true,
               "site_id": true,
               "platform": true,
               "sysName": true,
-              "nexora_interface_role": true,
+              "netaop_interface_role": true,
               "ifDescr": true
             },
             "indexByName": {
@@ -2179,7 +2179,7 @@
       },
       "targets": [
         {
-          "expr": "(nexora_hw_optical_power_dbm{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))",
+          "expr": "(netaop_hw_optical_power_dbm{asset_id=\"$asset_id\",asset_id!=\"\"}  * on(tenant_id, asset_id, sensor_key) group_left(sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (max by (tenant_id, asset_id, sensor_key, sensor_name, group, index, component_class, source_id, hostname, site_name, vendor, platform, ent_physical_index, measured_entity_type) (netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\",component_class=~\"$component_class\"})))",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -2232,7 +2232,7 @@
   "refresh": "30s",
   "schemaVersion": 39,
   "tags": [
-    "nexora",
+    "netaop",
     "network",
     "device"
   ],
@@ -2341,14 +2341,14 @@
           "text": "",
           "value": ""
         },
-        "definition": "label_values(nexora_hw_cpu_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\"}, window)",
+        "definition": "label_values(netaop_hw_cpu_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\"}, window)",
         "includeAll": false,
         "label": "CPU 采样窗口",
         "multi": false,
         "name": "cpu_window",
         "options": [],
         "query": {
-          "query": "label_values(nexora_hw_cpu_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\"}, window)",
+          "query": "label_values(netaop_hw_cpu_usage_percent{asset_id=\"$asset_id\",asset_id!=\"\"}, window)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -2365,14 +2365,14 @@
             "$__all"
           ]
         },
-        "definition": "label_values(nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\"}, group)",
+        "definition": "label_values(netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\"}, group)",
         "includeAll": true,
         "label": "部件分组",
         "multi": false,
         "name": "hardware_group",
         "options": [],
         "query": {
-          "query": "label_values(nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\"}, group)",
+          "query": "label_values(netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\"}, group)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -2389,14 +2389,14 @@
             "$__all"
           ]
         },
-        "definition": "label_values(nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\"}, sensor_name)",
+        "definition": "label_values(netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\"}, sensor_name)",
         "includeAll": true,
         "label": "部件",
         "multi": true,
         "name": "sensor_name",
         "options": [],
         "query": {
-          "query": "label_values(nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\"}, sensor_name)",
+          "query": "label_values(netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\"}, sensor_name)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -2413,14 +2413,14 @@
             "$__all"
           ]
         },
-        "definition": "label_values(nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\"}, component_class)",
+        "definition": "label_values(netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\"}, component_class)",
         "includeAll": true,
         "label": "部件类别",
         "multi": false,
         "name": "component_class",
         "options": [],
         "query": {
-          "query": "label_values(nexora_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\"}, component_class)",
+          "query": "label_values(netaop_hw_sensor_info{asset_id=\"$asset_id\",asset_id!=\"\",group=~\"$hardware_group\",sensor_name=~\"$sensor_name\"}, component_class)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -2434,6 +2434,6 @@
   },
   "timezone": "browser",
   "title": "02 网络设备详情 (Network Device Detail)",
-  "uid": "nexora-network-device",
+  "uid": "netaop-network-device",
   "version": 30
 }

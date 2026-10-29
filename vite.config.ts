@@ -13,7 +13,7 @@ function buildProgressPlugin() {
   };
 
   return {
-    name: 'nexora-build-progress',
+    name: 'netaop-build-progress',
     apply: 'build' as const,
     enforce: 'post' as const,
     buildStart() {

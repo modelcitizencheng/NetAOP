@@ -1,4 +1,4 @@
-# Nexora Docker 部署与离线交付手册
+# NetAop Docker 部署与离线交付手册
 
 本文以当前仓库的 `docker-compose.yml` 和 `scripts/deploy-docker.sh` 为准，说明在线构建、镜像归档、完全离线部署、升级和故障排查流程。
 
@@ -6,13 +6,13 @@
 
 | 服务 | 当前镜像标签 | 作用 | 对外端口 |
 |---|---|---|---|
-| `db` | `nexora-postgres:latest` | PostgreSQL 18、pgvector、pg_trgm | 不直接暴露 |
-| `netops` | `nexora-netops:latest` | FastAPI 后端和前端静态资源 | 内部 8003 |
+| `db` | `netaop-postgres:latest` | PostgreSQL 18、pgvector、pg_trgm | 不直接暴露 |
+| `netops` | `netaop-netops:latest` | FastAPI 后端和前端静态资源 | 内部 8003 |
 | `victoriametrics` | `victoriametrics/victoria-metrics:v1.103.0` | Prometheus-compatible 指标存储与查询 | 内部 8428 |
 | `vmagent` | `victoriametrics/vmagent:v1.103.0` | SNMP 指标抓取和 remote_write | 内部 8429 |
 | `snmp-exporter` | `prom/snmp-exporter:v0.26.0` | SNMP Exporter | 内部 9116 |
 | `grafana` | `grafana/grafana:12.1.0` | 全局监控大盘 | 同源 `/grafana/` |
-| `nginx` | `nexora-nginx:latest` | HTTPS、静态文件、API/WebSocket 代理 | 80、443 |
+| `nginx` | `netaop-nginx:latest` | HTTPS、静态文件、API/WebSocket 代理 | 80、443 |
 | `redis`（可选） | `redis:7.4.2-alpine` | IP 定位共享缓存 | 内部 6379 |
 
 后端镜像已经包含 Python 依赖、系统运行库和前端构建产物。目标服务器不需要安装 Node.js、Python、pip 或 npm。
@@ -23,19 +23,19 @@
 
 ```text
 镜像仓库地址：<YOUR_IMAGE_REGISTRY>
-项目命名空间：<YOUR_IMAGE_REGISTRY>/nexora
+项目命名空间：<YOUR_IMAGE_REGISTRY>/netaop
 版本标签：    <VERSION>
 ```
 
 例如：
 
 ```text
-<YOUR_IMAGE_REGISTRY>/nexora/netops:<VERSION>
-<YOUR_IMAGE_REGISTRY>/nexora/nginx:<VERSION>
-<YOUR_IMAGE_REGISTRY>/nexora/postgres:<VERSION>
+<YOUR_IMAGE_REGISTRY>/netaop/netops:<VERSION>
+<YOUR_IMAGE_REGISTRY>/netaop/nginx:<VERSION>
+<YOUR_IMAGE_REGISTRY>/netaop/postgres:<VERSION>
 ```
 
-这些地址目前只是发布规划占位符；当前 Compose 和离线脚本仍使用 `nexora-*:latest` 本地标签。
+这些地址目前只是发布规划占位符；当前 Compose 和离线脚本仍使用 `netaop-*:latest` 本地标签。
 
 ## 3. 在线部署
 
@@ -51,8 +51,8 @@ docker compose version
 ### 3.2 获取代码和配置
 
 ```bash
-git clone https://github.com/libing28390-sketch/Release-netops.git nexora-automation
-cd nexora-automation
+git clone https://github.com/libing28390-sketch/Release-netops.git netaop-automation
+cd netaop-automation
 cp .env.example .env
 ```
 
@@ -89,23 +89,23 @@ bash scripts/deploy-docker.sh redis-logs
 
 ```bash
 bash scripts/deploy-docker.sh save-images \
-  ./nexora-images-$(date +%Y%m%d-%H%M%S).tar.gz
+  ./netaop-images-$(date +%Y%m%d-%H%M%S).tar.gz
 ```
 
 脚本会验证以下标签：
 
 ```text
-nexora-netops:latest
-nexora-nginx:latest
-nexora-postgres:latest
+netaop-netops:latest
+netaop-nginx:latest
+netaop-postgres:latest
 redis:7.4.2-alpine
 ```
 
 然后生成镜像包和校验文件：
 
 ```text
-nexora-images-YYYYMMDD-HHMMSS.tar.gz
-nexora-images-YYYYMMDD-HHMMSS.tar.gz.sha256
+netaop-images-YYYYMMDD-HHMMSS.tar.gz
+netaop-images-YYYYMMDD-HHMMSS.tar.gz.sha256
 ```
 
 `save-images` 只导出当前已有镜像，不会构建、拉取、删除或修改本机镜像。
@@ -117,7 +117,7 @@ nexora-images-YYYYMMDD-HHMMSS.tar.gz.sha256
 ```bash
 docker compose build
 bash scripts/deploy-docker.sh save-images \
-  ./nexora-images-$(date +%Y%m%d-%H%M%S).tar.gz
+  ./netaop-images-$(date +%Y%m%d-%H%M%S).tar.gz
 ```
 
 ## 5. 完全离线部署
@@ -127,8 +127,8 @@ bash scripts/deploy-docker.sh save-images \
 镜像包不包含 Compose 文件、运行时密钥、SSL 证书或数据库数据。请将以下文件传到离线服务器：
 
 ```text
-nexora-images-*.tar.gz
-nexora-images-*.tar.gz.sha256
+netaop-images-*.tar.gz
+netaop-images-*.tar.gz.sha256
 docker-compose.yml
 scripts/deploy-docker.sh
 .env.example
@@ -149,13 +149,13 @@ chmod 600 .env
 
 ```bash
 bash scripts/deploy-docker.sh load-images \
-  /data/nexora-automation/nexora-images-20260823-142221.tar.gz
+  /data/netaop-automation/netaop-images-20260823-142221.tar.gz
 ```
 
 如果 `.sha256` 与镜像包在同一目录，脚本会先校验，再执行 `docker load`：
 
 ```bash
-docker images nexora-netops nexora-nginx nexora-postgres redis:7.4.2-alpine
+docker images netaop-netops netaop-nginx netaop-postgres redis:7.4.2-alpine
 ```
 
 ### 5.3 仅使用本地镜像启动
@@ -192,15 +192,15 @@ docker compose version
 镜像包不包含业务数据。Compose 使用以下 volumes：
 
 ```text
-nexora-pgdata       PostgreSQL 数据
-nexora-data         应用数据、许可证等
-nexora-backup       配置备份
-nexora-dist         前端静态文件共享卷
+netaop-pgdata       PostgreSQL 数据
+netaop-data         应用数据、许可证等
+netaop-backup       配置备份
+netaop-dist         前端静态文件共享卷
 ```
 
 新服务器首次启动会创建数据库并执行迁移。如果需要迁移既有系统，必须另外恢复 PostgreSQL 备份和应用数据，不能只导入镜像包。
 
-PostgreSQL 18 的官方容器数据目录位于 `/var/lib/postgresql/18/docker`，因此 Compose 把 `nexora-pgdata` 挂载到 `/var/lib/postgresql`。PG17 volume 的旧目录结构不能直接复用；跨主版本迁移前先备份，再迁移到新 PG18 集群。
+PostgreSQL 18 的官方容器数据目录位于 `/var/lib/postgresql/18/docker`，因此 Compose 把 `netaop-pgdata` 挂载到 `/var/lib/postgresql`。PG17 volume 的旧目录结构不能直接复用；跨主版本迁移前先备份，再迁移到新 PG18 集群。
 
 查看服务和日志：
 
@@ -225,13 +225,13 @@ bash scripts/deploy-docker.sh update
 联网构建机生成新包：
 
 ```bash
-bash scripts/deploy-docker.sh save-images ./nexora-images-v2.tar.gz
+bash scripts/deploy-docker.sh save-images ./netaop-images-v2.tar.gz
 ```
 
 离线服务器导入并重启：
 
 ```bash
-bash scripts/deploy-docker.sh load-images /data/packages/nexora-images-v2.tar.gz
+bash scripts/deploy-docker.sh load-images /data/packages/netaop-images-v2.tar.gz
 bash scripts/deploy-docker.sh start-offline
 ```
 
@@ -244,8 +244,8 @@ bash scripts/deploy-docker.sh start-offline
 说明镜像没有成功导入，或标签不匹配：
 
 ```bash
-bash scripts/deploy-docker.sh load-images /data/packages/nexora-images.tar.gz
-docker images nexora-netops nexora-nginx nexora-postgres redis:7.4.2-alpine
+bash scripts/deploy-docker.sh load-images /data/packages/netaop-images.tar.gz
+docker images netaop-netops netaop-nginx netaop-postgres redis:7.4.2-alpine
 ```
 
 ### 离线启动仍尝试拉取镜像
@@ -275,7 +275,7 @@ ss -lntp | grep -E ':80|:443'
 
 ```bash
 bash scripts/deploy-docker.sh load-images \
-  /data/nexora-automation/nexora-images-20260823-142221.tar.gz
+  /data/netaop-automation/netaop-images-20260823-142221.tar.gz
 bash scripts/deploy-docker.sh start-offline
 docker compose ps
 ```

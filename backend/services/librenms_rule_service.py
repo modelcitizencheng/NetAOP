@@ -45,9 +45,9 @@ else:  # pragma: no cover - deployment dependency
 
 logger = logging.getLogger(__name__)
 
-RULE_CONTRACT_VERSION = "nexora.librenms.rules.v1"
-IDENTITY_CONTRACT = "nexora.librenms.identity-match.v1"
-HARDWARE_CONTRACT = "nexora.librenms.hardware-definition.v1"
+RULE_CONTRACT_VERSION = "netaop.librenms.rules.v1"
+IDENTITY_CONTRACT = "netaop.librenms.identity-match.v1"
+HARDWARE_CONTRACT = "netaop.librenms.hardware-definition.v1"
 LIBRENMS_BUNDLE_DIR = Path(__file__).resolve().parents[1] / "vendor" / "librenms"
 
 _COMPATIBILITY_RANK = {

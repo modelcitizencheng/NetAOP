@@ -222,7 +222,7 @@ export const ExportTableModal: React.FC<ExportTableModalProps> = ({
         {/* Content Body */}
         <div className="flex-1 overflow-y-auto p-6 space-y-4">
           <div className="text-xs font-semibold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">
-            {zh ? 'Nexora 官方权威报表生成（推荐）' : 'Official Authoritative Reports (Recommended)'}
+            {zh ? 'NetAop 官方权威报表生成（推荐）' : 'Official Authoritative Reports (Recommended)'}
           </div>
 
           <div className="space-y-3.5">

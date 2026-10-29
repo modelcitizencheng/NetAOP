@@ -110,7 +110,7 @@ def web_query_requested(
 
 
 def is_network_related_query(message: str, *, intent: str = "general_qa") -> bool:
-    """Classify whether the answer should retain Nexora network context.
+    """Classify whether the answer should retain NetAop network context.
 
     Intent parsing is useful for routing, but it is not a sufficient answer
     scope boundary: a public question can be misclassified as ``knowledge``

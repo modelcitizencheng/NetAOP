@@ -1553,7 +1553,7 @@ def _resolve_ntc_platform(platform: str) -> str:
     grammar.  Older code used Cisco IOS as the catch-all value when an entry
     was missing, which could silently parse a recognised non-Cisco platform
     with the wrong column grammar (for example a DPtech variant).  The
-    canonical Nexora/TextFSM platform is the only safe fallback; an unknown
+    canonical NetAop/TextFSM platform is the only safe fallback; an unknown
     value is kept as-is so the caller reports an unmatched parse instead of
     manufacturing Cisco-shaped records.
     """

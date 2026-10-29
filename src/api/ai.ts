@@ -2408,7 +2408,7 @@ export async function exportKnowledgeDocuments(query: Omit<KnowledgeDocumentsQue
   const filenameMatch = disposition.match(/filename="?([^";]+)"?/i);
   return {
     blob: await response.blob(),
-    filename: filenameMatch?.[1] || 'nexora-knowledge-export.zip',
+    filename: filenameMatch?.[1] || 'netaop-knowledge-export.zip',
     documentCount: Number(response.headers.get('X-Knowledge-Export-Documents') || 0),
     contentBytes: Number(response.headers.get('X-Knowledge-Export-Content-Bytes') || 0),
   };

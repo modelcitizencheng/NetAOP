@@ -16,7 +16,7 @@ from ai.api.governance import router as governance_router
 from ai.api.security import router as security_router
 from ai.api.diagnostics import router as diagnostics_router
 
-ai_router = APIRouter(prefix="/ai", tags=["Nexora AI Center"])
+ai_router = APIRouter(prefix="/ai", tags=["NetAop AI Center"])
 
 ai_router.include_router(providers_router)
 ai_router.include_router(models_router)

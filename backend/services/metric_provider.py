@@ -31,11 +31,11 @@ ALLOWED_METRICS = {
 
 CANONICAL_PROMQL = {
     "device_uptime_seconds": "sysUpTime",
-    "cpu_usage_percent": "nexora_hw_cpu_usage_percent",
-    "memory_usage_percent": "nexora_hw_memory_usage_percent",
-    "temperature_celsius": "nexora_hw_temperature_celsius",
-    "wireless_ap_online_count": "nexora_wireless_sensor_value",
-    "wireless_client_online_count": "nexora_wireless_sensor_value",
+    "cpu_usage_percent": "netaop_hw_cpu_usage_percent",
+    "memory_usage_percent": "netaop_hw_memory_usage_percent",
+    "temperature_celsius": "netaop_hw_temperature_celsius",
+    "wireless_ap_online_count": "netaop_wireless_sensor_value",
+    "wireless_client_online_count": "netaop_wireless_sensor_value",
     "interface_admin_status": "ifAdminStatus",
     "interface_oper_status": "ifOperStatus",
     "interface_speed_bps": "ifHighSpeed * 1000000",
@@ -82,13 +82,13 @@ LEGACY_HARDWARE_METRIC_NAMES = frozenset({
 def _uses_normalized_external_metric(metric_key: str) -> bool:
     return (
         metric_key in NORMALIZED_PROVIDER_METRIC_KEYS
-        or metric_key.startswith(("nexora_hw_", "nexora_wireless_"))
+        or metric_key.startswith(("netaop_hw_", "netaop_wireless_"))
     )
 
 
 def normalized_hardware_metric_query(metric_key: str, *, asset_id: str | None = None) -> str:
     metric_name = CANONICAL_PROMQL.get(metric_key, metric_key)
-    if not isinstance(metric_name, str) or not re.fullmatch(r"nexora_hw_[A-Za-z0-9_]+", metric_name):
+    if not isinstance(metric_name, str) or not re.fullmatch(r"netaop_hw_[A-Za-z0-9_]+", metric_name):
         raise ValueError("Unsupported normalized hardware metric")
     matchers: list[str] = []
     if asset_id:
@@ -217,7 +217,7 @@ class NativeMetricProvider(MetricProvider):
         if _uses_normalized_external_metric(key):
             # Native device columns are historical snapshots with no verified
             # LibreNMS-rule provenance. These values come from the normalized
-            # Nexora metric families exported to VictoriaMetrics only.
+            # NetAop metric families exported to VictoriaMetrics only.
             return {"provider": self.name, "metric_key": key, "data": []}
         if key in {"interface_admin_status", "interface_oper_status", "interface_speed_bps"}:
             if not asset_id:
@@ -324,7 +324,7 @@ class VictoriaMetricsMetricProvider(MetricProvider):
 
     def _request(self, path: str, params: Mapping[str, Any]) -> dict[str, Any]:
         url = f"{self.base_url}{path}?{urlencode({k: v for k, v in params.items() if v is not None})}"
-        request = Request(url, headers={"Accept": "application/json", "User-Agent": "nexora-monitoring/1"}, method="GET")
+        request = Request(url, headers={"Accept": "application/json", "User-Agent": "netaop-monitoring/1"}, method="GET")
         try:
             with self.opener(request, timeout=self.timeout_seconds) as response:
                 body = response.read()
@@ -345,9 +345,9 @@ class VictoriaMetricsMetricProvider(MetricProvider):
         selector = f'{{asset_id{match_op}"{escaped}"}}' if asset_id else ""
 
         if key in LEGACY_HARDWARE_METRIC_NAMES:
-            raise ValueError("Raw vendor hardware metrics are unsupported; use normalized Nexora metrics")
+            raise ValueError("Raw vendor hardware metrics are unsupported; use normalized NetAop metrics")
 
-        if key in HARDWARE_METRIC_KEYS or key.startswith("nexora_hw_"):
+        if key in HARDWARE_METRIC_KEYS or key.startswith("netaop_hw_"):
             return normalized_hardware_metric_query(key, asset_id=asset_id)
 
         if key == "device_uptime_seconds":
@@ -371,7 +371,7 @@ class VictoriaMetricsMetricProvider(MetricProvider):
                 f'sensor_class="{sensor_class}"',
                 LIBRENMS_WIRELESS_SOURCE_MATCHER,
             ))
-            return f"nexora_wireless_sensor_value{{{','.join(matchers)}}}"
+            return f"netaop_wireless_sensor_value{{{','.join(matchers)}}}"
 
         if key == "wireless_ap_online_count":
             ap_count = normalized_wireless_selector("wireless_controller", "ap-count")
@@ -391,10 +391,10 @@ class VictoriaMetricsMetricProvider(MetricProvider):
                 f"(({radio_total}) or on (asset_id) ({access_point_total})))"
             )
 
-        if key.startswith("nexora_wireless_"):
-            if not re.fullmatch(r"nexora_wireless_[A-Za-z0-9_]+", key):
+        if key.startswith("netaop_wireless_"):
+            if not re.fullmatch(r"netaop_wireless_[A-Za-z0-9_]+", key):
                 raise ValueError("Metric query contains unsupported characters")
-            if key != "nexora_wireless_sensor_value":
+            if key != "netaop_wireless_sensor_value":
                 raise ValueError("Unsupported normalized wireless metric")
             metric_matchers = [selector[1:-1]] if asset_id else []
             metric_matchers.append(LIBRENMS_WIRELESS_SOURCE_MATCHER)

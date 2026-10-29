@@ -157,7 +157,7 @@ export const TerminalAccessModal: React.FC<TerminalAccessModalProps> = ({
             <div className="px-6 py-5 bg-white/[0.02] border-t border-white/[0.06] flex items-center justify-between">
               <div className="text-[10px] text-white/20 flex items-center gap-1.5 font-medium italic">
                 <Lock size={10} />
-                {zh ? `受 ${systemInfo?.system_name || 'Nexora'} PAM 审计保护` : `Audited by ${systemInfo?.system_name || 'Nexora'} PAM`}
+                {zh ? `受 ${systemInfo?.system_name || 'NetAop'} PAM 审计保护` : `Audited by ${systemInfo?.system_name || 'NetAop'} PAM`}
               </div>
               <div className="flex gap-2">
                 <button type="button" onClick={onClose} className="min-h-10 rounded-lg px-4 py-2 text-xs font-bold text-white/70 transition-colors hover:bg-white/5 hover:text-white">{zh ? '取消' : 'Cancel'}</button>

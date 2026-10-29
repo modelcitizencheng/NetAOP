@@ -1,4 +1,4 @@
-# nexora-action-code: get_version
+# netaop-action-code: get_version
 # Huawei YunShan OS has a different banner/version line from VRP V5/V8.
 Value Filldown,Required OS_NAME (YunShan\s*OS)
 Value Required VERSION ([0-9][A-Za-z0-9_.-]*)

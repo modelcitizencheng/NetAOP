@@ -21,7 +21,7 @@ from services.document_content_cleaning import CleanedDocument
 from services.document_parser_adapters import MAX_PARSE_BYTES, ParsedDocument
 
 
-SCANNER_NAME = "nexora-document-security-scanner"
+SCANNER_NAME = "netaop-document-security-scanner"
 SCANNER_VERSION = "1.0.0"
 
 

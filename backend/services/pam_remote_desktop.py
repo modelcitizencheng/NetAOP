@@ -317,7 +317,7 @@ def resolve_remote_desktop_credentials(
             raise HTTPException(status_code=422, detail="Configured remote desktop credential is unavailable")
         return _usable_credential(credential, protocol, access_level)
 
-    # Keep inheritance aligned with the established Nexora vault resolver.
+    # Keep inheritance aligned with the established NetAop vault resolver.
     # Device rows can own the normal/admin binding even when the physical
     # asset has no duplicate credential_id; the resolver also applies the
     # shared-vault versus legacy asset-cache rules used by PAM SSH.

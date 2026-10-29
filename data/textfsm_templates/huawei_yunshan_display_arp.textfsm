@@ -1,4 +1,4 @@
-# nexora-action-code: get_arp_table
+# netaop-action-code: get_arp_table
 Value Required IP_ADDRESS (\d+\.\d+\.\d+\.\d+)
 Value Required MAC_ADDRESS ([0-9A-Fa-f]{4}(?:-[0-9A-Fa-f]{4}){2}|Incomplete)
 Value EXPIRE (\d+|-)

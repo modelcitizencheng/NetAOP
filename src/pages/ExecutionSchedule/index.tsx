@@ -166,7 +166,7 @@ const buildExecutionReportFilename = ({
       : (zh ? '网络巡检' : 'NetworkInspection');
   const shortId = sanitizeFilenameSegment(String(runId || '').replace(/-/g, '').slice(0, 8), 'record', 8);
   return [
-    sanitizeFilenameSegment(systemName, 'Nexora', 40),
+    sanitizeFilenameSegment(systemName, 'NetAop', 40),
     reportType,
     sanitizeFilenameSegment(taskName, zh ? '未命名作业' : 'UntitledJob'),
     formatFilenameTimestamp(startedAt),

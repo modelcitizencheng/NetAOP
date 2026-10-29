@@ -1,4 +1,4 @@
-# Nexora 部署指南总览
+# NetAop 部署指南总览
 
 服务端当前提供 Docker Compose 和 Ubuntu 两种部署路径。部署脚本、Compose、Nginx 和示例环境文件保留在仓库中；本目录的文档按部署方式说明入口和实际运行差异。
 
@@ -9,7 +9,7 @@
 | **Docker Compose** | Linux 主机上的整套容器化部署 | `docker-compose.yml`、`Dockerfile`、`scripts/deploy-docker.sh` | [Docker Compose 部署](./docker.md) |
 | **Ubuntu 安装脚本** | Ubuntu 主机或 Codespaces 上的原生进程部署 | `deploy-ubuntu.sh` | [Ubuntu 部署](./ubuntu.md) |
 
-Docker 安装使用根目录 `.env.example`；Ubuntu 安装使用 `.env.ubuntu.example`。两种方式都运行 Nexora 服务端，但附属服务和默认存储、监控、缓存实现不同，不能按组件完全等价处理。
+Docker 安装使用根目录 `.env.example`；Ubuntu 安装使用 `.env.ubuntu.example`。两种方式都运行 NetAop 服务端，但附属服务和默认存储、监控、缓存实现不同，不能按组件完全等价处理。
 
 - **v1.0.11 发布说明**：[Linux / Ubuntu / Docker Release Notes](./release-notes.md)
 - **Windows 工作站访问**：服务端部署在 Linux 或 Docker 后，Windows 用户可通过浏览器访问；如需本机浏览器和终端集成，安装 [Terminal Agent](./terminal-agent.md)。
@@ -25,7 +25,7 @@ bash scripts/deploy-docker.sh install
 
 安装脚本以 `.env.example` 初始化配置并生成安装所需的随机凭据。默认入口为 `https://<服务器地址>`；Nginx 同时监听 80 和 443，浏览器访问 HTTP 会跳转到 HTTPS。若尚未放入正式证书，Nginx 会为 `TLS_COMMON_NAME` 生成自签证书，浏览器会显示证书信任提示；生产访问应配置受信任的 TLS 证书。
 
-默认 Docker 栈包括 PostgreSQL 18（含 pgvector 与 pg_trgm）、Nexora 后端、Nginx，以及 VictoriaMetrics、vmagent、SNMP/PostgreSQL Exporter、Grafana、cAdvisor 和 Docker Socket Proxy 等监控组件。另包含 Guacamole 与 `guacd` 远程桌面组件、告警投递 Relay/Worker 和专用告警 Redis。`.env.example` 默认使用 S3 存储并由安装脚本启用 SeaweedFS。
+默认 Docker 栈包括 PostgreSQL 18（含 pgvector 与 pg_trgm）、NetAop 后端、Nginx，以及 VictoriaMetrics、vmagent、SNMP/PostgreSQL Exporter、Grafana、cAdvisor 和 Docker Socket Proxy 等监控组件。另包含 Guacamole 与 `guacd` 远程桌面组件、告警投递 Relay/Worker 和专用告警 Redis。`.env.example` 默认使用 S3 存储并由安装脚本启用 SeaweedFS。
 
 Docker Compose 中有两个用途不同的 Redis：`redis` 是平台缓存，可通过部署脚本的 `NETOPS_REDIS_ENABLED=0` 关闭；`alert-redis` 是告警投递 Broker，使用独立网络、配置和数据卷，不受缓存 Redis 开关影响。不要把两者写成同一个服务或共用用途。
 

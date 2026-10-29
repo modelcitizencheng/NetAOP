@@ -232,7 +232,7 @@ export const ModelHealthDashboardTab: React.FC = () => {
     <div className="min-h-full bg-[#f7f8fa] pb-10 dark:bg-slate-950">
       <div className="mx-auto w-full max-w-[1680px] space-y-5 px-1 sm:px-2">
         <header className="flex flex-col justify-between gap-4 px-1 pt-1 sm:flex-row sm:items-end sm:px-2 sm:pt-2">
-          <div><p className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">NEXORA STATUS</p><h2 className="mt-1 text-[27px] font-semibold tracking-tight text-[#172b4d] dark:text-white">{tx('ai.health.status.currentTitle')}</h2></div>
+          <div><p className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">NETAOP STATUS</p><h2 className="mt-1 text-[27px] font-semibold tracking-tight text-[#172b4d] dark:text-white">{tx('ai.health.status.currentTitle')}</h2></div>
           <div className="flex flex-wrap items-center gap-2 text-sm text-slate-500 dark:text-slate-400"><span>{tx('ai.health.status.updatedAt', { value: latestDate ? formatDate(latestDate, language, tx) : tx('ai.health.never') })}</span><button type="button" onClick={() => void fetchData()} disabled={loading || refreshing} aria-label={tx('ai.common.refresh')} className="rounded-lg border border-slate-200 bg-white p-2 text-slate-500 shadow-sm transition hover:border-indigo-300 hover:text-indigo-600 disabled:cursor-wait disabled:opacity-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"><RefreshCw className={`h-4 w-4 ${loading || refreshing ? 'animate-spin' : ''}`} /></button></div>
         </header>
 

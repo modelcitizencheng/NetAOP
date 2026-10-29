@@ -28,7 +28,7 @@ describe('Copilot browser key paths', () => {
       />,
     );
 
-    const input = screen.getByPlaceholderText('询问 Nexora AI，或输入 / 使用快捷指令...');
+    const input = screen.getByPlaceholderText('询问 NetAop AI，或输入 / 使用快捷指令...');
     await user.type(input, '查询 OSPF 邻居状态');
     await user.click(screen.getByRole('button', { name: '发送' }));
     expect(onSend).toHaveBeenCalledWith('查询 OSPF 邻居状态');
@@ -55,7 +55,7 @@ describe('Copilot browser key paths', () => {
       />,
     );
 
-    const input = screen.getByPlaceholderText('询问 Nexora AI，或输入 / 使用快捷指令...');
+    const input = screen.getByPlaceholderText('询问 NetAop AI，或输入 / 使用快捷指令...');
     await waitFor(() => expect((input as HTMLTextAreaElement).value).toBe('查询原始问题'));
     expect(screen.getByText('正在编辑问题，修改后点击发送即可提交新问题')).toBeTruthy();
 

@@ -1,4 +1,4 @@
-"""Persist LibreNMS native instances and explicit Nexora device bindings."""
+"""Persist LibreNMS native instances and explicit NetAop device bindings."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ NAME = "librenms_native_bindings"
 def upgrade(cursor, use_pg: bool) -> None:
     """Create the PostgreSQL integration registry for native LibreNMS.
 
-    Nexora stores only the ID of the encrypted credential record. LibreNMS
+    NetAop stores only the ID of the encrypted credential record. LibreNMS
     remains responsible for SNMP collection and its own datastore; these tables
     hold integration identity, synchronization state, and task health only.
     """

@@ -1013,7 +1013,7 @@ def exporter_config_from_variant(module: dict[str, Any], variant: dict[str, Any]
     for metric in result.get("metrics") or []:
         if isinstance(metric, dict):
             metric.pop("source_name", None)
-            # ``unit`` is useful to Nexora's metric dictionary but is not a
+            # ``unit`` is useful to NetAop's metric dictionary but is not a
             # field understood by snmp_exporter's strict runtime schema.
             metric.pop("unit", None)
     return result

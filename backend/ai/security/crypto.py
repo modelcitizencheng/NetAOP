@@ -19,7 +19,7 @@ except ImportError:  # pragma: no cover
 
 def _get_encryption_key() -> bytes:
     """Derive 256-bit AES key from system CREDENTIAL_ENCRYPTION_KEY or SECRET_KEY."""
-    raw_secret = getattr(settings, "CREDENTIAL_ENCRYPTION_KEY", None) or getattr(settings, "SECRET_KEY", "nexora-ai-default-key")
+    raw_secret = getattr(settings, "CREDENTIAL_ENCRYPTION_KEY", None) or getattr(settings, "SECRET_KEY", "netaop-ai-default-key")
     return hashlib.sha256(raw_secret.encode("utf-8")).digest()
 
 
@@ -28,7 +28,7 @@ def has_configured_master_key() -> bool:
     raw_secret = str(getattr(settings, "CREDENTIAL_ENCRYPTION_KEY", "") or "").strip()
     if not raw_secret:
         return False
-    return raw_secret.lower() not in {"change-me-to-a-random-secret", "supersecret", "nexora-ai-default-key"} and len(raw_secret) >= 16
+    return raw_secret.lower() not in {"change-me-to-a-random-secret", "supersecret", "netaop-ai-default-key"} and len(raw_secret) >= 16
 
 
 def require_configured_master_key() -> None:

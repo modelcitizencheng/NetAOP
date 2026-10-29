@@ -760,7 +760,7 @@ def export_parameter_profile(
         payload["value_sources"] = json_value(payload.pop("value_sources_json"), {})
         payload["is_default"] = bool(payload.get("is_default"))
         return Response(
-            content=json.dumps({"format": "nexora-template-profile", "profile": payload}, ensure_ascii=False, indent=2),
+            content=json.dumps({"format": "netaop-template-profile", "profile": payload}, ensure_ascii=False, indent=2),
             media_type="application/json; charset=utf-8",
             headers={"Content-Disposition": f'attachment; filename="template-profile-{profile_id}.json"'},
         )
@@ -1251,7 +1251,7 @@ def export_config_template(
         payload = _serialize_template(conn, template, include_detail=True)
         content = json.dumps(
             {
-                "format": "nexora-config-template",
+                "format": "netaop-config-template",
                 "format_version": 1,
                 "exported_at": _now(),
                 "template": payload,

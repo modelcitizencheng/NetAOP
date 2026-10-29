@@ -152,13 +152,13 @@ export default function RemoteDesktopAccessModal({
                   className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-center text-sm font-bold tracking-[0.4em] text-slate-700 outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-100 disabled:bg-slate-50"
                 />
               </label>
-              <p className="sm:col-span-2 -mt-1 text-[10px] leading-4 text-slate-400">{isZh ? '固定 PIN 和 MFA 只提交给 Nexora 进行本次管理员授权，不发送到远程桌面目标。' : 'The PIN and MFA code are submitted to Nexora for this authorization and are not sent to the remote desktop target.'}</p>
+              <p className="sm:col-span-2 -mt-1 text-[10px] leading-4 text-slate-400">{isZh ? '固定 PIN 和 MFA 只提交给 NetAop 进行本次管理员授权，不发送到远程桌面目标。' : 'The PIN and MFA code are submitted to NetAop for this authorization and are not sent to the remote desktop target.'}</p>
             </div>
           )}
 
           {requestError && <p role="alert" className="flex items-start gap-2 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2.5 text-xs text-rose-700"><AlertCircle size={15} className="mt-0.5 shrink-0" />{requestError}</p>}
           <div className="rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5 text-[10px] leading-4 text-slate-500">
-            {isZh ? '会话会通过 Nexora 安全网关连接并记录图形录像。浏览器不会接收目标密码或 Guacamole 授权令牌。' : 'The session is brokered by Nexora and recorded. The browser does not receive the target password or a Guacamole authorization token.'}
+            {isZh ? '会话会通过 NetAop 安全网关连接并记录图形录像。浏览器不会接收目标密码或 Guacamole 授权令牌。' : 'The session is brokered by NetAop and recorded. The browser does not receive the target password or a Guacamole authorization token.'}
           </div>
         </div>
 

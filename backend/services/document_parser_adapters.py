@@ -143,7 +143,7 @@ def _blocks_from_lines(text: str, *, block_type: str = "paragraph") -> tuple[Par
 
 class TxtParserAdapter:
     format_name = "txt"
-    parser_name = "nexora-txt"
+    parser_name = "netaop-txt"
     parser_version = "1.0.0"
 
     def parse(self, content: bytes, *, filename: str = "", content_type: str = "") -> ParsedDocument:
@@ -155,7 +155,7 @@ class JsonParserAdapter:
     """Validate JSON and render it deterministically for retrieval."""
 
     format_name = "json"
-    parser_name = "nexora-json"
+    parser_name = "netaop-json"
     parser_version = "1.0.0"
 
     def parse(self, content: bytes, *, filename: str = "", content_type: str = "") -> ParsedDocument:
@@ -179,7 +179,7 @@ class YamlParserAdapter:
     """Validate YAML while preserving comments and operator-authored layout."""
 
     format_name = "yaml"
-    parser_name = "nexora-yaml"
+    parser_name = "netaop-yaml"
     parser_version = "1.0.0"
 
     def parse(self, content: bytes, *, filename: str = "", content_type: str = "") -> ParsedDocument:
@@ -205,7 +205,7 @@ class CsvParserAdapter:
     """Parse CSV rows into searchable, delimiter-independent text blocks."""
 
     format_name = "csv"
-    parser_name = "nexora-csv"
+    parser_name = "netaop-csv"
     parser_version = "1.0.0"
 
     def parse(self, content: bytes, *, filename: str = "", content_type: str = "") -> ParsedDocument:
@@ -236,7 +236,7 @@ class XmlParserAdapter:
     """Validate XML and expose leaf text without indexing markup noise."""
 
     format_name = "xml"
-    parser_name = "nexora-xml"
+    parser_name = "netaop-xml"
     parser_version = "1.0.0"
 
     def parse(self, content: bytes, *, filename: str = "", content_type: str = "") -> ParsedDocument:
@@ -268,7 +268,7 @@ class ConfigParserAdapter:
     """Keep CLI/config syntax lossless; syntax is intentionally not guessed."""
 
     format_name = "config"
-    parser_name = "nexora-config"
+    parser_name = "netaop-config"
     parser_version = "1.0.0"
 
     def parse(self, content: bytes, *, filename: str = "", content_type: str = "") -> ParsedDocument:
@@ -285,7 +285,7 @@ class ConfigParserAdapter:
 
 class MarkdownParserAdapter:
     format_name = "markdown"
-    parser_name = "nexora-markdown"
+    parser_name = "netaop-markdown"
     parser_version = "1.0.0"
 
     def parse(self, content: bytes, *, filename: str = "", content_type: str = "") -> ParsedDocument:
@@ -365,7 +365,7 @@ class _HTMLTextParser(HTMLParser):
 
 class HtmlParserAdapter:
     format_name = "html"
-    parser_name = "nexora-html"
+    parser_name = "netaop-html"
     parser_version = "1.0.0"
 
     def parse(self, content: bytes, *, filename: str = "", content_type: str = "") -> ParsedDocument:
@@ -465,7 +465,7 @@ def _optional_pdf_extract(content: bytes) -> tuple[str, int] | None:
 
 class PdfParserAdapter:
     format_name = "pdf"
-    parser_name = "nexora-pdf"
+    parser_name = "netaop-pdf"
     parser_version = "1.0.0"
 
     def parse(self, content: bytes, *, filename: str = "", content_type: str = "") -> ParsedDocument:
@@ -501,7 +501,7 @@ class DocxParserAdapter:
     """
 
     format_name = "docx"
-    parser_name = "nexora-docx"
+    parser_name = "netaop-docx"
     parser_version = "1.0.0"
     _NS = {"w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
 

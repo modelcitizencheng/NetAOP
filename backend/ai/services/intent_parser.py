@@ -1052,7 +1052,7 @@ class IntentParser:
             return self._legacy_result(query, high_risk_decision, parse_status="deterministic")
 
         sys_prompt = (
-            "You are an intent parser for Nexora Network Operations. "
+            "You are an intent parser for NetAop Network Operations. "
             "Analyze the user's natural language question and extract one structured JSON intent.\n"
             f"Prompt version: {INTENT_PROMPT_VERSION}.\n"
             # Never infer cli_platform solely from software_train; keep this

@@ -23,7 +23,7 @@ from services.document_parser_adapters import (
 )
 
 
-CLEANER_NAME = "nexora-content-cleaner"
+CLEANER_NAME = "netaop-content-cleaner"
 CLEANER_VERSION = "1.0.0"
 
 

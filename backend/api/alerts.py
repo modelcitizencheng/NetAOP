@@ -960,7 +960,7 @@ def _safe_smtp_config(row) -> dict:
             'security': 'starttls',
             'username': '',
             'from_address': '',
-            'from_name': 'Nexora',
+            'from_name': 'NetAop',
             'reply_to': '',
             'connect_timeout_seconds': 10,
             'send_timeout_seconds': 20,
@@ -977,7 +977,7 @@ def _safe_smtp_config(row) -> dict:
         'security': str(item.get('security') or 'starttls'),
         'username': str(item.get('username') or ''),
         'from_address': str(item.get('from_address') or ''),
-        'from_name': str(item.get('from_name') or 'Nexora'),
+        'from_name': str(item.get('from_name') or 'NetAop'),
         'reply_to': str(item.get('reply_to') or ''),
         'connect_timeout_seconds': int(item.get('connect_timeout_seconds') or 10),
         'send_timeout_seconds': int(item.get('send_timeout_seconds') or 20),
@@ -1037,7 +1037,7 @@ def _safe_smtp_profile(row, *, inherited: bool = False) -> dict:
         'security': str(item.get('security') or 'starttls'),
         'username': str(item.get('username') or ''),
         'from_address': from_address,
-        'from_name': str(item.get('from_name') or 'Nexora'),
+        'from_name': str(item.get('from_name') or 'NetAop'),
         'reply_to': str(item.get('reply_to') or ''),
         'connect_timeout_seconds': int(item.get('connect_timeout_seconds') or 10),
         'send_timeout_seconds': int(item.get('send_timeout_seconds') or 20),
@@ -1094,7 +1094,7 @@ def _validate_smtp_profile_payload(payload: dict, existing: dict | None = None) 
         'security': security,
         'username': str(payload.get('username', current.get('username', '')) or '').strip(),
         'from_address': from_address,
-        'from_name': str(payload.get('from_name', current.get('from_name', 'Nexora')) or 'Nexora').strip()[:120],
+        'from_name': str(payload.get('from_name', current.get('from_name', 'NetAop')) or 'NetAop').strip()[:120],
         'reply_to': reply_to,
         'connect_timeout_seconds': connect_timeout,
         'send_timeout_seconds': send_timeout,
@@ -1383,11 +1383,11 @@ def delete_alert_email_profile(profile_id: str, user=require_role('Administrator
                     password_ciphertext, from_address, from_name, reply_to,
                     connect_timeout_seconds, send_timeout_seconds, rate_limit_per_minute,
                     recipient_targets_json, created_by, created_at, updated_by, updated_at
-                ) VALUES (?, ?, 'primary', '默认邮件通道', FALSE, '', 587, 'starttls', '', '', '', 'Nexora', '', 10, 20, 60, '[]'::jsonb, ?, ?, ?, ?)
+                ) VALUES (?, ?, 'primary', '默认邮件通道', FALSE, '', 587, 'starttls', '', '', '', 'NetAop', '', 10, 20, 60, '[]'::jsonb, ?, ?, ?, ?)
                 ON CONFLICT (tenant_id, name) DO UPDATE SET
                     display_name = '默认邮件通道', enabled = FALSE, host = '', port = 587,
                     security = 'starttls', username = '', password_ciphertext = '', from_address = '',
-                    from_name = 'Nexora', reply_to = '', connect_timeout_seconds = 10,
+                    from_name = 'NetAop', reply_to = '', connect_timeout_seconds = 10,
                     send_timeout_seconds = 20, rate_limit_per_minute = 60,
                     recipient_targets_json = '[]'::jsonb, updated_by = excluded.updated_by, updated_at = excluded.updated_at
                 """,
@@ -1457,7 +1457,7 @@ def test_alert_email_profile(profile_id: str, payload: dict = Body(default={}), 
         conn.close()
     result = notification_service.send_email(
         row, [recipient], {
-            'title': 'Nexora 邮件通道测试',
+            'title': 'NetAop 邮件通道测试',
             'message': f'用户 {user.get("username") or "admin"} 发起了 SMTP 配置测试。',
             'first_occurrence': datetime.now(timezone.utc).isoformat(),
             'last_occurrence': datetime.now(timezone.utc).isoformat(),
@@ -1574,7 +1574,7 @@ def update_alert_email_channel(payload: dict = Body(...), user=require_role('Adm
                 str(payload.get('username') or '').strip(),
                 password_ciphertext,
                 from_address,
-                str(payload.get('from_name') or 'Nexora').strip()[:120],
+                str(payload.get('from_name') or 'NetAop').strip()[:120],
                 str(payload.get('reply_to') or '').strip(),
                 connect_timeout,
                 send_timeout,
@@ -1612,11 +1612,11 @@ def delete_alert_email_channel(user=require_role('Administrator')):
                 password_ciphertext, from_address, from_name, reply_to,
                 connect_timeout_seconds, send_timeout_seconds, rate_limit_per_minute,
                 recipient_targets_json, created_by, created_at, updated_by, updated_at
-            ) VALUES (?, ?, 'primary', '默认邮件通道', FALSE, '', 587, 'starttls', '', '', '', 'Nexora', '', 10, 20, 60, '[]'::jsonb, ?, ?, ?, ?)
+            ) VALUES (?, ?, 'primary', '默认邮件通道', FALSE, '', 587, 'starttls', '', '', '', 'NetAop', '', 10, 20, 60, '[]'::jsonb, ?, ?, ?, ?)
             ON CONFLICT (tenant_id, name) DO UPDATE SET
                 display_name = '默认邮件通道', enabled = FALSE, host = '', port = 587, security = 'starttls',
                 username = '', password_ciphertext = '', from_address = '',
-                from_name = 'Nexora', reply_to = '', connect_timeout_seconds = 10,
+                from_name = 'NetAop', reply_to = '', connect_timeout_seconds = 10,
                 send_timeout_seconds = 20, rate_limit_per_minute = 60,
                 recipient_targets_json = '[]'::jsonb,
                 updated_by = excluded.updated_by, updated_at = excluded.updated_at
@@ -1687,7 +1687,7 @@ def test_alert_email_channel(payload: dict = Body(default={}), user=require_role
         dict(row),
         [recipient],
         {
-            'title': 'Nexora 邮件通道测试',
+            'title': 'NetAop 邮件通道测试',
             'message': f'用户 {user.get("username") or "admin"} 发起了 SMTP 配置测试。',
             'first_occurrence': datetime.now(timezone.utc).isoformat(),
             'last_occurrence': datetime.now(timezone.utc).isoformat(),

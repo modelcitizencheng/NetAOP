@@ -177,11 +177,11 @@ def _register_templates(
         if not path.is_file():
             raise RuntimeError(f"Required YunShan TextFSM template is missing: {filename}")
         content = path.read_text(encoding="utf-8")
-        declared = re.search(r"(?m)^\s*#\s*nexora-action-code\s*:\s*([a-z][a-z0-9_]*)\s*$", content)
+        declared = re.search(r"(?m)^\s*#\s*netaop-action-code\s*:\s*([a-z][a-z0-9_]*)\s*$", content)
         if not declared or declared.group(1) != action_code:
             raise RuntimeError(f"YunShan template action metadata does not match: {filename}")
 
-        template_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:system-template:{filename}"))
+        template_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:system-template:{filename}"))
         existing = cursor.execute(
             """SELECT id FROM parser_templates
                WHERE tenant_id IS NULL AND source = 'SYSTEM'
@@ -217,7 +217,7 @@ def _register_templates(
             (template_id,),
         ).fetchone()
         version_id = str(version_row[0]) if version_row else str(
-            uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:system-template-version:{filename}:1")
+            uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:system-template-version:{filename}:1")
         )
         cursor.execute(
             """INSERT INTO parser_template_versions
@@ -241,7 +241,7 @@ def _bind_actions(cursor, release_id: str, versions: dict[str, str], now: str) -
     for filename, (action_code, command) in TEMPLATES.items():
         if action_code not in definitions:
             raise RuntimeError(f"YunShan action definition is missing: {action_code}")
-        action_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:{release_id}:{action_code}"))
+        action_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:{release_id}:{action_code}"))
         cursor.execute(
             """INSERT INTO platform_release_actions
                (id, release_id, action_code, command, parser_template_version_id,
@@ -270,7 +270,7 @@ def _bind_actions(cursor, release_id: str, versions: dict[str, str], now: str) -
 
 
 def _ensure_identification_rule(cursor, profile_id: str, now: str) -> None:
-    rule_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:identification:{PROFILE_CODE}:YunShan OS"))
+    rule_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:identification:{PROFILE_CODE}:YunShan OS"))
     cursor.execute(
         """INSERT INTO platform_identification_rules
            (id, platform_profile_id, command, match_type, pattern, logic_group,

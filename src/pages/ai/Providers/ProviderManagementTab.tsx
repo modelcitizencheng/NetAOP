@@ -511,7 +511,7 @@ export const ProviderManagementTab: React.FC = () => {
 
           <div className="flex shrink-0 items-center gap-2 self-start xl:self-center">
             <ActionLink
-              href="/downloads/nexora-ai-provider-debug-manual.md"
+              href="/downloads/netaop-ai-provider-debug-manual.md"
               download={tx('ai.provider.manual.filename')}
               aria-label={tx('ai.provider.manual.aria')}
               title={tx('ai.provider.manual.title')}

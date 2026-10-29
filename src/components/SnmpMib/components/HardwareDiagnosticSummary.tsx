@@ -262,7 +262,7 @@ const HardwareDiagnosticSummary: React.FC<HardwareDiagnosticSummaryProps> = ({
     return (
       <div role={loading ? 'status' : undefined} aria-live={loading ? 'polite' : undefined} className="rounded-md border border-dashed border-black/10 px-3 py-6 text-center text-xs text-black/50 dark:border-white/10 dark:text-white/50">
         {loading
-          ? (zh ? '正在读取 Nexora 已保存的最新硬件采集结果…' : 'Reading the latest hardware results saved by Nexora…')
+          ? (zh ? '正在读取 NetAop 已保存的最新硬件采集结果…' : 'Reading the latest hardware results saved by NetAop…')
           : (zh ? '选择已纳管设备并读取本地 SNMP 硬件采样。此操作不会触发即时 SNMP 采集。' : 'Select a managed device to read its stored local SNMP hardware samples. This does not trigger an immediate poll.')}
       </div>
     );
@@ -276,7 +276,7 @@ const HardwareDiagnosticSummary: React.FC<HardwareDiagnosticSummaryProps> = ({
   const transceivers = result.transceivers || [];
   const wirelessSensors = result.wireless_sensors || [];
   const state = String(result.state || 'unknown');
-  const localSource = result.source === 'nexora_snmp';
+  const localSource = result.source === 'netaop_snmp';
   const hasHardwareRows = sensors.length + processorSensors.length + memoryPools.length + transceivers.length + wirelessSensors.length + healthGraphs.length > 0;
   const hardwareRowCount = result.sensor_count || sensors.length + processorSensors.length + memoryPools.length;
 
@@ -285,7 +285,7 @@ const HardwareDiagnosticSummary: React.FC<HardwareDiagnosticSummaryProps> = ({
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0">
           <div className="text-xs font-semibold text-black/80 dark:text-white/85">{localSource
-            ? (zh ? 'Nexora 本地 SNMP 硬件采集结果' : 'Nexora local SNMP hardware results')
+            ? (zh ? 'NetAop 本地 SNMP 硬件采集结果' : 'NetAop local SNMP hardware results')
             : (zh ? 'LibreNMS 原生硬件采集结果' : 'LibreNMS native hardware results')}</div>
           <div className="mt-1 break-all text-[10px] text-black/50 dark:text-white/50">
             {displayValue(result.identity?.hostname || result.matched_hostname)}
@@ -319,7 +319,7 @@ const HardwareDiagnosticSummary: React.FC<HardwareDiagnosticSummaryProps> = ({
       <div className="mt-2 rounded-md border border-cyan-500/15 bg-cyan-500/[.035] px-2.5 py-2 text-[10px] leading-4 text-cyan-900 dark:text-cyan-100">
         {localSource
           ? (zh
-            ? '此处读取 Nexora 按打包的 LibreNMS 规则保存的硬件样本；每行显示规则文件、版本和采样周期。页面不会即时触发 SNMP 轮询，Grafana 导出状态需单独验证。'
+            ? '此处读取 NetAop 按打包的 LibreNMS 规则保存的硬件样本；每行显示规则文件、版本和采样周期。页面不会即时触发 SNMP 轮询，Grafana 导出状态需单独验证。'
             : 'This view reads hardware samples collected using the bundled LibreNMS rules. Each row shows its rule file, revision, and polling interval. It does not trigger a poll; validate Grafana export separately.')
           : (zh
             ? '此处读取 LibreNMS 已保存的原生结果；若本地尚无关联，会按唯一管理 IP 自动关联。不会立即发现设备或触发轮询。传感器时间取自原生样本；Grafana/时序导出状态需单独验证。'
@@ -514,8 +514,8 @@ const HardwareDiagnosticSummary: React.FC<HardwareDiagnosticSummaryProps> = ({
         <Info size={11} className="mt-0.5 shrink-0" />
         <span>{localSource
           ? (zh
-            ? '硬件数值来自 Nexora 本地 SNMP 采集器保存的样本；此诊断页只读取库存，不触发即时 SNMP GET/WALK。'
-            : 'Hardware values come from samples stored by Nexora local SNMP collection. This diagnostic reads inventory only and does not trigger immediate SNMP GET/WALK.')
+            ? '硬件数值来自 NetAop 本地 SNMP 采集器保存的样本；此诊断页只读取库存，不触发即时 SNMP GET/WALK。'
+            : 'Hardware values come from samples stored by NetAop local SNMP collection. This diagnostic reads inventory only and does not trigger immediate SNMP GET/WALK.')
           : (zh
             ? '硬件数值和原生 OID/索引来自 LibreNMS 返回的传感器实体。此诊断页只读取已有样本，不触发即时 SNMP GET/WALK。'
             : 'Hardware values and native OID/index fields come from LibreNMS sensor entities. This diagnostic reads stored samples only and does not trigger immediate SNMP GET/WALK.')}</span>

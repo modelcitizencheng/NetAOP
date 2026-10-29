@@ -88,7 +88,7 @@ def _clone_missing_templates(cursor, profile_defs: list[dict], profile_ids: dict
                 scoped_code = f"{scoped_code[:55]}_{digest}"
             target_id_value = str(uuid.uuid5(
                 uuid.NAMESPACE_URL,
-                f"nexora:m0182-template:{target_code}:{source_id}",
+                f"netaop:m0182-template:{target_code}:{source_id}",
             ))
             cursor.execute(
                 """INSERT INTO parser_templates

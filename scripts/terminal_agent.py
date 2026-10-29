@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Nexora local Terminal Agent.
+"""NetAop local Terminal Agent.
 
 The web application runs in Docker or on a remote Ubuntu server, while the
 terminal program runs on the operator's workstation.  Browsers cannot start
@@ -8,7 +8,7 @@ one-time session tokens and launches the configured SSH client or system
 browser locally.
 
 The agent deliberately does not receive or persist Web PAM passwords. It
-exchanges a single-use token with the Nexora backend; terminal credentials, if
+exchanges a single-use token with the NetAop backend; terminal credentials, if
 needed for an SSH client, remain in memory only for the duration of launch.
 """
 
@@ -107,7 +107,7 @@ def _show_windows_warning(message: str) -> None:
     try:
         import ctypes
 
-        ctypes.windll.user32.MessageBoxW(0, message, "Nexora Terminal Agent", 0x30)
+        ctypes.windll.user32.MessageBoxW(0, message, "NetAop Terminal Agent", 0x30)
     except Exception:
         print(message, file=sys.stderr, flush=True)
 
@@ -523,7 +523,7 @@ def _capture_browser_png(window: tuple[int, int, int]) -> bytes | None:
 class _BrowserRecorder:
     def __init__(self, pid: int):
         self.pid = pid
-        self.root = Path(tempfile.mkdtemp(prefix="nexora-web-recording-"))
+        self.root = Path(tempfile.mkdtemp(prefix="netaop-web-recording-"))
         self.frames: list[Path] = []
 
     def capture(self) -> None:
@@ -579,7 +579,7 @@ class _BrowserRecorder:
 def _start_system_browser(target_url: str) -> tuple[subprocess.Popen[Any] | None, str | None]:
     browser = _resolve_system_browser()
     if browser:
-        profile_dir = tempfile.mkdtemp(prefix="nexora-web-profile-")
+        profile_dir = tempfile.mkdtemp(prefix="netaop-web-profile-")
         browser_name = Path(browser).name.lower()
         if "firefox" in browser_name:
             args = [browser, "-no-remote", "-new-instance", "-profile", profile_dir, "-new-window", target_url]
@@ -677,7 +677,7 @@ def _launch_web_window(backend_url: str, session_token: str, agent_id: str) -> N
     threading.Thread(
         target=_monitor_web_session,
         args=(backend_url, details, agent_id, process, profile_dir),
-        name="nexora-web-session",
+        name="netaop-web-session",
         daemon=True,
     ).start()
 
@@ -760,7 +760,7 @@ class AgentHandler(BaseHTTPRequestHandler):
                 200,
                 {
                     "success": True,
-                    "service": "nexora-terminal-agent",
+                    "service": "netaop-terminal-agent",
                     "version": AGENT_VERSION,
                     "agent_id": AGENT_ID,
                     "capabilities": capabilities,
@@ -822,7 +822,7 @@ class AgentHandler(BaseHTTPRequestHandler):
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Nexora local Terminal Agent")
+    parser = argparse.ArgumentParser(description="NetAop local Terminal Agent")
     parser.add_argument("--host", default=os.environ.get("NEXORA_AGENT_HOST", DEFAULT_HOST))
     parser.add_argument("--port", type=int, default=int(os.environ.get("NEXORA_AGENT_PORT", DEFAULT_PORT)))
     parser.add_argument(
@@ -857,7 +857,7 @@ def main() -> int:
     if sys.platform == "win32" and not args.managed_start and not args.no_autostart:
         _ensure_windows_autostart(args.port)
     server = ThreadingHTTPServer((args.host, args.port), AgentHandler)
-    print(f"Nexora Terminal Agent listening on http://{args.host}:{args.port}", flush=True)
+    print(f"NetAop Terminal Agent listening on http://{args.host}:{args.port}", flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

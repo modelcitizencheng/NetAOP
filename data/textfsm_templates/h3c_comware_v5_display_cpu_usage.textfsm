@@ -1,4 +1,4 @@
-# nexora-action-code: get_cpu
+# netaop-action-code: get_cpu
 # Comware V5 exposes the summary as one block per slot.  Keep only the
 # actionable summary fields; the optional history/detail block is deliberately
 # ignored so it cannot create empty or duplicate records.

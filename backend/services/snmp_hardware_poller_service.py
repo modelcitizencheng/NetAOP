@@ -1,7 +1,7 @@
-"""Nexora-native SNMP discovery and polling for normalized hardware inventory.
+"""NetAop-native SNMP discovery and polling for normalized hardware inventory.
 
 LibreNMS rule bundles are used only as local, versioned OID definitions. All
-SNMP requests, discovery state, samples, and metrics remain inside Nexora.
+SNMP requests, discovery state, samples, and metrics remain inside NetAop.
 """
 
 from __future__ import annotations
@@ -26,7 +26,7 @@ WIRELESS_DISCOVERY_INTERVAL_SECONDS = 3 * 60
 PARTIAL_DISCOVERY_RETRY_SECONDS = 60 * 60
 FAILED_DISCOVERY_RETRY_SECONDS = 15 * 60
 SAMPLE_INTERVAL_SECONDS = 60
-DISCOVERY_VERSION = "nexora-librenms-rules-hardware-v8"
+DISCOVERY_VERSION = "netaop-librenms-rules-hardware-v8"
 _POLL_EXCLUDED_MEASUREMENT_TYPES = frozenset({
     "voltage_volts",
     "current_amperes",
@@ -472,7 +472,7 @@ async def _discover_device(
             logger.warning("Rule-based hardware discovery failed for device %s (%s)", device.get("id"), type(exc).__name__)
             probe_errors.append(type(exc).__name__)
             category_results.append({
-                "source_type": "nexora_snmp",
+                "source_type": "netaop_snmp",
                 "component_class": "rule_hardware",
                 "status": "failed",
                 "coverage_complete": False,
@@ -495,7 +495,7 @@ async def _discover_device(
                 logger.warning("LibreNMS OS hardware discovery failed for device %s (%s)", device.get("id"), type(exc).__name__)
                 probe_errors.append(type(exc).__name__)
                 category_results.append({
-                    "source_type": "nexora_snmp",
+                    "source_type": "netaop_snmp",
                     "component_class": "librenms_os_rule",
                     "status": "failed",
                     "coverage_complete": False,
@@ -523,7 +523,7 @@ async def _discover_device(
                 logger.warning("LibreNMS wireless discovery failed for device %s (%s)", device.get("id"), type(exc).__name__)
                 probe_errors.append(type(exc).__name__)
                 category_results.append({
-                    "source_type": "nexora_snmp",
+                    "source_type": "netaop_snmp",
                     "component_class": "wireless_access_point",
                     "status": "failed",
                     "coverage_complete": False,
@@ -538,7 +538,7 @@ async def _discover_device(
         has_identity = bool(sys_object_id or sys_descr or sys_name)
         ambiguous_rule = str(identity.get("reason_code") or "").casefold() == "ambiguous_librenms_rule"
         category_results.append({
-            "source_type": "nexora_snmp",
+            "source_type": "netaop_snmp",
             "component_class": "hardware_inventory",
             "status": "not_found" if rule else "unsupported" if has_identity else "failed",
             "coverage_complete": False,
@@ -877,7 +877,7 @@ async def collect_device_hardware(
             "status": "failed",
             "sensor_count": 0,
             "category_results": [{
-                "source_type": "librenms_mib_rule" if wireless_only else "nexora_snmp",
+                "source_type": "librenms_mib_rule" if wireless_only else "netaop_snmp",
                 "component_class": "wireless_access_point" if wireless_only else "hardware_inventory",
                 "status": "failed",
                 "coverage_complete": False,

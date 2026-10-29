@@ -1,4 +1,4 @@
-"""Structure-aware chunking primitives for the Nexora knowledge base."""
+"""Structure-aware chunking primitives for the NetAop knowledge base."""
 
 from .engine import (
     ChunkingConfig,

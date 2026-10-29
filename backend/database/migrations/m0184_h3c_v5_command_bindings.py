@@ -53,7 +53,7 @@ def _refresh_release_checksum(cursor, release_id: str, now: str) -> None:
 def _new_action_id(release_id: str, action_code: str) -> str:
     return str(uuid.uuid5(
         uuid.NAMESPACE_URL,
-        f"nexora:m0184:{release_id}:{action_code}",
+        f"netaop:m0184:{release_id}:{action_code}",
     ))
 
 

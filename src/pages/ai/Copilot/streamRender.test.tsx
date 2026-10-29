@@ -74,7 +74,7 @@ describe('AssistantTab streaming render', () => {
     const user = userEvent.setup();
     render(<AssistantTab />);
 
-    const input = screen.getByPlaceholderText('询问 Nexora AI，或输入 / 使用快捷指令...');
+    const input = screen.getByPlaceholderText('询问 NetAop AI，或输入 / 使用快捷指令...');
     await user.type(input, 'OSPF 邻居为空怎么排查');
     await user.click(screen.getByRole('button', { name: '发送' }));
 
@@ -99,7 +99,7 @@ describe('AssistantTab streaming render', () => {
     const user = userEvent.setup();
     render(<AssistantTab />);
 
-    const input = screen.getByPlaceholderText('询问 Nexora AI，或输入 / 使用快捷指令...');
+    const input = screen.getByPlaceholderText('询问 NetAop AI，或输入 / 使用快捷指令...');
     await user.type(input, '接口 down 了');
     await user.click(screen.getByRole('button', { name: '发送' }));
 
@@ -118,7 +118,7 @@ describe('AssistantTab streaming render', () => {
 
     const user = userEvent.setup();
     render(<AssistantTab />);
-    await user.type(screen.getByPlaceholderText('询问 Nexora AI，或输入 / 使用快捷指令...'), '请回答并显示时间');
+    await user.type(screen.getByPlaceholderText('询问 NetAop AI，或输入 / 使用快捷指令...'), '请回答并显示时间');
     await user.click(screen.getByRole('button', { name: '发送' }));
 
     await waitFor(() => expect(screen.getByText('带时间的回答')).toBeTruthy());
@@ -148,7 +148,7 @@ describe('AssistantTab streaming render', () => {
 
     const user = userEvent.setup();
     render(<AssistantTab />);
-    await user.type(screen.getByPlaceholderText('询问 Nexora AI，或输入 / 使用快捷指令...'), 'S5700 OSPF 配置');
+    await user.type(screen.getByPlaceholderText('询问 NetAop AI，或输入 / 使用快捷指令...'), 'S5700 OSPF 配置');
     await user.click(screen.getByRole('button', { name: '发送' }));
 
     await waitFor(() => expect(screen.getByText('本地知识直出')).toBeTruthy());
@@ -201,7 +201,7 @@ describe('AssistantTab streaming render', () => {
 
     const user = userEvent.setup();
     render(<AssistantTab />);
-    await user.type(screen.getByPlaceholderText('询问 Nexora AI，或输入 / 使用快捷指令...'), '你是谁');
+    await user.type(screen.getByPlaceholderText('询问 NetAop AI，或输入 / 使用快捷指令...'), '你是谁');
     await user.click(screen.getByRole('button', { name: '发送' }));
 
     await waitFor(() => expect(screen.getByText('DeepSeek 生成')).toBeTruthy());
@@ -219,7 +219,7 @@ describe('AssistantTab streaming render', () => {
 
     const user = userEvent.setup();
     render(<AssistantTab />);
-    await user.type(screen.getByPlaceholderText('询问 Nexora AI，或输入 / 使用快捷指令...'), '请检查设备状态');
+    await user.type(screen.getByPlaceholderText('询问 NetAop AI，或输入 / 使用快捷指令...'), '请检查设备状态');
     await user.click(screen.getByRole('button', { name: '发送' }));
 
     await waitFor(() => expect(screen.getByText(/模型服务暂时不可用，未执行任何设备操作/)).toBeTruthy());
@@ -275,7 +275,7 @@ describe('AssistantTab streaming render', () => {
 
     const user = userEvent.setup();
     render(<AssistantTab />);
-    const input = screen.getByPlaceholderText('询问 Nexora AI，或输入 / 使用快捷指令...');
+    const input = screen.getByPlaceholderText('询问 NetAop AI，或输入 / 使用快捷指令...');
     await user.type(input, '请给我华为交换机配置');
     await user.click(screen.getByRole('button', { name: '发送' }));
 

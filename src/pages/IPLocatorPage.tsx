@@ -985,7 +985,7 @@ const IPLocatorPage: React.FC<IPLocatorPageProps> = ({ language, t, mode }) => {
     timestamp: string;
   }[]>(() => {
     try {
-      const stored = localStorage.getItem('nexora_npa_history');
+      const stored = localStorage.getItem('netaop_npa_history');
       return stored ? JSON.parse(stored) : [];
     } catch {
       return [];
@@ -1104,7 +1104,7 @@ const IPLocatorPage: React.FC<IPLocatorPageProps> = ({ language, t, mode }) => {
         const filtered = prev.filter(h => !(h.source_ip === srcIp && h.target_ip === tgtIp && h.protocol === proto && h.port === newEntry.port && h.vrf === newEntry.vrf));
         const updated = [newEntry, ...filtered].slice(0, 10);
         try {
-          localStorage.setItem('nexora_npa_history', JSON.stringify(updated));
+          localStorage.setItem('netaop_npa_history', JSON.stringify(updated));
         } catch { /* noop */ }
         return updated;
       });
@@ -3521,7 +3521,7 @@ ${rep.repair_commands}
             <button
               onClick={() => {
                 setDiagHistory([]);
-                localStorage.removeItem('nexora_npa_history');
+                localStorage.removeItem('netaop_npa_history');
               }}
               className="ml-auto text-[10px] text-black/25 dark:text-white/25 hover:text-black/50 dark:hover:text-white/50 transition-colors flex items-center gap-1"
             >

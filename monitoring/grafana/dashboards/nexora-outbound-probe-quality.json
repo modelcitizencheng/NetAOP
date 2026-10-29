@@ -92,7 +92,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_outbound_probe_samples{window=\"1h\"}",
+          "expr": "netaop_outbound_probe_samples{window=\"1h\"}",
           "refId": "A",
           "instant": true
         }
@@ -177,7 +177,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_outbound_probe_availability_ratio{window=\"1h\"}",
+          "expr": "netaop_outbound_probe_availability_ratio{window=\"1h\"}",
           "refId": "A",
           "instant": true
         }
@@ -254,7 +254,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_outbound_probe_latency_avg_ms_by_type{window=\"1h\",probe_type=\"icmp_ping\"}",
+          "expr": "netaop_outbound_probe_latency_avg_ms_by_type{window=\"1h\",probe_type=\"icmp_ping\"}",
           "refId": "A",
           "instant": true
         }
@@ -331,7 +331,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_outbound_probe_latency_max_ms_by_type{window=\"1h\",probe_type=\"icmp_ping\"}",
+          "expr": "netaop_outbound_probe_latency_max_ms_by_type{window=\"1h\",probe_type=\"icmp_ping\"}",
           "refId": "A",
           "instant": true
         }
@@ -408,7 +408,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_outbound_probe_samples{window=\"24h\"}",
+          "expr": "netaop_outbound_probe_samples{window=\"24h\"}",
           "refId": "A",
           "instant": true
         }
@@ -493,7 +493,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_outbound_probe_availability_ratio{window=\"24h\"}",
+          "expr": "netaop_outbound_probe_availability_ratio{window=\"24h\"}",
           "refId": "A",
           "instant": true
         }
@@ -570,7 +570,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_outbound_probe_latency_avg_ms_by_type{window=\"24h\",probe_type=\"icmp_ping\"}",
+          "expr": "netaop_outbound_probe_latency_avg_ms_by_type{window=\"24h\",probe_type=\"icmp_ping\"}",
           "refId": "A",
           "instant": true
         }
@@ -647,7 +647,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_outbound_probe_latency_max_ms_by_type{window=\"24h\",probe_type=\"icmp_ping\"}",
+          "expr": "netaop_outbound_probe_latency_max_ms_by_type{window=\"24h\",probe_type=\"icmp_ping\"}",
           "refId": "A",
           "instant": true
         }
@@ -741,7 +741,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_wan_interface_active_down_links",
+          "expr": "netaop_wan_interface_active_down_links",
           "refId": "A",
           "instant": true
         }
@@ -828,7 +828,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_wan_interface_continuous_down_estimate_max_seconds",
+          "expr": "netaop_wan_interface_continuous_down_estimate_max_seconds",
           "refId": "A",
           "instant": true
         }
@@ -925,12 +925,12 @@
       },
       "targets": [
         {
-          "expr": "nexora_outbound_probe_availability_ratio{window=\"1h\"}",
+          "expr": "netaop_outbound_probe_availability_ratio{window=\"1h\"}",
           "legendFormat": "1h 可用率",
           "refId": "A"
         },
         {
-          "expr": "nexora_outbound_probe_availability_ratio{window=\"24h\"}",
+          "expr": "netaop_outbound_probe_availability_ratio{window=\"24h\"}",
           "legendFormat": "24h 可用率",
           "refId": "B"
         }
@@ -1043,22 +1043,22 @@
       },
       "targets": [
         {
-          "expr": "nexora_outbound_probe_latency_avg_ms_by_type{window=\"1h\",probe_type=\"icmp_ping\"}",
+          "expr": "netaop_outbound_probe_latency_avg_ms_by_type{window=\"1h\",probe_type=\"icmp_ping\"}",
           "legendFormat": "1h 平均 RTT",
           "refId": "A"
         },
         {
-          "expr": "nexora_outbound_probe_latency_max_ms_by_type{window=\"1h\",probe_type=\"icmp_ping\"}",
+          "expr": "netaop_outbound_probe_latency_max_ms_by_type{window=\"1h\",probe_type=\"icmp_ping\"}",
           "legendFormat": "1h 最大 RTT",
           "refId": "B"
         },
         {
-          "expr": "nexora_outbound_probe_latency_avg_ms_by_type{window=\"24h\",probe_type=\"icmp_ping\"}",
+          "expr": "netaop_outbound_probe_latency_avg_ms_by_type{window=\"24h\",probe_type=\"icmp_ping\"}",
           "legendFormat": "24h 平均 RTT",
           "refId": "C"
         },
         {
-          "expr": "nexora_outbound_probe_latency_max_ms_by_type{window=\"24h\",probe_type=\"icmp_ping\"}",
+          "expr": "netaop_outbound_probe_latency_max_ms_by_type{window=\"24h\",probe_type=\"icmp_ping\"}",
           "legendFormat": "24h 最大 RTT",
           "refId": "D"
         }
@@ -1112,7 +1112,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_outbound_probe_success_ratio_by_type{window=\"24h\"}",
+          "expr": "netaop_outbound_probe_success_ratio_by_type{window=\"24h\"}",
           "legendFormat": "{{probe_type}}",
           "refId": "A"
         }
@@ -1167,7 +1167,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_outbound_probe_latency_avg_ms_by_type{window=\"24h\"}",
+          "expr": "netaop_outbound_probe_latency_avg_ms_by_type{window=\"24h\"}",
           "legendFormat": "{{probe_type}}",
           "refId": "A"
         }
@@ -1266,7 +1266,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_outbound_probe_icmp_packet_loss_ratio{window=\"24h\"}",
+          "expr": "netaop_outbound_probe_icmp_packet_loss_ratio{window=\"24h\"}",
           "refId": "A",
           "instant": true
         }
@@ -1343,7 +1343,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_outbound_probe_icmp_jitter_avg_ms{window=\"24h\"}",
+          "expr": "netaop_outbound_probe_icmp_jitter_avg_ms{window=\"24h\"}",
           "refId": "A",
           "instant": true
         }
@@ -1428,7 +1428,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_wan_interface_collection_success_ratio{window=\"1h\"}",
+          "expr": "netaop_wan_interface_collection_success_ratio{window=\"1h\"}",
           "refId": "A",
           "instant": true
         }
@@ -1514,7 +1514,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_wan_interface_oper_up_ratio{window=\"24h\"}",
+          "expr": "netaop_wan_interface_oper_up_ratio{window=\"24h\"}",
           "refId": "A",
           "instant": true
         }
@@ -1660,7 +1660,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_wan_links_by_health_status",
+          "expr": "netaop_wan_links_by_health_status",
           "legendFormat": "{{status}}",
           "refId": "A"
         }
@@ -1746,12 +1746,12 @@
       },
       "targets": [
         {
-          "expr": "nexora_wan_interface_avg_download_bps{window=\"24h\"}",
+          "expr": "netaop_wan_interface_avg_download_bps{window=\"24h\"}",
           "legendFormat": "下行",
           "refId": "A"
         },
         {
-          "expr": "nexora_wan_interface_avg_upload_bps{window=\"24h\"}",
+          "expr": "netaop_wan_interface_avg_upload_bps{window=\"24h\"}",
           "legendFormat": "上行",
           "refId": "B"
         }
@@ -1837,12 +1837,12 @@
       },
       "targets": [
         {
-          "expr": "nexora_wan_interface_errors_total{window=\"24h\"}",
+          "expr": "netaop_wan_interface_errors_total{window=\"24h\"}",
           "legendFormat": "错误",
           "refId": "A"
         },
         {
-          "expr": "nexora_wan_interface_discards_total{window=\"24h\"}",
+          "expr": "netaop_wan_interface_discards_total{window=\"24h\"}",
           "legendFormat": "丢弃",
           "refId": "B"
         }
@@ -1852,7 +1852,7 @@
   "refresh": "30s",
   "schemaVersion": 39,
   "tags": [
-    "nexora",
+    "netaop",
     "monitoring",
     "outbound",
     "probe"
@@ -1867,6 +1867,6 @@
   "timezone": "browser",
   "title": "11 WAN 链路健康与拨测质量（WAN Health & Probe Quality）",
   "description": "分开展示 WAN 设备接口采样健康与全局出向 DNS/TCP/HTTP/ICMP 拨测质量。ICMP 使用多回显计算丢包和包间时延变化。探测执行仍未应用 wan_probe_bindings 的逐线路 source-IP 选路，因此接口侧可用率和全局探测结果不能合并解释为单线路端到端 SLA。指标只输出系统聚合值，不带租户、线路、目标或地址标识。",
-  "uid": "nexora-outbound-probe-quality",
+  "uid": "netaop-outbound-probe-quality",
   "version": 30
 }

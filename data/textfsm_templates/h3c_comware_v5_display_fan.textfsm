@@ -1,4 +1,4 @@
-# nexora-action-code: get_fans
+# netaop-action-code: get_fans
 Value Filldown SLOT (\d+)
 Value FAN_ID (\d+)
 Value STATE (.+?)

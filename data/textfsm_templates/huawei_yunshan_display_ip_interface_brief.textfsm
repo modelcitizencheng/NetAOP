@@ -1,4 +1,4 @@
-# nexora-action-code: get_ip_interfaces
+# netaop-action-code: get_ip_interfaces
 Value Required INTERFACE ((?:[0-9]+)?[A-Za-z][A-Za-z0-9-]*\s*\d[\w/.-]*)
 Value IP_ADDRESS (\d+\.\d+\.\d+\.\d+|unassigned)
 Value PREFIX_LENGTH (\d+)

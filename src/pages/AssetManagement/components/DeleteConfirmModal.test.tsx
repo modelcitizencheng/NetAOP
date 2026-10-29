@@ -8,7 +8,7 @@ describe('DeleteConfirmModal', () => {
       <DeleteConfirmModal
         isOpen
         onClose={vi.fn()}
-        deleteTarget={{ id: 'asset-1', hostname: 'nexora', asset_tag: '' } as any}
+        deleteTarget={{ id: 'asset-1', hostname: 'netaop', asset_tag: '' } as any}
         handleDelete={vi.fn()}
         error="服务内部异常，请联系管理员查看后端日志"
         language="zh"

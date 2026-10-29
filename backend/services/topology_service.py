@@ -890,7 +890,7 @@ def _combine_protocol_observations(
 
 
 def _parse_shared_lldp_output(platform: str, command: str, raw_text: str) -> list[dict[str, Any]]:
-    """Parse Huawei/Comware LLDP tables with Nexora's custom templates."""
+    """Parse Huawei/Comware LLDP tables with NetAop's custom templates."""
     if not raw_text or not str(raw_text).strip():
         return []
     try:

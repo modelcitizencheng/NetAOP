@@ -124,7 +124,7 @@ def _ensure_system_profiles(cursor, now: str) -> dict[str, str]:
             (release_id, profile_id),
         )
         for action_code, command in get_profile_action_commands(profile).items():
-            action_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:{release_id}:{action_code}"))
+            action_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:{release_id}:{action_code}"))
             cursor.execute(
                 """INSERT INTO platform_release_actions
                    (id, release_id, action_code, command, field_contract_json,
@@ -207,8 +207,8 @@ def _import_scoped_file_templates(cursor, profile_ids: dict[str, str], now: str)
         if not template_code or not re.match(r"^[A-Z]", template_code):
             continue
         content = path.read_text(encoding="utf-8")
-        template_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:system-template:{path.name}"))
-        version_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:system-template-version:{path.name}:1"))
+        template_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:system-template:{path.name}"))
+        version_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:system-template-version:{path.name}:1"))
         cursor.execute(
             """INSERT INTO parser_templates
                (id, tenant_id, platform_profile_id, platform_code, template_code,

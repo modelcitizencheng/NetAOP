@@ -234,7 +234,7 @@ const LocalHostMonitoringPanel: React.FC<{
                 {hostOsLabel}
               </span>
             </div>
-            <p className="text-xs text-gray-400 dark:text-zinc-500 mt-0.5">{zh ? 'Nexora 平台核心服务 · 当前运行宿主机' : 'Nexora Core Platform · Local Host'}</p>
+            <p className="text-xs text-gray-400 dark:text-zinc-500 mt-0.5">{zh ? 'NetAop 平台核心服务 · 当前运行宿主机' : 'NetAop Core Platform · Local Host'}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">

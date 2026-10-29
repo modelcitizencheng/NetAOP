@@ -243,7 +243,7 @@ def _seed_protocol_actions(cursor) -> None:
             command = get_profile_action_commands(profile).get(action_code)
             if not command:
                 continue
-            action_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:{release_id}:{action_code}"))
+            action_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:{release_id}:{action_code}"))
             checksum = hashlib.sha256(command.encode("utf-8")).hexdigest()
             existing = cursor.execute(
                 "SELECT id FROM platform_release_actions WHERE release_id = ? AND action_code = ?",

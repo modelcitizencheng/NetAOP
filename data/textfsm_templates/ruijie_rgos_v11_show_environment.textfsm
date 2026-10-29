@@ -1,4 +1,4 @@
-# nexora-action-code: get_temperature
+# netaop-action-code: get_temperature
 Value Filldown CPU_TEMP (-?\d+(?:\.\d+)?)
 Value Filldown MAINBOARD_TEMP (-?\d+(?:\.\d+)?)
 Value List FAN_ID (\d+)

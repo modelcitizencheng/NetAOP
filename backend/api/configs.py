@@ -88,7 +88,7 @@ def _build_device_scope_tree(rows: list[dict]) -> list[dict]:
         find_or_create(device_category, f"{device_category['id']}:role:{role}", "role", role, {"site_id": site.get("branch", {}).get("site_id", ""), "asset_type": asset_type, "device_category": category, "device_role": "" if role == "unassigned" else role}, 1)
     return [root]
 
-# Backup root directory - relative to cwd (d:\nexora-automation)
+# Backup root directory - relative to cwd (d:\netaop-automation)
 # Legacy root retained only for old rows and the compatibility export path.
 # New snapshots use StorageService and live below STORAGE_LOCAL_ROOT when the
 # local provider is selected.

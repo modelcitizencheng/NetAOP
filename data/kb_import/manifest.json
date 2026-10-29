@@ -1922,7 +1922,7 @@
           "vendor": null
         }
       ],
-      "dataset_id": "nexora-kb-eval-anchors-50-v3-signed-20260905"
+      "dataset_id": "netaop-kb-eval-anchors-50-v3-signed-20260905"
     },
     "gold_400": {
       "candidate_vendor_feature_coverage": {
@@ -1976,7 +1976,7 @@
         }
       },
       "case_count": 400,
-      "dataset_id": "nexora-kb-eval-gold-400-v2-20260905",
+      "dataset_id": "netaop-kb-eval-gold-400-v2-20260905",
       "feature_set_in_dataset": [
         "access_port",
         "acl",
@@ -2003,7 +2003,7 @@
     },
     "gold_replacement": false,
     "human_review_required": false,
-    "pack_id": "nexora-kb-official-local-4vendor-v1",
+    "pack_id": "netaop-kb-official-local-4vendor-v1",
     "production_eligible": false,
     "schema_version": 1,
     "status": "candidate_only",
@@ -2011,8 +2011,8 @@
   },
   "external_network": "forbidden",
   "gold_replacement": false,
-  "manifest_type": "nexora-local-knowledge-pack-v1",
-  "pack_id": "nexora-kb-official-local-4vendor-v1",
+  "manifest_type": "netaop-local-knowledge-pack-v1",
+  "pack_id": "netaop-kb-official-local-4vendor-v1",
   "pack_schema_version": 1,
   "production_eligible": false,
   "reindex_required_on_import": true,
@@ -2024,7 +2024,7 @@
   "supplemental_document_count": 40,
   "supplemental_track_id": "four_vendor_feature_verification",
   "test_only": true,
-  "title": "Nexora 四厂商本地官网知识摘要包",
+  "title": "NetAop 四厂商本地官网知识摘要包",
   "vendor_count": 4,
   "vendors": [
     "Huawei",

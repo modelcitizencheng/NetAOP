@@ -1,4 +1,4 @@
-# nexora-action-code: get_bfd_sessions
+# netaop-action-code: get_bfd_sessions
 Value Filldown TOTAL_SESSIONS (\d+)
 Value Filldown UP_SESSIONS (\d+)
 Value Filldown INIT_MODE (\S+)

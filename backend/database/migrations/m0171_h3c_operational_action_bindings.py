@@ -147,8 +147,8 @@ def _register_new_templates(cursor, now: str) -> dict[str, str]:
         command = _canonical_template_command(parser_platform, suffix)
         template_code = _template_code(path.name)
         content = path.read_text(encoding="utf-8")
-        template_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:system-template:{path.name}"))
-        version_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:system-template-version:{path.name}:1"))
+        template_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:system-template:{path.name}"))
+        version_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:system-template-version:{path.name}:1"))
         existing = cursor.execute(
             """SELECT id FROM parser_templates
                WHERE tenant_id IS NULL AND source = 'SYSTEM'
@@ -236,7 +236,7 @@ def _parser_version_id(cursor, profile_id: str, command: str) -> str | None:
 
 
 def _fresh_action_id(cursor, release_id: str, action_code: str) -> str:
-    candidate = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:{release_id}:{action_code}"))
+    candidate = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:{release_id}:{action_code}"))
     while cursor.execute("SELECT 1 FROM platform_release_actions WHERE id = ?", (candidate,)).fetchone():
         candidate = str(uuid.uuid4())
     return candidate

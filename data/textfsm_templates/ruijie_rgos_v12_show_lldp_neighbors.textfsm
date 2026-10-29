@@ -1,4 +1,4 @@
-# nexora-action-code: get_lldp_neighbors
+# netaop-action-code: get_lldp_neighbors
 Value Required NEIGHBOR (\S+)
 Value LOCAL_INTERFACE (\S+)
 Value NEIGHBOR_INTERFACE (\S+(?:\s+[0-9\/\.\:\-_]+)?)

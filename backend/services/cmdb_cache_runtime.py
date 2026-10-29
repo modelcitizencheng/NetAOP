@@ -49,12 +49,12 @@ def get_cmdb_query_cache() -> CmdbQueryCache:
             r"[^a-z0-9_-]+", "_",
             str(getattr(settings, "ENVIRONMENT", "unknown") or "unknown").strip().lower(),
         ).strip("_-") or "unknown"
-        namespace = f"nexora:{environment}:cmdb:v1"
+        namespace = f"netaop:{environment}:cmdb:v1"
         try:
             _CACHE = CmdbQueryCache(namespace, client, ttl_seconds=15)
         except Exception as exc:
             logger.debug("CMDB Redis cache adapter unavailable (%s)", type(exc).__name__)
-            _CACHE = CmdbQueryCache(f"nexora:unknown:cmdb:v1", None, ttl_seconds=15)
+            _CACHE = CmdbQueryCache(f"netaop:unknown:cmdb:v1", None, ttl_seconds=15)
         _CACHE_INITIALIZED = True
         return _CACHE
 

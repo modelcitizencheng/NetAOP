@@ -1,4 +1,4 @@
-# nexora-action-code: get_power
+# netaop-action-code: get_power
 Value Filldown SLOT (\d+)
 Value Required POWER_ID (\d+)
 Value Required STATUS (\S+)

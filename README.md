@@ -1,6 +1,6 @@
 <div align="center">
 
-# NEXORA
+# NETAOP
 
 ### 一体化网络运维与智能自动化平台
 
@@ -18,14 +18,14 @@
 
 ## 项目简介 / Overview
 
-Nexora 面向网络运维团队，将分散在表格、监控系统、终端工具、脚本和知识文档中的工作统一到一个平台。系统以 CMDB 为数据基础，连接实时监控、告警、拓扑、IPAM、配置管理、自动化执行、PAM 审计、变更工单和 AI 知识检索，形成可追踪的运维闭环。
+NetAop 面向网络运维团队，将分散在表格、监控系统、终端工具、脚本和知识文档中的工作统一到一个平台。系统以 CMDB 为数据基础，连接实时监控、告警、拓扑、IPAM、配置管理、自动化执行、PAM 审计、变更工单和 AI 知识检索，形成可追踪的运维闭环。
 
 当前公开仓库由私有开发仓库通过 GitHub Actions 清理并同步：
 
 - `main`：Linux / Docker Compose 发布树。
 - 正式版本标签：对应发布快照和 Linux / Docker 发布制品；当前版本为 `v1.0.11`，详见[版本更新记录](docs/deploy/release-notes.md)。
 
-> Nexora 会连接网络设备、执行命令并保存加密凭据。首次生产部署前，请先完成密钥替换、权限规划、数据库备份和网络访问控制。
+> NetAop 会连接网络设备、执行命令并保存加密凭据。首次生产部署前，请先完成密钥替换、权限规划、数据库备份和网络访问控制。
 
 ## 当前功能模块 / Features
 
@@ -93,8 +93,8 @@ flowchart LR
 要求：Git、Docker Engine、Docker Compose v2、OpenSSL，以及可访问软件源/镜像源的网络环境。
 
 ```bash
-git clone https://github.com/libing28390-sketch/Release-netops.git nexora-automation
-cd nexora-automation
+git clone https://github.com/libing28390-sketch/Release-netops.git netaop-automation
+cd netaop-automation
 bash scripts/deploy-docker.sh install
 ```
 
@@ -113,10 +113,10 @@ https://<服务器IP>
 支持 Ubuntu 20.04 / 22.04 / 24.04（x86_64 / arm64）：
 
 ```bash
-curl -fsSL -o /tmp/deploy-nexora.sh \
+curl -fsSL -o /tmp/deploy-netaop.sh \
   https://raw.githubusercontent.com/libing28390-sketch/Release-netops/main/deploy-ubuntu.sh
-chmod +x /tmp/deploy-nexora.sh
-bash /tmp/deploy-nexora.sh
+chmod +x /tmp/deploy-netaop.sh
+bash /tmp/deploy-netaop.sh
 ```
 
 脚本会准备 PostgreSQL、Python、Node.js、systemd 和 Nginx。详见 [Ubuntu 一键部署](docs/deploy/ubuntu.md)。
@@ -206,7 +206,7 @@ Release-netops/
 - [Ubuntu 原生部署](docs/deploy/ubuntu.md)
 - [本地终端 Agent](docs/deploy/terminal-agent.md)
 - [Windows Agent 开机启动排障](docs/deploy/terminal-agent-autostart.md)
-- [AI Provider、模型与安全网关配置](public/downloads/nexora-ai-provider-debug-manual.md)
+- [AI Provider、模型与安全网关配置](public/downloads/netaop-ai-provider-debug-manual.md)
 
 后端启动后可在 `/api/docs` 或 `/api/redoc` 查看当前 API 文档；生产环境如不需要公开接口文档，应在网关层限制访问。
 
@@ -227,6 +227,6 @@ Roadmap 仅表示方向，不构成版本承诺；当前版本能力以本仓库
 
 <div align="center">
 
-**Nexora — One Platform. Total Network Control.**
+**NetAop — One Platform. Total Network Control.**
 
 </div>

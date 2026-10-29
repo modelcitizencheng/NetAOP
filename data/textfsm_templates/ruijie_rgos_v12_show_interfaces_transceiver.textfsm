@@ -1,4 +1,4 @@
-# nexora-action-code: get_transceivers
+# netaop-action-code: get_transceivers
 Value Required INTERFACE (\S+\s+[0-9\/\.\:\-_]+|\S+)
 Value TRANSCEIVER_TYPE (.+?)
 Value CONNECTOR_TYPE (\S+)

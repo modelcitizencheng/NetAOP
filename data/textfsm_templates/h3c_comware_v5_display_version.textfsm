@@ -1,4 +1,4 @@
-# nexora-action-code: get_version
+# netaop-action-code: get_version
 Value SOFTWARE_VERSION (\S+)
 Value RELEASE (.+?)
 Value DEVICE (\S+)

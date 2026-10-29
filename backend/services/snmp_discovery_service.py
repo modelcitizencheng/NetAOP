@@ -1,4 +1,4 @@
-"""Resolve SNMP vendor and platform identity for Nexora device records.
+"""Resolve SNMP vendor and platform identity for NetAop device records.
 
 Hardware discovery and polling are performed by the bound LibreNMS runtime.
 This module only classifies device identity from system fields and rules.

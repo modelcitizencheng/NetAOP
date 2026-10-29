@@ -55,8 +55,8 @@ export const ThreeCyberNetwork: React.FC = () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // Nexora NetOps Spatial Color Palette
-    const colorBrandBlue = new THREE.Color('#2563EB'); // Nexora Blue
+    // NetAop NetOps Spatial Color Palette
+    const colorBrandBlue = new THREE.Color('#2563EB'); // NetAop Blue
     const colorSkyBlue   = new THREE.Color('#0284C7'); // Cyan/Sky
     const colorCyan      = new THREE.Color('#0EA5E9'); // Light Cyan
     const colorViolet    = new THREE.Color('#7C3AED'); // Deep Violet

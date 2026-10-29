@@ -1,4 +1,4 @@
-"""Runtime tenant policy for the single-organization Nexora deployment.
+"""Runtime tenant policy for the single-organization NetAop deployment.
 
 Tenant identifiers remain on stored records for compatibility and audit
 history. They no longer partition an authenticated user's access in the

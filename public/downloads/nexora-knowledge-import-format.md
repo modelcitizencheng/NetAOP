@@ -1,4 +1,4 @@
-# Nexora 自定义知识文档导入格式
+# NetAop 自定义知识文档导入格式
 
 ## 推荐格式
 
@@ -45,7 +45,7 @@ JSON/YAML 必须使用以下 envelope，而不是把正文和元数据混在任�
 
 ```json
 {
-  "format": "nexora-knowledge-document",
+  "format": "netaop-knowledge-document",
   "schema_version": "2.0",
   "metadata": { "document_id": "custom.example.v1", "title": "标题", "vendor": "Cisco", "product_type": "network_switch", "document_category": "configuration", "source_type": "user_document", "official_only": false, "status": "draft" },
   "content": "# 标题\n\n正文"
@@ -64,4 +64,4 @@ JSON/YAML 必须使用以下 envelope，而不是把正文和元数据混在任�
 - 导入流程为：扩展名识别 → 文件/语法校验 → Front Matter 或 envelope 解析 → 元数据预览 → 人工确认 → 清洗/安全扫描 → 切片 → Embedding → 入库。
 - 解析或安全检查失败时，该文件拒绝入库或进入隔离状态；不会把原始 JSON/YAML 任意字段当作事实。
 
-可下载模板：`nexora-knowledge-document-template.md`、`nexora-knowledge-document-template.json`。
+可下载模板：`netaop-knowledge-document-template.md`、`netaop-knowledge-document-template.json`。

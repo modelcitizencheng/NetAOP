@@ -1057,7 +1057,7 @@ export const AssetModal: React.FC<AssetModalProps> = ({
                       <div className="min-w-0">
                         <p className="text-xs font-semibold text-gray-700">{zh ? 'SNMP 采集' : 'SNMP collection'}</p>
                         <p className="mt-0.5 text-[11px] leading-4 text-black/40">
-                          {zh ? '关闭后停止 Nexora 对该设备的自动 SNMP 采集。' : 'When off, Nexora stops automatic SNMP collection for this device.'}
+                          {zh ? '关闭后停止 NetAop 对该设备的自动 SNMP 采集。' : 'When off, NetAop stops automatic SNMP collection for this device.'}
                         </p>
                       </div>
                       <button
@@ -1093,7 +1093,7 @@ export const AssetModal: React.FC<AssetModalProps> = ({
                             </option>
                           ))}
                         </select>
-                        <p className="mt-1 text-[11px] text-black/30">{zh ? 'Nexora 后台将使用该 Profile 与管理 IP 执行设备识别和硬件采集；不会替换 SSH 登录凭据，密钥也不会回显。' : 'Nexora uses this profile with the management IP for device identification and hardware collection. It does not replace SSH credentials, and secrets are never revealed.'}</p>
+                        <p className="mt-1 text-[11px] text-black/30">{zh ? 'NetAop 后台将使用该 Profile 与管理 IP 执行设备识别和硬件采集；不会替换 SSH 登录凭据，密钥也不会回显。' : 'NetAop uses this profile with the management IP for device identification and hardware collection. It does not replace SSH credentials, and secrets are never revealed.'}</p>
                       </div>
                     </div>
                   </>
@@ -1231,8 +1231,8 @@ export const AssetModal: React.FC<AssetModalProps> = ({
                         <p className="text-xs font-bold text-cyan-900">{zh ? '口令上收并投产' : 'Take over credentials and enter production'}</p>
                         <p className="mt-1 text-xs leading-4 text-cyan-900/75">
                           {zh
-                            ? '验证现有账号后更换普通和特权账号密码，并把新凭据保存到 Nexora。'
-                            : 'Verifies the current accounts, changes normal and privileged passwords, and stores the new credentials in Nexora.'}
+                            ? '验证现有账号后更换普通和特权账号密码，并把新凭据保存到 NetAop。'
+                            : 'Verifies the current accounts, changes normal and privileged passwords, and stores the new credentials in NetAop.'}
                         </p>
                         <button type="button" disabled className="mt-2 w-full cursor-not-allowed rounded-lg bg-cyan-200 px-3 py-2 text-xs font-bold text-cyan-900/70">
                           {zh ? '完成凭据保存和连通性验证后可用' : 'Available after saving credentials and verifying connectivity'}
@@ -1242,8 +1242,8 @@ export const AssetModal: React.FC<AssetModalProps> = ({
                         <p className="text-xs font-bold text-amber-900">{zh ? '免上收投产，保留现有口令' : 'Enter production without takeover'}</p>
                         <p className="mt-1 text-xs leading-4 text-amber-900/75">
                           {zh
-                            ? '不更改设备密码，但仍要先验证普通账号连通性；投产后记录豁免原因，设备不纳入 Nexora 托管。'
-                            : 'Leaves device passwords unchanged, but still requires normal-account connectivity verification; the exemption is recorded and the device is not enrolled for Nexora management.'}
+                            ? '不更改设备密码，但仍要先验证普通账号连通性；投产后记录豁免原因，设备不纳入 NetAop 托管。'
+                            : 'Leaves device passwords unchanged, but still requires normal-account connectivity verification; the exemption is recorded and the device is not enrolled for NetAop management.'}
                         </p>
                         <button type="button" disabled className="mt-2 w-full cursor-not-allowed rounded-lg border border-amber-300 bg-white px-3 py-2 text-xs font-bold text-amber-800/60">
                           {zh ? '免上收投产（验证通过后启用）' : 'Skip takeover (available after verification)'}
@@ -1296,8 +1296,8 @@ export const AssetModal: React.FC<AssetModalProps> = ({
                       <p className="text-xs font-bold text-cyan-900">{zh ? '口令上收并投产' : 'Take over credentials and enter production'}</p>
                       <p className="mt-1 text-xs leading-4 text-cyan-900/75">
                         {zh
-                          ? '会验证现有账号，然后更换普通和特权账号的设备密码，并将新凭据安全保存到 Nexora。'
-                          : 'Verifies the current accounts, changes the device passwords for normal and privileged accounts, and stores the new credentials in Nexora.'}
+                          ? '会验证现有账号，然后更换普通和特权账号的设备密码，并将新凭据安全保存到 NetAop。'
+                          : 'Verifies the current accounts, changes the device passwords for normal and privileged accounts, and stores the new credentials in NetAop.'}
                       </p>
                       <button
                         onClick={() => { setShowProductionConfirm(false); doSaveOnce({ production_mode: 'takeover' }); }}
@@ -1311,8 +1311,8 @@ export const AssetModal: React.FC<AssetModalProps> = ({
                       <p className="text-xs font-bold text-amber-900">{zh ? '免上收投产，保留现有口令' : 'Enter production without takeover'}</p>
                       <p className="mt-1 text-xs leading-4 text-amber-900/75">
                         {zh
-                          ? '仅适用于录入时标记为存量的设备：不会更改设备密码，但会记录豁免原因，且设备不会纳入 Nexora 托管。'
-                          : 'For legacy assets only. Device passwords stay unchanged; the exemption is recorded and the asset is not enrolled for Nexora management.'}
+                          ? '仅适用于录入时标记为存量的设备：不会更改设备密码，但会记录豁免原因，且设备不会纳入 NetAop 托管。'
+                          : 'For legacy assets only. Device passwords stay unchanged; the exemption is recorded and the asset is not enrolled for NetAop management.'}
                       </p>
                       {editingAsset?.asset_origin === 'legacy' ? (
                         <>

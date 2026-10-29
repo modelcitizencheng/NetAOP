@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-const FAVORITES_STORAGE_PREFIX = 'nexora_access_favorites';
-const FAVORITES_CHANGED_EVENT = 'nexora:access-favorites-changed';
+const FAVORITES_STORAGE_PREFIX = 'netaop_access_favorites';
+const FAVORITES_CHANGED_EVENT = 'netaop:access-favorites-changed';
 
 const storageKeyFor = (username: string) => (
   `${FAVORITES_STORAGE_PREFIX}:${encodeURIComponent(username.trim() || 'anonymous')}`

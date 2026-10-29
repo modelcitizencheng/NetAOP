@@ -55,7 +55,7 @@ def _clone_v5_templates_to_v3(cursor, profile_ids: dict[str, str], now: str) -> 
         source_id = str(row[0])
         target_id = str(uuid.uuid5(
             uuid.NAMESPACE_URL,
-            f"nexora:m0212-h3c-v3-template:{source_id}",
+            f"netaop:m0212-h3c-v3-template:{source_id}",
         ))
         source_code = str(row[2] or "TEMPLATE").upper()
         target_code = _target_template_code(source_id, source_code)

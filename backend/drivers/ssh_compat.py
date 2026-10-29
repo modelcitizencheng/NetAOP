@@ -272,7 +272,7 @@ PAGING_PROMPT_RE = re.compile(
 
 
 def ensure_netmiko_custom_platforms() -> None:
-    """Register custom Nexora platform keys in Netmiko's SSH dispatcher."""
+    """Register custom NetAop platform keys in Netmiko's SSH dispatcher."""
     try:
         from netmiko import ssh_dispatcher as sd
         g = getattr(sd, '__globals__', None)

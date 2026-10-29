@@ -1,4 +1,4 @@
-# nexora-action-code: get_route_table
+# netaop-action-code: get_route_table
 Value Filldown TOTAL_DESTINATIONS (\d+)
 Value Filldown TOTAL_ROUTES (\d+)
 Value Filldown DESTINATION (\S+)

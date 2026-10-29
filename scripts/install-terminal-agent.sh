@@ -5,7 +5,7 @@ PORT="${NEXORA_AGENT_PORT:-17890}"
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PYTHON_BIN="${PYTHON_BIN:-$(command -v python3)}"
 SERVICE_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user"
-SERVICE_FILE="$SERVICE_DIR/nexora-terminal-agent.service"
+SERVICE_FILE="$SERVICE_DIR/netaop-terminal-agent.service"
 
 if [[ -z "$PYTHON_BIN" || ! -x "$PYTHON_BIN" ]]; then
   echo "python3 is required" >&2
@@ -21,7 +21,7 @@ fi
 mkdir -p "$SERVICE_DIR"
 cat > "$SERVICE_FILE" <<EOF
 [Unit]
-Description=Nexora local Terminal Agent
+Description=NetAop local Terminal Agent
 After=network-online.target
 
 [Service]
@@ -37,6 +37,6 @@ WantedBy=default.target
 EOF
 
 systemctl --user daemon-reload
-systemctl --user enable --now nexora-terminal-agent.service
-echo "Nexora Terminal Agent started on http://127.0.0.1:$PORT"
+systemctl --user enable --now netaop-terminal-agent.service
+echo "NetAop Terminal Agent started on http://127.0.0.1:$PORT"
 curl -fsS "http://127.0.0.1:$PORT/health"

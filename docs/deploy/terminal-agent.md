@@ -1,6 +1,6 @@
-# Nexora Terminal Agent
+# NetAop Terminal Agent
 
-Terminal Agent 运行在操作员工作站上。v1.0.9 起，Nexora 服务端只支持 Linux/Ubuntu/Docker 部署；Windows 操作员仍可通过浏览器访问远程服务，并在本机运行 Windows Agent。前端通过本机回环地址调用 Agent，并传递一次性短期令牌。Agent 只监听回环地址，不向局域网开放，也不会把交换到的凭据写入日志。
+Terminal Agent 运行在操作员工作站上。v1.0.9 起，NetAop 服务端只支持 Linux/Ubuntu/Docker 部署；Windows 操作员仍可通过浏览器访问远程服务，并在本机运行 Windows Agent。前端通过本机回环地址调用 Agent，并传递一次性短期令牌。Agent 只监听回环地址，不向局域网开放，也不会把交换到的凭据写入日志。
 
 ## Windows 工作站
 
@@ -64,7 +64,7 @@ TERMINAL_AGENT_WINDOWS_URL=https://github.com/libing28390-sketch/Release-netops/
 
 Web PAM 与 SSH 是两类独立会话。用户选择资产中配置好的 HTTP/HTTPS 入口后，后端创建一次性 PAM 会话；Agent 调用工作站已安装的系统浏览器打开目标 URL。
 
-如果检测到 Edge、Chrome、Brave 等 Chromium 浏览器，Agent 会使用临时 profile 打开独立 app 窗口；否则回退到系统默认浏览器。Nexora 不接收、不自动填写设备账号密码，用户直接在设备页面手工输入。
+如果检测到 Edge、Chrome、Brave 等 Chromium 浏览器，Agent 会使用临时 profile 打开独立 app 窗口；否则回退到系统默认浏览器。NetAop 不接收、不自动填写设备账号密码，用户直接在设备页面手工输入。
 
 如需指定浏览器可执行文件，可在工作站设置 `NEXORA_BROWSER_PATH`；Agent 会用该进程跟踪窗口生命周期。
 

@@ -192,7 +192,7 @@ def test_notification(
     user=require_role("Administrator"),
 ):
     """Send a test alert message to the given webhook."""
-    sys_name = "Nexora"
+    sys_name = "NetAop"
     try:
         conn = get_db_connection()
         try:

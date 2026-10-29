@@ -47,7 +47,7 @@ class ConfigAnalysisResponse(BaseModel):
 
 # --- Config Diff Analysis ---
 class DiffAnalysisRequest(BaseModel):
-    diff_text: str = Field(..., description="Raw configuration diff text from Nexora Diff Engine")
+    diff_text: str = Field(..., description="Raw configuration diff text from NetAop Diff Engine")
     config_before_id: Optional[Any] = None
     config_after_id: Optional[Any] = None
     device_id: Optional[Any] = None

@@ -1,4 +1,4 @@
-# nexora-action-code: get_version
+# netaop-action-code: get_version
 Value Filldown SYSTEM_DESCRIPTION (.+?)
 Value Filldown START_TIME (.+?)
 Value Filldown UPTIME (.+?)

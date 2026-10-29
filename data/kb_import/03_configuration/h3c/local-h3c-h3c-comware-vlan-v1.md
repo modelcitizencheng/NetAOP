@@ -33,7 +33,7 @@ content_origin: authored_local_summary
 review_status: source_provenance_verified
 test_only: true
 production_eligible: false
-pack_id: nexora-kb-official-local-4vendor-v1
+pack_id: netaop-kb-official-local-4vendor-v1
 external_network: forbidden
 keywords:
 - VLAN

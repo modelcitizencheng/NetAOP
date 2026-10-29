@@ -66,7 +66,7 @@ def _safe_value(value: Any, *, depth: int = 0) -> Any:
     if isinstance(value, (list, tuple, set)):
         return [_safe_value(item, depth=depth + 1) for item in list(value)[:128]]
     if isinstance(value, str):
-        if "internal.nexora.local/tenant/" in value.lower():
+        if "internal.netaop.local/tenant/" in value.lower():
             return "[internal-source]"
         return value[:20_000]
     if isinstance(value, (int, float, bool)) or value is None:
@@ -284,7 +284,7 @@ class KnowledgeExportService:
         bundle = output.getvalue()
         return {
             "content": bundle,
-            "filename": f"nexora-knowledge-export-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}.zip",
+            "filename": f"netaop-knowledge-export-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}.zip",
             "document_count": len(documents),
             "content_bytes": raw_content_bytes,
             "manifest": manifest,

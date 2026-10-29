@@ -2,7 +2,7 @@ cat << 'EOF' > update.sh
 #!/bin/bash
 
 # --- 配置 ---
-PROJECT_DIR="/opt/nexora-automation"
+PROJECT_DIR="/opt/netaop-automation"
 SERVICE_NAME="netops"
 
 echo "🚀 开始自动更新流程..."

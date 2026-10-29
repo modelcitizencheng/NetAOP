@@ -56,7 +56,7 @@ async def analyze_diff(
     req: DiffAnalysisRequest,
     user=Depends(require_ai_permission("ai.diff_analyze"))
 ):
-    """AI Config Diff Analysis Endpoint (Consumes raw diff from Nexora Diff Engine)."""
+    """AI Config Diff Analysis Endpoint (Consumes raw diff from NetAop Diff Engine)."""
     user_id = user.get("username", "user")
     allowed, _ = ai_rate_limiter.is_allowed(user_id, "config_diff")
     if not allowed:

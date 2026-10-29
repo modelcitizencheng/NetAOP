@@ -298,7 +298,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
       hasSecret: true,
       docsUrl: 'https://open.dingtalk.com/document/robots/custom-robot-access',
       docsLabel: isZh ? '配置教程 →' : 'Docs →',
-      tip: isZh ? `在钉钉群「智能群助手」中添加自定义机器人。安全设置选加签时将密钥填入下方 Secret 栏；若选自定义关键词，填 ${systemInfo?.system_name || 'Nexora'} 即可。` : 'Add a custom robot in DingTalk group. Set sign secret or keywords.',
+      tip: isZh ? `在钉钉群「智能群助手」中添加自定义机器人。安全设置选加签时将密钥填入下方 Secret 栏；若选自定义关键词，填 ${systemInfo?.system_name || 'NetAop'} 即可。` : 'Add a custom robot in DingTalk group. Set sign secret or keywords.',
     },
     {
       key: 'wechat',

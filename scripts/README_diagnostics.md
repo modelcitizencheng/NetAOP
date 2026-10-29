@@ -15,7 +15,7 @@ bash scripts/collect_container_errors.sh 2h 20000
 ## 应用 CPU
 
 ```bash
-bash scripts/capture_netops_cpu.sh nexora-netops 300
+bash scripts/capture_netops_cpu.sh netaop-netops 300
 ```
 
 时长范围 10–300 秒。输出连续容器 stats、进程/线程 CPU，并生成压缩包。宿主机已安装 py-spy 时另收集 Python 函数栈；未安装时会写明缺少函数采样。当前采样不展开 native 栈，asyncio/uvloop 入口下的 C 层计算与等待仍需进一步定位。函数栈频率不能直接当作 CPU 时间比例，线程池等待栈也不是 CPU 热点。

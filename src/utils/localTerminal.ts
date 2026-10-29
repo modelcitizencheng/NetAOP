@@ -111,8 +111,8 @@ export function formatTerminalAgentError(error: unknown, isZh: boolean): string 
 
   if (/backend origin is not allowed|origin is not trusted|launch origin does not match/.test(normalized)) {
     return isZh
-      ? 'Terminal Agent 已运行，但未允许当前 Nexora 页面来源。请将当前页面地址加入 NEXORA_AGENT_ALLOWED_ORIGINS 后重启 Agent。'
-      : 'Terminal Agent is running, but the current Nexora page origin is not allowed. Add the page origin to NEXORA_AGENT_ALLOWED_ORIGINS and restart the Agent.';
+      ? 'Terminal Agent 已运行，但未允许当前 NetAop 页面来源。请将当前页面地址加入 NEXORA_AGENT_ALLOWED_ORIGINS 后重启 Agent。'
+      : 'Terminal Agent is running, but the current NetAop page origin is not allowed. Add the page origin to NEXORA_AGENT_ALLOWED_ORIGINS and restart the Agent.';
   }
 
   if (

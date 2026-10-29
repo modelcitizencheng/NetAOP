@@ -1088,14 +1088,14 @@ def detect_behavior_risk(*, tenant_id: str, user_id: str | None, session_id: str
     return result
 
 
-def reconcile_tacacs_event(*, tenant_id: str, session_id: str | None, command_event_id: str | None, nexora_action: str, external_action: str, metadata: dict[str, Any] | None = None) -> dict[str, Any]:
-    safe_nexora = re.sub(r"[^A-Za-z0-9_.:/ -]", "_", str(nexora_action or "").strip())[:200]
+def reconcile_tacacs_event(*, tenant_id: str, session_id: str | None, command_event_id: str | None, netaop_action: str, external_action: str, metadata: dict[str, Any] | None = None) -> dict[str, Any]:
+    safe_netaop = re.sub(r"[^A-Za-z0-9_.:/ -]", "_", str(netaop_action or "").strip())[:200]
     safe_external = re.sub(r"[^A-Za-z0-9_.:/ -]", "_", str(external_action or "").strip())[:200]
-    matched = safe_nexora.casefold() == safe_external.casefold()
+    matched = safe_netaop.casefold() == safe_external.casefold()
     tenant_id = _tenant_id_for_write(tenant_id)
-    result = {"id": f"tac_{uuid.uuid4().hex[:16]}", "tenant_id": tenant_id, "session_id": session_id, "command_event_id": command_event_id, "nexora_action": safe_nexora, "external_action": safe_external, "matched": matched, "details": {"mismatch": not matched, "metadata": dict(metadata or {})}, "created_at": _now()}
+    result = {"id": f"tac_{uuid.uuid4().hex[:16]}", "tenant_id": tenant_id, "session_id": session_id, "command_event_id": command_event_id, "netaop_action": safe_netaop, "external_action": safe_external, "matched": matched, "details": {"mismatch": not matched, "metadata": dict(metadata or {})}, "created_at": _now()}
     with get_db_connection() as conn:
-        conn.execute("INSERT INTO pam_tacacs_reconciliations (id, tenant_id, session_id, command_event_id, nexora_action, external_action, matched, details_json, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (result["id"], tenant_id, session_id, command_event_id, safe_nexora, safe_external, int(matched), json.dumps(result["details"], ensure_ascii=False), result["created_at"]))
+        conn.execute("INSERT INTO pam_tacacs_reconciliations (id, tenant_id, session_id, command_event_id, netaop_action, external_action, matched, details_json, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (result["id"], tenant_id, session_id, command_event_id, safe_netaop, safe_external, int(matched), json.dumps(result["details"], ensure_ascii=False), result["created_at"]))
         conn.commit()
     return result
 

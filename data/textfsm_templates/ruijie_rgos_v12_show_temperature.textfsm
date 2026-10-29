@@ -1,4 +1,4 @@
-# nexora-action-code: get_temperature
+# netaop-action-code: get_temperature
 Value Required SLOT (\d+)
 Value CARD_TYPE (\S+)
 Value TEMP_NAME (\S+)

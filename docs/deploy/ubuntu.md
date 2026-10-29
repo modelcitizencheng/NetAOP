@@ -28,8 +28,8 @@ curl -fsSL https://raw.githubusercontent.com/libing28390-sketch/Release-netops/m
 ## 方式二：克隆后本地运行
 
 ```bash
-git clone https://github.com/libing28390-sketch/Release-netops.git nexora-automation
-cd nexora-automation
+git clone https://github.com/libing28390-sketch/Release-netops.git netaop-automation
+cd netaop-automation
 chmod +x deploy-ubuntu.sh
 ./deploy-ubuntu.sh
 ```

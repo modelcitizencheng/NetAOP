@@ -1,4 +1,4 @@
-# nexora-action-code: get_power
+# netaop-action-code: get_power
 Value Required POWER_ID (\d+)
 Value MODEL (\S+)
 Value VERSION (\S+)

@@ -111,7 +111,7 @@ export const WebAccessRequestModal: React.FC<WebAccessRequestModalProps> = ({
               </div>
 
               <div className="rounded-xl border border-[var(--ui-border)] bg-[var(--ui-accent-subtle)] px-3 py-2 text-[11px] leading-5 text-[var(--ui-fg)]">
-                {zh ? '提交后将调用本机 Nexora Agent 打开系统浏览器。设备账号密码由用户在设备页面自行输入。' : 'Nexora Agent will open the system browser. Enter device credentials directly on the device page.'}
+                {zh ? '提交后将调用本机 NetAop Agent 打开系统浏览器。设备账号密码由用户在设备页面自行输入。' : 'NetAop Agent will open the system browser. Enter device credentials directly on the device page.'}
               </div>
             </div>
 

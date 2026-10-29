@@ -168,7 +168,7 @@ def run_locator_cli_query(
         "mode": "force_refresh" if force_refresh else "normal",
         "deployment_id": str(
             task_context.get("deployment_id")
-            or getattr(settings, "IP_LOCATOR_REDIS_NAMESPACE", "nexora:production:locator:v1")
+            or getattr(settings, "IP_LOCATOR_REDIS_NAMESPACE", "netaop:production:locator:v1")
         ),
         "tenant_id": str(task_context.get("tenant_id") or "tenant-default"),
         "scope_hash": str(task_context.get("scope_hash") or ""),

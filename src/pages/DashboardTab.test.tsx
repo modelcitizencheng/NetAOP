@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/re
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import DashboardTab from './DashboardTab';
 
-vi.mock('../hooks/useSystem', () => ({ useSystem: () => ({ systemInfo: { system_name: 'Nexora' } }) }));
+vi.mock('../hooks/useSystem', () => ({ useSystem: () => ({ systemInfo: { system_name: 'NetAop' } }) }));
 vi.mock('../hooks/useChartTheme', () => ({
   useChartTheme: () => ({ grid: '#eee', axis: '#666', tooltipBorder: '#ddd', tooltipShadow: 'none', tooltipBg: '#fff', tooltipText: '#222' }),
 }));

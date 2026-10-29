@@ -26,20 +26,20 @@ describe('StorageFilesPage', () => {
   it('shows direct preview and CFG download actions for a selected snapshot', async () => {
     const object = {
       object_key: 'edge-01.cfg',
-      s3_uri: 's3://nexora/edge-01.cfg',
+      s3_uri: 's3://netaop/edge-01.cfg',
       size: 18,
       last_modified: '2026-09-28T10:00:00Z',
     };
     storageMocks.listProviders.mockResolvedValue({
       items: [{
-        id: 'profile-1', name: 'nexora', backend: 's3', endpoint_url: 'http://s3.local', bucket: 'nexora',
+        id: 'profile-1', name: 'netaop', backend: 's3', endpoint_url: 'http://s3.local', bucket: 'netaop',
         region: 'us-east-1', force_path_style: true, verify_tls: false, is_default: true, source: 'database',
         has_access_key: true, has_secret_key: true,
       }],
       effective_default_id: 'profile-1',
     });
     storageMocks.listObjects.mockResolvedValue({
-      provider_id: 'profile-1', provider_name: 'nexora', endpoint_url: 'http://s3.local', bucket: 'nexora',
+      provider_id: 'profile-1', provider_name: 'netaop', endpoint_url: 'http://s3.local', bucket: 'netaop',
       items: [object], folders: [], next_continuation_token: null, is_truncated: false,
     });
     storageMocks.getObjectContent.mockResolvedValue('hostname edge-01\n');

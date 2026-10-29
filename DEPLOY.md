@@ -1,4 +1,4 @@
-# Nexora — Deployment Guide / 部署指南
+# NetAop — Deployment Guide / 部署指南
 
 [English](#english) | [中文](#中文)
 
@@ -193,8 +193,8 @@ newgrp docker   # or re-login
 
 ##### Step 1: Clone repository and prepare environment file
 ```bash
-git clone https://github.com/libing28390-sketch/Release-netops.git nexora-automation
-cd nexora-automation
+git clone https://github.com/libing28390-sketch/Release-netops.git netaop-automation
+cd netaop-automation
 
 # Copy environment template
 cp .env.example .env
@@ -264,7 +264,7 @@ docker compose restart netops    # Restart backend only
 *Fix (Warning: this will delete all database data):*
 ```bash
 docker compose down
-docker volume rm nexora-pgdata
+docker volume rm netaop-pgdata
 docker compose up -d
 ```
 
@@ -319,8 +319,8 @@ For custom environments or development.
 
 ```bash
 # 1. Clone
-git clone https://github.com/libing28390-sketch/Release-netops.git nexora-automation
-cd nexora-automation
+git clone https://github.com/libing28390-sketch/Release-netops.git netaop-automation
+cd netaop-automation
 
 # 2. Python environment
 python3 -m venv .venv
@@ -354,10 +354,10 @@ sudo setcap cap_net_raw+ep $(readlink -f .venv/bin/python)
 2. Place at `data/license.json`, or upload via **Settings → License** in the UI
 3. The platform validates on startup — check logs for `[License] [OK]`
 
-For Docker: mount the file or copy it into the `nexora-data` volume:
+For Docker: mount the file or copy it into the `netaop-data` volume:
 
 ```bash
-docker cp license.json nexora-netops:/app/data/license.json
+docker cp license.json netaop-netops:/app/data/license.json
 docker compose restart netops
 ```
 
@@ -367,7 +367,7 @@ docker compose restart netops
 
 ```bash
 # Ubuntu systemd
-cd /opt/nexora-automation
+cd /opt/netaop-automation
 git pull
 npm ci --include=dev && npm run build
 pip install -r backend/requirements.txt
@@ -505,8 +505,8 @@ newgrp docker   # 或重新登录
 
 ##### 第一步：克隆项目并准备环境文件
 ```bash
-git clone https://github.com/libing28390-sketch/Release-netops.git nexora-automation
-cd nexora-automation
+git clone https://github.com/libing28390-sketch/Release-netops.git netaop-automation
+cd netaop-automation
 
 # 拷贝环境配置模版
 cp .env.example .env
@@ -576,8 +576,8 @@ docker compose restart netops    # 仅重启后端
 *解决办法（注意：这会清空所有数据库数据！）：*
 ```bash
 docker compose down
-# 如果你 clone 的文件夹叫 nexora-automation，前缀就是它
-docker volume rm nexora-pgdata
+# 如果你 clone 的文件夹叫 netaop-automation，前缀就是它
+docker volume rm netaop-pgdata
 docker compose up -d
 ```
 
@@ -632,8 +632,8 @@ Docker 部署配置中已默认启用 HTTPS。默认情况下，系统要求在 
 
 ```bash
 # 1. 克隆项目
-git clone https://github.com/libing28390-sketch/Release-netops.git nexora-automation
-cd nexora-automation
+git clone https://github.com/libing28390-sketch/Release-netops.git netaop-automation
+cd netaop-automation
 
 # 2. Python 环境
 python3 -m venv .venv
@@ -670,7 +670,7 @@ sudo setcap cap_net_raw+ep $(readlink -f .venv/bin/python)
 Docker 部署时，将文件复制到容器数据卷：
 
 ```bash
-docker cp license.json nexora-netops:/app/data/license.json
+docker cp license.json netaop-netops:/app/data/license.json
 docker compose restart netops
 ```
 
@@ -680,7 +680,7 @@ docker compose restart netops
 
 ```bash
 # Ubuntu systemd 部署
-cd /opt/nexora-automation
+cd /opt/netaop-automation
 git pull
 npm ci --include=dev && npm run build
 pip install -r backend/requirements.txt
@@ -705,10 +705,10 @@ Linux 示例（将示例域名替换为实际平台地址，并重启 Agent）�
 
 ```bash
 systemctl --user set-environment NEXORA_AGENT_ALLOWED_ORIGINS=https://netops.example.com
-systemctl --user restart nexora-terminal-agent
+systemctl --user restart netaop-terminal-agent
 ```
 
-Linux systemd 用户服务可通过 `systemctl --user edit nexora-terminal-agent` 配置以下内容，然后重启服务：
+Linux systemd 用户服务可通过 `systemctl --user edit netaop-terminal-agent` 配置以下内容，然后重启服务：
 
 ```ini
 [Service]

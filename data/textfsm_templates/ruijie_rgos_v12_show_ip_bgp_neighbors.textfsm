@@ -1,4 +1,4 @@
-# nexora-action-code: get_bgp_neighbors
+# netaop-action-code: get_bgp_neighbors
 Value Required BGP_NEIGHBOR (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|[0-9a-fA-F:]+)
 Value REMOTE_AS (\d+)
 Value LOCAL_AS (\d+)

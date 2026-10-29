@@ -146,7 +146,7 @@ def get_gold_400_fixture_summary(user: Mapping[str, Any]) -> dict[str, Any]:
         raise KnowledgeEvaluationError("EVAL_GOLD_400_POLICY_INVALID", "400-case source manifest metadata is invalid", 503)
     review_policy = payload.get("review_policy") if isinstance(payload.get("review_policy"), Mapping) else {}
     return {
-        "dataset_id": str(payload.get("dataset_id") or "nexora-kb-eval-gold-400")[:128],
+        "dataset_id": str(payload.get("dataset_id") or "netaop-kb-eval-gold-400")[:128],
         "status": str(payload.get("status") or "unknown")[:32],
         "purpose": str(payload.get("purpose") or "Official-source-backed automated evaluation dataset")[:160],
         "test_only": bool(payload.get("test_only")),
@@ -307,7 +307,7 @@ def _run_postgresql_baseline() -> dict[str, Any]:
 
     try:
         runner_path = ROOT / "scripts" / "knowledge_baseline_pg.py"
-        spec = importlib.util.spec_from_file_location("nexora_kui016_pg_baseline", runner_path)
+        spec = importlib.util.spec_from_file_location("netaop_kui016_pg_baseline", runner_path)
         if spec is None or spec.loader is None:
             raise ImportError("evaluation runner spec unavailable")
         runner_module = importlib.util.module_from_spec(spec)

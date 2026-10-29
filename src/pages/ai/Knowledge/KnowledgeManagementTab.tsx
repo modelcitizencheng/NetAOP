@@ -851,9 +851,9 @@ export const KnowledgeManagementTab: React.FC = () => {
     const zip = await JSZip.loadAsync(file);
     const items: FileQueueItem[] = [];
 
-    // Validate Nexora's control-plane manifest before accepting the bundle.
+    // Validate NetAop's control-plane manifest before accepting the bundle.
     // Generic ZIPs without this manifest remain supported, but a malformed
-    // Nexora export must fail closed instead of importing a partial corpus.
+    // NetAop export must fail closed instead of importing a partial corpus.
     const manifestEntry = Object.entries(zip.files).find(([path, entry]) => (
       !entry.dir && path.split('/').pop()?.toLowerCase() === 'manifest.json'
     ));
@@ -882,7 +882,7 @@ export const KnowledgeManagementTab: React.FC = () => {
         throw new Error(tx('ai.knowledge.error.unsafeZipPath'));
       }
       if (segments.some(s => s.startsWith('.'))) continue;
-      // A Nexora export ZIP carries a control-plane manifest alongside the
+      // A NetAop export ZIP carries a control-plane manifest alongside the
       // Markdown sources.  The manifest is not knowledge content and must not
       // become an accidental RAG document on round-trip import.
       if (segments[segments.length - 1].toLowerCase() === 'manifest.json') continue;
@@ -1913,9 +1913,9 @@ export const KnowledgeManagementTab: React.FC = () => {
           </p>
           <div className="mt-2 flex flex-wrap items-center gap-2 text-[10px] text-slate-500 dark:text-slate-400">
             <span className="inline-flex items-center gap-1"><Info className="h-3 w-3 text-indigo-500" />{tx('ai.knowledge.header.tip')}</span>
-            <a href="/downloads/nexora-knowledge-document-template.md" download="nexora-knowledge-document-template.md" className="inline-flex items-center gap-1 rounded-lg border border-indigo-200 bg-indigo-50 px-2 py-1 font-semibold text-indigo-700 hover:bg-indigo-100 dark:border-indigo-900/60 dark:bg-indigo-950/30 dark:text-indigo-300"><FileText className="h-3 w-3" />{tx('ai.knowledge.header.markdownTemplate')}</a>
-            <a href="/downloads/nexora-knowledge-document-template.json" download="nexora-knowledge-document-template.json" className="inline-flex items-center gap-1 rounded-lg border border-indigo-200 bg-indigo-50 px-2 py-1 font-semibold text-indigo-700 hover:bg-indigo-100 dark:border-indigo-900/60 dark:bg-indigo-950/30 dark:text-indigo-300"><FileCode className="h-3 w-3" />{tx('ai.knowledge.header.jsonTemplate')}</a>
-            <a href="/downloads/nexora-knowledge-import-format.md" download="nexora-knowledge-import-format.md" className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2 py-1 font-semibold text-slate-600 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300"><HelpCircle className="h-3 w-3" />{tx('ai.knowledge.header.formatGuide')}</a>
+            <a href="/downloads/netaop-knowledge-document-template.md" download="netaop-knowledge-document-template.md" className="inline-flex items-center gap-1 rounded-lg border border-indigo-200 bg-indigo-50 px-2 py-1 font-semibold text-indigo-700 hover:bg-indigo-100 dark:border-indigo-900/60 dark:bg-indigo-950/30 dark:text-indigo-300"><FileText className="h-3 w-3" />{tx('ai.knowledge.header.markdownTemplate')}</a>
+            <a href="/downloads/netaop-knowledge-document-template.json" download="netaop-knowledge-document-template.json" className="inline-flex items-center gap-1 rounded-lg border border-indigo-200 bg-indigo-50 px-2 py-1 font-semibold text-indigo-700 hover:bg-indigo-100 dark:border-indigo-900/60 dark:bg-indigo-950/30 dark:text-indigo-300"><FileCode className="h-3 w-3" />{tx('ai.knowledge.header.jsonTemplate')}</a>
+            <a href="/downloads/netaop-knowledge-import-format.md" download="netaop-knowledge-import-format.md" className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2 py-1 font-semibold text-slate-600 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300"><HelpCircle className="h-3 w-3" />{tx('ai.knowledge.header.formatGuide')}</a>
           </div>
         </div>
         <button type="button" onClick={() => { setShowModal(true); setInputMode('upload'); setIngestionError(''); }} className="hidden items-center gap-2 rounded-xl bg-indigo-600 px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-indigo-700 sm:inline-flex">

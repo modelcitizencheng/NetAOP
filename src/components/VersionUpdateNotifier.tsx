@@ -74,7 +74,7 @@ const VersionUpdateNotifier: React.FC<{ language: string }> = ({ language }) => 
               </div>
               <div>
                 <p className="text-sm font-bold text-slate-800 dark:text-white/90">
-                  {systemInfo?.system_name || 'Nexora'} v{updateInfo.latest_version}
+                  {systemInfo?.system_name || 'NetAop'} v{updateInfo.latest_version}
                 </p>
                 <p className="text-[11px] text-slate-400 mt-0.5">
                   {zh ? '发布日期' : 'Released'}: {updateInfo.release_date}

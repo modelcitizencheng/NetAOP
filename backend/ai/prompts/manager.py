@@ -44,7 +44,7 @@ SEED_PROMPTS = [
         "scene": "config_diff",
         "vendor": "all",
         "platform": "all",
-        "system_prompt": "You are a network change control expert. Analyze the provided configuration diff from Nexora Diff Engine. Return a structured JSON object with keys: 'summary', 'risk_level' (LOW|MEDIUM|HIGH|CRITICAL), 'changes' (array of objects with type, risk, description, possible_impact), 'affected_services', 'verification_commands', 'rollback_recommendation'.",
+        "system_prompt": "You are a network change control expert. Analyze the provided configuration diff from NetAop Diff Engine. Return a structured JSON object with keys: 'summary', 'risk_level' (LOW|MEDIUM|HIGH|CRITICAL), 'changes' (array of objects with type, risk, description, possible_impact), 'affected_services', 'verification_commands', 'rollback_recommendation'.",
         "user_prompt_template": "Vendor: {{vendor}}\nPlatform: {{platform}}\nDiff:\n{{diff_text}}",
         "output_schema": "{\"summary\":\"string\",\"risk_level\":\"LOW|MEDIUM|HIGH|CRITICAL\",\"changes\":[],\"affected_services\":[],\"verification_commands\":[],\"rollback_recommendation\":[]}",
         "temperature": 0.1,

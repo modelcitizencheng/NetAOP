@@ -1,4 +1,4 @@
-Nexora 四厂商本地知识摘要包
+NetAop 四厂商本地知识摘要包
 ================================
 
 这个目录是一个可重复生成的、本地离线的 Knowledge Engine 候选资料包，覆盖
@@ -49,7 +49,7 @@ SHA-256 只能证明导入内容没有被意外篡改，不能替代官方 URL �
 在仓库根目录运行：
 
     .venv\Scripts\python.exe scripts\build_local_knowledge_pack.py --check-only
-    .venv\Scripts\python.exe scripts\build_local_knowledge_pack.py --output %TEMP%\nexora-local-knowledge-4vendor.zip
+    .venv\Scripts\python.exe scripts\build_local_knowledge_pack.py --output %TEMP%\netaop-local-knowledge-4vendor.zip
 
 不带 --check-only 时，脚本会重新生成本目录下的 Markdown、manifest.json 和
 覆盖报告。ZIP 使用固定时间戳和排序，便于比较构建结果；它只应作为本地测试

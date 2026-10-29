@@ -534,7 +534,7 @@
                 "value": [
                   {
                     "title": "打开接口详情",
-                    "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"设备角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                    "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"设备角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                     "targetBlank": false
                   }
                 ]
@@ -671,7 +671,7 @@
                 "value": [
                   {
                     "title": "打开接口详情",
-                    "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                    "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                     "targetBlank": false
                   }
                 ]
@@ -727,21 +727,21 @@
               "__name__": true,
               "ifIndex": true,
               "asset_id": true,
-              "nexora_asset_id": true,
-              "nexora_hostname": true,
-              "nexora_module": true,
-              "nexora_platform": true,
-              "nexora_role": true,
-              "nexora_site_id": true,
-              "nexora_site_name": true,
-              "nexora_tenant_id": true,
-              "nexora_vendor": true,
+              "netaop_asset_id": true,
+              "netaop_hostname": true,
+              "netaop_module": true,
+              "netaop_platform": true,
+              "netaop_role": true,
+              "netaop_site_id": true,
+              "netaop_site_name": true,
+              "netaop_tenant_id": true,
+              "netaop_vendor": true,
               "job": true,
               "tenant_id": true,
               "site_id": true,
               "platform": true,
               "sysName": true,
-              "nexora_interface_role": true,
+              "netaop_interface_role": true,
               "ifDescr": true
             },
             "indexByName": {
@@ -860,7 +860,7 @@
                 "value": [
                   {
                     "title": "打开接口详情",
-                    "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                    "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                     "targetBlank": false
                   }
                 ]
@@ -916,21 +916,21 @@
               "__name__": true,
               "ifIndex": true,
               "asset_id": true,
-              "nexora_asset_id": true,
-              "nexora_hostname": true,
-              "nexora_module": true,
-              "nexora_platform": true,
-              "nexora_role": true,
-              "nexora_site_id": true,
-              "nexora_site_name": true,
-              "nexora_tenant_id": true,
-              "nexora_vendor": true,
+              "netaop_asset_id": true,
+              "netaop_hostname": true,
+              "netaop_module": true,
+              "netaop_platform": true,
+              "netaop_role": true,
+              "netaop_site_id": true,
+              "netaop_site_name": true,
+              "netaop_tenant_id": true,
+              "netaop_vendor": true,
               "job": true,
               "tenant_id": true,
               "site_id": true,
               "platform": true,
               "sysName": true,
-              "nexora_interface_role": true,
+              "netaop_interface_role": true,
               "ifDescr": true
             },
             "indexByName": {
@@ -1049,7 +1049,7 @@
                 "value": [
                   {
                     "title": "打开接口详情",
-                    "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                    "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                     "targetBlank": false
                   }
                 ]
@@ -1105,21 +1105,21 @@
               "__name__": true,
               "ifIndex": true,
               "asset_id": true,
-              "nexora_asset_id": true,
-              "nexora_hostname": true,
-              "nexora_module": true,
-              "nexora_platform": true,
-              "nexora_role": true,
-              "nexora_site_id": true,
-              "nexora_site_name": true,
-              "nexora_tenant_id": true,
-              "nexora_vendor": true,
+              "netaop_asset_id": true,
+              "netaop_hostname": true,
+              "netaop_module": true,
+              "netaop_platform": true,
+              "netaop_role": true,
+              "netaop_site_id": true,
+              "netaop_site_name": true,
+              "netaop_tenant_id": true,
+              "netaop_vendor": true,
               "job": true,
               "tenant_id": true,
               "site_id": true,
               "platform": true,
               "sysName": true,
-              "nexora_interface_role": true,
+              "netaop_interface_role": true,
               "ifDescr": true
             },
             "indexByName": {
@@ -1367,7 +1367,7 @@
                 "value": [
                   {
                     "title": "打开接口详情",
-                    "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"设备角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                    "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"设备角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                     "targetBlank": false
                   }
                 ]
@@ -1770,7 +1770,7 @@
                 "value": [
                   {
                     "title": "打开接口详情",
-                    "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"vendor\"]}&var-role=${__data.fields[\"role\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"interface_role\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                    "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"vendor\"]}&var-role=${__data.fields[\"role\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"interface_role\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                     "targetBlank": false
                   }
                 ]
@@ -1913,7 +1913,7 @@
                 "value": [
                   {
                     "title": "打开接口详情",
-                    "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                    "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                     "targetBlank": false
                   }
                 ]
@@ -1969,21 +1969,21 @@
               "__name__": true,
               "ifIndex": true,
               "asset_id": true,
-              "nexora_asset_id": true,
-              "nexora_hostname": true,
-              "nexora_module": true,
-              "nexora_platform": true,
-              "nexora_role": true,
-              "nexora_site_id": true,
-              "nexora_site_name": true,
-              "nexora_tenant_id": true,
-              "nexora_vendor": true,
+              "netaop_asset_id": true,
+              "netaop_hostname": true,
+              "netaop_module": true,
+              "netaop_platform": true,
+              "netaop_role": true,
+              "netaop_site_id": true,
+              "netaop_site_name": true,
+              "netaop_tenant_id": true,
+              "netaop_vendor": true,
               "job": true,
               "tenant_id": true,
               "site_id": true,
               "platform": true,
               "sysName": true,
-              "nexora_interface_role": true,
+              "netaop_interface_role": true,
               "ifDescr": true
             },
             "indexByName": {
@@ -2184,7 +2184,7 @@
                 "value": [
                   {
                     "title": "打开接口详情",
-                    "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                    "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                     "targetBlank": false
                   }
                 ]
@@ -2265,21 +2265,21 @@
               "__name__": true,
               "ifIndex": true,
               "asset_id": true,
-              "nexora_asset_id": true,
-              "nexora_hostname": true,
-              "nexora_module": true,
-              "nexora_platform": true,
-              "nexora_role": true,
-              "nexora_site_id": true,
-              "nexora_site_name": true,
-              "nexora_tenant_id": true,
-              "nexora_vendor": true,
+              "netaop_asset_id": true,
+              "netaop_hostname": true,
+              "netaop_module": true,
+              "netaop_platform": true,
+              "netaop_role": true,
+              "netaop_site_id": true,
+              "netaop_site_name": true,
+              "netaop_tenant_id": true,
+              "netaop_vendor": true,
               "job": true,
               "tenant_id": true,
               "site_id": true,
               "platform": true,
               "sysName": true,
-              "nexora_interface_role": true,
+              "netaop_interface_role": true,
               "ifDescr": true
             },
             "indexByName": {
@@ -2324,7 +2324,7 @@
   "refresh": "30s",
   "schemaVersion": 39,
   "tags": [
-    "nexora",
+    "netaop",
     "network",
     "interface"
   ],
@@ -2514,6 +2514,6 @@
   "timezone": "browser",
   "title": "04 接口流量与健康（Interface Traffic & Health）",
   "description": "流量与利用率只统计管理状态启用且运行状态 UP 的接口。健康表默认隐藏管理停用接口，运行 DOWN 的接口作为异常候选；管理停用接口可通过“接口范围”切换显示。接口用途显示“用途待确认”表示 CMDB 尚未配置该端口的用途，不代表接口异常。",
-  "uid": "nexora-network-interface",
+  "uid": "netaop-network-interface",
   "version": 30
 }

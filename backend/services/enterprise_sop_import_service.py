@@ -106,7 +106,7 @@ def _ensure_source(user: dict[str, Any], *, canonical_url: str, metadata: dict[s
                 "source_type": "enterprise",
                 "source_kind": "enterprise",
                 "canonical_url": canonical_url,
-                "allowed_host": "internal.nexora.local",
+                "allowed_host": "internal.netaop.local",
                 "name": title,
                 "description": description,
                 "trust_level": "internal",
@@ -176,7 +176,7 @@ def import_enterprise_sop_file(
     captured_at = _now()
     content_hash = hashlib.sha256(data).hexdigest()
     tenant_key = hashlib.sha256(tenant_id.encode("utf-8")).hexdigest()[:24]
-    canonical_url = f"https://internal.nexora.local/tenant/{tenant_key}/enterprise-sop/{content_hash}"
+    canonical_url = f"https://internal.netaop.local/tenant/{tenant_key}/enterprise-sop/{content_hash}"
     provenance = {
         "proof_type": "tenant_owned_local_file_hash",
         "source_url": canonical_url,

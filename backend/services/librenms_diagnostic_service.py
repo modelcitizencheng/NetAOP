@@ -1,4 +1,4 @@
-"""Read-only diagnostics for Nexora's locally collected SNMP hardware inventory."""
+"""Read-only diagnostics for NetAop's locally collected SNMP hardware inventory."""
 
 from __future__ import annotations
 
@@ -49,7 +49,7 @@ def _parse_inventory_time(value: Any) -> datetime | None:
 
 def _base_result(device: Mapping[str, Any], *, state: str, message: str) -> dict[str, Any]:
     return {
-        "source": "nexora_snmp",
+        "source": "netaop_snmp",
         "state": state,
         "message": message,
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -60,7 +60,7 @@ def _base_result(device: Mapping[str, Any], *, state: str, message: str) -> dict
         "binding": None,
         "engine": {
             "instance_id": "",
-            "name": "Nexora SNMP collector",
+            "name": "NetAop SNMP collector",
             "version": "native",
             "commit": "",
             "health_state": "unknown",
@@ -100,7 +100,7 @@ def _base_result(device: Mapping[str, Any], *, state: str, message: str) -> dict
 
 
 def _local_hardware_snapshot(device: Mapping[str, Any]) -> dict[str, Any]:
-    """Build a diagnostic view from Nexora's persisted SNMP hardware inventory."""
+    """Build a diagnostic view from NetAop's persisted SNMP hardware inventory."""
     from services.snmp_hardware_inventory_service import (
         list_hardware_capabilities,
         list_hardware_sensors,
@@ -139,7 +139,7 @@ def _local_hardware_snapshot(device: Mapping[str, Any]) -> dict[str, Any]:
         capability for capability in capabilities
         if str(capability.get("discovery_version") or "") == DISCOVERY_VERSION
         and str(capability.get("source_type") or "").casefold() in {
-            "librenms_rule", "librenms_os_rule", "librenms_mib_rule", "nexora_snmp",
+            "librenms_rule", "librenms_os_rule", "librenms_mib_rule", "netaop_snmp",
         }
     ]
 
@@ -199,7 +199,7 @@ def _local_hardware_snapshot(device: Mapping[str, Any]) -> dict[str, Any]:
             "sensor_id": str(sensor.get("sensor_key") or ""),
             "sensor_class": component_class,
             "device_id": device_id,
-            "poller_type": "nexora_snmp",
+            "poller_type": "netaop_snmp",
             "source": source_type,
             "source_type": source_type,
             "source_id": str(sensor.get("source_id") or ""),
@@ -327,7 +327,7 @@ def _local_hardware_snapshot(device: Mapping[str, Any]) -> dict[str, Any]:
 
     if has_values:
         state = "available"
-        message = "已读取 Nexora 本地 LibreNMS 规则驱动的 SNMP 硬件库存"
+        message = "已读取 NetAop 本地 LibreNMS 规则驱动的 SNMP 硬件库存"
         sample_status = "available"
     elif has_active_sensors:
         state = "metadata_only"
@@ -381,7 +381,7 @@ def _local_hardware_snapshot(device: Mapping[str, Any]) -> dict[str, Any]:
         metric_summary=sorted(groups.values(), key=lambda item: item["key"]),
         engine={
             "instance_id": "",
-            "name": "Nexora SNMP collector",
+            "name": "NetAop SNMP collector",
             "version": "native",
             "commit": "",
             "health_state": "unknown",
@@ -402,7 +402,7 @@ def _local_hardware_snapshot(device: Mapping[str, Any]) -> dict[str, Any]:
 
 
 async def diagnose_librenms_hardware(device: Mapping[str, Any]) -> dict[str, Any]:
-    """Read Nexora's local hardware inventory; never contacts or binds an instance."""
+    """Read NetAop's local hardware inventory; never contacts or binds an instance."""
     try:
         return await asyncio.to_thread(_local_hardware_snapshot, device)
     except Exception as exc:
@@ -410,7 +410,7 @@ async def diagnose_librenms_hardware(device: Mapping[str, Any]) -> dict[str, Any
         result = _base_result(
             device,
             state="unavailable",
-            message="Nexora local SNMP hardware inventory is temporarily unavailable",
+            message="NetAop local SNMP hardware inventory is temporarily unavailable",
         )
         result["collection"].update(engine_status="error", sample_status="unavailable")
         result["engine"]["health_state"] = "error"

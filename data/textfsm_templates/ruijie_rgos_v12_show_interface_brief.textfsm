@@ -1,4 +1,4 @@
-# nexora-action-code: get_interface_brief
+# netaop-action-code: get_interface_brief
 Value Required INTERFACE (\S+\s+[0-9\/\.\:\-_]+|\S+)
 Value STATUS (administratively down|admin down|up|down|Down|Up|\S+)
 Value PROTOCOL (up|down|Down|Up|\S+)

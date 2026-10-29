@@ -1,4 +1,4 @@
-name: nexora
+name: netaop
 
 # Per-service CPU and memory ceilings (not reservations) are configured below.
 # Defaults target a 2 CPU / 8 GiB host; aggregate caps may exceed physical CPU
@@ -17,11 +17,11 @@ x-container-logging: &container-logging
 
 services:
   db:
-    image: nexora-postgres:latest
+    image: netaop-postgres:latest
     build:
       context: ./docker/postgres
       dockerfile: Dockerfile
-    container_name: nexora-db
+    container_name: netaop-db
     mem_limit: ${POSTGRES_MEM_LIMIT:-1g}
     cpus: "${POSTGRES_CPUS:-2.0}"
     pids_limit: 256
@@ -48,10 +48,10 @@ services:
       - POSTGRES_USER=${POSTGRES_USER:-postgres}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set to a non-default secret}
       - POSTGRES_DB=${POSTGRES_DB:-netops}
-      - POSTGRES_EXPORTER_USER=${POSTGRES_EXPORTER_USER:-nexora_metrics}
+      - POSTGRES_EXPORTER_USER=${POSTGRES_EXPORTER_USER:-netaop_metrics}
       - POSTGRES_EXPORTER_PASSWORD=${POSTGRES_EXPORTER_PASSWORD:?POSTGRES_EXPORTER_PASSWORD must be set to a non-default secret}
     volumes:
-      - nexora-pgdata:/var/lib/postgresql
+      - netaop-pgdata:/var/lib/postgresql
     shm_size: 256m
     stop_grace_period: 60s
     restart: unless-stopped
@@ -63,21 +63,21 @@ services:
       retries: 5
 
   vm-runtime-volume-init:
-    image: nexora-netops
-    container_name: nexora-vm-runtime-volume-init
+    image: netaop-netops
+    container_name: netaop-vm-runtime-volume-init
     user: "0:0"
     command: ["python", "-c", "import os; os.chown('/runtime', 1000, 1000); os.chmod('/runtime', 0o2770)"]
     volumes:
-      - nexora-vm-runtime:/runtime
+      - netaop-vm-runtime:/runtime
     restart: "no"
     logging: *container-logging
 
   netops:
-    image: nexora-netops
+    image: netaop-netops
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: nexora-netops
+    container_name: netaop-netops
     # Keep the backend runtime configuration in sync with the deployment
     # .env. Explicit entries in `environment` below override host-specific
     # values that must be different inside Docker (for example DATABASE_URL
@@ -109,8 +109,8 @@ services:
       - VM_MIN_FREE_DISK_SPACE_BYTES=${VM_MIN_FREE_DISK_SPACE_BYTES:-10737418240}
       # Keep Docker-internal object storage calls off any inherited HTTP proxy.
       # External S3-compatible endpoints can still use the configured proxy.
-      - "NO_PROXY=${NO_PROXY:-localhost,127.0.0.1},seaweedfs,nexora-seaweedfs"
-      - "no_proxy=${no_proxy:-localhost,127.0.0.1},seaweedfs,nexora-seaweedfs"
+      - "NO_PROXY=${NO_PROXY:-localhost,127.0.0.1},seaweedfs,netaop-seaweedfs"
+      - "no_proxy=${no_proxy:-localhost,127.0.0.1},seaweedfs,netaop-seaweedfs"
       - MONITORING_ARTIFACT_ROOT=/app/artifacts/monitoring
       - SECRET_KEY=${SECRET_KEY:?SECRET_KEY must be set to a non-default secret}
       - CREDENTIAL_ENCRYPTION_KEY=${CREDENTIAL_ENCRYPTION_KEY:?CREDENTIAL_ENCRYPTION_KEY must be set to a non-default secret}
@@ -144,7 +144,7 @@ services:
       # Set S3_ENDPOINT_URL=http://seaweedfs:8333 when the object-storage
       # profile is enabled; the default keeps local mode harmless.
       - S3_ENDPOINT_URL=${S3_ENDPOINT_URL:-http://seaweedfs:8333}
-      - S3_BUCKET=${S3_BUCKET:-nexora}
+      - S3_BUCKET=${S3_BUCKET:-netaop}
       - S3_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID:-}
       - S3_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY:-}
       - S3_FORCE_PATH_STYLE=${S3_FORCE_PATH_STYLE:-true}
@@ -160,7 +160,7 @@ services:
       - LOG_FILE_MAX_BYTES=${LOG_FILE_MAX_BYTES:-10485760}
       - LOG_FILE_BACKUP_COUNT=${LOG_FILE_BACKUP_COUNT:-5}
       # A Windows browser can download its local Agent from this release URL
-      # while the Nexora server itself runs in Linux/Docker.
+      # while the NetAop server itself runs in Linux/Docker.
       - TERMINAL_AGENT_WINDOWS_URL=${TERMINAL_AGENT_WINDOWS_URL:-https://github.com/libing28390-sketch/Release-netops/releases/latest/download/NexoraTerminalAgent.exe}
       # Optional integration. Empty means /api/templates reads PostgreSQL
       # directly instead of waiting on an external private-network endpoint.
@@ -178,7 +178,7 @@ services:
       # must run once per deployment, not once per Uvicorn worker process.
       - WORKERS=${WORKERS:-1}
       # LibreNMS secrets are sourced from this shared .env file for the
-      # optional runtime services below. Explicitly clear them in the Nexora
+      # optional runtime services below. Explicitly clear them in the NetAop
       # container so the broad env_file contract cannot expose them to the
       # backend process.
       - LIBRENMS_APP_KEY=
@@ -186,12 +186,12 @@ services:
       - LIBRENMS_DB_ROOT_PASSWORD=
       - LIBRENMS_REDIS_PASSWORD=
     volumes:
-      - nexora-data:/app/data
-      - nexora-vm-runtime:/app/data/vm-runtime
-      - nexora-remote-desktop-recordings:/app/data/remote_desktop_recordings
-      - nexora-backup:/app/backup
-      - nexora-dist:/app/dist
-      - nexora-monitoring-artifacts:/app/artifacts/monitoring
+      - netaop-data:/app/data
+      - netaop-vm-runtime:/app/data/vm-runtime
+      - netaop-remote-desktop-recordings:/app/data/remote_desktop_recordings
+      - netaop-backup:/app/backup
+      - netaop-dist:/app/dist
+      - netaop-monitoring-artifacts:/app/artifacts/monitoring
     depends_on:
       db:
         condition: service_healthy
@@ -216,7 +216,7 @@ services:
 
   alert-redis:
     image: redis:7.4.2-alpine
-    container_name: nexora-alert-redis
+    container_name: netaop-alert-redis
     cpus: "${ALERT_REDIS_CPUS:-0.25}"
     cpu_shares: 64
     mem_limit: ${ALERT_REDIS_MEM_LIMIT:-384m}
@@ -232,11 +232,11 @@ services:
       - |
         umask 077
         password_hash="$$(printf '%s' "$$ALERT_NOTIFICATION_BROKER_PASSWORD" | sha256sum | awk '{print $$1}')"
-        printf 'user default off\nuser alert-broker on #%s ~nexora_alert_* +@read +@write +@transaction +@scripting -@dangerous +ping +auth +hello +select +quit +client|setinfo\n' "$$password_hash" > /data/alert-users.acl
+        printf 'user default off\nuser alert-broker on #%s ~netaop_alert_* +@read +@write +@transaction +@scripting -@dangerous +ping +auth +hello +select +quit +client|setinfo\n' "$$password_hash" > /data/alert-users.acl
         exec /usr/local/bin/docker-entrypoint.sh redis-server --appendonly yes --appendfsync everysec \
           --maxmemory 128mb --maxmemory-policy noeviction --protected-mode yes --aclfile /data/alert-users.acl
     volumes:
-      - nexora-alert-redis-data:/data
+      - netaop-alert-redis-data:/data
     healthcheck:
       test:
         - CMD-SHELL
@@ -248,11 +248,11 @@ services:
     logging: *container-logging
 
   alert-notify-relay:
-    image: nexora-netops
+    image: netaop-netops
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: nexora-alert-notify-relay
+    container_name: netaop-alert-notify-relay
     env_file:
       - .env
     networks:
@@ -297,11 +297,11 @@ services:
     logging: *container-logging
 
   alert-notify-critical:
-    image: nexora-netops
+    image: netaop-netops
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: nexora-alert-notify-critical
+    container_name: netaop-alert-notify-critical
     env_file:
       - .env
     networks:
@@ -356,11 +356,11 @@ services:
     logging: *container-logging
 
   alert-notify-normal:
-    image: nexora-netops
+    image: netaop-netops
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: nexora-alert-notify-normal
+    container_name: netaop-alert-notify-normal
     env_file:
       - .env
     networks:
@@ -416,15 +416,15 @@ services:
 
   victoriametrics:
     image: victoriametrics/victoria-metrics:v1.103.0
-    container_name: nexora-victoriametrics
+    container_name: netaop-victoriametrics
     mem_limit: ${VICTORIAMETRICS_MEM_LIMIT:-768m}
     cpus: "${VICTORIAMETRICS_CPUS:-2.0}"
     pids_limit: 256
     environment:
       - TZ=${TZ:-Asia/Shanghai}
       - VM_MIN_FREE_DISK_SPACE_BYTES=${VM_MIN_FREE_DISK_SPACE_BYTES:-10737418240}
-      - MONITORING_VM_RUNTIME_DIR=/var/lib/nexora-vm-runtime
-    entrypoint: ["/bin/sh", "/opt/nexora/victoriametrics/supervisor.sh"]
+      - MONITORING_VM_RUNTIME_DIR=/var/lib/netaop-vm-runtime
+    entrypoint: ["/bin/sh", "/opt/netaop/victoriametrics/supervisor.sh"]
     command:
       - "-storageDataPath=/storage"
       - "-retentionPeriod=${VM_RETENTION_PERIOD:-30d}"
@@ -433,9 +433,9 @@ services:
       - "-influx.databaseNames=librenms"
       - "-httpListenAddr=:8428"
     volumes:
-      - nexora-vmdata:/storage
-      - nexora-vm-runtime:/var/lib/nexora-vm-runtime
-      - ./monitoring/victoriametrics:/opt/nexora/victoriametrics:ro
+      - netaop-vmdata:/storage
+      - netaop-vm-runtime:/var/lib/netaop-vm-runtime
+      - ./monitoring/victoriametrics:/opt/netaop/victoriametrics:ro
     expose:
       - "8428"
     networks:
@@ -455,7 +455,7 @@ services:
 
   snmp-exporter:
     image: prom/snmp-exporter:v0.26.0
-    container_name: nexora-snmp-exporter
+    container_name: netaop-snmp-exporter
     mem_limit: ${SNMP_EXPORTER_MEM_LIMIT:-128m}
     cpus: "${SNMP_EXPORTER_CPUS:-1.0}"
     pids_limit: 128
@@ -473,7 +473,7 @@ services:
       - |
         exec /bin/snmp_exporter --config.file=/etc/snmp_exporter/runtime/snmp_exporter/snmp.yml --web.listen-address=:9116
     volumes:
-      - nexora-monitoring-artifacts:/etc/snmp_exporter:ro
+      - netaop-monitoring-artifacts:/etc/snmp_exporter:ro
     expose:
       - "9116"
     restart: unless-stopped
@@ -489,7 +489,7 @@ services:
 
   postgres-exporter:
     image: quay.io/prometheuscommunity/postgres-exporter:v0.20.1
-    container_name: nexora-postgres-exporter
+    container_name: netaop-postgres-exporter
     mem_limit: ${POSTGRES_EXPORTER_MEM_LIMIT:-128m}
     cpus: "${POSTGRES_EXPORTER_CPUS:-0.5}"
     pids_limit: 128
@@ -499,7 +499,7 @@ services:
     environment:
       - TZ=${TZ:-Asia/Shanghai}
       - DATA_SOURCE_URI=db:5432/${POSTGRES_DB:-netops}?sslmode=disable
-      - DATA_SOURCE_USER=${POSTGRES_EXPORTER_USER:-nexora_metrics}
+      - DATA_SOURCE_USER=${POSTGRES_EXPORTER_USER:-netaop_metrics}
       - DATA_SOURCE_PASS=${POSTGRES_EXPORTER_PASSWORD:?POSTGRES_EXPORTER_PASSWORD must be set to a non-default secret}
     expose:
       - "9187"
@@ -511,7 +511,7 @@ services:
 
   vmagent:
     image: victoriametrics/vmagent:v1.103.0
-    container_name: nexora-vmagent
+    container_name: netaop-vmagent
     mem_limit: ${VMAGENT_MEM_LIMIT:-192m}
     cpus: "${VMAGENT_CPUS:-1.0}"
     pids_limit: 128
@@ -529,15 +529,15 @@ services:
       - NO_PROXY=localhost,127.0.0.1,netops,victoriametrics,snmp-exporter,postgres-exporter,vmagent,grafana,cadvisor
       - no_proxy=localhost,127.0.0.1,netops,victoriametrics,snmp-exporter,postgres-exporter,vmagent,grafana,cadvisor
     command:
-      - "-promscrape.config=/etc/nexora-collector/runtime/vmagent/scrape.yml"
+      - "-promscrape.config=/etc/netaop-collector/runtime/vmagent/scrape.yml"
       - "-remoteWrite.url=http://victoriametrics:8428/api/v1/write"
       - "-remoteWrite.tmpDataPath=/var/lib/vmagent"
       # Bound retry buffering when VictoriaMetrics enters read-only mode.
       - "-remoteWrite.maxDiskUsagePerURL=${VMAGENT_MAX_DISK_USAGE:-1GB}"
       - "-httpListenAddr=:8429"
     volumes:
-      - nexora-monitoring-artifacts:/etc/nexora-collector:ro
-      - nexora-vmagent-queue:/var/lib/vmagent
+      - netaop-monitoring-artifacts:/etc/netaop-collector:ro
+      - netaop-vmagent-queue:/var/lib/vmagent
     expose:
       - "8429"
     networks:
@@ -564,7 +564,7 @@ services:
 
   docker-socket-proxy:
     image: ghcr.io/tecnativa/docker-socket-proxy:v0.4.2
-    container_name: nexora-docker-socket-proxy
+    container_name: netaop-docker-socket-proxy
     mem_limit: ${DOCKER_SOCKET_PROXY_MEM_LIMIT:-64m}
     cpus: "${DOCKER_SOCKET_PROXY_CPUS:-0.25}"
     pids_limit: 64
@@ -592,7 +592,7 @@ services:
 
   cadvisor:
     image: ghcr.io/google/cadvisor:v0.60.6
-    container_name: nexora-cadvisor
+    container_name: netaop-cadvisor
     mem_limit: ${CADVISOR_MEM_LIMIT:-128m}
     cpus: "${CADVISOR_CPUS:-0.5}"
     pids_limit: 128
@@ -640,7 +640,7 @@ services:
 
   grafana:
     image: grafana/grafana:12.1.0
-    container_name: nexora-grafana
+    container_name: netaop-grafana
     mem_limit: ${GRAFANA_MEM_LIMIT:-384m}
     cpus: "${GRAFANA_CPUS:-1.0}"
     pids_limit: 256
@@ -676,7 +676,7 @@ services:
       - NO_PROXY=localhost,127.0.0.1,victoriametrics,grafana,snmp-exporter,vmagent
       - no_proxy=localhost,127.0.0.1,victoriametrics,grafana,snmp-exporter,vmagent
     volumes:
-      - nexora-grafana-data:/var/lib/grafana
+      - netaop-grafana-data:/var/lib/grafana
       # Mount only the directories owned by this release. Mounting the whole
       # provisioning directory hides Grafana's image-provided plugins,
       # alerting, and access-control directories and produces misleading
@@ -706,10 +706,10 @@ services:
       start_period: 60s
 
   nginx:
-    image: nexora-nginx
+    image: netaop-nginx
     build:
       context: ./nginx
-    container_name: nexora-nginx
+    container_name: netaop-nginx
     init: true
     mem_limit: ${NGINX_MEM_LIMIT:-256m}
     cpus: "${NGINX_CPUS:-1.0}"
@@ -733,7 +733,7 @@ services:
       - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - nexora-dist:/usr/share/nginx/html:ro
+      - netaop-dist:/usr/share/nginx/html:ro
       # The entrypoint generates a fallback self-signed certificate when absent.
       # Existing trusted certificates are preserved and used as-is.
       - ./nginx/ssl:/etc/nginx/ssl
@@ -757,7 +757,7 @@ services:
 
   redis:
     image: redis:7.4.2-alpine
-    container_name: nexora-redis
+    container_name: netaop-redis
     # Keep room above Redis's 512 MB data limit for persistence and buffers.
     mem_limit: ${REDIS_MEM_LIMIT:-1g}
     cpus: "${REDIS_CPUS:-1.0}"
@@ -777,34 +777,34 @@ services:
         umask 077
         if [ -n "$$REDIS_PASSWORD" ]; then
           password_hash="$(printf '%s' "$$REDIS_PASSWORD" | sha256sum | awk '{print $$1}')"
-          printf 'user default off\nuser nexora on #%s ~nexora:* ~ai:ratelimit:* +ping +get +set +incr +del +eval +scan\n' "$$password_hash" > /data/nexora-users.acl
+          printf 'user default off\nuser netaop on #%s ~netaop:* ~ai:ratelimit:* +ping +get +set +incr +del +eval +scan\n' "$$password_hash" > /data/netaop-users.acl
         else
-          printf 'user default off\nuser nexora on nopass ~nexora:* ~ai:ratelimit:* +ping +get +set +incr +del +eval +scan\n' > /data/nexora-users.acl
+          printf 'user default off\nuser netaop on nopass ~netaop:* ~ai:ratelimit:* +ping +get +set +incr +del +eval +scan\n' > /data/netaop-users.acl
         fi
         exec /usr/local/bin/docker-entrypoint.sh redis-server --appendonly yes --maxmemory 512mb \
-          --maxmemory-policy allkeys-lru --protected-mode yes --aclfile /data/nexora-users.acl
+          --maxmemory-policy allkeys-lru --protected-mode yes --aclfile /data/netaop-users.acl
     ports:
       - "${REDIS_BIND_ADDRESS:-127.0.0.1}:6379:6379"
     volumes:
-      - nexora-redis-data:/data
+      - netaop-redis-data:/data
     healthcheck:
       test:
         - CMD-SHELL
         - >-
           if [ -n "$${REDIS_PASSWORD}" ]; then
-          redis-cli --user nexora -a "$${REDIS_PASSWORD}" ping | grep -q PONG;
-          else redis-cli --user nexora ping | grep -q PONG; fi
+          redis-cli --user netaop -a "$${REDIS_PASSWORD}" ping | grep -q PONG;
+          else redis-cli --user netaop ping | grep -q PONG; fi
       interval: 10s
       timeout: 3s
       retries: 5
     logging: *container-logging
 
   # Graphical remote access. Neither service publishes a host port;
-  # only Nexora can reach the web application and only Guacamole can reach
+  # only NetAop can reach the web application and only Guacamole can reach
   # guacd. The guacd-only egress network routes connections to managed hosts.
   guacamole:
     image: guacamole/guacamole:1.6.0
-    container_name: nexora-guacamole
+    container_name: netaop-guacamole
     mem_limit: ${GUACAMOLE_MEM_LIMIT:-768m}
     cpus: "${GUACAMOLE_CPUS:-1.0}"
     pids_limit: 256
@@ -827,8 +827,8 @@ services:
 
   guacd:
     image: guacamole/guacd:1.6.0
-    container_name: nexora-guacd
-    # Apache's 1.6.0 image runs guacd as UID/GID 1000, matching Nexora.
+    container_name: netaop-guacd
+    # Apache's 1.6.0 image runs guacd as UID/GID 1000, matching NetAop.
     user: "1000:1000"
     mem_limit: ${GUACD_MEM_LIMIT:-1024m}
     cpus: "${GUACD_CPUS:-2.0}"
@@ -836,11 +836,11 @@ services:
     expose:
       - "4822"
     volumes:
-      - nexora-remote-desktop-recordings:/recordings
+      - netaop-remote-desktop-recordings:/recordings
     networks:
       - remote_desktop_protocol
       - remote_desktop_egress
-    # Start Nexora first so Docker initializes the shared named volume from
+    # Start NetAop first so Docker initializes the shared named volume from
     # the app image's pre-created, UID-1000 recording directory.
     depends_on:
       netops:
@@ -855,7 +855,7 @@ services:
   seaweedfs:
     image: chrislusf/seaweedfs:latest
     profiles: ["object-storage"]
-    container_name: nexora-seaweedfs
+    container_name: netaop-seaweedfs
     mem_limit: ${SEAWEEDFS_MEM_LIMIT:-512m}
     cpus: "${SEAWEEDFS_CPUS:-1.0}"
     pids_limit: 256
@@ -866,9 +866,9 @@ services:
       # interpolation identical prevents the two services from drifting.
       - AWS_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID:-}
       - AWS_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY:-}
-      - S3_BUCKET=${S3_BUCKET:-nexora}
+      - S3_BUCKET=${S3_BUCKET:-netaop}
     volumes:
-      - nexora-seaweedfs-data:/data
+      - netaop-seaweedfs-data:/data
     expose:
       - "8333"
     restart: unless-stopped
@@ -876,11 +876,11 @@ services:
 
   # Optional full LibreNMS runtime. The profile is deliberately opt-in; the
   # dispatcher is the only service with a route to the configured device
-  # management network. These services never use Nexora PostgreSQL/Redis.
+  # management network. These services never use NetAop PostgreSQL/Redis.
   librenms-db:
     image: mariadb:11.8.9@sha256:6422478cb8e159f080fb1d8ccf65101e26fe51385787fde7d16c3b165a331f15
     profiles: ["librenms-native"]
-    container_name: nexora-librenms-db
+    container_name: netaop-librenms-db
     command:
       - mysqld
       - --innodb-file-per-table=1
@@ -894,9 +894,9 @@ services:
       MARIADB_USER: librenms
       MARIADB_PASSWORD: ${LIBRENMS_DB_PASSWORD:-}
     volumes:
-      - nexora-librenms-dbdata:/var/lib/mysql
-      - ./monitoring/librenms/mariadb-entrypoint.sh:/run/nexora/librenms/mariadb-entrypoint.sh:ro
-    entrypoint: ["/bin/sh", "/run/nexora/librenms/mariadb-entrypoint.sh"]
+      - netaop-librenms-dbdata:/var/lib/mysql
+      - ./monitoring/librenms/mariadb-entrypoint.sh:/run/netaop/librenms/mariadb-entrypoint.sh:ro
+    entrypoint: ["/bin/sh", "/run/netaop/librenms/mariadb-entrypoint.sh"]
     networks:
       - librenms_internal
     healthcheck:
@@ -912,14 +912,14 @@ services:
   librenms-redis:
     image: redis:7.4.11-alpine@sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499
     profiles: ["librenms-native"]
-    container_name: nexora-librenms-redis
+    container_name: netaop-librenms-redis
     environment:
       TZ: ${TZ:-Asia/Shanghai}
       REDIS_PASSWORD: ${LIBRENMS_REDIS_PASSWORD:-}
-    entrypoint: ["/bin/sh", "/run/nexora/librenms/redis-entrypoint.sh"]
+    entrypoint: ["/bin/sh", "/run/netaop/librenms/redis-entrypoint.sh"]
     volumes:
-      - nexora-librenms-redis-data:/data
-      - ./monitoring/librenms/redis-entrypoint.sh:/run/nexora/librenms/redis-entrypoint.sh:ro
+      - netaop-librenms-redis-data:/data
+      - ./monitoring/librenms/redis-entrypoint.sh:/run/netaop/librenms/redis-entrypoint.sh:ro
     networks:
       - librenms_internal
     healthcheck:
@@ -936,7 +936,7 @@ services:
   librenms:
     image: librenms/librenms:26.9.1.1@sha256:814e3fb8d837c65ac51c1d9659ca5f551ed8ea47661ea7de6afbe2081207909b
     profiles: ["librenms-native"]
-    container_name: nexora-librenms
+    container_name: netaop-librenms
     hostname: librenms
     environment: &librenms-runtime-environment
       TZ: ${TZ:-Asia/Shanghai}
@@ -958,10 +958,10 @@ services:
       CACHE_DRIVER: redis
       SESSION_DRIVER: redis
       LIBRENMS_WEATHERMAP: "false"
-    entrypoint: ["/bin/sh", "/run/nexora/librenms/runtime-guard.sh"]
+    entrypoint: ["/bin/sh", "/run/netaop/librenms/runtime-guard.sh"]
     volumes:
-      - nexora-librenms-data:/data
-      - ./monitoring/librenms/runtime-guard.sh:/run/nexora/librenms/runtime-guard.sh:ro
+      - netaop-librenms-data:/data
+      - ./monitoring/librenms/runtime-guard.sh:/run/netaop/librenms/runtime-guard.sh:ro
     expose:
       - "8000"
     # Local-only bootstrap access for the initial admin account. No public
@@ -989,16 +989,16 @@ services:
   librenms-dispatcher:
     image: librenms/librenms:26.9.1.1@sha256:814e3fb8d837c65ac51c1d9659ca5f551ed8ea47661ea7de6afbe2081207909b
     profiles: ["librenms-native"]
-    container_name: nexora-librenms-dispatcher
+    container_name: netaop-librenms-dispatcher
     hostname: librenms-dispatcher
     environment:
       <<: *librenms-runtime-environment
-      DISPATCHER_NODE_ID: nexora-librenms-dispatcher-1
+      DISPATCHER_NODE_ID: netaop-librenms-dispatcher-1
       SIDECAR_DISPATCHER: "1"
-    entrypoint: ["/bin/sh", "/run/nexora/librenms/runtime-guard.sh"]
+    entrypoint: ["/bin/sh", "/run/netaop/librenms/runtime-guard.sh"]
     volumes:
-      - nexora-librenms-data:/data
-      - ./monitoring/librenms/runtime-guard.sh:/run/nexora/librenms/runtime-guard.sh:ro
+      - netaop-librenms-data:/data
+      - ./monitoring/librenms/runtime-guard.sh:/run/netaop/librenms/runtime-guard.sh:ro
     cap_add:
       - NET_RAW
     security_opt:
@@ -1021,38 +1021,38 @@ services:
     logging: *container-logging
 
 volumes:
-  nexora-data:
-    name: nexora-data
-  nexora-backup:
-    name: nexora-backup
-  nexora-pgdata:
-    name: nexora-pgdata
-  nexora-dist:
-    name: nexora-dist
-  nexora-redis-data:
-    name: nexora-redis-data
-  nexora-alert-redis-data:
-    name: nexora-alert-redis-data
-  nexora-vmdata:
-    name: nexora-vmdata
-  nexora-vm-runtime:
-    name: nexora-vm-runtime
-  nexora-vmagent-queue:
-    name: nexora-vmagent-queue
-  nexora-monitoring-artifacts:
-    name: nexora-monitoring-artifacts
-  nexora-grafana-data:
-    name: nexora-grafana-data
-  nexora-seaweedfs-data:
-    name: nexora-seaweedfs-data
-  nexora-librenms-data:
-    name: nexora-librenms-data
-  nexora-librenms-dbdata:
-    name: nexora-librenms-dbdata
-  nexora-librenms-redis-data:
-    name: nexora-librenms-redis-data
-  nexora-remote-desktop-recordings:
-    name: nexora-remote-desktop-recordings
+  netaop-data:
+    name: netaop-data
+  netaop-backup:
+    name: netaop-backup
+  netaop-pgdata:
+    name: netaop-pgdata
+  netaop-dist:
+    name: netaop-dist
+  netaop-redis-data:
+    name: netaop-redis-data
+  netaop-alert-redis-data:
+    name: netaop-alert-redis-data
+  netaop-vmdata:
+    name: netaop-vmdata
+  netaop-vm-runtime:
+    name: netaop-vm-runtime
+  netaop-vmagent-queue:
+    name: netaop-vmagent-queue
+  netaop-monitoring-artifacts:
+    name: netaop-monitoring-artifacts
+  netaop-grafana-data:
+    name: netaop-grafana-data
+  netaop-seaweedfs-data:
+    name: netaop-seaweedfs-data
+  netaop-librenms-data:
+    name: netaop-librenms-data
+  netaop-librenms-dbdata:
+    name: netaop-librenms-dbdata
+  netaop-librenms-redis-data:
+    name: netaop-librenms-redis-data
+  netaop-remote-desktop-recordings:
+    name: netaop-remote-desktop-recordings
 
 networks:
   default: {}
@@ -1069,7 +1069,7 @@ networks:
   # This external, non-internal network must already be attached/routed to the
   # device-management network. It is not the isolated monitoring_internal net.
   librenms_device_management:
-    name: ${LIBRENMS_DEVICE_NETWORK_NAME:-nexora-librenms-device-management}
+    name: ${LIBRENMS_DEVICE_NETWORK_NAME:-netaop-librenms-device-management}
     external: true
   grafana_auth:
     internal: true

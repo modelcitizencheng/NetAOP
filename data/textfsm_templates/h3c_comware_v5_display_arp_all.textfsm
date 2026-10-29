@@ -1,4 +1,4 @@
-# nexora-action-code: get_arp_table
+# netaop-action-code: get_arp_table
 Value IP_ADDRESS (\d{1,3}(?:\.\d{1,3}){3})
 Value MAC_ADDRESS ([0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4})
 Value VLAN_ID (\d+|N/A|--)

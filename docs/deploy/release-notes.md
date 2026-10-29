@@ -1,4 +1,4 @@
-# Nexora v1.0.11
+# NetAop v1.0.11
 
 发布日期：2026-10-28。服务端发行形态为 Linux / Ubuntu / Docker，Windows 工作站 Agent 随同版本单独提供。
 
@@ -50,7 +50,7 @@
 
 # 历史发布说明
 
-# Nexora V1.0.10
+# NetAop V1.0.10
 
 > 发布内容更新日期：2026-10-13
 
@@ -58,7 +58,7 @@
 
 ### RDP / VNC 远程桌面纳管
 
-- 通过 Guacamole 提供浏览器内的 RDP 与 VNC 会话，沿用 Nexora 的资产授权和凭据托管，并支持会话审计与录像回放；Docker 部署由 Guacamole 服务承载协议代理。
+- 通过 Guacamole 提供浏览器内的 RDP 与 VNC 会话，沿用 NetAop 的资产授权和凭据托管，并支持会话审计与录像回放；Docker 部署由 Guacamole 服务承载协议代理。
 - 优化 RDP 初始宽屏分辨率和 RDP/VNC 录像回放画面比例，播放器按录像画布尺寸适配，避免把远程桌面画面拉伸成错误比例。
 - 资产编辑只在 Windows 服务器中显示 RDP/VNC 配置；访问中心按远程桌面配置显示目标端口，并将 RDP 登录与服务管理操作排在同一行。
 
@@ -188,9 +188,9 @@
 
 ## 发布定位
 
-v1.0.9 起，Nexora 服务端的发布形态收敛为 **Linux / Ubuntu / Docker**。v1.0.8 是最后一个提供 Windows 原生桌面服务端发行包的版本；v1.0.9 不再构建或发布 Windows 桌面安装包、桌面启动器或 Windows 服务端发布分支。Windows 操作员工作站 Agent 仍作为独立附件发布，用于从 Windows 浏览器访问 Linux 服务端并拉起本机浏览器/终端。
+v1.0.9 起，NetAop 服务端的发布形态收敛为 **Linux / Ubuntu / Docker**。v1.0.8 是最后一个提供 Windows 原生桌面服务端发行包的版本；v1.0.9 不再构建或发布 Windows 桌面安装包、桌面启动器或 Windows 服务端发布分支。Windows 操作员工作站 Agent 仍作为独立附件发布，用于从 Windows 浏览器访问 Linux 服务端并拉起本机浏览器/终端。
 
-Windows 网络设备的资产管理、SNMP 采集、SSH/WinRM 远程管理能力继续保留。这里的变化只针对 Nexora 平台自身的部署与发行形态。
+Windows 网络设备的资产管理、SNMP 采集、SSH/WinRM 远程管理能力继续保留。这里的变化只针对 NetAop 平台自身的部署与发行形态。
 
 ## v1.0.9 已有基线功能
 
@@ -206,7 +206,7 @@ Windows 网络设备的资产管理、SNMP 采集、SSH/WinRM 远程管理能力
 - LLDP 诊断补齐本地接口名映射，可结合 LLDP 本地端口表和 IF-MIB `ifName` 将邻居端口索引解析为接口名称。
 - 修正网络接口指标的序列身份与 Grafana 面板聚合，减少重复接口曲线并完善 Linux/Windows 主机监控视图。
 - Docker 新安装默认启用内置 SeaweedFS S3 并生成安装专用凭据；现有本地录像和配置备份不会自动迁移。
-- Grafana 通过同源认证代理复用 Nexora 登录会话，匿名访问保持关闭；专用认证网络使用 Docker IPAM 动态分配，并由 Nginx 统一剥离外部 `/grafana/` 前缀。
+- Grafana 通过同源认证代理复用 NetAop 登录会话，匿名访问保持关闭；专用认证网络使用 Docker IPAM 动态分配，并由 Nginx 统一剥离外部 `/grafana/` 前缀。
 - Docker 前端镜像只安装构建所需依赖，避免与 Promptfoo 相关的原生 SQLite 开发依赖影响离线或受限环境构建。
 
 ### v1.0.9 监控与告警基线

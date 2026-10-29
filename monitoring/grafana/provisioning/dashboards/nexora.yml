@@ -1,9 +1,9 @@
 apiVersion: 1
 
 providers:
-  - name: Nexora dashboards
+  - name: NetAop dashboards
     orgId: 1
-    folder: Nexora
+    folder: NetAop
     type: file
     disableDeletion: false
     updateIntervalSeconds: 10

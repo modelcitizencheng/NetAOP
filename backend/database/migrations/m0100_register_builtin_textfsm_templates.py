@@ -188,8 +188,8 @@ def upgrade(cursor, use_pg: bool) -> None:
         if profile_code and not profile_id:
             continue
         content = path.read_text(encoding="utf-8")
-        template_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:system-template:{path.name}"))
-        version_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:system-template-version:{path.name}:1"))
+        template_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:system-template:{path.name}"))
+        version_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:system-template-version:{path.name}:1"))
         template_code = _resolve_template_code(cursor, parser_platform, template_code, template_id, path.name)
         cursor.execute(
             """INSERT INTO parser_templates

@@ -171,7 +171,7 @@ const ROLE_LEVEL: Record<string, number> = { Administrator: 3, Operator: 2, View
     <header className="theme-header h-14 md:h-16 shadow-sm px-3 md:px-8 flex items-center justify-between z-[40]">
       <div className="flex items-center gap-2 md:gap-4 flex-1 min-w-0">
         {isHomePage ? (
-          /* Home page: Grid icon + Nexora branding */
+          /* Home page: Grid icon + NetAop branding */
           <div className="flex items-center gap-3">
             <div
               className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -181,7 +181,7 @@ const ROLE_LEVEL: Record<string, number> = { Administrator: 3, Operator: 2, View
             </div>
             <div>
               <h2 style={{ color: 'var(--heading-text)' }} className="text-base md:text-lg font-bold tracking-tight leading-none">
-                {systemInfo?.system_name || 'Nexora'}
+                {systemInfo?.system_name || 'NetAop'}
               </h2>
               <p style={{ color: 'var(--dim-text)' }} className="text-[11px] hidden sm:block mt-0.5 leading-none">
                 {language === 'zh' ? '智能网络中枢' : 'Smart Net Hub'}
@@ -217,7 +217,7 @@ const ROLE_LEVEL: Record<string, number> = { Administrator: 3, Operator: 2, View
                     {pageTitle}
                   </h2>
                   <p className={`text-[11px] hidden sm:block text-left ${resolvedTheme === 'dark' ? 'text-white/45' : 'text-black/40'}`}>
-                    {new Date().toLocaleDateString()} · {systemInfo?.system_name || 'Nexora'} Control Plane
+                    {new Date().toLocaleDateString()} · {systemInfo?.system_name || 'NetAop'} Control Plane
                   </p>
                 </div>
                 <ChevronDown size={14} className={`flex-shrink-0 ml-1 transition-transform ${appSwitcherOpen ? 'rotate-180' : ''} ${resolvedTheme === 'dark' ? 'text-white/45' : 'text-black/35'}`} />

@@ -10,14 +10,14 @@
   mount_kind: "floor"
   installation_location: "落地"
   structural_features: "前后网孔门、19英寸立柱、侧板、脚轮/支脚"
-  nexora_fields: "rack.height_u/rack.width/rack.depth"
+  netaop_fields: "rack.height_u/rack.width/rack.depth"
   blender_approach: "精确基础模型；立柱/门/侧板独立对象"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "行业常见规格，项目实际尺寸优先"
   source_row: 4
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -29,14 +29,14 @@
   mount_kind: "floor"
   installation_location: "落地"
   structural_features: "深机箱服务器/数据中心常见"
-  nexora_fields: "rack.*"
+  netaop_fields: "rack.*"
   blender_approach: "与600×1000共用参数化模板"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "行业常见规格"
   source_row: 5
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -48,14 +48,14 @@
   mount_kind: "floor"
   installation_location: "落地"
   structural_features: "两侧垂直理线空间更大"
-  nexora_fields: "rack.*"
+  netaop_fields: "rack.*"
   blender_approach: "参数化宽度"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "行业常见规格"
   source_row: 6
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -67,14 +67,14 @@
   mount_kind: "floor"
   installation_location: "落地"
   structural_features: "数据中心服务器/高密布线"
-  nexora_fields: "rack.*"
+  netaop_fields: "rack.*"
   blender_approach: "参数化宽度/深度"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "行业常见规格"
   source_row: 7
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -86,14 +86,14 @@
   mount_kind: "floor"
   installation_location: "落地"
   structural_features: "高U数、前后网孔门"
-  nexora_fields: "rack.*"
+  netaop_fields: "rack.*"
   blender_approach: "42U模板拉高"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "行业常见规格"
   source_row: 8
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -105,14 +105,14 @@
   mount_kind: "floor"
   installation_location: "落地"
   structural_features: "高密布线、垂直PDU/理线"
-  nexora_fields: "rack.*"
+  netaop_fields: "rack.*"
   blender_approach: "参数化模板"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "行业常见规格"
   source_row: 9
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -124,14 +124,14 @@
   mount_kind: "floor"
   installation_location: "落地"
   structural_features: "无门/侧板，四柱/二柱"
-  nexora_fields: "rack.*"
+  netaop_fields: "rack.*"
   blender_approach: "独立轻量模型"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "机房/实验室常见"
   source_row: 10
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -143,14 +143,14 @@
   mount_kind: "zero_u"
   installation_location: "横装"
   structural_features: "8×IEC C13、开关/指示灯"
-  nexora_fields: "pdu.outlets/current/power"
+  netaop_fields: "pdu.outlets/current/power"
   blender_approach: "插座用实例化阵列"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "通用模板"
   source_row: 11
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -162,14 +162,14 @@
   mount_kind: "zero_u"
   installation_location: "横装"
   structural_features: "国标插座、空开/指示灯"
-  nexora_fields: "pdu.*"
+  netaop_fields: "pdu.*"
   blender_approach: "插座阵列+面板贴图"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "中国机柜常见"
   source_row: 12
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -181,14 +181,14 @@
   mount_kind: "zero_u"
   installation_location: "机柜后侧竖装"
   structural_features: "C13阵列、输入线"
-  nexora_fields: "pdu.*"
+  netaop_fields: "pdu.*"
   blender_approach: "参数化长度/插座数"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "数据中心常见"
   source_row: 13
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -200,14 +200,14 @@
   mount_kind: "zero_u"
   installation_location: "机柜后侧竖装"
   structural_features: "24×C13"
-  nexora_fields: "pdu.*"
+  netaop_fields: "pdu.*"
   blender_approach: "参数化阵列"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "数据中心常见"
   source_row: 14
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -219,14 +219,14 @@
   mount_kind: "zero_u"
   installation_location: "机柜后侧竖装"
   structural_features: "C13+C19混合、高密"
-  nexora_fields: "pdu.*"
+  netaop_fields: "pdu.*"
   blender_approach: "插座类型可配置"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "高密服务器机柜"
   source_row: 15
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -238,14 +238,14 @@
   mount_kind: "zero_u"
   installation_location: "后侧竖装"
   structural_features: "LCD/数码管、网口、传感器口"
-  nexora_fields: "pdu.current/voltage/power/temp"
+  netaop_fields: "pdu.current/voltage/power/temp"
   blender_approach: "LCD独立对象，可做状态显示"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "智能机柜建议"
   source_row: 16
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -257,14 +257,14 @@
   mount_kind: "zero_u"
   installation_location: "后侧竖装"
   structural_features: "每路状态灯/控制"
-  nexora_fields: "pdu.outlet_status"
+  netaop_fields: "pdu.outlet_status"
   blender_approach: "LED实例化"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "后续可联动"
   source_row: 17
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -276,14 +276,14 @@
   mount_kind: "unknown"
   installation_location: "横装"
   structural_features: "双路输入、输出插座/状态灯"
-  nexora_fields: "power.feed_a/feed_b/state"
+  netaop_fields: "power.feed_a/feed_b/state"
   blender_approach: "1U精细面板"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "双路电源机柜"
   source_row: 18
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -295,14 +295,14 @@
   mount_kind: "unknown"
   installation_location: "横装"
   structural_features: "A/B输入、旁路/告警灯"
-  nexora_fields: "power.state"
+  netaop_fields: "power.state"
   blender_approach: "1U精细面板"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "关键负载"
   source_row: 19
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -314,14 +314,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "24×RJ45/模块孔"
-  nexora_fields: "patch_panel.ports"
+  netaop_fields: "patch_panel.ports"
   blender_approach: "端口实例化+贴图"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "园区机柜必备"
   source_row: 20
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -333,14 +333,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "24×屏蔽模块"
-  nexora_fields: "patch_panel.ports"
+  netaop_fields: "patch_panel.ports"
   blender_approach: "与Cat6共用骨架"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "万兆铜缆场景"
   source_row: 21
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -352,14 +352,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "48×RJ45"
-  nexora_fields: "patch_panel.ports"
+  netaop_fields: "patch_panel.ports"
   blender_approach: "2U参数化"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "高密铜缆"
   source_row: 22
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -371,14 +371,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "12/24组LC适配器、标签"
-  nexora_fields: "odf.ports"
+  netaop_fields: "odf.ports"
   blender_approach: "LC适配器实例化"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "数据中心/园区"
   source_row: 23
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -390,14 +390,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "高密LC阵列"
-  nexora_fields: "odf.ports"
+  netaop_fields: "odf.ports"
   blender_approach: "高密实例化"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "数据中心"
   source_row: 24
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -409,14 +409,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "可插拔MPO-LC盒"
-  nexora_fields: "odf.cassettes"
+  netaop_fields: "odf.cassettes"
   blender_approach: "盒式模块独立"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "40/100/400G布线"
   source_row: 25
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -428,14 +428,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "抽拉盘、LC/SC适配器"
-  nexora_fields: "odf.*"
+  netaop_fields: "odf.*"
   blender_approach: "抽屉可独立对象"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "运营商/机房"
   source_row: 26
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -447,14 +447,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "高密纤芯、熔纤盘"
-  nexora_fields: "odf.*"
+  netaop_fields: "odf.*"
   blender_approach: "2U系列模板"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "骨干光纤"
   source_row: 27
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -466,14 +466,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "5个D环"
-  nexora_fields: null
+  netaop_fields: null
   blender_approach: "非常低模"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "常见"
   source_row: 28
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -485,14 +485,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "梳齿+盖板"
-  nexora_fields: null
+  netaop_fields: null
   blender_approach: "重复齿实例化"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "数据中心常见"
   source_row: 29
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -504,14 +504,14 @@
   mount_kind: "unknown"
   installation_location: "前/后"
   structural_features: "中间毛刷孔"
-  nexora_fields: null
+  netaop_fields: null
   blender_approach: "贴图+简单几何"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "冷/热通道走线"
   source_row: 30
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -523,14 +523,14 @@
   mount_kind: "u_mount"
   installation_location: "机柜侧"
   structural_features: "梳齿/盖板"
-  nexora_fields: null
+  netaop_fields: null
   blender_approach: "跟随机柜高度"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "800宽机柜"
   source_row: 31
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -542,14 +542,14 @@
   mount_kind: "u_mount"
   installation_location: "机柜侧"
   structural_features: "梳齿/盖板"
-  nexora_fields: null
+  netaop_fields: null
   blender_approach: "镜像资产"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "800宽机柜"
   source_row: 32
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -561,14 +561,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "纯面板"
-  nexora_fields: null
+  netaop_fields: null
   blender_approach: "单面低模"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "填充空U"
   source_row: 33
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -580,14 +580,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "纯面板"
-  nexora_fields: null
+  netaop_fields: null
   blender_approach: "参数化高度"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "填充空U"
   source_row: 34
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -599,14 +599,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "纯面板"
-  nexora_fields: null
+  netaop_fields: null
   blender_approach: "参数化高度"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "填充空U"
   source_row: 35
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -618,14 +618,14 @@
   mount_kind: "unknown"
   installation_location: "横装"
   structural_features: "冲孔托板"
-  nexora_fields: "shelf.depth"
+  netaop_fields: "shelf.depth"
   blender_approach: "低模+打孔法线贴图"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "非机架设备承载"
   source_row: 36
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -637,14 +637,14 @@
   mount_kind: "unknown"
   installation_location: "横装"
   structural_features: "加强筋/冲孔"
-  nexora_fields: "shelf.*"
+  netaop_fields: "shelf.*"
   blender_approach: "系列模板"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "重设备"
   source_row: 37
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -656,14 +656,14 @@
   mount_kind: "unknown"
   installation_location: "横装"
   structural_features: "滑轨+拉手"
-  nexora_fields: "shelf.*"
+  netaop_fields: "shelf.*"
   blender_approach: "抽拉动画可选"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "维护"
   source_row: 38
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -675,14 +675,14 @@
   mount_kind: "unknown"
   installation_location: "横装"
   structural_features: "折叠LCD+键盘触控板"
-  nexora_fields: "kvm.state"
+  netaop_fields: "kvm.state"
   blender_approach: "可做开合动画"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "机房常见"
   source_row: 39
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -694,14 +694,14 @@
   mount_kind: "unknown"
   installation_location: "横装"
   structural_features: "多口KVM/状态灯"
-  nexora_fields: "kvm.ports"
+  netaop_fields: "kvm.ports"
   blender_approach: "面板模型"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "服务器机柜"
   source_row: 40
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -713,14 +713,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "硬盘位、USB、状态灯"
-  nexora_fields: "device.status"
+  netaop_fields: "device.status"
   blender_approach: "通用模板+可替换前面板贴图"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "建议作为未知服务器fallback"
   source_row: 41
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -732,14 +732,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "8/12/24盘位可变"
-  nexora_fields: "device.status"
+  netaop_fields: "device.status"
   blender_approach: "参数化盘位"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "主流服务器"
   source_row: 42
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -751,14 +751,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "大风道/高密GPU服务器面板"
-  nexora_fields: "device.status"
+  netaop_fields: "device.status"
   blender_approach: "高密AI机柜模板"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "智算中心"
   source_row: 43
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -770,14 +770,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "多刀片插槽、管理模块"
-  nexora_fields: "device.status"
+  netaop_fields: "device.status"
   blender_approach: "框式模板+刀片实例化"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "传统数据中心"
   source_row: 44
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -789,14 +789,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "24/25盘位或12大盘"
-  nexora_fields: "device.status"
+  netaop_fields: "device.status"
   blender_approach: "盘位实例化"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "SAN/存储"
   source_row: 45
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -808,14 +808,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "60/90盘高密阵列"
-  nexora_fields: "device.status"
+  netaop_fields: "device.status"
   blender_approach: "低模前脸+贴图"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "大容量存储"
   source_row: 46
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -827,14 +827,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "RJ45/SFP/管理口混合"
-  nexora_fields: "device.status"
+  netaop_fields: "device.status"
   blender_approach: "Vendor Generic模板"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "Nexora常见"
   source_row: 47
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -846,14 +846,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "模块槽/扩展口"
-  nexora_fields: "device.status"
+  netaop_fields: "device.status"
   blender_approach: "Vendor Generic模板"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "核心出口"
   source_row: 48
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -865,14 +865,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "RJ45/SFP+状态屏"
-  nexora_fields: "device.status"
+  netaop_fields: "device.status"
   blender_approach: "通用面板"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "应用数据中心"
   source_row: 49
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -884,14 +884,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "高密SFP+/QSFP端口"
-  nexora_fields: "device.status"
+  netaop_fields: "device.status"
   blender_approach: "全光模板"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "可观测性"
   source_row: 50
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -903,14 +903,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "串口/RJ45管理口"
-  nexora_fields: "device.status"
+  netaop_fields: "device.status"
   blender_approach: "低模"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "OOB网络"
   source_row: 51
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -922,14 +922,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "LCD/按键/通风孔"
-  nexora_fields: "device.status/ups.*"
+  netaop_fields: "device.status/ups.*"
   blender_approach: "Generic + 品牌贴图"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "KEBOS可做Exact"
   source_row: 52
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -941,14 +941,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "LCD/按键/通风孔"
-  nexora_fields: "device.status/ups.*"
+  netaop_fields: "device.status/ups.*"
   blender_approach: "Generic + Exact"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "机柜最常见"
   source_row: 53
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -960,14 +960,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "大功率面板"
-  nexora_fields: "device.status/ups.*"
+  netaop_fields: "device.status/ups.*"
   blender_approach: "参数化高度"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "较大功率"
   source_row: 54
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -979,14 +979,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "电池包前面板/连接指示"
-  nexora_fields: "battery.*"
+  netaop_fields: "battery.*"
   blender_approach: "与UPS同系列风格"
   asset_priority: "P0"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "UPS配套"
   source_row: 55
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -998,14 +998,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "电池包前面板"
-  nexora_fields: "battery.*"
+  netaop_fields: "battery.*"
   blender_approach: "参数化高度"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "UPS配套"
   source_row: 56
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -1017,14 +1017,14 @@
   mount_kind: "unknown"
   installation_location: "前部"
   structural_features: "空开/端子/指示灯"
-  nexora_fields: "power.*"
+  netaop_fields: "power.*"
   blender_approach: "面板型模型"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "通信/边缘机房"
   source_row: 57
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -1036,14 +1036,14 @@
   mount_kind: "u_mount"
   installation_location: "机柜内侧"
   structural_features: "小盒体、探头"
-  nexora_fields: "sensor.temperature/humidity"
+  netaop_fields: "sensor.temperature/humidity"
   blender_approach: "极低模"
   asset_priority: "P1"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "后续环境监控"
   source_row: 58
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -1055,14 +1055,14 @@
   mount_kind: "u_mount"
   installation_location: "底部/机柜内"
   structural_features: "控制盒+感应绳"
-  nexora_fields: "sensor.water_leak"
+  netaop_fields: "sensor.water_leak"
   blender_approach: "线缆用Curve"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "机房环境"
   source_row: 59
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -1074,14 +1074,14 @@
   mount_kind: "u_mount"
   installation_location: "门框"
   structural_features: "磁块/传感器"
-  nexora_fields: "rack.door_state"
+  netaop_fields: "rack.door_state"
   blender_approach: "极低模"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "智能机柜"
   source_row: 60
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -1093,14 +1093,14 @@
   mount_kind: "u_mount"
   installation_location: "顶部"
   structural_features: "2-4风扇"
-  nexora_fields: "rack.fan_state"
+  netaop_fields: "rack.fan_state"
   blender_approach: "风扇实例化"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "小型机房"
   source_row: 61
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"
 -
@@ -1112,13 +1112,13 @@
   mount_kind: "u_mount"
   installation_location: "机柜后侧"
   structural_features: "铜排+接线孔"
-  nexora_fields: null
+  netaop_fields: null
   blender_approach: "简单几何"
   asset_priority: "P2"
   data_confidence: "verified_manual"
   dimension_status: "pending_verification"
   notes_or_source: "机柜基础附件"
   source_row: 62
-  source_title: "Nexora rack and accessory asset catalog"
+  source_title: "NetAop rack and accessory asset catalog"
   source_url: null
   source_version: "unknown"

@@ -403,7 +403,7 @@ def delete_correlation_rule(rule_id: str, _user=require_role('Operator')):
 
 
 def _get_system_name() -> str:
-    system_name = "Nexora"
+    system_name = "NetAop"
     try:
         from database import get_db_connection
         conn = get_db_connection()

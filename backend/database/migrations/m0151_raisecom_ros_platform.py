@@ -78,7 +78,7 @@ def _ensure_raisecom_show_version_template(
         template_id = str(
             uuid.uuid5(
                 uuid.NAMESPACE_URL,
-                f"nexora:system-template:{source_filename}",
+                f"netaop:system-template:{source_filename}",
             )
         )
         cursor.execute(
@@ -132,7 +132,7 @@ def _ensure_raisecom_show_version_template(
         version_id = str(
             uuid.uuid5(
                 uuid.NAMESPACE_URL,
-                f"nexora:system-template-version:{source_filename}:1",
+                f"netaop:system-template-version:{source_filename}:1",
             )
         )
         cursor.execute(
@@ -215,7 +215,7 @@ def upgrade(cursor, use_pg: bool) -> None:
         "ROS Version: ROS_5.2.1_20200428",
     )
     for rule_order, pattern in enumerate(patterns, start=1):
-        rule_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:identification:raisecom_ros:{pattern}"))
+        rule_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:identification:raisecom_ros:{pattern}"))
         cursor.execute(
             """INSERT INTO platform_identification_rules
                (id, platform_profile_id, command, match_type, pattern,

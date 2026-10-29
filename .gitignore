@@ -104,7 +104,7 @@ scripts/generate_device_onboarding_audio.py
 # Local session links and codex-bridge cache
 artifacts_symlink/
 artifacts/*
-!artifacts/nexora-local-knowledge-4vendor.zip
+!artifacts/netaop-local-knowledge-4vendor.zip
 ~/
 .codex/*
 !.codex/config.toml
@@ -172,6 +172,6 @@ tools/node/
 !docs/rackvision/**/*.md
 
 # Exclude compiled agent binaries and backup data
-scripts/nexora.exe
-backend/static/nexora.exe
+scripts/netaop.exe
+backend/static/netaop.exe
 *.db.bak

@@ -8,7 +8,7 @@
 #  wire into CI or a release pipeline.
 #
 #  Usage:
-#    cd /opt/nexora-automation
+#    cd /opt/netaop-automation
 #    bash scripts/preflight-check.sh
 # ============================================================
 

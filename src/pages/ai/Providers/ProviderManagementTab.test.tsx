@@ -74,8 +74,8 @@ describe('ProviderManagementTab browser key paths', () => {
     expect(screen.getByText('sk-****181f')).toBeTruthy();
     expect(screen.queryByText('sk-live-secret')).toBeNull();
     const manualLink = screen.getByRole('link', { name: '下载 AI 使用手册' });
-    expect(manualLink.getAttribute('href')).toBe('/downloads/nexora-ai-provider-debug-manual.md');
-    expect(manualLink.getAttribute('download')).toBe('Nexora-AI-使用手册.md');
+    expect(manualLink.getAttribute('href')).toBe('/downloads/netaop-ai-provider-debug-manual.md');
+    expect(manualLink.getAttribute('download')).toBe('NetAop-AI-使用手册.md');
 
     await user.click(screen.getByRole('button', { name: '测试连通性' }));
     expect(await screen.findByText('连接测试通过')).toBeTruthy();

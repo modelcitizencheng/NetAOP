@@ -1,4 +1,4 @@
-# nexora-action-code: get_memory
+# netaop-action-code: get_memory
 Value Filldown TOTAL_MEMORY (\d+)
 Value Filldown USED_MEMORY (\d+)
 Value Filldown FREE_MEMORY (\d+)

@@ -36,7 +36,7 @@ const ruleResult = {
 };
 
 const savedResult: SnmpHardwareDiscoveryTestResult = {
-  source: 'nexora_snmp',
+  source: 'netaop_snmp',
   state: 'available',
   message: 'Saved LibreNMS-rule sample loaded',
   matched_device_id: 'asset-1',

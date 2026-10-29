@@ -1,4 +1,4 @@
-# nexora-action-code: get_memory
+# netaop-action-code: get_memory
 Value MEMORY_CLASS (Mem)
 Value TOTAL_KB (\d+)
 Value USED_KB (\d+)

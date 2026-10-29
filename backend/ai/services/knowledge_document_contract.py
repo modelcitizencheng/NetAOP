@@ -1,7 +1,7 @@
 """Explicit contract for operator-authored knowledge documents.
 
 The ingestion API still accepts legacy body-only text files, but this contract
-defines the deterministic format for documents created outside Nexora.  The
+defines the deterministic format for documents created outside NetAop.  The
 same metadata keys are used by Markdown Front Matter and by the optional JSON
 / YAML document envelope.
 """
@@ -11,7 +11,7 @@ from __future__ import annotations
 from typing import Final
 
 
-DOCUMENT_CONTRACT_NAME: Final = "nexora-knowledge-document"
+DOCUMENT_CONTRACT_NAME: Final = "netaop-knowledge-document"
 DOCUMENT_CONTRACT_VERSION: Final = "2.0"
 SUPPORTED_METADATA_SCHEMA_VERSIONS: Final = ("1.0", "1.1", "2.0")
 
@@ -139,7 +139,7 @@ def json_template() -> str:
     """Return the equivalent JSON document-envelope template."""
 
     return """{
-  \"format\": \"nexora-knowledge-document\",
+  \"format\": \"netaop-knowledge-document\",
   \"schema_version\": \"2.0\",
   \"metadata\": {
     \"document_id\": \"custom.huawei.s5735.vlan.v1\",

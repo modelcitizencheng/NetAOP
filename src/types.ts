@@ -1,4 +1,4 @@
-// Shared type definitions for Nexora
+// Shared type definitions for NetAop
 // Extracted from App.tsx for reuse across components
 
 export interface ConfigVersion {

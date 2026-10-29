@@ -1,4 +1,4 @@
-# nexora-action-code: get_lldp_neighbors
+# netaop-action-code: get_lldp_neighbors
 Value Required DEVICE_ID (\S+)
 Value LOCAL_INTERFACE (\S+)
 Value HOLD_TIME (\d+)

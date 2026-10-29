@@ -123,7 +123,7 @@ class CmdbQueryCache:
     """Small, fail-open JSON cache for already-authorized CMDB read results.
 
     ``namespace`` should identify the environment and schema version, such as
-    ``nexora:production:cmdb:v1``. ``redis_client`` may be ``None`` to disable
+    ``netaop:production:cmdb:v1``. ``redis_client`` may be ``None`` to disable
     caching. TTLs are restricted to 1-300 seconds; individual entries default
     to a 256 KiB limit and can never exceed 1 MiB.
 

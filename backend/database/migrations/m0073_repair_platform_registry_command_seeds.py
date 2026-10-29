@@ -92,7 +92,7 @@ def upgrade(cursor, use_pg: bool) -> None:
                     (command, bound_template_id, _checksum(command), now, existing[0]),
                 )
             else:
-                action_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:{release_id}:{action_code}"))
+                action_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:{release_id}:{action_code}"))
                 cursor.execute(
                     """INSERT INTO platform_release_actions
                        (id, release_id, action_code, command, parser_template_version_id,

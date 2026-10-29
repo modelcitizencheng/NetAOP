@@ -1180,7 +1180,7 @@ const MonitoringCenter: React.FC<MonitoringCenterProps> = ({ language, devices: 
     <div className="monitoring-center flex flex-col h-full overflow-hidden bg-[#fafafa] dark:bg-[#18181b]">
       <PageHero
         icon={Radio}
-        eyebrow={language === 'zh' ? 'NEXORA 实时监控' : 'NEXORA Real-time Monitoring'}
+        eyebrow={language === 'zh' ? 'NETAOP 实时监控' : 'NETAOP Real-time Monitoring'}
         title={language === 'zh' ? '运维指挥中心' : 'NOC Command Center'}
         subtitle={language === 'zh' ? '全网基础设施实时健康态势感知、故障事件聚合与敏捷处置' : 'Real-time infrastructure health posture, incident aggregation and agile remediation'}
         actions={

@@ -1,4 +1,4 @@
-"""Remove Nexora-authored SNMP OID profiles from active device configuration."""
+"""Remove NetAop-authored SNMP OID profiles from active device configuration."""
 
 from __future__ import annotations
 

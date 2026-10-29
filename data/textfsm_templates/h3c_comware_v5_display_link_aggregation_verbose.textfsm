@@ -1,4 +1,4 @@
-# nexora-action-code: get_link_aggregation
+# netaop-action-code: get_link_aggregation
 Value Filldown AGGREGATE_INTERFACE (\S+)
 Value Filldown AGGREGATION_MODE (\S+)
 Value Required INTERFACE (\S+)

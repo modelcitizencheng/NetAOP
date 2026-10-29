@@ -1,4 +1,4 @@
-# PostgreSQL image with the extensions required by the Nexora migrations.
+# PostgreSQL image with the extensions required by the NetAop migrations.
 #
 # The application Dockerfile builds the FastAPI/frontend image; PostgreSQL is
 # built separately so the database image cannot silently fall back to the

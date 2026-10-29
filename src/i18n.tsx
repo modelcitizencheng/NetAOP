@@ -117,7 +117,7 @@ export const translations: Translations = {
   lastSyncShort: { en: 'Last Sync', zh: '最后同步' },
   noSyncData: { en: 'Waiting for sync', zh: '等待同步数据' },
   copyright: { en: 'Copyright (c)', zh: 'Copyright (c)' },
-  allRightsReserved: { en: 'Nexora. All rights reserved.', zh: 'Nexora. 保留所有权利。' },
+  allRightsReserved: { en: 'NetAop. All rights reserved.', zh: 'NetAop. 保留所有权利。' },
 
   // Inventory
   deviceList: { en: 'Network Devices', zh: '网络设备' },

@@ -1,4 +1,4 @@
-# nexora-action-code: get_irf
+# netaop-action-code: get_irf
 Value MEMBER_ID (\d+)
 Value ROLE (\S+)
 Value PRIORITY (\d+)

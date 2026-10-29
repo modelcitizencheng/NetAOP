@@ -8,7 +8,7 @@
 set -u
 umask 0002
 
-RUNTIME_DIR="${MONITORING_VM_RUNTIME_DIR:-/var/lib/nexora-vm-runtime}"
+RUNTIME_DIR="${MONITORING_VM_RUNTIME_DIR:-/var/lib/netaop-vm-runtime}"
 REQUEST_FILE="$RUNTIME_DIR/min-free-disk-space-bytes"
 ACTIVE_FILE="$RUNTIME_DIR/active-min-free-disk-space-bytes"
 ACTIVE_GENERATION_FILE="$RUNTIME_DIR/active-generation"

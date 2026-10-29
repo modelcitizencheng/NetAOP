@@ -49,7 +49,7 @@ export const AgentManagementTab: React.FC = () => {
         <div>
           <h2 className="nx-page-title flex items-center gap-2 text-gray-900 dark:text-white">
             <Wrench className="w-6 h-6 text-indigo-500" />
-            Nexora Tool Registry 工具注册表与风险等级
+            NetAop Tool Registry 工具注册表与风险等级
           </h2>
           <p className="nx-page-description mt-1 text-gray-500 dark:text-gray-400">
             Agent 仅允许调用经注册的 R0 (READ_ONLY) 与 R1 工具。绝不给 AI 提供直接 SSH 或全特权写权限。

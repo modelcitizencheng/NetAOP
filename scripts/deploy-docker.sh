@@ -46,7 +46,7 @@ Commands:
   start-offline Start the stack, including monitoring services, Guacamole,
                  and the Redis sidecar when enabled, using only local images, without
                  building or pulling images.
-  prune-legacy-dashboard Remove only the retired `nexora-server-metrics`
+  prune-legacy-dashboard Remove only the retired `netaop-server-metrics`
                          dashboard from the running Grafana instance.
   redis-status Show the Redis sidecar status through the same Compose project.
   redis-logs   Follow the Redis sidecar logs (use Ctrl-C to stop following).
@@ -60,8 +60,8 @@ Environment:
   NETOPS_DIR              Default deployment directory (default: current dir).
   RELEASE_BACKUP_DIR      Backup destination (default: ../netops-release-backups).
   COMPOSE_PROJECT_NAME    Explicit Compose project name. When unset, reuse the
-                          existing nexora-db container's project label, then
-                          fall back to nexora for a new installation.
+                          existing netaop-db container's project label, then
+                          fall back to netaop for a new installation.
   NETOPS_BUILD_PULL       Set to 1 to always pull newer base images while
                           building. By default local base images are reused and
                           the registry is only contacted for missing images.
@@ -104,18 +104,18 @@ resolve_compose_project_name() {
     fi
 
     # Releases created before the project name was pinned can have a legacy
-    # Compose label (for example `nexora-redis` from the last overlay file).
+    # Compose label (for example `netaop-redis` from the last overlay file).
     # Reuse that label so update can back up the running database before any
     # containers are recreated. Explicit shell/.env configuration still wins.
     if [[ -z "$project_name" ]]; then
         project_name="$(
             docker inspect \
                 --format '{{with index .Config.Labels "com.docker.compose.project"}}{{.}}{{end}}' \
-                nexora-db 2>/dev/null || true
+                netaop-db 2>/dev/null || true
         )"
     fi
 
-    project_name="${project_name:-nexora}"
+    project_name="${project_name:-netaop}"
     [[ "$project_name" =~ ^[a-z0-9][a-z0-9_-]*$ ]] || die "Invalid COMPOSE_PROJECT_NAME"
     printf '%s' "$project_name"
 }
@@ -245,7 +245,7 @@ initialize_env() {
         set_env_value POSTGRES_PASSWORD "$(openssl rand -hex 16)"
     fi
     if [[ -z "$(env_value POSTGRES_EXPORTER_USER)" ]]; then
-        set_env_value POSTGRES_EXPORTER_USER nexora_metrics
+        set_env_value POSTGRES_EXPORTER_USER netaop_metrics
     fi
     if is_placeholder "$(env_value POSTGRES_EXPORTER_PASSWORD)"; then
         set_env_value POSTGRES_EXPORTER_PASSWORD "$(openssl rand -hex 24)"
@@ -264,10 +264,10 @@ initialize_env() {
         # Keep the shared alert Redis broker password unique per deployment.
         # The prefix makes its purpose recognizable without exposing the value
         # in logs or committing a common credential to the example template.
-        set_env_value ALERT_NOTIFICATION_BROKER_PASSWORD "nexora$(openssl rand -hex 24)"
+        set_env_value ALERT_NOTIFICATION_BROKER_PASSWORD "netaop$(openssl rand -hex 24)"
     fi
 
-    # Guacamole's JSON authentication key is independent from Nexora's
+    # Guacamole's JSON authentication key is independent from NetAop's
     # credential encryption key. Preserve a valid key; repair missing or
     # malformed values with a fresh 128-bit hexadecimal key.
     guacamole_key="$(env_value GUACAMOLE_JSON_SECRET_KEY)"
@@ -319,12 +319,12 @@ initialize_env() {
     if [[ "${NETOPS_REDIS_ENABLED:-1}" != "0" ]]; then
         redis_password="$(env_value REDIS_PASSWORD)"
         redis_url="$(env_value REDIS_URL)"
-        if [[ "$redis_url" == "redis://redis:6379/0" || "$redis_url" == "redis://nexora@redis:6379/0" ]]; then
+        if [[ "$redis_url" == "redis://redis:6379/0" || "$redis_url" == "redis://netaop@redis:6379/0" ]]; then
             if [[ -z "$redis_password" ]]; then
                 redis_password="$(openssl rand -hex 24)"
                 set_env_value REDIS_PASSWORD "$redis_password"
             fi
-            set_env_value REDIS_URL "redis://nexora:${redis_password}@redis:6379/0"
+            set_env_value REDIS_URL "redis://netaop:${redis_password}@redis:6379/0"
         fi
     fi
     chmod 600 .env
@@ -437,7 +437,7 @@ backup_release_state() {
     # Export the manifest through the running application so it uses the same
     # PostgreSQL connection and metadata authority as production.
     if compose exec -T netops sh -c \
-        'set -eu; rm -f /tmp/nexora-source-manifest.json; PYTHONPATH=/app/backend python -m database.backup manifest --output /tmp/nexora-source-manifest.json >/dev/null; cat /tmp/nexora-source-manifest.json' \
+        'set -eu; rm -f /tmp/netaop-source-manifest.json; PYTHONPATH=/app/backend python -m database.backup manifest --output /tmp/netaop-source-manifest.json >/dev/null; cat /tmp/netaop-source-manifest.json' \
         > "$manifest_partial"; then
         [[ -s "$manifest_partial" ]] || die "Release backup failed: empty Source Manifest"
         mv -f "$manifest_partial" "$manifest_path"
@@ -769,9 +769,9 @@ prune_legacy_grafana_dashboard() {
         : "${GF_SECURITY_ADMIN_PASSWORD:?Grafana admin password is missing in the container}"
         auth_header="$(printf "%s:%s" "${GF_SECURITY_ADMIN_USER:-admin}" "$GF_SECURITY_ADMIN_PASSWORD" | base64 | tr -d "\\r\\n")"
         printf "header = \"Authorization: Basic %s\"\\n" "$auth_header" | \
-          curl -sS -w "\\n%{http_code}" --config - "http://127.0.0.1:3000/api/dashboards/uid/nexora-server-metrics"
+          curl -sS -w "\\n%{http_code}" --config - "http://127.0.0.1:3000/api/dashboards/uid/netaop-server-metrics"
     ' 2>/dev/null)" || {
-        log "Could not query Grafana for legacy dashboard UID nexora-server-metrics"
+        log "Could not query Grafana for legacy dashboard UID netaop-server-metrics"
         return 1
     }
     status="${response##*$'\n'}"
@@ -788,7 +788,7 @@ prune_legacy_grafana_dashboard() {
             IFS= read -r api_password
             auth_header="$(printf "%s:%s" "$api_user" "$api_password" | base64 | tr -d "\\r\\n")"
             printf "header = \"Authorization: Basic %s\"\\n" "$auth_header" | \
-              curl -sS -w "\\n%{http_code}" --config - "http://127.0.0.1:3000/api/dashboards/uid/nexora-server-metrics"
+              curl -sS -w "\\n%{http_code}" --config - "http://127.0.0.1:3000/api/dashboards/uid/netaop-server-metrics"
         ' 2>/dev/null)" || {
             unset api_password
             log "Could not query Grafana with the supplied admin credentials"
@@ -800,22 +800,22 @@ prune_legacy_grafana_dashboard() {
     fi
     case "$status" in
         404)
-            log "Legacy Grafana dashboard UID nexora-server-metrics is already absent"
+            log "Legacy Grafana dashboard UID netaop-server-metrics is already absent"
             return 0
             ;;
         200) ;;
         401|403)
-            log "Grafana rejected authentication while checking legacy dashboard UID nexora-server-metrics"
+            log "Grafana rejected authentication while checking legacy dashboard UID netaop-server-metrics"
             return 1
             ;;
         *)
-            log "Grafana lookup for legacy dashboard UID nexora-server-metrics returned HTTP $status"
+            log "Grafana lookup for legacy dashboard UID netaop-server-metrics returned HTTP $status"
             return 1
             ;;
     esac
 
     if [[ "$body" != *"Server & Host Metrics"* ]]; then
-        log "Grafana UID nexora-server-metrics exists, but its title does not match the retired dashboard; left it untouched"
+        log "Grafana UID netaop-server-metrics exists, but its title does not match the retired dashboard; left it untouched"
         return 1
     fi
 
@@ -826,10 +826,10 @@ prune_legacy_grafana_dashboard() {
             IFS= read -r api_password
             auth_header="$(printf "%s:%s" "$api_user" "$api_password" | base64 | tr -d "\\r\\n")"
             printf "header = \"Authorization: Basic %s\"\\n" "$auth_header" | \
-              curl -sS -o /dev/null -w "%{http_code}" --config - --request DELETE "http://127.0.0.1:3000/api/dashboards/uid/nexora-server-metrics"
+              curl -sS -o /dev/null -w "%{http_code}" --config - --request DELETE "http://127.0.0.1:3000/api/dashboards/uid/netaop-server-metrics"
         ' 2>/dev/null)" || {
             unset api_password
-            log "Could not delete retired Grafana dashboard UID nexora-server-metrics"
+            log "Could not delete retired Grafana dashboard UID netaop-server-metrics"
             return 1
         }
     else
@@ -838,27 +838,27 @@ prune_legacy_grafana_dashboard() {
             : "${GF_SECURITY_ADMIN_PASSWORD:?Grafana admin password is missing in the container}"
             auth_header="$(printf "%s:%s" "${GF_SECURITY_ADMIN_USER:-admin}" "$GF_SECURITY_ADMIN_PASSWORD" | base64 | tr -d "\\r\\n")"
             printf "header = \"Authorization: Basic %s\"\\n" "$auth_header" | \
-              curl -sS -o /dev/null -w "%{http_code}" --config - --request DELETE "http://127.0.0.1:3000/api/dashboards/uid/nexora-server-metrics"
+              curl -sS -o /dev/null -w "%{http_code}" --config - --request DELETE "http://127.0.0.1:3000/api/dashboards/uid/netaop-server-metrics"
         ' 2>/dev/null)" || {
             unset api_password
-            log "Could not delete retired Grafana dashboard UID nexora-server-metrics"
+            log "Could not delete retired Grafana dashboard UID netaop-server-metrics"
             return 1
         }
     fi
     unset api_password
     case "$status" in
-        200) log "Removed retired Grafana dashboard UID nexora-server-metrics" ;;
-        404) log "Legacy Grafana dashboard UID nexora-server-metrics is already absent" ;;
+        200) log "Removed retired Grafana dashboard UID netaop-server-metrics" ;;
+        404) log "Legacy Grafana dashboard UID netaop-server-metrics is already absent" ;;
         401|403) log "Grafana rejected authentication or delete permission for the retired dashboard"; return 1 ;;
-        *) log "Grafana delete for legacy dashboard UID nexora-server-metrics returned HTTP $status"; return 1 ;;
+        *) log "Grafana delete for legacy dashboard UID netaop-server-metrics returned HTTP $status"; return 1 ;;
     esac
 }
 
 required_images() {
     printf '%s\n' \
-        "nexora-netops:latest" \
-        "nexora-nginx:latest" \
-        "nexora-postgres:latest" \
+        "netaop-netops:latest" \
+        "netaop-nginx:latest" \
+        "netaop-postgres:latest" \
         "victoriametrics/victoria-metrics:v1.103.0" \
         "victoriametrics/vmagent:v1.103.0" \
         "prom/snmp-exporter:v0.26.0" \
@@ -878,7 +878,7 @@ verify_required_images() {
 }
 
 save_images() {
-    local archive_path="${1:-nexora-images-$(date +%Y%m%d-%H%M%S).tar.gz}"
+    local archive_path="${1:-netaop-images-$(date +%Y%m%d-%H%M%S).tar.gz}"
     local partial_path="${archive_path}.partial"
     require_command gzip
     require_command sha256sum
@@ -952,7 +952,7 @@ reset_data() {
     COMPOSE_FILES=(-f docker-compose.yml)
     compose down -v --remove-orphans --rmi local
     # Explicit image tags are not always covered by --rmi local.
-    local local_images=(nexora-netops nexora-nginx nexora-postgres redis:7.4.2-alpine)
+    local local_images=(netaop-netops netaop-nginx netaop-postgres redis:7.4.2-alpine)
     docker image rm -f "${local_images[@]}" >/dev/null 2>&1 || true
     rm -f nginx/ssl/netops.crt nginx/ssl/netops.key
     log "NetOps Docker data reset complete"

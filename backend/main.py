@@ -549,7 +549,7 @@ from fastapi.responses import RedirectResponse
 # queue browser/API authentication behind probe timeouts.
 _SESSION_AUTH_EXECUTOR = ThreadPoolExecutor(
     max_workers=4,
-    thread_name_prefix="nexora-session-auth",
+    thread_name_prefix="netaop-session-auth",
 )
 
 app = FastAPI(
@@ -627,7 +627,7 @@ async def add_request_id_and_log(request: Request, call_next):
 
     auth_start_time = time.perf_counter()
     auth = request.headers.get('Authorization', '')
-    request.state.nexora_session_auth_checked = False
+    request.state.netaop_session_auth_checked = False
     if auth.startswith('Bearer '):
         token = auth.replace('Bearer ', '')
         if token:
@@ -638,8 +638,8 @@ async def add_request_id_and_log(request: Request, call_next):
                     validate_session_token,
                     token,
                 )
-                request.state.nexora_session_auth_checked = True
-                request.state.nexora_session_auth_user = user
+                request.state.netaop_session_auth_checked = True
+                request.state.netaop_session_auth_user = user
                 if user and user.get('username'):
                     user_var.set(user['username'])
             except Exception:

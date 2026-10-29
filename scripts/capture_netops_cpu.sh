@@ -2,7 +2,7 @@
 # Read-only sampling on the Linux Docker host. No installs or container changes.
 set -uo pipefail
 umask 077
-container="${1:-nexora-netops}"
+container="${1:-netaop-netops}"
 seconds="${2:-60}"
 if [[ ! "$seconds" =~ ^[0-9]+$ ]] || (( seconds < 10 || seconds > 300 )); then
   echo 'Duration must be 10..300 seconds.' >&2

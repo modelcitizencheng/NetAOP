@@ -547,7 +547,7 @@ const PlatformSettingsTab: React.FC<PlatformSettingsTabProps> = ({
   const templateCacheRef = useRef<Map<string, { detail: TemplateDetail; profiles: ParameterProfile[] }>>(new Map());
   const detailRef = useRef<TemplateDetail | null>(null);
   const sourceContentRef = useRef('');
-  const draftStorageKey = (templateId: string) => `nexora.config-template-draft.${templateId}`;
+  const draftStorageKey = (templateId: string) => `netaop.config-template-draft.${templateId}`;
 
   detailRef.current = detail;
   sourceContentRef.current = sourceContent;
@@ -574,7 +574,7 @@ const PlatformSettingsTab: React.FC<PlatformSettingsTabProps> = ({
     if (activeTemplateIdRef.current !== templateId) return;
     let storedDraft: { parameters?: Record<string, unknown>; source?: string } | null = null;
     try {
-      const raw = window.localStorage.getItem(`nexora.config-template-draft.${templateId}`);
+      const raw = window.localStorage.getItem(`netaop.config-template-draft.${templateId}`);
       storedDraft = raw ? JSON.parse(raw) as { parameters?: Record<string, unknown>; source?: string } : null;
     } catch {
       storedDraft = null;

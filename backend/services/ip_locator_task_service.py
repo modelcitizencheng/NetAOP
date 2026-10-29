@@ -537,7 +537,7 @@ def claim_locator_runs(
     with _transaction() as conn:
         # Serialize claimers around the deployment-wide active-run count so
         # two workers cannot both observe the same free capacity.
-        conn.execute("SELECT pg_advisory_xact_lock(hashtext('nexora:ip_locator_run_claim'))")
+        conn.execute("SELECT pg_advisory_xact_lock(hashtext('netaop:ip_locator_run_claim'))")
         conn.execute(
             """UPDATE locator_runs
                   SET status = 'failed', error_code = 'deadline_exceeded',

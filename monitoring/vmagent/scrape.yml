@@ -6,39 +6,39 @@ scrape_configs:
   - job_name: network_snmp
     file_sd_configs:
       - files:
-          - /etc/nexora-collector/runtime/vmagent/targets/snmp_targets.yml
+          - /etc/netaop-collector/runtime/vmagent/targets/snmp_targets.yml
     metrics_path: /snmp
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
-      - source_labels: [nexora_module]
+      - source_labels: [netaop_module]
         target_label: __param_module
-      - source_labels: [nexora_auth]
+      - source_labels: [netaop_auth]
         target_label: __param_auth
-      - source_labels: [nexora_scrape_interval]
+      - source_labels: [netaop_scrape_interval]
         target_label: __scrape_interval__
-      - source_labels: [nexora_scrape_timeout]
+      - source_labels: [netaop_scrape_timeout]
         target_label: __scrape_timeout__
       - source_labels: [__param_target]
         target_label: instance
-      - source_labels: [nexora_asset_id]
+      - source_labels: [netaop_asset_id]
         target_label: asset_id
-      - source_labels: [nexora_hostname]
+      - source_labels: [netaop_hostname]
         target_label: hostname
-      - source_labels: [nexora_tenant_id]
+      - source_labels: [netaop_tenant_id]
         target_label: tenant_id
-      - source_labels: [nexora_site_id]
+      - source_labels: [netaop_site_id]
         target_label: site_id
-      - source_labels: [nexora_site_name]
+      - source_labels: [netaop_site_name]
         target_label: site_name
-      - source_labels: [nexora_vendor]
+      - source_labels: [netaop_vendor]
         target_label: vendor
-      - source_labels: [nexora_platform]
+      - source_labels: [netaop_platform]
         target_label: platform
-      - source_labels: [nexora_role]
+      - source_labels: [netaop_role]
         target_label: role
       - action: labeldrop
-        regex: nexora_auth|nexora_.*
+        regex: netaop_auth|netaop_.*
       - target_label: __address__
         replacement: snmp-exporter:9116
 
@@ -48,8 +48,8 @@ scrape_configs:
     metrics_path: /metrics
     file_sd_configs:
       - files:
-          - /etc/nexora-collector/runtime/vmagent/targets/*linux*.yml
-          - /etc/nexora-collector/runtime/vmagent/targets/*server*.yml
+          - /etc/netaop-collector/runtime/vmagent/targets/*linux*.yml
+          - /etc/netaop-collector/runtime/vmagent/targets/*server*.yml
 
 
   - job_name: windows_servers
@@ -58,7 +58,7 @@ scrape_configs:
     metrics_path: /metrics
     file_sd_configs:
       - files:
-          - /etc/nexora-collector/runtime/vmagent/targets/*windows*.yml
+          - /etc/netaop-collector/runtime/vmagent/targets/*windows*.yml
 
   # Docker control-plane telemetry belongs only to collector-local. The
   # runtime compiler adds the same targets only for collector-local artifacts.

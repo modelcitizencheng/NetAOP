@@ -57,7 +57,7 @@ def run_job(job_id: str) -> dict:
         if not targets:
             return get_job(job_id)
         workers = min(max(1, int(job.get('concurrency_limit') or 1)), len(targets))
-        with ThreadPoolExecutor(max_workers=workers, thread_name_prefix=f'nexora-job-{job_id[:8]}') as executor:
+        with ThreadPoolExecutor(max_workers=workers, thread_name_prefix=f'netaop-job-{job_id[:8]}') as executor:
             futures = {executor.submit(_execute_target, job, target): target for target in targets}
             for future in as_completed(futures):
                 target = futures[future]

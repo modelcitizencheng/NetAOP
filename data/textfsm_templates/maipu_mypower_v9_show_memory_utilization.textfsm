@@ -1,4 +1,4 @@
-# nexora-action-code: get_memory
+# netaop-action-code: get_memory
 Value TOTAL_MEMORY (\S+)
 Value USED_MEMORY (\S+)
 Value USED_PERCENT (\d+(?:\.\d+)?)

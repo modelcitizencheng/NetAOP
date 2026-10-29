@@ -144,7 +144,7 @@ def upgrade(cursor, use_pg: bool) -> None:  # noqa: ARG001
             continue
         for source in source_rules:
             source_id = str(source["id"])
-            copied_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:alert-rule:{tenant_id}:{source_id}"))
+            copied_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:alert-rule:{tenant_id}:{source_id}"))
             cursor.execute(
                 f"""
                 INSERT INTO alert_rules ({rule_columns})
@@ -188,7 +188,7 @@ def upgrade(cursor, use_pg: bool) -> None:  # noqa: ARG001
             for history in cursor.fetchall():
                 history_id = str(uuid.uuid5(
                     uuid.NAMESPACE_URL,
-                    f"nexora:alert-rule-history:{tenant_id}:{history['id']}",
+                    f"netaop:alert-rule-history:{tenant_id}:{history['id']}",
                 ))
                 groups = source.get("notification_group_names_json") or []
                 if isinstance(groups, str):

@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "skill_version": "2.0.0",
-  "source_archive": "nexora-grafana-dashboard-skill-v2.zip",
+  "source_archive": "netaop-grafana-dashboard-skill-v2.zip",
   "dashboards": {
-    "nexora-platform-health": {
+    "netaop-platform-health": {
       "title": "10 监控平台健康（Monitoring Platform Health）",
       "panels": {
         "900": {
@@ -876,7 +876,7 @@
         }
       }
     },
-    "nexora-network-device": {
+    "netaop-network-device": {
       "title": "02 网络设备详情 (Network Device Detail)",
       "panels": {
         "900": {
@@ -1839,7 +1839,7 @@
                     "value": [
                       {
                         "title": "打开接口详情",
-                        "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                        "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                         "targetBlank": false
                       }
                     ]
@@ -1934,7 +1934,7 @@
         }
       }
     },
-    "nexora-network-overview": {
+    "netaop-network-overview": {
       "title": "01 网络总览（Network Overview）",
       "panels": {
         "900": {
@@ -2522,7 +2522,7 @@
                     "value": [
                       {
                         "title": "打开设备详情",
-                        "url": "/d/nexora-network-device/device-detail?var-asset_id=${__data.fields[\"资产 ID\"]}&from=${__from}&to=${__to}",
+                        "url": "/d/netaop-network-device/device-detail?var-asset_id=${__data.fields[\"资产 ID\"]}&from=${__from}&to=${__to}",
                         "targetBlank": false
                       }
                     ]
@@ -2586,7 +2586,7 @@
                     "value": [
                       {
                         "title": "打开设备详情",
-                        "url": "/d/nexora-network-device/device-detail?var-asset_id=${__data.fields[\"资产 ID\"]}&from=${__from}&to=${__to}",
+                        "url": "/d/netaop-network-device/device-detail?var-asset_id=${__data.fields[\"资产 ID\"]}&from=${__from}&to=${__to}",
                         "targetBlank": false
                       }
                     ]
@@ -2650,7 +2650,7 @@
                     "value": [
                       {
                         "title": "打开设备详情",
-                        "url": "/d/nexora-network-device/device-detail?var-asset_id=${__data.fields[\"资产 ID\"]}&from=${__from}&to=${__to}",
+                        "url": "/d/netaop-network-device/device-detail?var-asset_id=${__data.fields[\"资产 ID\"]}&from=${__from}&to=${__to}",
                         "targetBlank": false
                       }
                     ]
@@ -2848,7 +2848,7 @@
                     "value": [
                       {
                         "title": "打开接口详情",
-                        "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                        "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                         "targetBlank": false
                       }
                     ]
@@ -2882,7 +2882,7 @@
         }
       }
     },
-    "nexora-linux-metrics": {
+    "netaop-linux-metrics": {
       "title": "07 Linux 服务器监控 (Linux Server Metrics)",
       "panels": {
         "900": {
@@ -3707,7 +3707,7 @@
         }
       }
     },
-    "nexora-network-interface": {
+    "netaop-network-interface": {
       "title": "04 接口流量与健康（Interface Traffic & Health）",
       "panels": {
         "901": {
@@ -4041,7 +4041,7 @@
                     "value": [
                       {
                         "title": "打开接口详情",
-                        "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"设备角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                        "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"设备角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                         "targetBlank": false
                       }
                     ]
@@ -4111,7 +4111,7 @@
                     "value": [
                       {
                         "title": "打开接口详情",
-                        "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                        "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                         "targetBlank": false
                       }
                     ]
@@ -4215,7 +4215,7 @@
                     "value": [
                       {
                         "title": "打开接口详情",
-                        "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                        "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                         "targetBlank": false
                       }
                     ]
@@ -4319,7 +4319,7 @@
                     "value": [
                       {
                         "title": "打开接口详情",
-                        "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                        "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                         "targetBlank": false
                       }
                     ]
@@ -4476,7 +4476,7 @@
                     "value": [
                       {
                         "title": "打开接口详情",
-                        "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"设备角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                        "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"设备角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                         "targetBlank": false
                       }
                     ]
@@ -4741,7 +4741,7 @@
                     "value": [
                       {
                         "title": "打开接口详情",
-                        "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"vendor\"]}&var-role=${__data.fields[\"role\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"interface_role\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                        "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"vendor\"]}&var-role=${__data.fields[\"role\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"interface_role\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                         "targetBlank": false
                       }
                     ]
@@ -4811,7 +4811,7 @@
                     "value": [
                       {
                         "title": "打开接口详情",
-                        "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                        "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                         "targetBlank": false
                       }
                     ]
@@ -4997,7 +4997,7 @@
                     "value": [
                       {
                         "title": "打开接口详情",
-                        "url": "/d/nexora-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
+                        "url": "/d/netaop-interface-detail/interface-detail?var-site=${__data.fields[\"站点\"]}&var-vendor=${__data.fields[\"厂商\"]}&var-role=${__data.fields[\"角色\"]}&var-device=${__data.fields[\"设备名称\"]}&var-interface_role=${__data.fields[\"接口用途\"]}&var-interface=${__data.fields[\"接口全称\"]}&from=${__from}&to=${__to}",
                         "targetBlank": false
                       }
                     ]
@@ -5031,7 +5031,7 @@
         }
       }
     },
-    "nexora-windows-metrics": {
+    "netaop-windows-metrics": {
       "title": "08 Windows 服务器监控 (Windows Server Metrics)",
       "panels": {
         "900": {
@@ -5640,7 +5640,7 @@
         }
       }
     },
-    "nexora-network-wireless": {
+    "netaop-network-wireless": {
       "title": "03 无线专网监控 (Wireless AP & Clients)",
       "panels": {
         "904": {
@@ -6710,7 +6710,7 @@
         }
       }
     },
-    "nexora-alert-operations": {
+    "netaop-alert-operations": {
       "title": "12 告警处置与通知效果（Alert Operations & Notification Effectiveness）",
       "panels": {
         "900": {
@@ -7896,7 +7896,7 @@
         }
       }
     },
-    "nexora-outbound-probe-quality": {
+    "netaop-outbound-probe-quality": {
       "title": "11 WAN 链路健康与拨测质量（WAN Health & Probe Quality）",
       "panels": {
         "900": {
@@ -8999,7 +8999,7 @@
         }
       }
     },
-    "nexora-network-outbound": {
+    "netaop-network-outbound": {
       "title": "06 互联网出口与 WAN（需选择出口接口） (Select WAN Interface)",
       "panels": {
         "900": {
@@ -9755,7 +9755,7 @@
         }
       }
     },
-    "nexora-interface-detail": {
+    "netaop-interface-detail": {
       "title": "09 接口详情（Interface Detail）",
       "panels": {
         "901": {
@@ -11009,7 +11009,7 @@
         }
       }
     },
-    "nexora-monitoring-health": {
+    "netaop-monitoring-health": {
       "title": "05 SNMP 采集健康 (SNMP Scrape Health)",
       "panels": {
         "900": {
@@ -11365,7 +11365,7 @@
         }
       }
     },
-    "nexora-postgres-performance": {
+    "netaop-postgres-performance": {
       "title": "13 PostgreSQL 数据库性能（PostgreSQL Database Performance）",
       "panels": {
         "900": {

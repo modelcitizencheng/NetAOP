@@ -56,7 +56,7 @@ ASSET_PLATFORM_VENDOR_OVERRIDES = {
 
 # This list mirrors NETWORK_VENDOR_NAMES and SECURITY_VENDOR_NAMES in
 # src/pages/AssetManagement/constants.ts. LibreNMS detects OS families while
-# Nexora assets store the catalog's business-vendor names.
+# NetAop assets store the catalog's business-vendor names.
 # Keep the bridge here so rule import, identity resolution, and adapters use
 # the exact canonical names accepted by the asset system.
 LIBRENMS_OS_VENDOR_OVERRIDES = {
@@ -106,7 +106,7 @@ LIBRENMS_OS_VENDOR_OVERRIDES = {
 }
 
 # Enterprise roots are identity evidence only. Hardware metrics still come
-# from an applicable LibreNMS rule, standard MIB, or reviewed Nexora adapter.
+# from an applicable LibreNMS rule, standard MIB, or reviewed NetAop adapter.
 ASSET_VENDOR_ENTERPRISE_PREFIXES = {
     "1.3.6.1.4.1.9.": "Cisco",
     "1.3.6.1.4.1.2011.": "Huawei",

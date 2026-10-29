@@ -69,7 +69,7 @@ def upgrade(cursor, use_pg: bool) -> None:
             rule_id = str(
                 uuid.uuid5(
                     uuid.NAMESPACE_URL,
-                    f"nexora:identification:{platform_code}:{pattern}",
+                    f"netaop:identification:{platform_code}:{pattern}",
                 )
             )
             cursor.execute(

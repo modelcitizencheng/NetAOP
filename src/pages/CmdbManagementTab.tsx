@@ -5210,7 +5210,7 @@ const CmdbManagementTab: React.FC<Props> = ({ language, cmdbPage, currentUser })
 
             <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50/70 p-3 text-xs leading-5 text-amber-900">
               {bindingAction === 'replace'
-                ? (zh ? '注意：本操作只修改 Nexora 中的设备—凭据绑定，不会登录设备或修改交换机上的密码。若新凭据的实际密码尚未在设备生效，后续连接可能失败。' : 'This changes only the Nexora device-to-credential binding. It does not log in to the device or change its hardware password.')
+                ? (zh ? '注意：本操作只修改 NetAop 中的设备—凭据绑定，不会登录设备或修改交换机上的密码。若新凭据的实际密码尚未在设备生效，后续连接可能失败。' : 'This changes only the NetAop device-to-credential binding. It does not log in to the device or change its hardware password.')
                 : (zh ? '注意：解除后设备进入独立凭据管理。当前凭据仍保留，设备上的实际密码不会被修改；请在设备/资产密码管理中维护独立密码。' : 'After unbinding, the device uses independent credential management. The current credential is kept and the hardware password is not changed.')}
             </div>
 

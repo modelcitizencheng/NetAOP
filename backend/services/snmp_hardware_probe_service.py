@@ -748,7 +748,7 @@ async def probe_librenms_os_hardware(
         return {
             "sensors": [],
             "category_results": [_category_result(
-                "nexora_snmp", "librenms_os_rule", status="unsupported",
+                "netaop_snmp", "librenms_os_rule", status="unsupported",
                 reason_code="unverified_librenms_os_rule",
                 reason="The LibreNMS OS class and its MIB dependencies do not match the pinned bundle.",
             )],
@@ -2039,7 +2039,7 @@ def _measurement_for_entry(entry: Mapping[str, Any]) -> tuple[str, str, str] | N
         return known
     if not source_class:
         return None
-    # Preserve LibreNMS sensor classes Nexora has no canonical unit contract
+    # Preserve LibreNMS sensor classes NetAop has no canonical unit contract
     # for. The generic gauge carries the exact upstream class and declared unit.
     return component_class, "sensor_value", str(entry.get("unit") or entry.get("units") or "")
 

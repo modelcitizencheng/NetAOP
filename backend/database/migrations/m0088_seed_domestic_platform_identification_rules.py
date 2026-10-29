@@ -35,7 +35,7 @@ def upgrade(cursor, use_pg: bool) -> None:
             continue
         profile_id = profile[0]
         for index, pattern in enumerate(patterns, start=1):
-            rule_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:identification:{platform_code}:{pattern}"))
+            rule_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:identification:{platform_code}:{pattern}"))
             cursor.execute(
                 """INSERT INTO platform_identification_rules
                    (id, platform_profile_id, command, match_type, pattern,

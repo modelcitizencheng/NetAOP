@@ -1,4 +1,4 @@
-"""Classification primitives for the Nexora AI security boundary.
+"""Classification primitives for the NetAop AI security boundary.
 
 The classifier deliberately errs on the side of a higher sensitivity level.
 It is used before any provider request is constructed, so a caller cannot

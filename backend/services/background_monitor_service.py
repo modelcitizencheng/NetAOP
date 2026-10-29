@@ -2095,7 +2095,7 @@ async def _process_device_raw(device, cycle_tick: int):
         snmp_available = probe_method == 'snmp'
         snmp_error_code = ''
         snmp_error_message = ''
-        # Hardware OID discovery and sampling run in Nexora's dedicated SNMP
+        # Hardware OID discovery and sampling run in NetAop's dedicated SNMP
         # hardware scheduler. This reachability worker owns only interfaces
         # and general device status collection.
         cpu_usage = None
@@ -2105,7 +2105,7 @@ async def _process_device_raw(device, cycle_tick: int):
         psu = None
         hardware_metrics: dict[str, Any] = {}
 
-        # The dedicated Nexora hardware poller owns SNMP walks. Read its latest
+        # The dedicated NetAop hardware poller owns SNMP walks. Read its latest
         # trusted, fresh fan/PSU samples from inventory instead of polling the
         # device again from this reachability worker.
         try:
@@ -2292,11 +2292,11 @@ async def _process_device_raw(device, cycle_tick: int):
                 'snmp_metrics',
                 status='skipped',
                 transport='snmp',
-                source='nexora_snmp',
+                source='netaop_snmp',
                 duration_ms=(_time.perf_counter() - collection_started) * 1000,
                 error_code='hardware_sampling_scheduled',
-                error_message='Hardware sampling runs in Nexora native SNMP scheduler',
-                metadata={'collection_mode': 'nexora_snmp'},
+                error_message='Hardware sampling runs in NetAop native SNMP scheduler',
+                metadata={'collection_mode': 'netaop_snmp'},
             )
 
         snmp_rule = resolve_alert_rule('snmp_unreachable', device_row=device, ip_address=ip)

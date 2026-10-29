@@ -74,7 +74,7 @@ def _structured_document_envelope(
     """Extract the explicit JSON/YAML document envelope when present.
 
     Arbitrary JSON/YAML remains a searchable structured document.  Only a
-    mapping with the Nexora format marker (or both ``metadata`` and
+    mapping with the NetAop format marker (or both ``metadata`` and
     ``content`` keys) is treated as an import envelope.  This prevents a
     user's inventory JSON from silently changing its meaning while giving
     custom exporters a deterministic metadata/body contract.
@@ -149,7 +149,7 @@ def parse_knowledge_source(content: str, *, filename: str = "") -> ParsedKnowled
             metadata_parse_status=parsed.metadata_parse_status,
             metadata_parse_error=parsed.metadata_parse_error,
             format="markdown",
-            parser_name="nexora-markdown-legacy-text",
+            parser_name="netaop-markdown-legacy-text",
             parser_version="1.0.0",
             warnings=("filename_extension_missing_markdown_fallback",),
         )

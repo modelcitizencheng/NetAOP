@@ -39,7 +39,7 @@ def upgrade(cursor, use_pg: bool) -> None:  # noqa: ARG001
             username TEXT NOT NULL DEFAULT '',
             password_ciphertext TEXT NOT NULL DEFAULT '',
             from_address TEXT NOT NULL DEFAULT '',
-            from_name TEXT NOT NULL DEFAULT 'Nexora',
+            from_name TEXT NOT NULL DEFAULT 'NetAop',
             reply_to TEXT NOT NULL DEFAULT '',
             connect_timeout_seconds INTEGER NOT NULL DEFAULT 10,
             send_timeout_seconds INTEGER NOT NULL DEFAULT 20,

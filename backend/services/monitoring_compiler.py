@@ -198,7 +198,7 @@ def _parse_variant_oid_config(value: Any, *, include_unit: bool = True) -> dict[
         item["oid"] = oid.lstrip(".")
         item["type"] = metric_type
         item["help"] = str(item.get("help") or name)
-        # ``unit`` is Nexora metadata used by the UI and metric dictionary,
+        # ``unit`` is NetAop metadata used by the UI and metric dictionary,
         # but snmp_exporter rejects it from its strict runtime schema. Keep it
         # while validating persisted OID definitions and omit it when the
         # normalized object is being used to render exporter YAML.
@@ -340,7 +340,7 @@ def duration_seconds(value: Any, *, field: str) -> int:
     return int(seconds)
 
 
-def opaque_auth_alias(credential_id: str, *, salt: str = "nexora-monitoring-v1") -> str:
+def opaque_auth_alias(credential_id: str, *, salt: str = "netaop-monitoring-v1") -> str:
     """Return a stable opaque alias without leaking credential semantics."""
     digest = hashlib.sha256(f"{salt}:{credential_id}".encode("utf-8")).hexdigest()[:12]
     return f"auth_{digest}"
@@ -925,23 +925,23 @@ def render_target_snapshot(assignments: Iterable[Mapping[str, Any]], *, collecto
         hostname = str(assignment.get("hostname") or "").strip()
         target = str(assignment.get("target") or "").strip()
         labels = {
-            "nexora_asset_id": str(assignment.get("asset_id") or ""),
-            "nexora_hostname": hostname or target,
-            "nexora_tenant_id": str(assignment.get("tenant_id") or ""),
-            "nexora_site_id": str(assignment.get("site_id") or ""),
-            "nexora_site_name": str(assignment.get("site_name") or assignment.get("site") or assignment.get("site_id") or "").strip(),
-            "nexora_vendor": str(assignment.get("vendor") or ""),
-            "nexora_platform": str(assignment.get("platform") or ""),
-            "nexora_role": str(assignment.get("role") or ""),
-            "nexora_module": str(assignment.get("variant_key") or ""),
-            "nexora_auth": str(assignment.get("auth_alias") or ""),
-            "nexora_scrape_interval": f"{interval}s",
-            "nexora_scrape_timeout": f"{timeout}s",
+            "netaop_asset_id": str(assignment.get("asset_id") or ""),
+            "netaop_hostname": hostname or target,
+            "netaop_tenant_id": str(assignment.get("tenant_id") or ""),
+            "netaop_site_id": str(assignment.get("site_id") or ""),
+            "netaop_site_name": str(assignment.get("site_name") or assignment.get("site") or assignment.get("site_id") or "").strip(),
+            "netaop_vendor": str(assignment.get("vendor") or ""),
+            "netaop_platform": str(assignment.get("platform") or ""),
+            "netaop_role": str(assignment.get("role") or ""),
+            "netaop_module": str(assignment.get("variant_key") or ""),
+            "netaop_auth": str(assignment.get("auth_alias") or ""),
+            "netaop_scrape_interval": f"{interval}s",
+            "netaop_scrape_timeout": f"{timeout}s",
         }
-        if not labels["nexora_auth"].startswith("auth_"):
+        if not labels["netaop_auth"].startswith("auth_"):
             raise CompileError("AUTH_ALIAS_INVALID")
         output.append({"targets": [str(assignment.get("target") or "")], "labels": labels})
-    return sorted(output, key=lambda item: (item["labels"].get("nexora_asset_id", ""), item["labels"].get("nexora_module", "")))
+    return sorted(output, key=lambda item: (item["labels"].get("netaop_asset_id", ""), item["labels"].get("netaop_module", "")))
 
 
 def render_server_targets(servers: Iterable[Mapping[str, Any]] = ()) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -1087,7 +1087,7 @@ def _profile_metric_relabel_configs(interface_profiles: Iterable[Mapping[str, An
 
 
 def render_vmagent_config(
-    snapshot_path: str = "/etc/nexora-collector/runtime/vmagent/targets/snmp_targets.yml",
+    snapshot_path: str = "/etc/netaop-collector/runtime/vmagent/targets/snmp_targets.yml",
     interface_profiles: Iterable[Mapping[str, Any]] = (),
     collector_id: str | None = None,
 ) -> dict[str, Any]:
@@ -1098,20 +1098,20 @@ def render_vmagent_config(
             "metrics_path": "/snmp",
             "relabel_configs": [
                 {"source_labels": ["__address__"], "target_label": "__param_target"},
-                {"source_labels": ["nexora_module"], "target_label": "__param_module"},
-                {"source_labels": ["nexora_auth"], "target_label": "__param_auth"},
-                {"source_labels": ["nexora_scrape_interval"], "target_label": "__scrape_interval__"},
-                {"source_labels": ["nexora_scrape_timeout"], "target_label": "__scrape_timeout__"},
+                {"source_labels": ["netaop_module"], "target_label": "__param_module"},
+                {"source_labels": ["netaop_auth"], "target_label": "__param_auth"},
+                {"source_labels": ["netaop_scrape_interval"], "target_label": "__scrape_interval__"},
+                {"source_labels": ["netaop_scrape_timeout"], "target_label": "__scrape_timeout__"},
                 {"source_labels": ["__param_target"], "target_label": "instance"},
-                {"source_labels": ["nexora_asset_id"], "target_label": "asset_id"},
-                {"source_labels": ["nexora_hostname"], "target_label": "hostname"},
-                {"source_labels": ["nexora_tenant_id"], "target_label": "tenant_id"},
-                {"source_labels": ["nexora_site_id"], "target_label": "site_id"},
-                {"source_labels": ["nexora_site_name"], "target_label": "site_name"},
-                {"source_labels": ["nexora_vendor"], "target_label": "vendor"},
-                {"source_labels": ["nexora_platform"], "target_label": "platform"},
-                {"source_labels": ["nexora_role"], "target_label": "role"},
-                {"action": "labeldrop", "regex": "nexora_auth|nexora_.*"},
+                {"source_labels": ["netaop_asset_id"], "target_label": "asset_id"},
+                {"source_labels": ["netaop_hostname"], "target_label": "hostname"},
+                {"source_labels": ["netaop_tenant_id"], "target_label": "tenant_id"},
+                {"source_labels": ["netaop_site_id"], "target_label": "site_id"},
+                {"source_labels": ["netaop_site_name"], "target_label": "site_name"},
+                {"source_labels": ["netaop_vendor"], "target_label": "vendor"},
+                {"source_labels": ["netaop_platform"], "target_label": "platform"},
+                {"source_labels": ["netaop_role"], "target_label": "role"},
+                {"action": "labeldrop", "regex": "netaop_auth|netaop_.*"},
                 {"target_label": "__address__", "replacement": "snmp-exporter:9116"},
             ],
             "metric_relabel_configs": _profile_metric_relabel_configs(interface_profiles),
@@ -1122,8 +1122,8 @@ def render_vmagent_config(
             "scrape_timeout": "10s",
             "metrics_path": "/metrics",
             "file_sd_configs": [{"files": [
-                "/etc/nexora-collector/runtime/vmagent/targets/*linux*.yml",
-                "/etc/nexora-collector/runtime/vmagent/targets/*server*.yml"
+                "/etc/netaop-collector/runtime/vmagent/targets/*linux*.yml",
+                "/etc/netaop-collector/runtime/vmagent/targets/*server*.yml"
             ]}],
         },
         {
@@ -1132,7 +1132,7 @@ def render_vmagent_config(
             "scrape_timeout": "10s",
             "metrics_path": "/metrics",
             "file_sd_configs": [{"files": [
-                "/etc/nexora-collector/runtime/vmagent/targets/*windows*.yml"
+                "/etc/netaop-collector/runtime/vmagent/targets/*windows*.yml"
             ]}],
         },
     ]
@@ -1430,8 +1430,8 @@ def validate_artifact(artifact: Mapping[str, Any] | str | Path) -> dict[str, Any
         labels = target_group.get("labels") or {}
         if not isinstance(labels, Mapping):
             raise CompileError("TARGET_LABELS_INVALID")
-        module_name = str(labels.get("nexora_module") or "")
-        auth_name = str(labels.get("nexora_auth") or "")
+        module_name = str(labels.get("netaop_module") or "")
+        auth_name = str(labels.get("netaop_auth") or "")
         if not module_name or module_name not in exporter_modules:
             raise CompileError(f"TARGET_MODULE_NOT_FOUND:{module_name or 'missing'}")
         if not auth_name or auth_name not in exporter_auths:

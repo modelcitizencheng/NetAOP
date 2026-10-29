@@ -71,7 +71,7 @@ def _safe_url(value: Any) -> str | None:
 
 def citation_from_chunk(item: Mapping[str, Any]) -> Citation:
     metadata = item.get("metadata") if isinstance(item.get("metadata"), Mapping) else {}
-    document = str(item.get("document_name") or item.get("document_id") or "Nexora Knowledge")[:256]
+    document = str(item.get("document_name") or item.get("document_id") or "NetAop Knowledge")[:256]
     document_id = str(item.get("document_id") or "") or None
     chunk_id = str(item.get("chunk_id") or "") or None
     raw_identity = "|".join((document_id or "", chunk_id or "", str(item.get("section") or "")))

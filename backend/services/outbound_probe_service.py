@@ -557,7 +557,7 @@ def _http_request(target: dict, *, source_ip: str | None = None) -> dict:
                 path += "?" + parsed.query
             connection.putrequest("GET", path, skip_host=True, skip_accept_encoding=True)
             connection.putheader("Host", host)
-            connection.putheader("User-Agent", "Nexora-NetOps-OutboundProbe/1.0")
+            connection.putheader("User-Agent", "NetAop-NetOps-OutboundProbe/1.0")
             connection.putheader("Accept", "text/plain,text/html;q=0.8,*/*;q=0.1")
             connection.endheaders()
             response = connection.getresponse()
@@ -901,7 +901,7 @@ def detect_egress_ip() -> dict:
     providers_total = len(sources)
     for url in sources:
         try:
-            request = urllib.request.Request(url, headers={"User-Agent": "Nexora-NetOps-OutboundProbe/1.0"})
+            request = urllib.request.Request(url, headers={"User-Agent": "NetAop-NetOps-OutboundProbe/1.0"})
             with urllib.request.urlopen(request, timeout=2.0) as response:
                 candidate = response.read(128).decode("utf-8", errors="ignore").strip()
             parsed = ipaddress.ip_address(candidate)

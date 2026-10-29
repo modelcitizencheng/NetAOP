@@ -418,7 +418,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_monitoring_database_available",
+          "expr": "netaop_monitoring_database_available",
           "refId": "A",
           "instant": true
         }
@@ -1603,7 +1603,7 @@
   "refresh": "30s",
   "schemaVersion": 39,
   "tags": [
-    "nexora",
+    "netaop",
     "monitoring",
     "platform",
     "health"
@@ -1618,6 +1618,6 @@
   "timezone": "browser",
   "title": "10 监控平台健康（Monitoring Platform Health）",
   "description": "覆盖平台服务可用性、remote-write 队列、VictoriaMetrics 存储和应用容器资源。数据库连接来自 API SELECT 1；Docker API 仅通过内网只读代理供 cAdvisor 获取容器元数据，cAdvisor 仅只读访问宿主 /sys cgroup，不挂载宿主根目录。",
-  "uid": "nexora-platform-health",
+  "uid": "netaop-platform-health",
   "version": 30
 }

@@ -63,7 +63,7 @@ async def get_system_info() -> Dict[str, Any]:
         "license": {
             "valid": True,
             "license_id": "perpetual-enterprise",
-            "company": "Nexora Enterprise User",
+            "company": "NetAop Enterprise User",
             "license_type": "enterprise",
             "issued_at": "2026-01-01T00:00:00+00:00",
             "expire_at": "2099-12-31T23:59:59+00:00",
@@ -105,7 +105,7 @@ async def check_for_updates() -> Dict[str, Any]:
 def download_terminal_agent(platform: str = "windows"):
     """Return the workstation Agent matching the browser workstation OS.
 
-    The Nexora server is Linux/Docker-only from v1.0.9, but operators may
+    The NetAop server is Linux/Docker-only from v1.0.9, but operators may
     access it from Windows workstations. The Windows Agent is therefore a
     workstation artifact and can be served from a configured release URL.
     """
@@ -137,7 +137,7 @@ def download_terminal_agent(platform: str = "windows"):
     if release_url.startswith(("https://", "http://")):
         try:
             remote_response = urlopen(
-                UrlRequest(release_url, headers={"User-Agent": "Nexora-NetOps/Terminal-Agent"}),
+                UrlRequest(release_url, headers={"User-Agent": "NetAop-NetOps/Terminal-Agent"}),
                 timeout=20,
             )
         except (HTTPError, URLError, TimeoutError) as exc:

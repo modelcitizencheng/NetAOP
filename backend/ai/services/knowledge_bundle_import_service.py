@@ -1,4 +1,4 @@
-"""Atomic PostgreSQL import for Nexora knowledge export bundles."""
+"""Atomic PostgreSQL import for NetAop knowledge export bundles."""
 
 from __future__ import annotations
 

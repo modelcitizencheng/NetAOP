@@ -1,6 +1,6 @@
 schema_version: "1.0"
-pack_id: "nexora-kb-official-local-4vendor-v1"
-title: "Nexora 四厂商本地官网知识摘要包"
+pack_id: "netaop-kb-official-local-4vendor-v1"
+title: "NetAop 四厂商本地官网知识摘要包"
 description: >-
   Huawei、Cisco、H3C、Ruijie 的本地官网来源摘要，用于离线知识检索、
   50-anchor 与测试专用 400-case 的候选覆盖验证。

@@ -907,7 +907,7 @@ const calculateAutoLayoutPositions = (
 const clampPosition = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 // The v8 role-row geometry follows the spacing between role layers. Keep older
 // coordinates under their existing keys while generating a fresh baseline.
-const TOPOLOGY_LAYOUT_STORAGE_KEY = 'nexora.topology.layout.v8';
+const TOPOLOGY_LAYOUT_STORAGE_KEY = 'netaop.topology.layout.v8';
 const TOPOLOGY_LAYOUT_SCHEMA = 'topology-role-hierarchy-v8';
 
 type PersistedTopologyLayout = {

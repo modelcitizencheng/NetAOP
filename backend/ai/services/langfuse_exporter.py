@@ -21,7 +21,7 @@ import time
 import urllib.request
 from typing import Any, Mapping
 
-logger = logging.getLogger("nexora.ai.observability")
+logger = logging.getLogger("netaop.ai.observability")
 
 # 严格白名单字段定义（禁止任何正文、配置或凭据入库）
 METADATA_ALLOWLIST_FIELDS = frozenset({
@@ -89,7 +89,7 @@ def hash_identifier(value: Any, salt: str | None = None) -> str:
     """对租户或用户标识进行单向加盐哈希，杜绝明文标识外发。"""
     if not value:
         return "anonymous"
-    effective_salt = salt or os.environ.get("AI_HASH_SALT") or os.environ.get("SECRET_KEY") or "nexora-observability-salt"
+    effective_salt = salt or os.environ.get("AI_HASH_SALT") or os.environ.get("SECRET_KEY") or "netaop-observability-salt"
     text = f"{value}:{effective_salt}".encode("utf-8")
     return hashlib.sha256(text).hexdigest()[:16]
 

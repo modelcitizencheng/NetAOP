@@ -191,8 +191,8 @@ async def create_connection(
 ) -> GuacamoleConnection:
     """Authenticate with Guacamole and return its actual connection identifier."""
     base = _base_url()
-    connection_name = f"nexora-{session_id}"
-    username = f"nexora-{secrets.token_urlsafe(16)}"
+    connection_name = f"netaop-{session_id}"
+    username = f"netaop-{secrets.token_urlsafe(16)}"
     payload = {
         "username": username,
         "expires": _millis_until_expiration(),

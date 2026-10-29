@@ -59,7 +59,7 @@ def _secret() -> bytes:
     # Credential encryption key is already the application-owned secret used
     # for other security boundaries.  Keep the fallback deterministic for
     # local development; production deployments must override it in env.
-    value = str(getattr(settings, "CREDENTIAL_ENCRYPTION_KEY", "") or getattr(settings, "SECRET_KEY", "") or "nexora-metadata-preview")
+    value = str(getattr(settings, "CREDENTIAL_ENCRYPTION_KEY", "") or getattr(settings, "SECRET_KEY", "") or "netaop-metadata-preview")
     return value.encode("utf-8")
 
 

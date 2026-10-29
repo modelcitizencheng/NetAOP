@@ -399,7 +399,7 @@ export const WanCircuitForm: React.FC<Props> = ({ item, options, language, savin
               <div className="mb-3 flex items-start justify-between gap-3">
                 <div>
                   <h4 className="text-xs font-bold text-[var(--heading-text)]">{zh ? '线路对端（Z 端）' : 'Remote endpoint (Z)'}</h4>
-                  <p className="mt-1 text-[10px] text-[var(--muted-text)]">{zh ? '与本端结构一致；差别只在于对端是否由本系统纳管。' : 'The same endpoint structure; the only difference is whether Nexora manages the remote device.'}</p>
+                  <p className="mt-1 text-[10px] text-[var(--muted-text)]">{zh ? '与本端结构一致；差别只在于对端是否由本系统纳管。' : 'The same endpoint structure; the only difference is whether NetAop manages the remote device.'}</p>
                 </div>
                 <div className="w-48 shrink-0">
                   <SelectField

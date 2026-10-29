@@ -1,4 +1,4 @@
-# nexora-action-code: get_transceivers
+# netaop-action-code: get_transceivers
 Value Required INTERFACE (\S+)
 Value VENDOR_NAME (\S+)
 Value WAVELENGTH (\S+)

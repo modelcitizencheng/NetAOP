@@ -169,7 +169,7 @@ def upgrade(cursor, use_pg: bool) -> None:
 
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     risk_rules = [
-        ("MGMT_IP_CHANGE", "修改管理地址", "interface", "critical", "管理 IP 发生变化", "可能导致 Nexora、监控与 SSH 失联", 1, 1),
+        ("MGMT_IP_CHANGE", "修改管理地址", "interface", "critical", "管理 IP 发生变化", "可能导致 NetAop、监控与 SSH 失联", 1, 1),
         ("DEFAULT_ROUTE_DELETE", "删除默认路由", "route", "critical", "默认路由被删除", "可能导致全局出口中断", 1, 1),
         ("IFACE_SHUTDOWN", "关闭接口", "interface", "high", "接口被关闭", "可能造成链路或下游网络中断", 1, 1),
         ("ACCESS_TO_TRUNK", "Access 改为 Trunk", "interface", "high", "接口模式由 Access 变为 Trunk", "可能导致 VLAN 泄漏或终端失联", 1, 0),

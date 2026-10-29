@@ -2,7 +2,7 @@
 
 Clones or pulls the official LibreNMS `mibs/` directory from GitHub
 (https://github.com/librenms/librenms) using git sparse-checkout, then parses
-all vendor MIB definition files into the Nexora SNMP MIB repository.
+all vendor MIB definition files into the NetAop SNMP MIB repository.
 """
 
 from __future__ import annotations
@@ -160,7 +160,7 @@ def fetch_librenms_sources(target_dir: Path = TARGET_DIR) -> bool:
     if (target_dir / ".git").exists():
         logger.info("Existing LibreNMS repository found at %s. Pulling latest updates...", target_dir)
         try:
-            # Older Nexora checkouts may have been created for MIB import only.
+            # Older NetAop checkouts may have been created for MIB import only.
             # Refresh their sparse patterns so the rule importer can see the
             # LibreNMS OS detection and discovery YAML as well.
             subprocess.run(
@@ -566,7 +566,7 @@ def _acquire_import_lock(conn: Any, source_id: str) -> bool:
     """Serialize source initialization across backend workers."""
     conn.execute(
         "SELECT pg_advisory_lock(hashtext(?))",
-        (f"nexora:{MIB_CACHE_VERSION}:{source_id}",),
+        (f"netaop:{MIB_CACHE_VERSION}:{source_id}",),
     )
     return True
 
@@ -581,7 +581,7 @@ def _release_import_lock(conn: Any, source_id: str, held: bool) -> None:
     try:
         conn.execute(
             "SELECT pg_advisory_unlock(hashtext(?))",
-            (f"nexora:{MIB_CACHE_VERSION}:{source_id}",),
+            (f"netaop:{MIB_CACHE_VERSION}:{source_id}",),
         )
         conn.commit()
     except Exception:

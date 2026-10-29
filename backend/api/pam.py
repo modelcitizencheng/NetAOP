@@ -1948,7 +1948,7 @@ def detect_pam_behavior_risk(payload: dict = Body(...), user=require_permission(
 def reconcile_pam_tacacs(payload: dict = Body(...), user=require_permission('pam', 'view')):
     return reconcile_tacacs_event(
         tenant_id=str(user.get('tenant_id') or 'tenant-default'), session_id=payload.get('session_id'), command_event_id=payload.get('command_event_id'),
-        nexora_action=str(payload.get('nexora_action') or ''), external_action=str(payload.get('external_action') or ''),
+        netaop_action=str(payload.get('netaop_action') or ''), external_action=str(payload.get('external_action') or ''),
         metadata=payload.get('metadata') if isinstance(payload.get('metadata'), dict) else {},
     )
 

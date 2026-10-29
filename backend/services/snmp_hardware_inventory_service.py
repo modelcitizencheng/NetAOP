@@ -23,39 +23,39 @@ _METRIC_EXPORT_EXCLUDED_MEASUREMENT_TYPES = frozenset({
     "sensor_value",
 })
 _METRIC_FAMILIES = {
-    "cpu_usage_percent": "nexora_hw_cpu_usage_percent",
-    "memory_used_bytes": "nexora_hw_memory_used_bytes",
-    "memory_total_bytes": "nexora_hw_memory_total_bytes",
-    "memory_usage_percent": "nexora_hw_memory_usage_percent",
-    "temperature_celsius": "nexora_hw_temperature_celsius",
-    "fan_speed_rpm": "nexora_hw_fan_speed_rpm",
-    "component_state": "nexora_hw_component_state",
-    "component_present": "nexora_hw_component_present",
-    "power_watts": "nexora_hw_power_watts",
-    "voltage_volts": "nexora_hw_voltage_volts",
-    "current_amperes": "nexora_hw_current_amperes",
-    "optical_power_dbm": "nexora_hw_optical_power_dbm",
-    "sensor_value": "nexora_hw_sensor_value",
-    "wireless_sensor_value": "nexora_wireless_sensor_value",
+    "cpu_usage_percent": "netaop_hw_cpu_usage_percent",
+    "memory_used_bytes": "netaop_hw_memory_used_bytes",
+    "memory_total_bytes": "netaop_hw_memory_total_bytes",
+    "memory_usage_percent": "netaop_hw_memory_usage_percent",
+    "temperature_celsius": "netaop_hw_temperature_celsius",
+    "fan_speed_rpm": "netaop_hw_fan_speed_rpm",
+    "component_state": "netaop_hw_component_state",
+    "component_present": "netaop_hw_component_present",
+    "power_watts": "netaop_hw_power_watts",
+    "voltage_volts": "netaop_hw_voltage_volts",
+    "current_amperes": "netaop_hw_current_amperes",
+    "optical_power_dbm": "netaop_hw_optical_power_dbm",
+    "sensor_value": "netaop_hw_sensor_value",
+    "wireless_sensor_value": "netaop_wireless_sensor_value",
 }
 _FAMILY_HELP = {
-    "nexora_hw_sensor_info": "Discovered hardware sensor metadata.",
-    "nexora_hw_sensor_quality": "Current quality state for a hardware sensor.",
-    "nexora_hw_sensor_last_success_timestamp_seconds": "Unix timestamp of the last valid hardware sample.",
-    "nexora_hw_cpu_usage_percent": "CPU utilization percentage for one processor measurement.",
-    "nexora_hw_memory_used_bytes": "Memory used in bytes for one memory pool.",
-    "nexora_hw_memory_total_bytes": "Memory total in bytes for one memory pool.",
-    "nexora_hw_memory_usage_percent": "Memory utilization percentage for one memory pool.",
-    "nexora_hw_temperature_celsius": "Temperature in degrees Celsius for one sensor.",
-    "nexora_hw_fan_speed_rpm": "Fan speed in revolutions per minute.",
-    "nexora_hw_component_state": "Normalized state code for one hardware component.",
-    "nexora_hw_component_present": "Explicit hardware component presence state.",
-    "nexora_hw_power_watts": "Power measurement in watts.",
-    "nexora_hw_voltage_volts": "Voltage measurement in volts.",
-    "nexora_hw_current_amperes": "Current measurement in amperes.",
-    "nexora_hw_optical_power_dbm": "Optical receive or transmit power in dBm.",
-    "nexora_hw_sensor_value": "Numeric LibreNMS sensor value without Nexora unit conversion.",
-    "nexora_wireless_sensor_value": "Current LibreNMS-compatible wireless sensor value for one controller, AP, radio, or BSS entity.",
+    "netaop_hw_sensor_info": "Discovered hardware sensor metadata.",
+    "netaop_hw_sensor_quality": "Current quality state for a hardware sensor.",
+    "netaop_hw_sensor_last_success_timestamp_seconds": "Unix timestamp of the last valid hardware sample.",
+    "netaop_hw_cpu_usage_percent": "CPU utilization percentage for one processor measurement.",
+    "netaop_hw_memory_used_bytes": "Memory used in bytes for one memory pool.",
+    "netaop_hw_memory_total_bytes": "Memory total in bytes for one memory pool.",
+    "netaop_hw_memory_usage_percent": "Memory utilization percentage for one memory pool.",
+    "netaop_hw_temperature_celsius": "Temperature in degrees Celsius for one sensor.",
+    "netaop_hw_fan_speed_rpm": "Fan speed in revolutions per minute.",
+    "netaop_hw_component_state": "Normalized state code for one hardware component.",
+    "netaop_hw_component_present": "Explicit hardware component presence state.",
+    "netaop_hw_power_watts": "Power measurement in watts.",
+    "netaop_hw_voltage_volts": "Voltage measurement in volts.",
+    "netaop_hw_current_amperes": "Current measurement in amperes.",
+    "netaop_hw_optical_power_dbm": "Optical receive or transmit power in dBm.",
+    "netaop_hw_sensor_value": "Numeric LibreNMS sensor value without NetAop unit conversion.",
+    "netaop_wireless_sensor_value": "Current LibreNMS-compatible wireless sensor value for one controller, AP, radio, or BSS entity.",
 }
 
 
@@ -1267,19 +1267,19 @@ def render_hardware_metrics(sensors: Sequence[Mapping[str, Any]], device_labels:
         info_labels["group"] = sensor.get("group_name", "")
         index_value = _decode_json_field(sensor.get("index", sensor.get("index_json")), fallback=[])
         info_labels["index"] = _json_text(index_value)
-        add("nexora_hw_sensor_info", info_labels, "1")
+        add("netaop_hw_sensor_info", info_labels, "1")
 
         quality = str(sensor.get("last_quality") or "missing").lower()
         if quality not in _QUALITY_VALUES:
             quality = "invalid"
         quality_labels = dict(base)
         quality_labels["quality"] = quality
-        add("nexora_hw_sensor_quality", quality_labels, "1")
+        add("netaop_hw_sensor_quality", quality_labels, "1")
 
         success_timestamp = _epoch_seconds(sensor.get("last_success"))
         if success_timestamp is not None:
             add(
-                "nexora_hw_sensor_last_success_timestamp_seconds",
+                "netaop_hw_sensor_last_success_timestamp_seconds",
                 base,
                 _metric_value(success_timestamp) or "0",
             )
@@ -1304,7 +1304,7 @@ def render_hardware_metrics(sensors: Sequence[Mapping[str, Any]], device_labels:
                         sample_labels["state_description"] = state_description
                         presence_value = _presence_metric_value(state_description)
                         if presence_value is not None:
-                            add("nexora_hw_component_present", sample_labels, presence_value)
+                            add("netaop_hw_component_present", sample_labels, presence_value)
                 add(family, sample_labels, value)
 
     output: list[str] = []

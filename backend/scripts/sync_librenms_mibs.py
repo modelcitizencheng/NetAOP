@@ -37,7 +37,7 @@ def _vendor_token(value: str) -> str:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Synchronize LibreNMS MIBs for vendors registered in Nexora.")
+    parser = argparse.ArgumentParser(description="Synchronize LibreNMS MIBs for vendors registered in NetAop.")
     parser.add_argument("--fetch", action="store_true", default=True, help="Clone/pull from GitHub")
     parser.add_argument("--no-fetch", dest="fetch", action="store_false", help="Do not fetch from GitHub, use local files")
     parser.add_argument("--vendors", nargs="+", help="Narrow to specific vendors already registered in the platform")

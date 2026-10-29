@@ -27,7 +27,7 @@ class AgentRunRequest(BaseModel):
 
 @router.get("/tools")
 def list_registered_tools(user=Depends(require_ai_permission("ai.view"))):
-    """List all registered tools in Nexora Tool Registry."""
+    """List all registered tools in NetAop Tool Registry."""
     return tool_registry.list_tools()
 
 

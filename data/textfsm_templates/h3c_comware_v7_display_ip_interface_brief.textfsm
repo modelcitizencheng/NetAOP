@@ -1,4 +1,4 @@
-# nexora-action-code: get_ip_interfaces
+# netaop-action-code: get_ip_interfaces
 Value Required INTERFACE (\S+)
 Value Required PHYSICAL ((?i:up|down))
 Value Required PROTOCOL ((?i:up|down)(?:\([A-Za-z]+\))?)

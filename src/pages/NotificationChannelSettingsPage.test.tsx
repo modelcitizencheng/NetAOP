@@ -20,7 +20,7 @@ const savedSmtpSettings = {
   security: 'starttls',
   username: 'alerts',
   from_address: 'alerts@example.net',
-  from_name: 'Nexora Ops',
+  from_name: 'NetAop Ops',
   reply_to: '',
   connect_timeout_seconds: 10,
   send_timeout_seconds: 20,

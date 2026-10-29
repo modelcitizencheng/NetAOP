@@ -101,7 +101,7 @@ def _upgrade_legacy_lookups(document: Mapping[str, Any]) -> int:
 
 
 def normalize_snmp_runtime(root: str | Path) -> int:
-    """Remove Nexora-only metric fields from the shared runtime config.
+    """Remove NetAop-only metric fields from the shared runtime config.
 
     Returns the number of removed fields.  The operation is atomic and is a
     no-op when the runtime file has not been created or has no extra fields.

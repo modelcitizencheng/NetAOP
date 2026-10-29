@@ -1,5 +1,5 @@
 """
-Nexora AI Platform Root Module
+NetAop AI Platform Root Module
 """
 from __future__ import annotations
 

@@ -25,7 +25,7 @@ from services.document_content_cleaning import CleanedDocument
 from services.document_security_scan import DocumentSecurityScanResult, SecurityDecision
 
 
-EXTRACTOR_NAME = "nexora-document-metadata"
+EXTRACTOR_NAME = "netaop-document-metadata"
 EXTRACTOR_VERSION = "1.0.0"
 METADATA_CONTRACT_VERSION = "1.0"
 UNKNOWN_VALUE = "UNKNOWN"

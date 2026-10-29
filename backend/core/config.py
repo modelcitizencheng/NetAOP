@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     REDIS_URL: str = "redis://localhost:6379/0"
     ALERT_NOTIFICATION_CELERY_ENABLED: bool = False
     IP_LOCATOR_CACHE_BACKEND: str = "redis"
-    IP_LOCATOR_REDIS_NAMESPACE: str = "nexora:production:locator:v1"
+    IP_LOCATOR_REDIS_NAMESPACE: str = "netaop:production:locator:v1"
     IP_LOCATOR_REDIS_CONNECT_TIMEOUT_SECONDS: float = 1.0
     IP_LOCATOR_REDIS_SOCKET_TIMEOUT_SECONDS: float = 1.0
     IP_LOCATOR_REDIS_FAILURE_COOLDOWN_SECONDS: float = 30.0
@@ -59,7 +59,7 @@ class Settings(BaseSettings):
     STORAGE_SPOOL_ROOT: str = os.path.join(PROJECT_ROOT, "data", "spool")
     STORAGE_RETRY_INTERVAL_SECONDS: int = 60
     S3_ENDPOINT_URL: str = ""
-    S3_BUCKET: str = "nexora"
+    S3_BUCKET: str = "netaop"
     S3_ACCESS_KEY_ID: str = ""
     S3_SECRET_ACCESS_KEY: str = ""
     S3_FORCE_PATH_STYLE: bool = True

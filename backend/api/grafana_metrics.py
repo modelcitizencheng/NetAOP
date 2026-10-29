@@ -180,10 +180,10 @@ def _allowlist_case(column: str, values: tuple[str, ...]) -> str:
 
 def _collect_outbound(lines: list[str], conn: Any, cutoffs: dict[str, str]) -> None:
     names = {
-        "samples": "nexora_outbound_probe_samples",
-        "availability": "nexora_outbound_probe_availability_ratio",
-        "avg": "nexora_outbound_probe_latency_avg_ms",
-        "max": "nexora_outbound_probe_latency_max_ms",
+        "samples": "netaop_outbound_probe_samples",
+        "availability": "netaop_outbound_probe_availability_ratio",
+        "avg": "netaop_outbound_probe_latency_avg_ms",
+        "max": "netaop_outbound_probe_latency_max_ms",
     }
     family_lines: list[str] = []
     _append_header(family_lines, names["samples"], "Aggregate outbound probe result samples in the rolling window.")
@@ -243,14 +243,14 @@ def _collect_outbound(lines: list[str], conn: Any, cutoffs: dict[str, str]) -> N
 
 def _collect_outbound_protocols(lines: list[str], conn: Any, cutoffs: dict[str, str]) -> None:
     metric_names = {
-        "samples": "nexora_outbound_probe_samples_by_type",
-        "success": "nexora_outbound_probe_success_ratio_by_type",
-        "timeouts": "nexora_outbound_probe_timeouts_by_type",
-        "timeout_ratio": "nexora_outbound_probe_timeout_ratio_by_type",
-        "latency_avg": "nexora_outbound_probe_latency_avg_ms_by_type",
-        "latency_max": "nexora_outbound_probe_latency_max_ms_by_type",
-        "icmp_loss": "nexora_outbound_probe_icmp_packet_loss_ratio",
-        "icmp_jitter": "nexora_outbound_probe_icmp_jitter_avg_ms",
+        "samples": "netaop_outbound_probe_samples_by_type",
+        "success": "netaop_outbound_probe_success_ratio_by_type",
+        "timeouts": "netaop_outbound_probe_timeouts_by_type",
+        "timeout_ratio": "netaop_outbound_probe_timeout_ratio_by_type",
+        "latency_avg": "netaop_outbound_probe_latency_avg_ms_by_type",
+        "latency_max": "netaop_outbound_probe_latency_max_ms_by_type",
+        "icmp_loss": "netaop_outbound_probe_icmp_packet_loss_ratio",
+        "icmp_jitter": "netaop_outbound_probe_icmp_jitter_avg_ms",
     }
     family_lines: list[str] = []
     help_texts = {
@@ -338,7 +338,7 @@ def _collect_outbound_protocols(lines: list[str], conn: Any, cutoffs: dict[str, 
 
 def _collect_wan(lines: list[str], conn: Any, cutoffs: dict[str, str]) -> None:
     sample_table = "wan_link_samples_1m_partitioned" if _USE_PG else "wan_link_samples_1m"
-    status_name = "nexora_wan_links_by_health_status"
+    status_name = "netaop_wan_links_by_health_status"
     status_rows = _safe_query(
         conn,
         f"""
@@ -390,21 +390,21 @@ def _collect_wan(lines: list[str], conn: Any, cutoffs: dict[str, str]) -> None:
             down_count = max(1, int(_numeric(_row_value(row, "consecutive_down_count", 3, 0), 0)))
             active_down += 1
             outage_seconds.append(float(down_count * interval))
-        active_name = "nexora_wan_interface_active_down_links"
-        duration_name = "nexora_wan_interface_continuous_down_estimate_max_seconds"
+        active_name = "netaop_wan_interface_active_down_links"
+        duration_name = "netaop_wan_interface_continuous_down_estimate_max_seconds"
         _append_header(lines, active_name, "Enabled WAN interfaces with a fresh successful sample reporting admin-up and oper-down.")
         _append_header(lines, duration_name, "Maximum estimated continuous WAN interface outage based on consecutive down samples and collection interval.")
         lines.append(_metric_line(active_name, active_down))
         lines.append(_metric_line(duration_name, max(outage_seconds, default=0)))
 
     metric_names = {
-        "samples": "nexora_wan_interface_samples",
-        "collection_success": "nexora_wan_interface_collection_success_ratio",
-        "oper_up": "nexora_wan_interface_oper_up_ratio",
-        "download": "nexora_wan_interface_avg_download_bps",
-        "upload": "nexora_wan_interface_avg_upload_bps",
-        "errors": "nexora_wan_interface_errors_total",
-        "discards": "nexora_wan_interface_discards_total",
+        "samples": "netaop_wan_interface_samples",
+        "collection_success": "netaop_wan_interface_collection_success_ratio",
+        "oper_up": "netaop_wan_interface_oper_up_ratio",
+        "download": "netaop_wan_interface_avg_download_bps",
+        "upload": "netaop_wan_interface_avg_upload_bps",
+        "errors": "netaop_wan_interface_errors_total",
+        "discards": "netaop_wan_interface_discards_total",
     }
     family_lines: list[str] = []
     for key, name in metric_names.items():
@@ -464,7 +464,7 @@ def _collect_alerts(
     now: datetime | None = None,
 ) -> None:
     now = now or datetime.now(timezone.utc)
-    open_name = "nexora_alert_open_events"
+    open_name = "netaop_alert_open_events"
     _append_header(lines, open_name, "Currently open aggregate alert events by normalized severity.")
     severity_sql = _severity_case("severity")
     open_rows = _safe_query(
@@ -490,9 +490,9 @@ def _collect_alerts(
             lines.append(_metric_line(open_name, counts[severity], {"severity": severity}))
 
     count_specs = (
-        ("nexora_alert_events_created_24h", "created_at"),
-        ("nexora_alert_events_acknowledged_24h", "ack_at"),
-        ("nexora_alert_events_resolved_24h", "resolved_at"),
+        ("netaop_alert_events_created_24h", "created_at"),
+        ("netaop_alert_events_acknowledged_24h", "ack_at"),
+        ("netaop_alert_events_resolved_24h", "resolved_at"),
     )
     for name, column in count_specs:
         _append_header(lines, name, f"Aggregate alert events with {column} in the last 24 hours.")
@@ -517,8 +517,8 @@ def _collect_alerts(
     )
     if open_duration_rows is not None:
         durations = _duration_values(open_duration_rows, now, "created_at")
-        oldest_name = "nexora_alert_open_duration_oldest_seconds"
-        p95_name = "nexora_alert_open_duration_p95_seconds"
+        oldest_name = "netaop_alert_open_duration_oldest_seconds"
+        p95_name = "netaop_alert_open_duration_p95_seconds"
         _append_header(lines, oldest_name, "Age in seconds of the oldest currently open, non-suppressed alert.")
         _append_header(lines, p95_name, "95th percentile age in seconds of currently open, non-suppressed alerts.")
         lines.append(_metric_line(oldest_name, max(durations, default=0)))
@@ -528,16 +528,16 @@ def _collect_alerts(
         (
             "mtta",
             "ack_at",
-            "nexora_alert_mtta_seconds_24h",
-            "nexora_alert_mtta_samples_24h",
-            "nexora_alert_mtta_p95_seconds_24h",
+            "netaop_alert_mtta_seconds_24h",
+            "netaop_alert_mtta_samples_24h",
+            "netaop_alert_mtta_p95_seconds_24h",
         ),
         (
             "mttr",
             "resolved_at",
-            "nexora_alert_mttr_seconds_24h",
-            "nexora_alert_mttr_samples_24h",
-            "nexora_alert_mttr_p95_seconds_24h",
+            "netaop_alert_mttr_seconds_24h",
+            "netaop_alert_mttr_samples_24h",
+            "netaop_alert_mttr_p95_seconds_24h",
         ),
     )
     for _metric_key, event_column, duration_name, samples_name, p95_name in lifecycle_specs:
@@ -563,7 +563,7 @@ def _collect_alerts(
             _append_header(lines, p95_name, f"95th percentile seconds from alert creation to {event_column} in the last 24 hours.")
             lines.append(_metric_line(p95_name, _percentile(durations, 0.95) or 0))
 
-    duplicate_name = "nexora_alert_duplicate_open_events"
+    duplicate_name = "netaop_alert_duplicate_open_events"
     _append_header(lines, duplicate_name, "Extra unresolved alert rows beyond one per dedupe key, excluding suppressed alerts.")
     duplicate_count = _safe_scalar(
         conn,
@@ -586,8 +586,8 @@ def _collect_alerts(
 
 
 def _collect_delivery(lines: list[str], conn: Any, cutoff_24h: str) -> None:
-    attempts_name = "nexora_alert_delivery_attempts_24h"
-    outbox_name = "nexora_alert_outbox_items"
+    attempts_name = "netaop_alert_delivery_attempts_24h"
+    outbox_name = "netaop_alert_outbox_items"
     _append_header(lines, attempts_name, "Aggregate alert delivery attempts created in the last 24 hours.")
     attempts_rows = _safe_query(
         conn,
@@ -627,7 +627,7 @@ def _collect_delivery(lines: list[str], conn: Any, cutoff_24h: str) -> None:
                     )
                 )
 
-    retried_name = "nexora_alert_retried_deliveries_24h"
+    retried_name = "netaop_alert_retried_deliveries_24h"
     _append_header(lines, retried_name, "Alert delivery IDs with more than one recorded attempt in the last 24 hours.")
     retried_count = _safe_scalar(
         conn,
@@ -676,12 +676,12 @@ def _collect_delivery(lines: list[str], conn: Any, cutoff_24h: str) -> None:
                 )
             )
 
-    backlog_name = "nexora_alert_outbox_backlog_items"
-    oldest_pending_name = "nexora_alert_outbox_oldest_pending_age_seconds"
-    oldest_processing_name = "nexora_alert_outbox_oldest_processing_age_seconds"
-    expired_execution_leases_name = "nexora_alert_outbox_expired_execution_leases"
-    expired_publish_leases_name = "nexora_alert_outbox_expired_publish_leases"
-    unpublished_name = "nexora_alert_outbox_unpublished_items"
+    backlog_name = "netaop_alert_outbox_backlog_items"
+    oldest_pending_name = "netaop_alert_outbox_oldest_pending_age_seconds"
+    oldest_processing_name = "netaop_alert_outbox_oldest_processing_age_seconds"
+    expired_execution_leases_name = "netaop_alert_outbox_expired_execution_leases"
+    expired_publish_leases_name = "netaop_alert_outbox_expired_publish_leases"
+    unpublished_name = "netaop_alert_outbox_unpublished_items"
     for name, help_text in (
         (backlog_name, "Pending alert outbox items by fixed priority."),
         (oldest_pending_name, "Age of the oldest pending alert intent by fixed priority."),
@@ -869,15 +869,15 @@ def _collect_hardware(lines: list[str], conn: Any, now: datetime) -> dict[str, A
     if capability_rows is None:
         raise RuntimeError("hardware capability inventory query failed")
     capability_render_started = time.perf_counter()
-    capability_name = "nexora_hw_capability_status"
+    capability_name = "netaop_hw_capability_status"
     _append_header(lines, capability_name, "Last discovery status for one hardware source and component category.")
-    active_count_name = "nexora_hw_capability_active_sensor_count"
+    active_count_name = "netaop_hw_capability_active_sensor_count"
     _append_header(lines, active_count_name, "Number of currently active discovered sensors in one hardware category.")
-    discovered_count_name = "nexora_hw_capability_last_discovered_count"
+    discovered_count_name = "netaop_hw_capability_last_discovered_count"
     _append_header(lines, discovered_count_name, "Number of sensors in the latest accepted hardware discovery for one category.")
-    capability_info_name = "nexora_hw_capability_info"
+    capability_info_name = "netaop_hw_capability_info"
     _append_header(lines, capability_info_name, "Hardware capability versions and the last discovery reason code.")
-    capability_success_name = "nexora_hw_capability_last_success_timestamp_seconds"
+    capability_success_name = "netaop_hw_capability_last_success_timestamp_seconds"
     _append_header(lines, capability_success_name, "Unix timestamp of the last complete successful hardware category discovery.")
     allowed_statuses = {"success", "partial", "failed", "unsupported", "not_found"}
     for row in capability_rows:
@@ -913,7 +913,7 @@ def _collect_hardware(lines: list[str], conn: Any, now: datetime) -> dict[str, A
         if successful_at is not None:
             lines.append(_metric_line(capability_success_name, successful_at.timestamp(), labels))
 
-    render_error_name = "nexora_hw_sensor_render_errors"
+    render_error_name = "netaop_hw_sensor_render_errors"
     _append_header(lines, render_error_name, "Number of devices whose hardware metrics could not be rendered during this scrape.")
     lines.append(_metric_line(render_error_name, render_errors))
     timings["capability_render_ms"] = (time.perf_counter() - capability_render_started) * 1000
@@ -962,10 +962,10 @@ def grafana_metrics() -> Response:
     health_lines: list[str] = []
     _append_header(
         health_lines,
-        "nexora_monitoring_database_available",
+        "netaop_monitoring_database_available",
         "Whether the application can execute a simple database query.",
     )
-    health_lines.append(_metric_line("nexora_monitoring_database_available", database_available))
+    health_lines.append(_metric_line("netaop_monitoring_database_available", database_available))
     lines = health_lines + lines
     body = "\n".join(line for line in lines if line) + ("\n" if lines else "")
     return Response(content=body, media_type="text/plain; version=0.0.4; charset=utf-8")

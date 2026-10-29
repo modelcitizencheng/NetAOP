@@ -45,7 +45,7 @@ const result = (overrides: Partial<SnmpHardwareDiscoveryTestResult> = {}): SnmpH
   source: 'librenms_native',
   state: 'available',
   message: 'Latest LibreNMS native result loaded',
-  matched_device_id: 'nexora-device-1',
+  matched_device_id: 'netaop-device-1',
   matched_hostname: 'edge-01',
   binding: {
     id: 'binding-1',
@@ -110,14 +110,14 @@ describe('HardwareDiagnosticSummary', () => {
     expect(screen.queryByText(/实时读数与后台样本/)).toBeNull();
   });
 
-  it('renders local Nexora results without an external LibreNMS binding prompt', () => {
+  it('renders local NetAop results without an external LibreNMS binding prompt', () => {
     render(
       <HardwareDiagnosticSummary
         zh
         result={result({
-          source: 'nexora_snmp',
+          source: 'netaop_snmp',
           state: 'available',
-          message: '已读取 Nexora 本地 SNMP 硬件采集结果',
+          message: '已读取 NetAop 本地 SNMP 硬件采集结果',
           collection: { ...result().collection, poll_interval_seconds: 60 },
           hardware_sensors: [sensor({
             data_origin: 'legacy_snmp',
@@ -128,12 +128,12 @@ describe('HardwareDiagnosticSummary', () => {
             poll_interval_seconds: 60,
             last_quality: 'good',
           })],
-          metric_summary: [metric({ source: 'nexora_snmp', key: 'temperature' })],
+          metric_summary: [metric({ source: 'netaop_snmp', key: 'temperature' })],
         })}
       />,
     );
 
-    expect(screen.getByText('Nexora 本地 SNMP 硬件采集结果')).toBeTruthy();
+    expect(screen.getByText('NetAop 本地 SNMP 硬件采集结果')).toBeTruthy();
     expect(screen.getByText('本地采集器')).toBeTruthy();
     expect(screen.getByText('本地传感器分类汇总')).toBeTruthy();
     expect(screen.queryByText('LibreNMS 绑定')).toBeNull();
@@ -256,7 +256,7 @@ describe('HardwareDiagnosticSummary', () => {
 
   it('shows loading, permission-denied, and request failure states accessibly', () => {
     const { rerender } = render(<HardwareDiagnosticSummary zh result={null} loading />);
-    expect(screen.getByRole('status').textContent).toContain('读取 Nexora');
+    expect(screen.getByRole('status').textContent).toContain('读取 NetAop');
 
     rerender(<HardwareDiagnosticSummary zh result={null} error={{ message: '无权读取 LibreNMS 原生结果', permissionDenied: true }} />);
     expect(screen.getByRole('alert').textContent).toContain('无权读取 LibreNMS 原生结果');

@@ -535,7 +535,7 @@ def _delete_session(token: str):
         conn.close()
 
 
-GRAFANA_SESSION_COOKIE = 'nexora_grafana_session'
+GRAFANA_SESSION_COOKIE = 'netaop_grafana_session'
 
 
 def _request_is_https(request: Request) -> bool:
@@ -1596,7 +1596,7 @@ def create_grafana_session(
     response: Response,
     user=require_role("Viewer"),
 ):
-    """Bridge an existing Nexora bearer session to a Grafana-only cookie."""
+    """Bridge an existing NetAop bearer session to a Grafana-only cookie."""
     auth_header = request.headers.get('Authorization', '')
     token = auth_header.replace('Bearer ', '', 1) if auth_header.startswith('Bearer ') else ''
     if not token:
@@ -1616,7 +1616,7 @@ def authenticate_grafana_proxy(
         user_id = re.sub(r'[^A-Za-z0-9_-]', '', str(user.get('user_id') or ''))
         if not user_id:
             raise HTTPException(status_code=401, detail="Grafana identity is unavailable")
-        username = f'nexora-{user_id}'
+        username = f'netaop-{user_id}'
 
     response.headers['X-Grafana-User'] = username
     response.headers['X-Grafana-Role'] = (
@@ -1634,7 +1634,7 @@ def logout(
     response: Response,
     user=require_role("Viewer"),
 ):
-    """Revoke the current Nexora session and clear its Grafana bridge cookie."""
+    """Revoke the current NetAop session and clear its Grafana bridge cookie."""
     auth_header = request.headers.get('Authorization', '')
     token = auth_header.replace('Bearer ', '', 1) if auth_header.startswith('Bearer ') else ''
     if token:
@@ -1644,7 +1644,7 @@ def logout(
 
 
 def _get_system_name() -> str:
-    system_name = "Nexora"
+    system_name = "NetAop"
     try:
         from database import get_db_connection
         conn = get_db_connection()

@@ -183,7 +183,7 @@ def row_values(row: Iterable[Any], width: int) -> list[Any]:
 
 def source_meta(source_version: str, source_url: str, title: str) -> dict[str, Any]:
     return {
-        "source_title": title or "Nexora 3D Asset Base Catalog",
+        "source_title": title or "NetAop 3D Asset Base Catalog",
         "source_url": source_url or None,
         "source_version": source_version or "unknown",
     }
@@ -257,14 +257,14 @@ def build_rack_assets(rows: list[tuple[int, list[Any]]]) -> list[dict[str, Any]]
             "mount_kind": mount_kind(clean(values[4]), asset_name),
             "installation_location": nullable(values[4]) or "unknown",
             "structural_features": nullable(values[5]),
-            "nexora_fields": nullable(values[6]),
+            "netaop_fields": nullable(values[6]),
             "blender_approach": nullable(values[7]) or "generic_template",
             "asset_priority": nullable(values[8]) or "P2",
             "data_confidence": "verified_manual" if nullable(values[9]) else "tbd",
             "dimension_status": "pending_verification",
             "notes_or_source": nullable(values[9]),
             "source_row": source_row,
-            **source_meta("unknown", "", "Nexora rack and accessory asset catalog"),
+            **source_meta("unknown", "", "NetAop rack and accessory asset catalog"),
         })
     return records
 
@@ -287,11 +287,11 @@ def build_cables(rows: list[tuple[int, list[Any]]]) -> list[dict[str, Any]]:
             "supported_rate": nullable(values[4]) or "unknown",
             "length_options": nullable(values[5]) or "unknown",
             "blender_approach": nullable(values[6]) or "procedural_bezier",
-            "nexora_data_mapping": nullable(values[7]) or "from_port/to_port",
+            "netaop_data_mapping": nullable(values[7]) or "from_port/to_port",
             "market_note": nullable(values[8]),
             "asset_priority": nullable(values[9]) or "P2",
             "source_row": source_row,
-            **source_meta("unknown", "", "Nexora cable and optic asset catalog"),
+            **source_meta("unknown", "", "NetAop cable and optic asset catalog"),
         })
     return records
 

@@ -80,7 +80,7 @@ def reject_custom_snmp_metric_profiles(legacy_path: str = "", user=require_role(
 @router.get("/platform-registry/mibs/presets/models")
 @router.get("/platform-registry/mibs/auto-match")
 def reject_local_snmp_model_presets(user=require_role("Viewer")):
-    """Retire static Nexora OID presets and identity-based local matching."""
+    """Retire static NetAop OID presets and identity-based local matching."""
     raise HTTPException(
         status_code=410,
         detail={

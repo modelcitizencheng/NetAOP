@@ -22,7 +22,7 @@ const emptyReport = {
   suite: 'v1_baseline_postgresql',
   status: 'not_run',
   tenant_id: 'tenant-a',
-  baseline_id: 'nexora-kb-v1-20260809',
+  baseline_id: 'netaop-kb-v1-20260809',
   system_under_test: 'current-local-rag-retrieval-path',
   database: 'PostgreSQL',
   execution_mode: 'temporary_transaction',
@@ -54,7 +54,7 @@ const passReport = {
 };
 
 const fixtureSummary = {
-  dataset_id: 'nexora-kb-eval-gold-400-v2-20260905',
+  dataset_id: 'netaop-kb-eval-gold-400-v2-20260905',
   status: 'frozen',
   purpose: 'Official-source-backed automated evaluation dataset',
   test_only: false,

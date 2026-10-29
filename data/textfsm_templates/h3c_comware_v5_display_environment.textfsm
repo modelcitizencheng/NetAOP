@@ -1,4 +1,4 @@
-# nexora-action-code: get_temperature
+# netaop-action-code: get_temperature
 # V5 S-series releases use both the old four-column table and the later
 # sensor table.  SLOT is carried from ``Slot 1`` into each sensor record.
 Value Filldown SLOT (\d+(?:/\d+)?)

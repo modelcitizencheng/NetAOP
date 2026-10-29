@@ -15,7 +15,7 @@ RUN npm run build
 FROM python:3.11-slim
 LABEL maintainer="NetOps Team"
 LABEL python.version="3.11"
-LABEL description="Nexora NetOps Platform"
+LABEL description="NetAop NetOps Platform"
 
 # System dependencies. Build images on a connected build host, then transfer
 # the resulting images to isolated/offline deployment hosts when required.

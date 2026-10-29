@@ -1,6 +1,6 @@
 """Optionally enroll imported CMDB network devices in an external LibreNMS.
 
-Nexora's local SNMP hardware collector is the default. This compatibility
+NetAop's local SNMP hardware collector is the default. This compatibility
 integration is used only when an enabled external LibreNMS instance exists.
 """
 
@@ -264,7 +264,7 @@ async def enroll_imported_network_device(
     Match on exact management IP. Existing native devices receive the selected
     asset SNMP profile through LibreNMS' documented device-field API before the
     local binding is persisted. New devices use the documented add-device API.
-    When no instance is enabled, the external enrollment is skipped; Nexora's
+    When no instance is enabled, the external enrollment is skipped; NetAop's
     local SNMP collector remains responsible for hardware sampling.
     """
     target = _load_asset_enrollment_context(str(device_id or "").strip())
@@ -301,7 +301,7 @@ async def enroll_imported_network_device(
     if not instances:
         return {
             "status": "local_snmp",
-            "message": "未配置外部 LibreNMS 实例；硬件数据由 Nexora 本地 SNMP 采集器负责（设备需配置有效 SNMP 凭据）",
+            "message": "未配置外部 LibreNMS 实例；硬件数据由 NetAop 本地 SNMP 采集器负责（设备需配置有效 SNMP 凭据）",
             "profile_applied": False,
         }
 

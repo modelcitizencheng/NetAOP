@@ -185,8 +185,8 @@ def permission_catalog() -> dict[str, list[str]]:
 
 def _get_current_user(request: Request) -> dict | None:
     """Extract session user from Authorization header."""
-    if getattr(request.state, "nexora_session_auth_checked", False):
-        return getattr(request.state, "nexora_session_auth_user", None)
+    if getattr(request.state, "netaop_session_auth_checked", False):
+        return getattr(request.state, "netaop_session_auth_user", None)
 
     from api.users import validate_session_token
     auth = request.headers.get('Authorization', '')
@@ -194,12 +194,12 @@ def _get_current_user(request: Request) -> dict | None:
     logger.debug("RBAC request path=%s auth_present=%s", request.url.path, bool(auth))
     if not token:
         logger.warning("No authentication token for path %s", request.url.path)
-        request.state.nexora_session_auth_checked = True
-        request.state.nexora_session_auth_user = None
+        request.state.netaop_session_auth_checked = True
+        request.state.netaop_session_auth_user = None
         return None
     user = validate_session_token(token)
-    request.state.nexora_session_auth_checked = True
-    request.state.nexora_session_auth_user = user
+    request.state.netaop_session_auth_checked = True
+    request.state.netaop_session_auth_user = user
     logger.debug("RBAC user validation path=%s user=%s", request.url.path, user.get('username') if user else 'none')
     return user
 

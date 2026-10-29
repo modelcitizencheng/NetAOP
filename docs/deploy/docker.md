@@ -14,13 +14,13 @@
 
 `docker-compose.yml` 内置 Redis 7.4.2 Alpine 服务，默认随 Docker 栈启动；Redis 容器和主应用统一读取 `TZ`，未设置时使用 `Asia/Shanghai`。缓存 Redis 仅用于 IP 定位等可重建缓存，不能替代 PostgreSQL 的任务状态或事实数据。部署脚本可通过 `NETOPS_REDIS_ENABLED=0` 显式关闭缓存 Redis；告警通知使用单独的 `alert-redis` Broker，不受此开关影响。
 
-告警通知经 PostgreSQL outbox、独立 Relay、专用 Redis Broker 和两个单并发 Celery Worker 处理。首次安装前需设置 `ALERT_NOTIFICATION_BROKER_PASSWORD`，可用 `openssl rand -hex 32` 生成 URL 安全随机值；空值会令 Compose 配置校验失败。Broker 仅连接内部告警网络，API 与其他容器不能直接访问；Broker 使用独立数据卷、AOF、`noeviction`、`nexora_alert_` 键前缀和受限 ACL，不要复用缓存 Redis 的密码/实例。
+告警通知经 PostgreSQL outbox、独立 Relay、专用 Redis Broker 和两个单并发 Celery Worker 处理。首次安装前需设置 `ALERT_NOTIFICATION_BROKER_PASSWORD`，可用 `openssl rand -hex 32` 生成 URL 安全随机值；空值会令 Compose 配置校验失败。Broker 仅连接内部告警网络，API 与其他容器不能直接访问；Broker 使用独立数据卷、AOF、`noeviction`、`netaop_alert_` 键前缀和受限 ACL，不要复用缓存 Redis 的密码/实例。
 
 数据库镜像固定基于 `pgvector/pgvector:0.8.6-pg18-bookworm`，并额外安装
 `postgresql-contrib-18`，因此迁移 `0104_ai_pgvector_rag` 所需的 `vector` 和
 `pg_trgm` 都能在数据库启动前使用。
 
-PostgreSQL 18 官方容器将数据目录设为 `/var/lib/postgresql/18/docker`，因此 Compose 将 `nexora-pgdata` 挂载到父目录 `/var/lib/postgresql`，以持久化该目录下的版本化集群数据。PG17 的旧 volume 不能原样交给 PG18；先备份，再使用 `pg_upgrade` 或 `pg_dump`/`pg_restore` 迁移到新 PG18 集群。
+PostgreSQL 18 官方容器将数据目录设为 `/var/lib/postgresql/18/docker`，因此 Compose 将 `netaop-pgdata` 挂载到父目录 `/var/lib/postgresql`，以持久化该目录下的版本化集群数据。PG17 的旧 volume 不能原样交给 PG18；先备份，再使用 `pg_upgrade` 或 `pg_dump`/`pg_restore` 迁移到新 PG18 集群。
 
 > 这些文件**保持在根目录**，所以下面所有命令都直接在仓库根目录执行，无需 `-f` 指定路径。
 
@@ -56,16 +56,16 @@ Nginx 默认 `NGINX_WORKER_PROCESSES=1`，通过 `40-configure-workers.sh` 在�
 
 ```bash
 docker inspect --format '{{.Name}} memory={{.HostConfig.Memory}} nano_cpus={{.HostConfig.NanoCpus}} pids={{.HostConfig.PidsLimit}}' $(docker compose ps -q)
-docker exec nexora-nginx nginx -T 2>&1 | grep -E 'worker_processes|worker_connections'
-docker exec nexora-nginx ps aux
+docker exec netaop-nginx nginx -T 2>&1 | grep -E 'worker_processes|worker_connections'
+docker exec netaop-nginx ps aux
 ```
 
 ## 步骤
 
 1. 克隆仓库并准备环境文件：
    ```bash
-   git clone https://github.com/libing28390-sketch/Release-netops.git nexora-automation
-   cd nexora-automation
+   git clone https://github.com/libing28390-sketch/Release-netops.git netaop-automation
+   cd netaop-automation
    # 首次安装由部署脚本生成数据库、应用、Grafana、S3 和缓存 Redis 密钥。
    # 先手动生成并写入必填的告警 Broker 密码：
    openssl rand -hex 32
@@ -95,14 +95,14 @@ docker exec nexora-nginx ps aux
 
 Docker 部署默认包含本地 S3 兼容存储 SeaweedFS，不需要 AWS 账号或 AWS 服务。
 部署脚本首次运行时会从 Docker 专用的 `.env.example` 创建 `.env`；默认配置使用
-`STORAGE_BACKEND=s3`、内部地址 `http://seaweedfs:8333` 和 Bucket `nexora`，并自动
+`STORAGE_BACKEND=s3`、内部地址 `http://seaweedfs:8333` 和 Bucket `netaop`，并自动
 启用 SeaweedFS Compose profile。脚本会为 `.env` 中的 Access Key ID 和 Secret
 生成强随机值；已有真实值会原样保留：
 
 ```dotenv
 STORAGE_BACKEND=s3
 S3_ENDPOINT_URL=http://seaweedfs:8333
-S3_BUCKET=nexora
+S3_BUCKET=netaop
 S3_ACCESS_KEY_ID=replace-with-a-strong-s3-access-key
 S3_SECRET_ACCESS_KEY=replace-with-a-strong-s3-secret-key
 ```
@@ -119,7 +119,7 @@ bash scripts/deploy-docker.sh update --force
 ```
 
 安装后，配置备份和 PAM 录像默认都使用 `.env` 中的本地 SeaweedFS 配置、Bucket
-`nexora`，并分别写入 `config/` 和 `pam/` 对象 key 前缀。无需在管理页面再次填写
+`netaop`，并分别写入 `config/` 和 `pam/` 对象 key 前缀。无需在管理页面再次填写
 Access Key ID 或 Secret。打开 **平台管理 → 对象存储**（`/management/storage`）可
 查看现有配置。配置备份和 PAM 录像共用当前全局默认存储；新增 S3 配置并设为默认后，
 之后的新文件会使用该配置。只有需要连接另一套 S3 服务时，才需要新增配置；新增配置
@@ -147,7 +147,7 @@ docker compose --profile object-storage up -d
 其他 S3 服务时，再按该服务调整 endpoint、Bucket、凭据和 TLS 校验设置。
 
 切换到 S3 不会自动迁移已有的本地文件。原本保存在 `STORAGE_LOCAL_ROOT` 或
-`nexora-data` 卷中的 PAM 录像、配置备份等对象仍留在本地存储；需要按仓库的
+`netaop-data` 卷中的 PAM 录像、配置备份等对象仍留在本地存储；需要按仓库的
 存储迁移流程单独导入到 S3，完成核对后再清理旧数据。
 
 SeaweedFS 当前没有设置 bucket 总容量配额，Docker named volume 也没有单独的磁盘配额；
@@ -158,7 +158,7 @@ S3 可用空间取决于 Docker 数据目录所在文件系统的剩余空间。
 
 ## Guacamole RDP/VNC 网关
 
-图形远程访问由 Apache Guacamole Web 与 `guacd` 两个官方容器提供，不新增 Guacamole 数据库或 Redis。两个服务随标准 Docker 安装、更新和离线启动一并启动。被访问的 Windows/VNC 资产不需要安装 Nexora Agent，但需在目标端启用 RDP 或运行兼容 VNC Server。
+图形远程访问由 Apache Guacamole Web 与 `guacd` 两个官方容器提供，不新增 Guacamole 数据库或 Redis。两个服务随标准 Docker 安装、更新和离线启动一并启动。被访问的 Windows/VNC 资产不需要安装 NetAop Agent，但需在目标端启用 RDP 或运行兼容 VNC Server。
 
 部署脚本会在首次安装或更新时检查独立的 128 位十六进制 JSON 密钥：已有 32 位十六进制值会保留，缺失或格式无效时会生成新值。升级现有部署时先备份 `.env`，再执行：
 
@@ -173,17 +173,17 @@ openssl rand -hex 16
 docker compose up -d netops nginx guacamole guacd
 ```
 
-Web 应用只能由 Nexora 后端经内部网络访问；`guacd:4822` 仅供 Guacamole Web 使用，不映射到宿主机。Nginx 只为现有后端图形 WebSocket 提供同源代理。只有 `guacd` 接入用于连接受管资产的出向网络；应在主机/目标防火墙中只放行来自 Nexora Docker 主机的必要目标网段与端口。Apache Guacamole 1.6.0 的 `guacd` 使用 UID/GID 1000，与 Nexora 镜像一致。Compose 会先启动 Nexora，由其预建并初始化共享录像卷的 UID 1000 目录，再启动 `guacd` 写入录像。
+Web 应用只能由 NetAop 后端经内部网络访问；`guacd:4822` 仅供 Guacamole Web 使用，不映射到宿主机。Nginx 只为现有后端图形 WebSocket 提供同源代理。只有 `guacd` 接入用于连接受管资产的出向网络；应在主机/目标防火墙中只放行来自 NetAop Docker 主机的必要目标网段与端口。Apache Guacamole 1.6.0 的 `guacd` 使用 UID/GID 1000，与 NetAop 镜像一致。Compose 会先启动 NetAop，由其预建并初始化共享录像卷的 UID 1000 目录，再启动 `guacd` 写入录像。
 
-RDP 通常使用 TCP/3389；目标 Windows 需启用远程桌面、授予登录权限并按组织要求启用 NLA。VNC 常用 TCP/5900，显示编号可能对应更高端口；目标需运行 VNC Server。资产配置分别保存 RDP/VNC 端口和现有凭据引用，管理员访问仍需完成 Nexora MFA。浏览器不接收目标密码。
+RDP 通常使用 TCP/3389；目标 Windows 需启用远程桌面、授予登录权限并按组织要求启用 NLA。VNC 常用 TCP/5900，显示编号可能对应更高端口；目标需运行 VNC Server。资产配置分别保存 RDP/VNC 端口和现有凭据引用，管理员访问仍需完成 NetAop MFA。浏览器不接收目标密码。
 
-会话录像暂存在 `nexora-remote-desktop-recordings` volume，经 Nexora 后端归档到当前 PAM 存储。需为录像磁盘预留容量并纳入部署机备份策略；临时停用网关前确认待归档录像已处理。Guacamole 图形审计提供会话录像，不具备 SSH 终端的逐命令危险操作过滤能力。标准 VNC 是否加密取决于所选 VNC Server 认证/传输模式，HTTPS 仅保护浏览器到平台这一段。
+会话录像暂存在 `netaop-remote-desktop-recordings` volume，经 NetAop 后端归档到当前 PAM 存储。需为录像磁盘预留容量并纳入部署机备份策略；临时停用网关前确认待归档录像已处理。Guacamole 图形审计提供会话录像，不具备 SSH 终端的逐命令危险操作过滤能力。标准 VNC 是否加密取决于所选 VNC Server 认证/传输模式，HTTPS 仅保护浏览器到平台这一段。
 
 如需临时停用网关，可执行 `docker compose stop guacamole guacd`；后续标准更新会再次启动它们。无需删除数据库卷；不要执行 `docker compose down -v`。
 
 Docker Compose 默认启用 Prometheus-compatible 的 VictoriaMetrics 查询路径，
 并把 `netops` 编译发布的采集目标、SNMP 认证和 vmagent 配置通过
-`nexora-monitoring-artifacts` 共享卷交给 `vmagent` 与 `snmp-exporter`。
+`netaop-monitoring-artifacts` 共享卷交给 `vmagent` 与 `snmp-exporter`。
 如需显式配置，可在 `.env` 中设置：
 
 ```dotenv
@@ -231,17 +231,17 @@ docker compose up -d --force-recreate cadvisor
 ```
 
 该挂载为只读，Compose 不会为错误或缺失的源路径自动创建空目录。检查
-`docker logs --tail=100 nexora-cadvisor` 不再报告找不到 `layerdb/mounts/*/mount-id`，
+`docker logs --tail=100 netaop-cadvisor` 不再报告找不到 `layerdb/mounts/*/mount-id`，
 并在 VictoriaMetrics 中确认 `container_last_seen`、CPU 和内存序列带有容器名称标签。
 容器磁盘 I/O 指标还取决于主机内核和存储驱动是否提供对应统计。
 
-Nexora 的“监控大盘”通过同源 `/grafana/` 访问 Grafana，Grafana 数据源已自动
-指向 `http://victoriametrics:8428`。从 Nexora 登录后，Nginx 的内部鉴权子请求会读取
-`nexora_grafana_session`，将它作为 Bearer 凭据交由后端校验，再通过 Auth Proxy 身份头让
+NetAop 的“监控大盘”通过同源 `/grafana/` 访问 Grafana，Grafana 数据源已自动
+指向 `http://victoriametrics:8428`。从 NetAop 登录后，Nginx 的内部鉴权子请求会读取
+`netaop_grafana_session`，将它作为 Bearer 凭据交由后端校验，再通过 Auth Proxy 身份头让
 Grafana 按请求认证；Auth Proxy 不签发 Grafana 登录令牌 Cookie。Nginx 不会把浏览器 Cookie 转发给后端或 Grafana，以免旧的
 `grafana_session` 覆盖代理身份或触发错误跳转；
 匿名访问仍关闭，浏览器不会获得 Grafana 管理员密码。
-需要在 Nexora 内嵌大盘时，保持 `GRAFANA_ALLOW_EMBEDDING=1`。
+需要在 NetAop 内嵌大盘时，保持 `GRAFANA_ALLOW_EMBEDDING=1`。
 
 Auth Proxy 白名单使用独立内部 Docker 网络的 CIDR。默认网段为
 `172.30.254.0/29`；Grafana 和 Nginx 在该网络上由 Docker IPAM 动态分配地址，
@@ -251,7 +251,7 @@ Auth Proxy 白名单使用独立内部 Docker 网络的 CIDR。默认网段为
 `GRAFANA_AUTH_PROXY_SUBNET`，Compose 会同时用它配置网络子网和 Grafana 白名单。
 旧 `.env` 中的 `GRAFANA_AUTH_PROXY_NGINX_IP` 已不再使用，可以删除。
 
-旧版统一主机大盘 `07 服务器与主机监控`（UID `nexora-server-metrics`）已被 Linux 与
+旧版统一主机大盘 `07 服务器与主机监控`（UID `netaop-server-metrics`）已被 Linux 与
 Windows 专用大盘替代。Docker 部署脚本在安装、升级和离线启动时会尝试删除该旧 UID；
 也可以在部署目录中单独执行以下命令。脚本会先核对旧 UID 的标题，只删除这条历史记录。
 若容器环境中的 Grafana 凭据与当前登录凭据不一致，手动命令会隐藏提示输入管理员账号和密码；
@@ -262,7 +262,7 @@ bash scripts/deploy-docker.sh prune-legacy-dashboard
 ```
 
 `GRAFANA_ROOT_URL` 必须填写浏览器实际访问的 HTTPS 地址并保留结尾斜杠，例如
-`https://nexora.example.com/grafana/`。不要保留 `%(domain)s`、`localhost` 或
+`https://netaop.example.com/grafana/`。不要保留 `%(domain)s`、`localhost` 或
 Grafana 内部的 `:3000`；否则 Grafana 会把 iframe 重定向到用户工作站的
 `localhost`。Compose 启用 `GF_SERVER_SERVE_FROM_SUB_PATH=true`，Nginx 保留
 `/grafana/` 前缀原样转发给 Grafana。使用 `scripts/deploy-docker.sh` 部署时，缺省占位值会自动
@@ -273,7 +273,7 @@ Grafana 到 VictoriaMetrics 的请求走 Docker 内部网络；Compose 会清空
 `502`。这与浏览器访问的域名无关。
 
 后端访问 SeaweedFS S3 时也使用 Docker 内部服务名 `seaweedfs:8333`。Compose 会将
-`seaweedfs` 和容器名 `nexora-seaweedfs` 加入后端的 `NO_PROXY`/`no_proxy`，避免内部
+`seaweedfs` 和容器名 `netaop-seaweedfs` 加入后端的 `NO_PROXY`/`no_proxy`，避免内部
 S3 请求经过主机代理；外部 S3 兼容 endpoint 仍可按既有代理设置访问。
 
 局域网部署示例（假设服务器地址为 `192.168.1.100`）：
@@ -288,7 +288,7 @@ GRAFANA_ROOT_URL=https://192.168.1.100/grafana/
 正式环境应将 `nginx/ssl` 替换为包含该 IP/域名的受信任证书。
 
 升级时，部署脚本和后端启动流程会自动兼容旧版 SNMP runtime artifact（移除
-仅供 Nexora UI 使用、但会被 `snmp-exporter` 拒绝的指标元数据），并在 exporter
+仅供 NetAop UI 使用、但会被 `snmp-exporter` 拒绝的指标元数据），并在 exporter
 恢复后自动启动 `vmagent`；不需要为了这个兼容性修复手动重新应用基线采集计划。
 
 首次登录使用默认账号 `admin`、密码 `admin`。登录后请立即在用户设置中修改密码；已有数据库中的管理员密码会保留，不会因更新或重启而自动改回默认值。
@@ -308,23 +308,23 @@ redis-cli MONITOR | python3 scripts/format_redis_monitor.py --timezone=+08:00
 
 也可传 IANA 时区，例如 `--timezone=Asia/Shanghai`。格式化器只转换时间列，不连接 Redis；`MONITOR` 需要有权限的诊断连接，并会增加 Redis 开销，排查后应 Ctrl-C 结束。不要为方便长期监控而扩大应用 ACL 权限。
 
-当前 Redis sidecar 的 `nexora` ACL 用户刻意没有 `MONITOR` 权限；如需短时诊断，只能按运维策略使用独立且受控的管理员诊断身份，不要给运行时应用用户增加该权限。参见 [Redis MONITOR 文档](https://redis.io/docs/latest/commands/monitor/)。
+当前 Redis sidecar 的 `netaop` ACL 用户刻意没有 `MONITOR` 权限；如需短时诊断，只能按运维策略使用独立且受控的管理员诊断身份，不要给运行时应用用户增加该权限。参见 [Redis MONITOR 文档](https://redis.io/docs/latest/commands/monitor/)。
 
 ## Redis 缓存
 
 IP 定位新流程默认启用，不需要设置额外开关。将 `.env` 中现有的 `REDIS_URL` 保持为 Compose 网络内的服务名即可；Redis 缓存不可用时仍使用 PostgreSQL 事实和任务队列：
 
 ```dotenv
-REDIS_URL=redis://nexora@redis:6379/0
+REDIS_URL=redis://netaop@redis:6379/0
 ```
 
-通过部署脚本启动 Nexora 和 Redis（同一 Compose 网络内服务名为 `redis`）：
+通过部署脚本启动 NetAop 和 Redis（同一 Compose 网络内服务名为 `redis`）：
 
 ```bash
 bash scripts/deploy-docker.sh update --force
 ```
 
-sidecar 会关闭 Redis 默认用户，只开放 ACL 用户 `nexora`；其 key 范围限制为 IP 定位缓存 `nexora:*` 和现有 AI 限流键 `ai:ratelimit:*`，命令权限仅包含两个功能当前需要的缓存/计数操作。设置 `REDIS_PASSWORD` 后，sidecar 以密码哈希配置 ACL；同步把用户名和密码写入 `REDIS_URL`，并对密码中的特殊字符进行 URL 编码。独立部署时默认只绑定 `127.0.0.1`，需要跨主机访问时设置 `REDIS_BIND_ADDRESS=0.0.0.0`，并在 Redis 主机防火墙中只允许 Nexora 主机访问 6379。跨不可信网络使用 `rediss://` 和证书校验。
+sidecar 会关闭 Redis 默认用户，只开放 ACL 用户 `netaop`；其 key 范围限制为 IP 定位缓存 `netaop:*` 和现有 AI 限流键 `ai:ratelimit:*`，命令权限仅包含两个功能当前需要的缓存/计数操作。设置 `REDIS_PASSWORD` 后，sidecar 以密码哈希配置 ACL；同步把用户名和密码写入 `REDIS_URL`，并对密码中的特殊字符进行 URL 编码。独立部署时默认只绑定 `127.0.0.1`，需要跨主机访问时设置 `REDIS_BIND_ADDRESS=0.0.0.0`，并在 Redis 主机防火墙中只允许 NetAop 主机访问 6379。跨不可信网络使用 `rediss://` 和证书校验。
 
 定位缓存 TTL 从原始 `collected_at` 计算：路由/ARP 300 秒新鲜、1800 秒保留；MAC/完整结果 120 秒新鲜、900 秒保留；网段 900 秒新鲜、86400 秒保留；拓扑/LLDP 172800 秒（48 小时）新鲜、259200 秒（72 小时）物理保留；负向定位未命中 15 秒。LLDP 逻辑 freshness 与拓扑图默认证据有效期对齐；过了 48 小时的值即使仍被 Redis 保留，也不会作为新鲜拓扑读取。Redis 重启、淘汰或短时不可用都不会影响 PostgreSQL 事实；定位器会从 PostgreSQL 的完整设备快照重建 Redis 投影。
 
@@ -336,17 +336,17 @@ bash scripts/deploy-docker.sh redis-status
 bash scripts/deploy-docker.sh redis-logs
 ```
 
-部署脚本会固定使用 Compose 项目名，避免目录名变化影响容器识别。对于旧版脚本已创建的部署，如果 `.env` 未显式设置 `COMPOSE_PROJECT_NAME`，新版脚本会从现有 `nexora-db` 容器的 `com.docker.compose.project` 标签自动沿用历史项目名，再执行数据库备份和更新。需要人工核对时可运行：
+部署脚本会固定使用 Compose 项目名，避免目录名变化影响容器识别。对于旧版脚本已创建的部署，如果 `.env` 未显式设置 `COMPOSE_PROJECT_NAME`，新版脚本会从现有 `netaop-db` 容器的 `com.docker.compose.project` 标签自动沿用历史项目名，再执行数据库备份和更新。需要人工核对时可运行：
 
 ```bash
-docker inspect --format '{{ index .Config.Labels "com.docker.compose.project" }}' nexora-db
+docker inspect --format '{{ index .Config.Labels "com.docker.compose.project" }}' netaop-db
 ```
 
 如果显式设置 `COMPOSE_PROJECT_NAME`，其值必须与现有容器标签一致；不要为了绕过 `service "db" is not running` 而跳过发布备份或删除数据库容器。
 
 ## 完全离线部署
 
-如果目标服务器无法访问 Docker Hub 或其他镜像仓库，请在联网机器上准备好镜像，然后只把镜像归档文件和部署文件传到目标服务器。`save-images` 不会重新构建镜像，也不会访问镜像仓库；它会保存当前本机已存在的 Nexora 镜像，并在 Redis sidecar 启用时一并保存 Redis 镜像。
+如果目标服务器无法访问 Docker Hub 或其他镜像仓库，请在联网机器上准备好镜像，然后只把镜像归档文件和部署文件传到目标服务器。`save-images` 不会重新构建镜像，也不会访问镜像仓库；它会保存当前本机已存在的 NetAop 镜像，并在 Redis sidecar 启用时一并保存 Redis 镜像。
 
 ### 1. 在联网构建机保存镜像
 
@@ -354,7 +354,7 @@ docker inspect --format '{{ index .Config.Labels "com.docker.compose.project" }}
 
 ```bash
 bash scripts/deploy-docker.sh save-images \
-  ./nexora-images-$(date +%Y%m%d-%H%M%S).tar.gz
+  ./netaop-images-$(date +%Y%m%d-%H%M%S).tar.gz
 ```
 
 如果所需镜像已经存在于本机，也不需要先执行 `docker compose build`。脚本会先验证基础镜像和启用的 Redis 标签，再生成归档：
@@ -362,17 +362,17 @@ bash scripts/deploy-docker.sh save-images \
 该命令会保存以下镜像，并同时生成 `.sha256` 校验文件：
 
 ```text
-nexora-netops:latest
-nexora-nginx:latest
-nexora-postgres:latest
+netaop-netops:latest
+netaop-nginx:latest
+netaop-postgres:latest
 redis:7.4.2-alpine
 ```
 
 镜像归档不会包含 Compose 文件、运行时环境变量、SSL 证书或数据库数据。请将以下内容传到离线服务器：
 
 ```text
-nexora-images-*.tar.gz
-nexora-images-*.tar.gz.sha256
+netaop-images-*.tar.gz
+netaop-images-*.tar.gz.sha256
 docker-compose.yml
 scripts/deploy-docker.sh
 .env.example
@@ -386,7 +386,7 @@ nginx/ssl/                 # 使用正式 HTTPS 证书时需要
 
 ```bash
 bash scripts/deploy-docker.sh load-images \
-  /data/packages/nexora-images-20260728.tar.gz
+  /data/packages/netaop-images-20260728.tar.gz
 ```
 
 如果校验文件与镜像包位于同一目录，脚本会先验证 SHA-256，再执行 `docker load`。导入不会删除或修改镜像归档文件。
@@ -411,7 +411,7 @@ docker compose up -d --no-build --pull never --remove-orphans
 
 | 容器 | 镜像 / 来源 | 端口 |
 |------|-----------|------|
-| `db` | 本地 `docker/postgres/Dockerfile` 构建的 `nexora-postgres:latest`（pgvector + pg_trgm） | 内部 5432 |
+| `db` | 本地 `docker/postgres/Dockerfile` 构建的 `netaop-postgres:latest`（pgvector + pg_trgm） | 内部 5432 |
 | `netops` | 本地 `Dockerfile` 构建 | 内部 8003 |
 | `nginx` | `nginx:1.27-alpine` | 对外 80 / 443 |
 | `guacamole` / `guacd` | `guacamole/guacamole:1.6.0` / `guacamole/guacd:1.6.0` | 内部 8080 / 4822 |

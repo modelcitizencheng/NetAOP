@@ -186,7 +186,7 @@ def is_system_registry_document(name: str | None, metadata: Mapping[str, Any] | 
     return (
         "metadata_schema" in document_type
         or "rag_metadata_schema" in lowered
-        or "nexora_network_kb_metadata_schema" in lowered
+        or "netaop_network_kb_metadata_schema" in lowered
         or str(data.get("exclude_from_rag") or "").lower() in {"1", "true", "yes"}
     )
 

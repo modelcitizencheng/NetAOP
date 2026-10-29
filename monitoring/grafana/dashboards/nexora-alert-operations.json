@@ -100,7 +100,7 @@
       },
       "targets": [
         {
-          "expr": "sum(nexora_alert_open_events)",
+          "expr": "sum(netaop_alert_open_events)",
           "refId": "A",
           "instant": true
         }
@@ -181,7 +181,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_alert_open_events{severity=\"critical\"}",
+          "expr": "netaop_alert_open_events{severity=\"critical\"}",
           "refId": "A",
           "instant": true
         }
@@ -262,7 +262,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_alert_open_events{severity=\"major\"}",
+          "expr": "netaop_alert_open_events{severity=\"major\"}",
           "refId": "A",
           "instant": true
         }
@@ -343,7 +343,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_alert_open_events{severity=\"warning\"}",
+          "expr": "netaop_alert_open_events{severity=\"warning\"}",
           "refId": "A",
           "instant": true
         }
@@ -424,7 +424,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_alert_open_events{severity=\"minor\"}",
+          "expr": "netaop_alert_open_events{severity=\"minor\"}",
           "refId": "A",
           "instant": true
         }
@@ -518,7 +518,7 @@
       },
       "targets": [
         {
-          "expr": "(((sum(nexora_alert_delivery_attempts_24h{status=\"succeeded\"}) / sum(nexora_alert_delivery_attempts_24h{status=~\"succeeded|retrying|failed\"})) and (sum(nexora_alert_delivery_attempts_24h{status=~\"succeeded|retrying|failed\"}) > 0)) or (vector(-1) and on() (count(nexora_alert_delivery_attempts_24h{status=~\"succeeded|retrying|failed\"}) > 0)))",
+          "expr": "(((sum(netaop_alert_delivery_attempts_24h{status=\"succeeded\"}) / sum(netaop_alert_delivery_attempts_24h{status=~\"succeeded|retrying|failed\"})) and (sum(netaop_alert_delivery_attempts_24h{status=~\"succeeded|retrying|failed\"}) > 0)) or (vector(-1) and on() (count(netaop_alert_delivery_attempts_24h{status=~\"succeeded|retrying|failed\"}) > 0)))",
           "refId": "A",
           "instant": true
         }
@@ -630,17 +630,17 @@
       },
       "targets": [
         {
-          "expr": "nexora_alert_events_created_24h",
+          "expr": "netaop_alert_events_created_24h",
           "legendFormat": "新增告警",
           "refId": "A"
         },
         {
-          "expr": "nexora_alert_events_acknowledged_24h",
+          "expr": "netaop_alert_events_acknowledged_24h",
           "legendFormat": "已确认告警",
           "refId": "B"
         },
         {
-          "expr": "nexora_alert_events_resolved_24h",
+          "expr": "netaop_alert_events_resolved_24h",
           "legendFormat": "已恢复告警",
           "refId": "C"
         }
@@ -828,47 +828,47 @@
       },
       "targets": [
         {
-          "expr": "sum(nexora_alert_open_events{severity=\"critical\"})",
+          "expr": "sum(netaop_alert_open_events{severity=\"critical\"})",
           "legendFormat": "严重",
           "refId": "A"
         },
         {
-          "expr": "sum(nexora_alert_open_events{severity=\"major\"})",
+          "expr": "sum(netaop_alert_open_events{severity=\"major\"})",
           "legendFormat": "主要",
           "refId": "B"
         },
         {
-          "expr": "sum(nexora_alert_open_events{severity=\"warning\"})",
+          "expr": "sum(netaop_alert_open_events{severity=\"warning\"})",
           "legendFormat": "警告",
           "refId": "C"
         },
         {
-          "expr": "sum(nexora_alert_open_events{severity=\"minor\"})",
+          "expr": "sum(netaop_alert_open_events{severity=\"minor\"})",
           "legendFormat": "次要",
           "refId": "D"
         },
         {
-          "expr": "sum(nexora_alert_open_events{severity=\"high\"})",
+          "expr": "sum(netaop_alert_open_events{severity=\"high\"})",
           "legendFormat": "高",
           "refId": "E"
         },
         {
-          "expr": "sum(nexora_alert_open_events{severity=\"medium\"})",
+          "expr": "sum(netaop_alert_open_events{severity=\"medium\"})",
           "legendFormat": "中",
           "refId": "F"
         },
         {
-          "expr": "sum(nexora_alert_open_events{severity=\"low\"})",
+          "expr": "sum(netaop_alert_open_events{severity=\"low\"})",
           "legendFormat": "低",
           "refId": "G"
         },
         {
-          "expr": "sum(nexora_alert_open_events{severity=\"info\"})",
+          "expr": "sum(netaop_alert_open_events{severity=\"info\"})",
           "legendFormat": "提示",
           "refId": "H"
         },
         {
-          "expr": "sum(nexora_alert_open_events{severity=\"unknown\"})",
+          "expr": "sum(netaop_alert_open_events{severity=\"unknown\"})",
           "legendFormat": "未知",
           "refId": "I"
         }
@@ -1029,7 +1029,7 @@
       },
       "targets": [
         {
-          "expr": "sum by (channel, status) (nexora_alert_delivery_attempts_24h)",
+          "expr": "sum by (channel, status) (netaop_alert_delivery_attempts_24h)",
           "legendFormat": "{{channel}} / {{status}}",
           "refId": "A"
         }
@@ -1160,7 +1160,7 @@
       },
       "targets": [
         {
-          "expr": "sum by (status) (nexora_alert_outbox_items)",
+          "expr": "sum by (status) (netaop_alert_outbox_items)",
           "legendFormat": "{{status}}",
           "refId": "A"
         }
@@ -1258,7 +1258,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_alert_open_duration_oldest_seconds",
+          "expr": "netaop_alert_open_duration_oldest_seconds",
           "refId": "A",
           "instant": true
         }
@@ -1327,7 +1327,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_alert_open_duration_p95_seconds",
+          "expr": "netaop_alert_open_duration_p95_seconds",
           "refId": "A",
           "instant": true
         }
@@ -1396,7 +1396,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_alert_mtta_seconds_24h",
+          "expr": "netaop_alert_mtta_seconds_24h",
           "refId": "A",
           "instant": true
         }
@@ -1466,7 +1466,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_alert_mttr_seconds_24h",
+          "expr": "netaop_alert_mttr_seconds_24h",
           "refId": "A",
           "instant": true
         }
@@ -1552,7 +1552,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_alert_duplicate_open_events",
+          "expr": "netaop_alert_duplicate_open_events",
           "refId": "A",
           "instant": true
         }
@@ -1638,7 +1638,7 @@
       },
       "targets": [
         {
-          "expr": "nexora_alert_retried_deliveries_24h",
+          "expr": "netaop_alert_retried_deliveries_24h",
           "refId": "A",
           "instant": true
         }
@@ -1754,22 +1754,22 @@
       },
       "targets": [
         {
-          "expr": "nexora_alert_mtta_seconds_24h",
+          "expr": "netaop_alert_mtta_seconds_24h",
           "legendFormat": "MTTA 均值",
           "refId": "A"
         },
         {
-          "expr": "nexora_alert_mtta_p95_seconds_24h",
+          "expr": "netaop_alert_mtta_p95_seconds_24h",
           "legendFormat": "MTTA P95",
           "refId": "B"
         },
         {
-          "expr": "nexora_alert_mttr_seconds_24h",
+          "expr": "netaop_alert_mttr_seconds_24h",
           "legendFormat": "MTTR 均值",
           "refId": "C"
         },
         {
-          "expr": "nexora_alert_mttr_p95_seconds_24h",
+          "expr": "netaop_alert_mttr_p95_seconds_24h",
           "legendFormat": "MTTR P95",
           "refId": "D"
         }
@@ -1855,12 +1855,12 @@
       },
       "targets": [
         {
-          "expr": "nexora_alert_open_duration_oldest_seconds",
+          "expr": "netaop_alert_open_duration_oldest_seconds",
           "legendFormat": "最久未恢复",
           "refId": "A"
         },
         {
-          "expr": "nexora_alert_open_duration_p95_seconds",
+          "expr": "netaop_alert_open_duration_p95_seconds",
           "legendFormat": "未恢复时长 P95",
           "refId": "B"
         }
@@ -1870,7 +1870,7 @@
   "refresh": "30s",
   "schemaVersion": 39,
   "tags": [
-    "nexora",
+    "netaop",
     "monitoring",
     "alerts",
     "notifications"
@@ -1885,6 +1885,6 @@
   "timezone": "browser",
   "title": "12 告警处置与通知效果（Alert Operations & Notification Effectiveness）",
   "description": "展示系统级告警持续时长、MTTA、MTTR、相同 dedupe key 的并发重复事件，以及通知终态投递成功/失败和重试；不包含租户、设备、告警标题、目标地址或收件人信息。",
-  "uid": "nexora-alert-operations",
+  "uid": "netaop-alert-operations",
   "version": 30
 }

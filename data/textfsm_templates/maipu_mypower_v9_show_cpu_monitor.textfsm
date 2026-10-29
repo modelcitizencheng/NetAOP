@@ -1,4 +1,4 @@
-# nexora-action-code: get_cpu
+# netaop-action-code: get_cpu
 Value CPU_5S (\d+(?:\.\d+)?%)
 Value CPU_1M (\d+(?:\.\d+)?%)
 Value CPU_5M (\d+(?:\.\d+)?%)

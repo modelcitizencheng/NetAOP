@@ -38,7 +38,7 @@ class DiffAnalysisService:
             p_ver = prompt_data["version"]
         else:
             sys_prompt = (
-                "You are a network change control expert. Analyze the provided configuration diff from Nexora Diff Engine. "
+                "You are a network change control expert. Analyze the provided configuration diff from NetAop Diff Engine. "
                 "Return a structured JSON object with keys: 'summary', 'risk_level' (LOW|MEDIUM|HIGH|CRITICAL), 'changes', "
                 "'affected_services', 'verification_commands', 'rollback_recommendation'."
             )

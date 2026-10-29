@@ -72,7 +72,7 @@ def upgrade(cursor, use_pg: bool) -> None:
                    (id, release_id, action_code, command, field_contract_json,
                     command_checksum, created_at, updated_at)
                    VALUES (?, ?, ?, ?, '{}', ?, ?, ?)""",
-                (str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:{release_id}:{action_code}")), release_id,
+                (str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:{release_id}:{action_code}")), release_id,
                  action_code, command, _checksum(command), now, now),
             )
         actions = [

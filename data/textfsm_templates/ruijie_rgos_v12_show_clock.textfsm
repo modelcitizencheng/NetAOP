@@ -1,4 +1,4 @@
-# nexora-action-code: get_clock
+# netaop-action-code: get_clock
 Value TIME (\d+:\d+:\d+)
 Value TIMEZONE (\S+)
 Value DAY_OF_WEEK (\w+)

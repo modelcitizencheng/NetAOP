@@ -151,7 +151,7 @@ const DashboardTab: React.FC<DashboardTabProps> = ({
       {/* ── 1. Modern Page Hero with Consolidated Actions ── */}
       <PageHero
         icon={LayoutDashboard}
-        eyebrow={language === 'zh' ? `${systemInfo?.system_name || 'Nexora'} 运营总控台` : `${systemInfo?.system_name || 'Nexora'} Control Center`}
+        eyebrow={language === 'zh' ? `${systemInfo?.system_name || 'NetAop'} 运营总控台` : `${systemInfo?.system_name || 'NetAop'} Control Center`}
         title={t('networkOverview')}
         subtitle={language === 'zh' ? '全网基础设施实时健康感知、自动化编排与合规审计总览' : 'Real-time infrastructure health, automation orchestration and compliance overview'}
         actions={

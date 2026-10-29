@@ -962,7 +962,7 @@
   "refresh": "30s",
   "schemaVersion": 39,
   "tags": [
-    "nexora",
+    "netaop",
     "postgresql",
     "database",
     "performance"
@@ -1026,6 +1026,6 @@
   "timezone": "browser",
   "title": "13 PostgreSQL 数据库性能（PostgreSQL Database Performance）",
   "description": "展示 postgres_exporter 的 pg_stat_statements counters 与数据库级 shared buffer 命中率。Top SQL 按 Query ID 识别，不使用或展示 SQL 文本。",
-  "uid": "nexora-postgres-performance",
+  "uid": "netaop-postgres-performance",
   "version": 30
 }

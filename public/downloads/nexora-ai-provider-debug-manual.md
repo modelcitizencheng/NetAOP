@@ -1,4 +1,4 @@
-# Nexora AI 快速配置手册
+# NetAop AI 快速配置手册
 
 > 适用于 `/ai/providers`、`/ai/models`、`/ai/security`、`/ai/copilot`。
 

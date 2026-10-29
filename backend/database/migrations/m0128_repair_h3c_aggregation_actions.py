@@ -68,7 +68,7 @@ def _parser_version_id(cursor, profile_id: str, parser_platform: str, command: s
 
 
 def _fresh_action_id(cursor, release_id: str, action_code: str) -> str:
-    candidate = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:{release_id}:{action_code}"))
+    candidate = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:{release_id}:{action_code}"))
     while cursor.execute("SELECT 1 FROM platform_release_actions WHERE id = ?", (candidate,)).fetchone():
         candidate = str(uuid.uuid4())
     return candidate

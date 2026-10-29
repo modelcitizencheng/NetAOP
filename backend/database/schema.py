@@ -31,7 +31,7 @@ def _require_supported_postgres_version(cursor) -> None:
     major_version = version_num // 10000
     if major_version != SUPPORTED_POSTGRES_MAJOR_VERSION:
         raise RuntimeError(
-            "Nexora requires PostgreSQL 18. "
+            "NetAop requires PostgreSQL 18. "
             f"The connected server is PostgreSQL {major_version}; upgrade the database cluster "
             "with pg_upgrade or pg_dump/pg_restore before starting this application."
         )

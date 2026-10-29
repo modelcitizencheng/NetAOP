@@ -56,7 +56,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
   onSubmit,
 }) => {
   const [mfaCode, setMfaCode] = useState('');
-  const [sysName, setSysName] = useState('Nexora');
+  const [sysName, setSysName] = useState('NetAop');
   const [sysVersion, setSysVersion] = useState('v2.0');
   const [managedDevices, setManagedDevices] = useState<number | null>(null);
   const [showForgotPwd, setShowForgotPwd] = useState(false);
@@ -471,7 +471,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
 
       {/* ── 4. Minimalist Footer: Low Contrast Copyright ── */}
       <footer className="w-full relative z-20 text-center text-[11px] text-gray-400/70 pointer-events-none flex-shrink-0">
-        <p>{sysName} {sysVersion} · © {new Date().getFullYear()} Nexora Network Inc. All rights reserved.</p>
+        <p>{sysName} {sysVersion} · © {new Date().getFullYear()} NetAop Network Inc. All rights reserved.</p>
       </footer>
 
       {/* Forgot password modal */}

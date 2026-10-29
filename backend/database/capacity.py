@@ -166,7 +166,7 @@ def run_capacity_evaluation(
 
 
 def _cli() -> int:
-    parser = argparse.ArgumentParser(description="Nexora Knowledge Engine capacity evaluation")
+    parser = argparse.ArgumentParser(description="NetAop Knowledge Engine capacity evaluation")
     parser.add_argument("--output")
     args = parser.parse_args()
     result = run_capacity_evaluation()

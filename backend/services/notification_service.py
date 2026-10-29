@@ -122,7 +122,7 @@ def _fmt_duration(seconds: int, is_en: bool) -> str:
 
 
 def _get_system_name() -> str:
-    system_name = "Nexora"
+    system_name = "NetAop"
     try:
         from database import get_db_connection
         conn = get_db_connection()
@@ -167,7 +167,7 @@ def _email_recipients(values) -> list[str]:
 
 def _email_subject(alert: dict, *, test_mode: bool = False) -> str:
     severity = str(alert.get('severity') or 'info').upper()
-    title = str(alert.get('title') or 'Nexora Alert').strip()
+    title = str(alert.get('title') or 'NetAop Alert').strip()
     if test_mode:
         return f"[SMTP TEST] {title}"[:240]
     object_name = str(alert.get('object_name') or alert.get('ip_address') or '').strip()
@@ -307,7 +307,7 @@ def _send_email_message(
     username = str(config.get('username') or '').strip()
     message = EmailMessage()
     message['Subject'] = str(subject)[:240]
-    message['From'] = formataddr((str(config.get('from_name') or 'Nexora').strip(), from_address))
+    message['From'] = formataddr((str(config.get('from_name') or 'NetAop').strip(), from_address))
     message['To'] = ', '.join(addresses)
     reply_to = str(config.get('reply_to') or '').strip()
     if reply_to and _EMAIL_ADDRESS_RE.fullmatch(reply_to):
@@ -413,7 +413,7 @@ def send_approval_verification_email(
     return _send_email_message(
         smtp_config,
         recipients,
-        subject='Nexora 安全审批验证码',
+        subject='NetAop 安全审批验证码',
         text_body=text_body,
         html_body=html_body,
     )

@@ -1092,7 +1092,7 @@ async def _probe_h3c_wireless(
         **_H3C_RULE,
         "source_commit": PINNED_LIBRENMS_COMMIT,
         "collection_engine": "python",
-        "rule_implementation": "Nexora Python MIB adapter",
+        "rule_implementation": "NetAop Python MIB adapter",
         "identity_os_key": "comware",
     }
     from services.snmp_service import parse_snmp_uptime_seconds
@@ -2531,7 +2531,7 @@ async def _probe_profile_wireless(
         **dict(source_rule),
         "source_commit": PINNED_LIBRENMS_COMMIT,
         "collection_engine": "python",
-        "rule_implementation": "Nexora Python adapter for pinned LibreNMS wireless MIB definitions",
+        "rule_implementation": "NetAop Python adapter for pinned LibreNMS wireless MIB definitions",
         "identity_os_key": os_key,
     }
     sensors: list[dict[str, Any]] = []
@@ -3017,7 +3017,7 @@ async def _probe_stellar_wireless(
         **dict(source_rule),
         "source_commit": PINNED_LIBRENMS_COMMIT,
         "collection_engine": "python",
-        "rule_implementation": "Nexora Python adapter for pinned LibreNMS Stellar wireless client discovery and polling",
+        "rule_implementation": "NetAop Python adapter for pinned LibreNMS Stellar wireless client discovery and polling",
         "identity_os_key": "stellar",
         "identity_model": module,
         "resolved_mib_source_file": mib_path,

@@ -21,7 +21,7 @@ from .core import get_db_connection
 
 
 logger = logging.getLogger(__name__)
-MANIFEST_FORMAT = "nexora-knowledge-source-manifest/v2"
+MANIFEST_FORMAT = "netaop-knowledge-source-manifest/v2"
 
 
 def _now() -> str:
@@ -199,7 +199,7 @@ def build_postgres_backup_plan(
 
 
 def _cli() -> int:
-    parser = argparse.ArgumentParser(description="Nexora Knowledge Engine backup and manifest tools")
+    parser = argparse.ArgumentParser(description="NetAop Knowledge Engine backup and manifest tools")
     sub = parser.add_subparsers(dest="command", required=True)
     manifest_parser = sub.add_parser("manifest")
     manifest_parser.add_argument("--output", required=True)

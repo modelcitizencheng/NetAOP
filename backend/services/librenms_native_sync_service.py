@@ -1,4 +1,4 @@
-"""Project LibreNMS-native hardware snapshots into the Nexora inventory.
+"""Project LibreNMS-native hardware snapshots into the NetAop inventory.
 
 LibreNMS owns device discovery and sampling. This adapter only maps its native
 snapshot rows into the existing hardware inventory contract and records the
@@ -753,7 +753,7 @@ async def _fail(binding_id: str, exc: BaseException) -> dict[str, Any]:
 
 
 async def sync_bound_device_hardware(device_id: str) -> dict[str, Any]:
-    """Sync one enabled Nexora binding from its LibreNMS native snapshot."""
+    """Sync one enabled NetAop binding from its LibreNMS native snapshot."""
     resolved_device_id = str(device_id or "").strip()
     if not resolved_device_id:
         return {"status": "failed", "error_code": "invalid_device_id", "sensor_count": 0, "sample_count": 0}

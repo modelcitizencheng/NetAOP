@@ -1,6 +1,6 @@
-"""Resolve Nexora devices to devices already managed by LibreNMS.
+"""Resolve NetAop devices to devices already managed by LibreNMS.
 
-This module only reads the LibreNMS API and writes Nexora's local identity
+This module only reads the LibreNMS API and writes NetAop's local identity
 mapping. It never scans networks or creates/removes devices in LibreNMS.
 """
 
@@ -321,7 +321,7 @@ async def auto_bind_device_by_management_ip(device: Mapping[str, Any]) -> dict[s
         logger.warning("LibreNMS auto-binding instance lookup failed: %s", type(exc).__name__)
         return {"status": "lookup_unavailable", "message": "LibreNMS 实例配置暂不可用，无法自动关联"}
     if not instances:
-        return {"status": "instance_not_configured", "message": "尚未在 Nexora 配置并启用 LibreNMS 实例；请先由管理员配置实例 API 地址和 Token"}
+        return {"status": "instance_not_configured", "message": "尚未在 NetAop 配置并启用 LibreNMS 实例；请先由管理员配置实例 API 地址和 Token"}
 
     candidates: list[dict[str, Any]] = []
     for instance in instances:

@@ -308,7 +308,7 @@ def _target_scrape_interval_seconds(target: Mapping[str, Any]) -> int:
         # compiler writes the per-target interval into this file-SD label; it
         # must take precedence over the job's default __scrape_interval__.
         interval = (
-            discovered_labels.get("nexora_scrape_interval")
+            discovered_labels.get("netaop_scrape_interval")
             or target.get("scrapeInterval")
             or discovered_labels.get("__scrape_interval__")
         )

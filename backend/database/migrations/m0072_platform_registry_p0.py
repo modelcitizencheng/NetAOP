@@ -174,7 +174,7 @@ def _seed_profiles_and_releases(cursor) -> None:
                 continue
             cursor.execute(
                 "INSERT INTO platform_release_actions (id, release_id, action_code, command, field_contract_json, command_checksum, created_at, updated_at) VALUES (?, ?, ?, ?, '{}', ?, ?, ?)",
-                (str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:{release_id}:{action_code}")), release_id, action_code, command, _sha(command), now, now),
+                (str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:{release_id}:{action_code}")), release_id, action_code, command, _sha(command), now, now),
             )
 
 
@@ -217,8 +217,8 @@ def _import_custom_templates(cursor, use_pg: bool) -> None:
             continue
         content = path.read_text(encoding="utf-8")
         checksum = _sha(content)
-        template_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:system-template:{path.name}"))
-        version_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:system-template-version:{path.name}:1"))
+        template_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:system-template:{path.name}"))
+        version_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:system-template-version:{path.name}:1"))
         profile_row = cursor.execute("SELECT id FROM platform_profiles WHERE platform_code = ? AND source = 'SYSTEM' ORDER BY id LIMIT 1", (profile_code,)).fetchone()
         profile_id = profile_row[0] if profile_row else None
         cursor.execute(

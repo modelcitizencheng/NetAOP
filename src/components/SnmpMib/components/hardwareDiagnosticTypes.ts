@@ -1,5 +1,5 @@
 /**
- * Read-only view of persisted hardware results from Nexora's local SNMP
+ * Read-only view of persisted hardware results from NetAop's local SNMP
  * collector executing the bundled LibreNMS rules. It contains no secrets.
  */
 export type LibreNMSHardwareState =
@@ -170,8 +170,8 @@ export interface LibreNMSHardwareTransceiver {
 }
 
 export interface SnmpHardwareDiscoveryTestResult {
-  source: 'librenms_native' | 'nexora_snmp';
-  /** Time the Nexora diagnostic response was generated, not a sample timestamp. */
+  source: 'librenms_native' | 'netaop_snmp';
+  /** Time the NetAop diagnostic response was generated, not a sample timestamp. */
   generated_at?: string | null;
   state: LibreNMSHardwareState | (string & {});
   message: string;

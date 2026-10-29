@@ -1,4 +1,4 @@
-# nexora-action-code: get_vlan_table
+# netaop-action-code: get_vlan_table
 Value Required VLAN_ID (\d+)
 Value VLAN_NAME (\S+)
 Value STATUS (\S+)

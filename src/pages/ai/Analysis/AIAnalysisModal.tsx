@@ -75,7 +75,7 @@ export const AIAnalysisModal: React.FC<AIAnalysisModalProps> = ({ type, title, d
               <h3 className="font-bold text-lg text-gray-900 dark:text-white flex items-center gap-2">
                 {title}
               </h3>
-              <p className="text-xs text-gray-400">Nexora AI 智能推理分析结论 (受控只读模式)</p>
+              <p className="text-xs text-gray-400">NetAop AI 智能推理分析结论 (受控只读模式)</p>
             </div>
           </div>
           <button

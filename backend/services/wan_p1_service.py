@@ -87,7 +87,7 @@ def ensure_wan_partitions_once() -> dict[str, Any]:
         # Keep partition DDL mutually exclusive without relying on an
         # application-local lock.  The advisory lock is transaction-scoped
         # and therefore released by the commit/rollback below.
-        conn.execute("SELECT pg_advisory_xact_lock(hashtext(?))", ("nexora:wan:partitions",))
+        conn.execute("SELECT pg_advisory_xact_lock(hashtext(?))", ("netaop:wan:partitions",))
         for offset in range(-1, 4):
             month_index = now.year * 12 + now.month - 1 + offset
             year, month0 = divmod(month_index, 12)

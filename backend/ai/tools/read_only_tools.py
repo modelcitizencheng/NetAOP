@@ -85,7 +85,7 @@ def tool_get_device_neighbors(device_id: str, tenant_id: str | None = None) -> D
 
 
 def tool_get_active_alarms(device_id: Optional[str] = None, tenant_id: str | None = None) -> Dict[str, Any]:
-    """Get active alarms from Nexora alarm center."""
+    """Get active alarms from NetAop alarm center."""
     del tenant_id
     alarms: list[dict[str, Any]] = []
     try:
@@ -116,7 +116,7 @@ def tool_get_active_alarms(device_id: Optional[str] = None, tenant_id: str | Non
 
 
 def tool_get_config_diff(device_id: str, tenant_id: str | None = None) -> Dict[str, Any]:
-    """Get latest configuration diff for device from Nexora Diff Engine."""
+    """Get latest configuration diff for device from NetAop Diff Engine."""
     del tenant_id
     # The read-only tool returns a summary/diff view only.  Raw configurations
     # are intentionally not loaded into the agent context.

@@ -90,8 +90,8 @@ def _ensure_h3c_unicast_template(cursor, now: str) -> str | None:
         return None
 
     filename = path.name
-    template_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:system-template:{filename}"))
-    version_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"nexora:system-template-version:{filename}:1"))
+    template_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:system-template:{filename}"))
+    version_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"netaop:system-template-version:{filename}:1"))
     content = path.read_text(encoding="utf-8")
     checksum = _checksum(content)
     cursor.execute(

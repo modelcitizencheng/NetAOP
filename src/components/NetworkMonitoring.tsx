@@ -194,7 +194,7 @@ const NetworkMonitoring: React.FC<NetworkMonitoringProps> = ({
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const blob = await res.blob();
       const disposition = res.headers.get('Content-Disposition') || '';
-      let filename = `nexora_interfaces_${new Date().toISOString().slice(0, 10)}.xlsx`;
+      let filename = `netaop_interfaces_${new Date().toISOString().slice(0, 10)}.xlsx`;
       const match = disposition.match(/filename="?([^"]+)"?/);
       if (match && match[1]) filename = match[1];
 

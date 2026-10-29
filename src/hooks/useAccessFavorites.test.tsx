@@ -15,8 +15,8 @@ describe('useAccessFavorites', () => {
 
     expect(alice.result.current.favoriteDeviceIds).toEqual(['device-1']);
     expect(bob.result.current.favoriteDeviceIds).toEqual([]);
-    expect(localStorage.getItem('nexora_access_favorites:alice')).toBe('["device-1"]');
-    expect(localStorage.getItem('nexora_access_favorites:bob')).toBeNull();
+    expect(localStorage.getItem('netaop_access_favorites:alice')).toBe('["device-1"]');
+    expect(localStorage.getItem('netaop_access_favorites:bob')).toBeNull();
   });
 
   it('toggles an existing favorite off and ignores empty identifiers', () => {
@@ -27,6 +27,6 @@ describe('useAccessFavorites', () => {
     act(() => result.current.toggleFavorite(''));
 
     expect(result.current.favoriteDeviceIds).toEqual([]);
-    expect(localStorage.getItem('nexora_access_favorites:operator')).toBe('[]');
+    expect(localStorage.getItem('netaop_access_favorites:operator')).toBe('[]');
   });
 });

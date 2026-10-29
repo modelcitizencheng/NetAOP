@@ -1146,7 +1146,7 @@ async def import_document_bundle(
     file: UploadFile = File(...),
     user=Depends(require_ai_permission("ai.knowledge.manage")),
 ):
-    """Validate and import a Nexora export ZIP in one database transaction.
+    """Validate and import a NetAop export ZIP in one database transaction.
 
     The destination always re-chunks/re-embeds locally.  Claims that a bundle
     is an official source are downgraded to ``user_document`` until the URL is

@@ -92,9 +92,9 @@ interface ChatMessage {
   stream_status?: 'streaming' | 'completed' | 'aborted' | 'error';
 }
 
-const LEGACY_STORAGE_KEY = 'nexora_copilot_sessions_v4';
-const SIDEBAR_COLLAPSED_KEY = 'nexora_copilot_sidebar_collapsed_v1';
-const ARCHIVED_VIEW_KEY = 'nexora_copilot_archived_view_v1';
+const LEGACY_STORAGE_KEY = 'netaop_copilot_sessions_v4';
+const SIDEBAR_COLLAPSED_KEY = 'netaop_copilot_sidebar_collapsed_v1';
+const ARCHIVED_VIEW_KEY = 'netaop_copilot_archived_view_v1';
 const FEEDBACK_REASONS: Array<{ code: string; label: string }> = [
   { code: 'model_wrong', label: '型号错' },
   { code: 'version_wrong', label: '版本错' },
@@ -142,7 +142,7 @@ const mapConversationMessage = (message: AIConversationMessage): ChatMessage => 
   sources: Array.isArray(message.citations)
     ? message.citations.map((item: any) => ({
       citation_id: String(item?.citation_id || ''),
-      document: String(item?.document || item?.document_name || 'Nexora'),
+      document: String(item?.document || item?.document_name || 'NetAop'),
       document_id: item?.document_id ? String(item.document_id) : undefined,
       section: item?.section ? String(item.section) : undefined,
       vendor: item?.vendor ? String(item.vendor) : undefined,
@@ -924,7 +924,7 @@ export const AssistantTab: React.FC = () => {
           const raw = citationEvent.citation as Record<string, unknown>;
           const citation = {
             ...raw,
-            document: String(raw.document || raw.document_name || 'Nexora'),
+            document: String(raw.document || raw.document_name || 'NetAop'),
           } as CitationSource;
           setSessions((prev) =>
             prev.map((s) => {
@@ -1107,7 +1107,7 @@ export const AssistantTab: React.FC = () => {
     try {
       await handoffCopilotCase(caseId, {
         summary: message.content.slice(0, 2000),
-        ticket_draft: `【Nexora Copilot】${message.content.slice(0, 1200)}`,
+        ticket_draft: `【NetAop Copilot】${message.content.slice(0, 1200)}`,
       });
       setCaseNotice(`案例 ${caseId} 已生成交接草稿`);
     } catch (error: any) {
@@ -1303,7 +1303,7 @@ export const AssistantTab: React.FC = () => {
                             <Sparkles className="w-3.5 h-3.5" />
                           </div>
                           <span className="font-bold text-gray-900 dark:text-white text-sm tracking-tight">
-                            Nexora AI
+                            NetAop AI
                           </span>
                           <span className={`rounded-full border px-2 py-0.5 text-[11px] font-semibold ${executionBadgeClass}`}>
                             {executionLabel}
@@ -1411,7 +1411,7 @@ export const AssistantTab: React.FC = () => {
                                 const localCount = uniqueSources.length - webCount;
                                 if (webCount && localCount) return `已参考 ${localCount} 个本地来源、${webCount} 个外部网页来源`;
                                 if (webCount) return `已参考 ${webCount} 个外部网页来源`;
-                                return `已参考 ${localCount} 个 Nexora 知识库来源`;
+                                return `已参考 ${localCount} 个 NetAop 知识库来源`;
                               })()}
                             </span>
                             <span className="text-[10px] opacity-70 ml-0.5">{isExpanded ? '▲ 收起' : '▼ 展开'}</span>

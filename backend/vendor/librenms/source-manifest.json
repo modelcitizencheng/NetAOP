@@ -21625,10 +21625,10 @@
     "size_bytes": 35337
   },
   "notes": [
-    "This bundle includes every MIB file from 44 distinct upstream mibs/ vendor directories grouped into 31 Nexora vendor-scope directories, plus the standard scope and root dependencies. These upstream directory names are source paths, not Nexora-supported-vendor counts; the manifest separately lists 26 asset network vendors, 15 asset security vendors, 25 network vendors with upstream OS profiles, and 10 security vendors with upstream OS profiles. Sangfor, Venustech, NSFOCUS, Topsec, and Qi An Xin have no pinned OS profile; DPtech also has no pinned OS profile. This subset is not the full LibreNMS runtime.",
+    "This bundle includes every MIB file from 44 distinct upstream mibs/ vendor directories grouped into 31 NetAop vendor-scope directories, plus the standard scope and root dependencies. These upstream directory names are source paths, not NetAop-supported-vendor counts; the manifest separately lists 26 asset network vendors, 15 asset security vendors, 25 network vendors with upstream OS profiles, and 10 security vendors with upstream OS profiles. Sangfor, Venustech, NSFOCUS, Topsec, and Qi An Xin have no pinned OS profile; DPtech also has no pinned OS profile. This subset is not the full LibreNMS runtime.",
     "The upstream commit and path identify each source; sha256 and size_bytes describe the bundled file bytes. Windows checkout settings may materialize CRLF line endings; content is verified against pinned Git blobs after line-ending normalization.",
-    "MIBs are grouped under platform_vendor_scope for offline indexing; this is a Nexora asset-vendor bucket, not the upstream MIB owner. Root standard MIB definitions are grouped under mibs/standard/.",
-    "Hardware collection reads the pinned LibreNMS OS detection and discovery YAML. Nexora parses those definitions and executes SNMP requests in Python; it does not run LibreNMS PHP modules. This subset is not the full LibreNMS runtime and does not establish PHP-rule parity. Fourteen pinned OS profiles have no hardware discovery YAML and do not fall back to Nexora vendor OIDs.",
+    "MIBs are grouped under platform_vendor_scope for offline indexing; this is a NetAop asset-vendor bucket, not the upstream MIB owner. Root standard MIB definitions are grouped under mibs/standard/.",
+    "Hardware collection reads the pinned LibreNMS OS detection and discovery YAML. NetAop parses those definitions and executes SNMP requests in Python; it does not run LibreNMS PHP modules. This subset is not the full LibreNMS runtime and does not establish PHP-rule parity. Fourteen pinned OS profiles have no hardware discovery YAML and do not fall back to NetAop vendor OIDs.",
     "LibreNMS source files are distributed under the upstream license included as LICENSE.txt; preserve each source file's copyright header.",
     "The complete Huawei MIB directory is included under mibs/huawei/_upstream/huawei and is shared by Huawei and Yunshan.",
     "Shared tree mapping follows current profiles: Nokia aos6/aos7/stellar files are scoped to Alcatel-Lucent Enterprise and other Nokia files to Nokia; NORTEL-OPTICAL files are scoped to Ciena and other Nortel files to Extreme Networks; Radlan files use the Alcatel-Lucent Enterprise scope, with RADLAN-rndMng additionally mapped to Allied Telesis. Root UPS-MIB remains scoped to Huawei.",
@@ -21642,7 +21642,7 @@
   "mib_manifest_schema_version": 2,
   "mib_scope_contract": {
     "field": "platform_vendor_scope",
-    "meaning": "Nexora platform asset-vendor bucket used to group MIB files for offline indexing. It does not assert the upstream MIB owner or that every file is directly referenced by a hardware discovery YAML.",
+    "meaning": "NetAop platform asset-vendor bucket used to group MIB files for offline indexing. It does not assert the upstream MIB owner or that every file is directly referenced by a hardware discovery YAML.",
     "source_of_truth": "upstream_path identifies the exact source location in the pinned LibreNMS repository; bundle_path identifies the local package location.",
     "rule_selection": "Hardware discovery rules are selected from the pinned OS detection and discovery YAML files, not from platform_vendor_scope."
   },
@@ -21690,7 +21690,7 @@
         "fs-ruijie"
       ],
       "profile_label": "Fiberstore (Ruijie)",
-      "reason": "Nexora groups this FS/Fiberstore Profile under Ruijie for its asset-vendor index. The upstream source remains mibs/fs; the full upstream tree is retained."
+      "reason": "NetAop groups this FS/Fiberstore Profile under Ruijie for its asset-vendor index. The upstream source remains mibs/fs; the full upstream tree is retained."
     },
     {
       "platform_vendor_scope": "Aruba",
@@ -21701,7 +21701,7 @@
         "procurve"
       ],
       "profile_label": "HP ProCurve",
-      "reason": "Nexora groups this legacy Profile under Aruba for its asset-vendor index. The upstream source remains mibs/hp; the full upstream tree is retained, not pruned to direct YAML references."
+      "reason": "NetAop groups this legacy Profile under Aruba for its asset-vendor index. The upstream source remains mibs/hp; the full upstream tree is retained, not pruned to direct YAML references."
     },
     {
       "platform_vendor_scope": "Palo Alto",
@@ -21739,7 +21739,7 @@
       "wireless_ubiquiti_airos",
       "wireless_ubiquiti_unifi"
     ],
-    "notes": "This generic module dispatches discovery to OS classes only when they implement the matching wireless sensor interface. The Python wireless rule set references only MIB inputs already recorded in this bundle. IOS-XE extends Ciscowlc and inherits its AP/client methods; its cellular metrics are adapted from the pinned CiscoCellular trait. Stellar discovery creates client sensors with empty OIDs, while its pinned polling interface reads apClientWlanService and groups by the MIB value; Python reproduces that behavior from the Alcatel-Lucent Enterprise vendor bucket. The Comware OS class has no wireless discovery interface; Comware wireless MIB polling is a separately identified Nexora Python adapter."
+    "notes": "This generic module dispatches discovery to OS classes only when they implement the matching wireless sensor interface. The Python wireless rule set references only MIB inputs already recorded in this bundle. IOS-XE extends Ciscowlc and inherits its AP/client methods; its cellular metrics are adapted from the pinned CiscoCellular trait. Stellar discovery creates client sensors with empty OIDs, while its pinned polling interface reads apClientWlanService and groups by the MIB value; Python reproduces that behavior from the Alcatel-Lucent Enterprise vendor bucket. The Comware OS class has no wireless discovery interface; Comware wireless MIB polling is a separately identified NetAop Python adapter."
   },
   "asset_security_vendors": [
     "Fortinet",

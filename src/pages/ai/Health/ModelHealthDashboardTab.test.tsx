@@ -92,7 +92,7 @@ describe('ModelHealthDashboardTab', () => {
   it('renders an OpenAI-style status banner and historical service bars', async () => {
     render(<MemoryRouter><ModelHealthDashboardTab /></MemoryRouter>);
 
-    expect(await screen.findByText('当前状态：Nexora AI 模型服务')).toBeTruthy();
+    expect(await screen.findByText('当前状态：NetAop AI 模型服务')).toBeTruthy();
     expect(screen.getByText('部分模型需要关注')).toBeTruthy();
     expect(screen.getByText('系统状态')).toBeTruthy();
     expect(screen.getByText('DeepSeek Chat')).toBeTruthy();

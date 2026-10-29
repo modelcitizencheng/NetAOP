@@ -38,6 +38,6 @@ $startArguments = @(
 )
 Start-Process -FilePath $python -ArgumentList $startArguments -WindowStyle Hidden
 
-Write-Host "Nexora Terminal Agent started on http://127.0.0.1:$Port"
+Write-Host "NetAop Terminal Agent started on http://127.0.0.1:$Port"
 Write-Host "Health check: Invoke-WebRequest http://127.0.0.1:$Port/health"
 Write-Host 'Verify capabilities includes web_access. Web PAM opens the system browser and records the browser window.'

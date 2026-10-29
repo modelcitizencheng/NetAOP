@@ -78,7 +78,7 @@ app.conf.update(
     worker_prefetch_multiplier=1,
     broker_transport_options={
         "visibility_timeout": 120,
-        "global_keyprefix": "nexora_alert_",
+        "global_keyprefix": "netaop_alert_",
     },
     worker_enable_remote_control=False,
     worker_send_task_events=False,

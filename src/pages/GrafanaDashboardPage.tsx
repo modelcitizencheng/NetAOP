@@ -28,7 +28,7 @@ type GrafanaStatus = 'checking' | 'ready' | 'unavailable';
 
 export const GRAFANA_DASHBOARDS = [
   {
-    uid: 'nexora-network-overview',
+    uid: 'netaop-network-overview',
     titleZh: '01 网络总览',
     titleEn: '01 Network Overview',
     descZh: '全网全局 KPI、有线/无线流量与负荷概况',
@@ -36,7 +36,7 @@ export const GRAFANA_DASHBOARDS = [
     icon: BarChart2,
   },
   {
-    uid: 'nexora-network-device',
+    uid: 'netaop-network-device',
     titleZh: '02 设备详情',
     titleEn: '02 Device Detail',
     descZh: '单机多核 CPU、内存池、板卡温度与风扇电源',
@@ -44,7 +44,7 @@ export const GRAFANA_DASHBOARDS = [
     icon: Server,
   },
   {
-    uid: 'nexora-network-wireless',
+    uid: 'netaop-network-wireless',
     titleZh: '03 无线专网',
     titleEn: '03 Wireless AP & Clients',
     descZh: '全网 AC/AP 控制器、AP 在线/离线、无线客户端分布与高密排行',
@@ -52,7 +52,7 @@ export const GRAFANA_DASHBOARDS = [
     icon: Wifi,
   },
   {
-    uid: 'nexora-network-interface',
+    uid: 'netaop-network-interface',
     titleZh: '04 接口流量',
     titleEn: '04 Interface Traffic',
     descZh: '端口带宽利用率、速率走势、丢包与 CRC 错包诊断',
@@ -60,7 +60,7 @@ export const GRAFANA_DASHBOARDS = [
     icon: Activity,
   },
   {
-    uid: 'nexora-monitoring-health',
+    uid: 'netaop-monitoring-health',
     titleZh: '05 采集健康',
     titleEn: '05 Scrape Health',
     descZh: 'vmagent 探针在线率、SNMP Scrape 耗时分布与慢采集排行',
@@ -68,7 +68,7 @@ export const GRAFANA_DASHBOARDS = [
     icon: Layers,
   },
   {
-    uid: 'nexora-network-outbound',
+    uid: 'netaop-network-outbound',
     titleZh: '06 互联网出口',
     titleEn: '06 Internet Outbound & WAN',
     descZh: '边界网关出入向实时带宽、利用率走势与出口链路丢包诊断',
@@ -76,7 +76,7 @@ export const GRAFANA_DASHBOARDS = [
     icon: Globe,
   },
   {
-    uid: 'nexora-linux-metrics',
+    uid: 'netaop-linux-metrics',
     titleZh: '07 Linux 服务器',
     titleEn: '07 Linux Server',
     descZh: 'Linux CPU、负载、物理内存/Swap、磁盘空间与 IOPS、网络流量与 TCP 连接',
@@ -84,7 +84,7 @@ export const GRAFANA_DASHBOARDS = [
     icon: HardDrive,
   },
   {
-    uid: 'nexora-windows-metrics',
+    uid: 'netaop-windows-metrics',
     titleZh: '08 Windows 主机',
     titleEn: '08 Windows Host',
     descZh: 'Windows CPU、物理内存、逻辑磁盘读写延迟、网络适配器与远程桌面会话',
@@ -92,7 +92,7 @@ export const GRAFANA_DASHBOARDS = [
     icon: Monitor,
   },
   {
-    uid: 'nexora-platform-health',
+    uid: 'netaop-platform-health',
     titleZh: '10 监控平台健康',
     titleEn: '10 Monitoring Platform Health',
     descZh: '平台服务、写入队列、VictoriaMetrics 磁盘与容器资源',
@@ -100,7 +100,7 @@ export const GRAFANA_DASHBOARDS = [
     icon: ShieldCheck,
   },
   {
-    uid: 'nexora-outbound-probe-quality',
+    uid: 'netaop-outbound-probe-quality',
     titleZh: '11 WAN 链路健康与拨测',
     titleEn: '11 WAN Health & Probe Quality',
     descZh: 'WAN 接口采样、DNS/TCP/HTTP/ICMP 拨测；逐线路 SLA 需源地址选路',
@@ -108,7 +108,7 @@ export const GRAFANA_DASHBOARDS = [
     icon: Globe,
   },
   {
-    uid: 'nexora-alert-operations',
+    uid: 'netaop-alert-operations',
     titleZh: '12 告警处置与通知',
     titleEn: '12 Alert Operations & Notifications',
     descZh: '告警持续时间、MTTA/MTTR、重复事件与通知投递效果',
@@ -116,7 +116,7 @@ export const GRAFANA_DASHBOARDS = [
     icon: Activity,
   },
   {
-    uid: 'nexora-postgres-performance',
+    uid: 'netaop-postgres-performance',
     titleZh: '13 PostgreSQL 数据库性能',
     titleEn: '13 PostgreSQL Database Performance',
     descZh: 'pg_stat_statements 采集状态、Top SQL 调用速率/执行耗时/Rows 与数据库级 Shared Buffer 命中率；按 Query ID 展示，不含 SQL 文本',
@@ -134,18 +134,18 @@ const TIME_RANGES = [
 ];
 
 const GRAFANA_DEFAULT_TIME_RANGES: Record<string, string> = {
-  'nexora-network-overview': '6h',
-  'nexora-network-device': '6h',
-  'nexora-network-wireless': '15m',
-  'nexora-network-interface': '6h',
-  'nexora-monitoring-health': '1h',
-  'nexora-network-outbound': '6h',
-  'nexora-linux-metrics': '6h',
-  'nexora-windows-metrics': '6h',
-  'nexora-platform-health': '1h',
-  'nexora-outbound-probe-quality': '24h',
-  'nexora-alert-operations': '24h',
-  'nexora-postgres-performance': '1h',
+  'netaop-network-overview': '6h',
+  'netaop-network-device': '6h',
+  'netaop-network-wireless': '15m',
+  'netaop-network-interface': '6h',
+  'netaop-monitoring-health': '1h',
+  'netaop-network-outbound': '6h',
+  'netaop-linux-metrics': '6h',
+  'netaop-windows-metrics': '6h',
+  'netaop-platform-health': '1h',
+  'netaop-outbound-probe-quality': '24h',
+  'netaop-alert-operations': '24h',
+  'netaop-postgres-performance': '1h',
 };
 
 const REFRESH_RATES = [
@@ -180,7 +180,7 @@ const GrafanaDashboardPage: React.FC<GrafanaDashboardPageProps> = ({ language })
       dashboard: validDashboard
         ? requestedDashboard!
         : assetId
-          ? 'nexora-network-device'
+          ? 'netaop-network-device'
           : GRAFANA_DASHBOARDS[0].uid,
     };
   });
@@ -195,7 +195,7 @@ const GrafanaDashboardPage: React.FC<GrafanaDashboardPageProps> = ({ language })
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
 
-  // Sync theme with Nexora's top-level data-theme attribute
+  // Sync theme with NetAop's top-level data-theme attribute
   useEffect(() => {
     const observer = new MutationObserver(() => {
       const current = resolveSystemTheme();
@@ -235,7 +235,7 @@ const GrafanaDashboardPage: React.FC<GrafanaDashboardPageProps> = ({ language })
     setLoaded(false);
     try {
       const token = localStorage.getItem('netops_token');
-      if (!token) throw new Error('Nexora session is missing');
+      if (!token) throw new Error('NetAop session is missing');
       const bridgeResponse = await fetch('/api/grafana/session', {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
@@ -285,7 +285,7 @@ const GrafanaDashboardPage: React.FC<GrafanaDashboardPageProps> = ({ language })
       params.set('to', 'now');
     }
     params.set('theme', theme);
-    if (selectedDashboard === 'nexora-network-device' && dashboardContext.assetId) {
+    if (selectedDashboard === 'netaop-network-device' && dashboardContext.assetId) {
       params.set('var-asset_id', dashboardContext.assetId);
     }
 
@@ -339,7 +339,7 @@ const GrafanaDashboardPage: React.FC<GrafanaDashboardPageProps> = ({ language })
                 <span>{zh ? '进程与系统明细' : 'Processes Detail'}</span>
               </button>
             )}
-            {selectedDashboard === 'nexora-monitoring-health' && (
+            {selectedDashboard === 'netaop-monitoring-health' && (
               <button
                 type="button"
                 onClick={() => navigate('/monitor/collection-health')}
@@ -524,11 +524,11 @@ const GrafanaDashboardPage: React.FC<GrafanaDashboardPageProps> = ({ language })
                 <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-zinc-400">
                   {status === 'checking'
                     ? zh
-                      ? '正在确认反向代理返回的是 Grafana 服务，而不是 Nexora 的 SPA 页面。'
-                      : 'Verifying that the proxy returns Grafana rather than the Nexora SPA fallback.'
+                      ? '正在确认反向代理返回的是 Grafana 服务，而不是 NetAop 的 SPA 页面。'
+                      : 'Verifying that the proxy returns Grafana rather than the NetAop SPA fallback.'
                     : zh
-                      ? '当前页面不会嵌套错误的 Nexora 页面。部署并启动 Grafana 后点击“检查并刷新”即可加载大盘。'
-                      : 'The page will not embed the Nexora SPA fallback. Deploy Grafana, then click “Check & refresh”.'}
+                      ? '当前页面不会嵌套错误的 NetAop 页面。部署并启动 Grafana 后点击“检查并刷新”即可加载大盘。'
+                      : 'The page will not embed the NetAop SPA fallback. Deploy Grafana, then click “Check & refresh”.'}
                 </p>
                 {status === 'unavailable' && (
                   <div className="mt-4 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/50 p-3 text-left text-xs leading-5 text-slate-600 dark:text-zinc-300">
